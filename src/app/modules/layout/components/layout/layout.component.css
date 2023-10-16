@@ -1,6 +1,5 @@
 @media (min-width: 700px) {
-  main {
+  .page {
     margin-left: 320px;
-    padding: 0 1rem;
   }
 }
