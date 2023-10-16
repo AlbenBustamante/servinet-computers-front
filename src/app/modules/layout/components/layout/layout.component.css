@@ -1,0 +1,6 @@
+@media (min-width: 700px) {
+  main {
+    margin-left: 320px;
+    padding: 0 1rem;
+  }
+}
