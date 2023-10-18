@@ -19,6 +19,13 @@ header {
   margin: auto;
 }
 
+form {
+  background-color: #ffffff;
+  box-shadow: 0 0 0.6rem 0.2rem #77777740;
+  border-radius: 0.8rem;
+  padding: 1.25rem 1rem;
+}
+
 fieldset {
   border: none;
 }
@@ -39,6 +46,7 @@ input,
 select {
   font-size: 0.8rem;
   margin-bottom: 1rem;
+  background-color: #ffffff;
 }
 
 button {
