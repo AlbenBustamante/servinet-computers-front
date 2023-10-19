@@ -1,10 +1,29 @@
+#calendars {
+  margin: auto;
+  margin-top: -2rem;
+  height: 2rem;
+}
+
+#calendars form {
+  display: flex;
+  justify-content: space-around;
+}
+
+#calendars form * {
+  font-family: inherit;
+}
+
+#calendars,
 #transfers {
   width: 80%;
   max-width: 840px;
-  margin: auto;
+}
+
+#transfers {
   box-shadow: 0 0 0.6rem 0.2rem #77777740;
   background-color: #ffffff;
   border-radius: 0.25rem;
+  margin: auto;
 }
 
 table {
