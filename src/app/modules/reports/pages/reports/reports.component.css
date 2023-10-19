@@ -1,0 +1,41 @@
+#transfers {
+  width: 60%;
+  margin: auto;
+  box-shadow: 0 0 0.6rem 0.2rem #77777740;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+thead {
+  color: #3f3f3f;
+  border-bottom: 2px solid #afafaf;
+}
+
+tbody {
+  color: #2f2f2f;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.8rem 1.2rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #efefef;
+}
+
+tbody tr:hover {
+  background-color: #dfdfdf;
+}
+
+td:nth-of-type(3)::before {
+  content: "$";
+}
