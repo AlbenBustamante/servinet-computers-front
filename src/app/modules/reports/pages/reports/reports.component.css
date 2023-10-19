@@ -1,7 +1,7 @@
 #calendars {
   margin: auto;
-  margin-top: -2rem;
-  height: 2rem;
+  margin-top: -2.5rem;
+  height: 2.5rem;
 }
 
 #calendars form {
@@ -11,6 +11,19 @@
 
 #calendars form * {
   font-family: inherit;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.8rem;
+  border-radius: 0.2rem;
+  width: 200px;
+  border: 0.15rem solid #124c59;
+}
+
+button {
+  font-weight: 600;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 #calendars,
@@ -34,7 +47,7 @@ table {
 
 thead {
   color: #3f3f3f;
-  border-bottom: 2px solid #afafaf;
+  border-bottom: 2px solid #124c59;
 }
 
 tbody {
