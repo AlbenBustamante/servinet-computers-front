@@ -1,32 +1,6 @@
 <app-header-title headerTitle="Inicio"></app-header-title>
 <main>
   <section role="region" id="new-transfer">
-    <form>
-      <fieldset>
-        <legend>Añadir nueva transferencia</legend>
-        <div>
-          <datalist id="platforms">
-            <option value="MoviiRed"></option>
-            <option value="PuntoRed"></option>
-          </datalist>
-          <label for="platform">Selecciona la plataforma</label>
-          <input list="platforms" id="platform" />
-        </div>
-        <div class="flex">
-          <div>
-            <label for="value">Valor transferido</label>
-            <input type="text" id="value" />
-          </div>
-          <div>
-            <label for="amount">Cantidad</label>
-            <select id="amount">
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit">Enviar</button>
-      </fieldset>
-    </form>
+    <app-new-transfer-form></app-new-transfer-form>
   </section>
 </main>

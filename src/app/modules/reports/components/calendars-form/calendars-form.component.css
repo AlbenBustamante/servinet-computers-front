@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  justify-content: space-around;
+}
+
+form * {
+  font-family: inherit;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.8rem;
+  border-radius: 0.2rem;
+  width: 200px;
+  border: 0.15rem solid #124c59;
+}
+
+button {
+  font-weight: 600;
+  background-color: #f7f7f7;
+  color: #298296;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #298296;
+  color: #f7f7f7;
+}
