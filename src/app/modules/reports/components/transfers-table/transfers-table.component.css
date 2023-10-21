@@ -27,7 +27,3 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #dfdfdf;
 }
-
-td:nth-of-type(3)::before {
-  content: "$";
-}
