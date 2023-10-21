@@ -8,35 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>MoviiRed</td>
-      <td>15.000</td>
-      <td>15:40</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>MoviiRed</td>
-      <td>15.000</td>
-      <td>15:40</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>MoviiRed</td>
-      <td>15.000</td>
-      <td>15:40</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>MoviiRed</td>
-      <td>15.000</td>
-      <td>15:40</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>MoviiRed</td>
-      <td>15.000</td>
-      <td>15:40</td>
+    <tr *ngFor="let transfer of transfers">
+      <td>{{ transfer.id }}</td>
+      <td>{{ transfer.platformName }}</td>
+      <td>{{ transfer.value }}</td>
+      <td>12:00</td>
     </tr>
   </tbody>
 </table>
