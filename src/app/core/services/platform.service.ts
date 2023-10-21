@@ -21,4 +21,8 @@ export class PlatformService {
   getAll(): IPlatformRes[] {
     return this.platforms;
   }
+
+  get(id: number): IPlatformRes {
+    return this.platforms[id];
+  }
 }
