@@ -3,8 +3,10 @@
     <legend>Añadir nueva transferencia</legend>
     <div>
       <datalist id="platforms">
-        <option value="MoviiRed"></option>
-        <option value="PuntoRed"></option>
+        <option
+          *ngFor="let platform of platforms"
+          [value]="platform.name"
+        ></option>
       </datalist>
       <label for="platform">Selecciona la plataforma</label>
       <input list="platforms" id="platform" />
@@ -17,8 +19,9 @@
       <div>
         <label for="amount">Cantidad</label>
         <select id="amount">
-          <option value="1">1</option>
-          <option value="2">2</option>
+          <option *ngFor="let number of numbers" [value]="number">
+            {{ number }}
+          </option>
         </select>
       </div>
     </div>
