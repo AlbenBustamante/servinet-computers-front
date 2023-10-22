@@ -1,6 +1,6 @@
 export interface ITransferReq {
   campusId: number;
-  platformId: number;
+  platformName: string;
   value: number;
 }
 

@@ -22,7 +22,7 @@ export class PlatformService {
     return this.platforms;
   }
 
-  get(id: number): IPlatformRes {
-    return this.platforms[id];
+  getByName(platformName: string): IPlatformRes | undefined {
+    return this.platforms.find((platform) => platform.name === platformName);
   }
 }

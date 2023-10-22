@@ -17,14 +17,19 @@ export class TransferService {
   }
 
   register(req: ITransferReq): ITransferRes {
-    const platformFound = this.platformService.get(req.platformId);
+    const platformFound = this.platformService.getByName(req.platformName);
+    const platformName = !platformFound ? '' : platformFound.name;
 
-    return {
+    const newTransfer = {
       ...req,
       id: this.transfers.length,
       value: `$${req.value}`,
-      platformName: platformFound.name,
+      platformName,
     };
+
+    this.transfers.push(newTransfer);
+
+    return newTransfer;
   }
 
   getAll(): ITransferRes[] {
