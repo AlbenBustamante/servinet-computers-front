@@ -1,5 +1,7 @@
 header h1 {
   text-align: center;
+  font-size: 3rem;
+  margin-top: 1rem;
 }
 
 footer {
@@ -8,7 +10,7 @@ footer {
   left: 0;
   right: 0;
   text-align: center;
-  background-color: #66aaff;
+  background-color: #0f0f0f;
   color: #f7f7f7;
   padding: 1.5rem;
 }
@@ -19,4 +21,14 @@ footer h2 {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 1.25rem;
+}
+
+#login-form {
+  width: 85%;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.8rem 0.2rem #dfdfdf;
 }

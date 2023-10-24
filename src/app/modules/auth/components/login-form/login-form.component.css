@@ -1,0 +1,55 @@
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  border: 0;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: #4f4f4f;
+}
+
+button {
+  color: #f7f7f7;
+  background-color: #66aaff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid;
+}
+
+input {
+  font-size: 0.9rem;
+  color: #3f3f3f;
+  border: 2px solid #7f7f7f;
+}
+
+input,
+button {
+  font-family: inherit;
+  padding: 0.5rem 0.8rem;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.input-password {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-password a {
+  display: block;
+  text-decoration: none;
+  font-size: 0.75rem;
+  color: #3f7fce;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
