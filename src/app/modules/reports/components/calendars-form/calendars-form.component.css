@@ -9,17 +9,17 @@ form * {
   padding: 0.1rem 0.8rem;
   border-radius: 0.2rem;
   width: 200px;
-  border: 0.15rem solid #124c59;
+  border: 0.15rem solid var(--darker-primary-color);
 }
 
 button {
   font-weight: 600;
-  background-color: #f7f7f7;
-  color: #298296;
+  background-color: var(--background-color);
+  color: var(--primary-color);
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #298296;
-  color: #f7f7f7;
+  background-color: var(--darker-primary-color);
+  color: var(--background-color);
 }

@@ -1,16 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
+  --input-border-color: #b1aaba;
+  --input-border-color-focus: #74707e;
+  --light-primary-color: #ae8bf5;
   --primary-color: #9767f9;
+  --darker-primary-color: #8d66da;
   --secondary-color: #3f7fce;
   --black-color: #0f0f0f;
-  --darker-primary-color: #8d66da;
-  --background-color: #f7f7f7;
   --white-color: #ffffff;
-  --black-color: #0f0f0f;
+  --background-color: #f7f7f7;
   --shadow-color: #dfdfdf;
   --light-gray-color: #7f7f7f;
   --label-color: #4f4f4f;
   --input-color: #3f3f3f;
+  --text-color: #2f2f2f;
+  --shadow: 0 0 0.8rem 0.2rem var(--shadow-color);
 }
 
 * {
@@ -23,7 +27,7 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--background);
+  background-color: var(--background-color);
   margin: 0;
 }
 

@@ -12,8 +12,8 @@ hr {
 }
 
 #transfers {
-  box-shadow: 0 0 0.6rem 0.2rem #77777740;
-  background-color: #ffffff;
+  box-shadow: var(--shadow);
+  background-color: var(--white-color);
   border-radius: 0.25rem;
   margin: auto;
 }

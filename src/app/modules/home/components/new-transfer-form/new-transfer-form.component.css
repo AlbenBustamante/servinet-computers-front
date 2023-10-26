@@ -1,6 +1,6 @@
 form {
-  background-color: #ffffff;
-  box-shadow: 0 0 0.6rem 0.2rem #77777740;
+  background-color: var(--background-color);
+  box-shadow: var(--shadow);
   border-radius: 0.8rem;
   padding: 1.25rem 1rem;
 }
@@ -19,21 +19,15 @@ label {
   display: block;
   font-size: 1.05rem;
   margin-bottom: 0.25rem;
-}
-
-input,
-select {
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-  background-color: #ffffff;
+  color: var(--label-color);
 }
 
 button {
   margin-top: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
-  background-color: #298296;
-  color: #f7f7f7;
+  background-color: var(--primary-color);
+  color: var(--background-color);
 }
 
 input,
@@ -43,19 +37,27 @@ button {
   font-family: inherit;
   border-radius: 0.5rem;
   padding: 0.3rem 0.6rem;
-  border: 0.15rem solid #124c59;
+  border: 0.15rem solid;
+}
+
+input,
+select {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  color: var(--input-color);
+  background-color: var(--white-color);
+  border-color: var(--input-border-color);
 }
 
 button:hover {
   cursor: pointer;
-  /* background-color: #38a3bb;
-    color: #143c45; dark-theme */
-  background-color: #3298af;
+  background-color: var(--darker-primary-color);
 }
 
-input:active,
-select:active {
-  border-color: #2eabc8;
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--input-border-color-focus);
 }
 
 @media (min-width: 1024px) {

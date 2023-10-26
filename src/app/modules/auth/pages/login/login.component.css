@@ -30,5 +30,5 @@ footer h2 {
   padding: 1.5rem 1rem;
   background-color: var(--white-color);
   border-radius: 1rem;
-  box-shadow: 0 0 0.8rem 0.2rem var(--shadow-color);
+  box-shadow: var(--shadow);
 }

@@ -5,12 +5,12 @@ table {
 }
 
 thead {
-  color: #3f3f3f;
-  border-bottom: 2px solid #124c59;
+  color: var(--input-color);
+  border-bottom: 2px solid var(--light-primary-color);
 }
 
 tbody {
-  color: #2f2f2f;
+  color: var(--text-color);
   font-size: 0.9rem;
 }
 
