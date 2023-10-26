@@ -10,12 +10,12 @@ label {
   font-size: 0.8rem;
   margin-bottom: 0.25rem;
   font-weight: 600;
-  color: #4f4f4f;
+  color: var(--label-color);
 }
 
 button {
-  color: #f7f7f7;
-  background-color: #66aaff;
+  color: var(--background-color);
+  background-color: var(--primary-color);
   font-weight: 600;
   font-size: 1rem;
   border: 2px solid;
@@ -23,10 +23,11 @@ button {
 }
 
 input {
+  background-color: var(--white-color);
   font-size: 0.9rem;
-  color: #3f3f3f;
+  color: var(--input-color);
   border: none;
-  border-bottom: 2px solid #7f7f7f;
+  border-bottom: 2px solid var(--light-gray-color);
 }
 
 input,
@@ -38,15 +39,13 @@ button {
 
 button:hover {
   cursor: pointer;
+  background-color: var(--darker-primary-color);
 }
 
-input:focus {
-  outline: none;
-  border-color: #66aaff;
-}
-
+input:focus,
 input:valid {
-  border-color: #3f7fce;
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 .input-password {
@@ -59,7 +58,7 @@ input:valid {
   display: block;
   text-decoration: none;
   font-size: 0.75rem;
-  color: #3f7fce;
+  color: var(--secondary-color);
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
