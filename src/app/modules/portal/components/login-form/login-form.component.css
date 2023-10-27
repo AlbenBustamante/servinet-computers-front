@@ -1,0 +1,58 @@
+form {
+  width: 70%;
+  margin: auto;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: 0;
+  padding: 0;
+}
+
+label {
+  display: block;
+  color: var(--label-color);
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+input {
+  font-size: 0.9rem;
+  background-color: var(--background-color);
+  color: var(--input-color);
+  border: none;
+  border-bottom: 2px solid var(--light-gray-color);
+  width: 100%;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  width: 50%;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  display: block;
+  margin: auto;
+}
+
+input,
+button {
+  font-family: inherit;
+  padding: 0.5rem 0.8rem;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--darker-primary-color);
+}
+
+input:focus,
+input:valid {
+  outline: none;
+  border-color: var(--primary-color);
+}
