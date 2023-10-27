@@ -8,6 +8,11 @@ const routes: Routes = [
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: 'portal',
+    loadChildren: () =>
+      import('./modules/portal/portal.module').then((m) => m.PortalModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./modules/layout/layout.module').then((m) => m.LayoutModule),
