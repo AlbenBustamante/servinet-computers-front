@@ -1,3 +1,8 @@
+form {
+  width: 90%;
+  margin: auto;
+}
+
 fieldset {
   display: flex;
   flex-direction: column;
@@ -20,21 +25,24 @@ button {
   font-size: 1rem;
   border: 2px solid;
   border-radius: 0.5rem;
+  width: 65%;
+  display: block;
+  margin: auto;
 }
 
 input {
   background-color: var(--white-color);
   font-size: 0.9rem;
   color: var(--input-color);
-  border: none;
-  border-bottom: 2px solid var(--light-gray-color);
+  border: 2px solid var(--light-gray-color);
+  border-radius: 0.4rem;
+  width: 100%;
 }
 
 input,
 button {
   font-family: inherit;
   padding: 0.5rem 0.8rem;
-  width: 100%;
 }
 
 button:hover {
