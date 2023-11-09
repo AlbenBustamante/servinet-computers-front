@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SharedModule } from '../shared/shared.module';
 import { PortalComponent } from './pages/portal/portal.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PortalComponent } from './pages/portal/portal.component';
     LoginComponent,
     RegisterComponent,
     PortalComponent,
+    NavbarComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
 })
