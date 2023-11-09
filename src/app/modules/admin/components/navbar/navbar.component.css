@@ -30,16 +30,8 @@ header ul li {
   padding: 0.4rem 0.8rem;
 }
 
-.menu {
-  font-size: 2rem;
-}
-
 .account {
   border-radius: 1rem;
-}
-
-.menu,
-.account {
   cursor: pointer;
 }
 
