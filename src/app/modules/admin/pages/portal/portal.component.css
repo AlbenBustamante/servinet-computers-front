@@ -81,3 +81,22 @@ main {
 #platforms tbody tr:hover {
   background-color: #dfdfdf;
 }
+
+#platforms .actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#platforms .actions span {
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+#platforms .actions span:nth-of-type(1) {
+  color: #80801a;
+}
+
+#platforms .actions span:nth-of-type(2) {
+  color: #801a1a;
+}
