@@ -50,11 +50,12 @@ main {
 #platforms {
   width: 55%;
   height: calc(100vh - 4rem);
+  padding: 0 2rem;
 }
 
 #platforms table {
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   border-collapse: collapse;
 }
 
@@ -99,4 +100,10 @@ main {
 
 #platforms .actions span:nth-of-type(2) {
   color: #801a1a;
+}
+
+#campuses,
+#platforms {
+  display: flex;
+  align-items: center;
 }
