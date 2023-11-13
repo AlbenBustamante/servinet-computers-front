@@ -2,7 +2,7 @@ form {
   background-color: var(--white-color);
   box-shadow: var(--shadow);
   border-radius: 0.8rem;
-  padding: 1.25rem 1rem;
+  padding: 1.5rem 1.8rem;
 }
 
 fieldset {
