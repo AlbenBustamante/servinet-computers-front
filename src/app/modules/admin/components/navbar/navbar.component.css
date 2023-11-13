@@ -6,6 +6,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 0.4rem;
+  border-bottom: 1px solid var(--primary-color-500);
 }
 
 .menu {
@@ -45,4 +46,44 @@ header {
 .menu:active,
 .account:active {
   background-color: var(--primary-color-900);
+}
+
+nav {
+  width: 13rem;
+  height: calc(100vh - 4rem);
+  background-color: var(--primary-color-700);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.8rem 0.8rem;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+a {
+  color: var(--background-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+}
+
+a:hover {
+  background-color: var(--primary-color-800);
+}
+
+a:active {
+  background-color: var(--primary-color-900);
+}
+
+hr {
+  margin-bottom: 1rem;
+  border: 1px solid var(--primary-color-500);
 }
