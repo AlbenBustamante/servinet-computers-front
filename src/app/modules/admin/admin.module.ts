@@ -9,6 +9,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { CampusesComponent } from './components/campuses/campuses.component';
+import { PlatformsComponent } from './pages/platforms/platforms.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { CampusesComponent } from './components/campuses/campuses.component';
     DashboardComponent,
     StatsComponent,
     CampusesComponent,
+    PlatformsComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, SharedModule],
+  imports: [CommonModule, AdminRoutingModule, SharedModule, RouterModule],
 })
 export class AdminModule {}
