@@ -5,4 +5,44 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 0.4rem;
+}
+
+.menu {
+  background-color: unset;
+  border: none;
+  padding: 0.2rem 0.4rem;
+}
+
+.menu span {
+  color: var(--background-color);
+  font-size: 2rem;
+}
+
+.account {
+  color: var(--background-color);
+  background-color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+}
+
+.menu,
+.account {
+  border: none;
+  border-radius: 0.6rem;
+}
+
+.menu:hover,
+.account:hover {
+  cursor: pointer;
+  background-color: var(--primary-color-800);
+}
+
+.menu:active,
+.account:active {
+  background-color: var(--primary-color-900);
 }
