@@ -7,6 +7,9 @@ header {
   justify-content: space-between;
   padding: 0 0.4rem;
   border-bottom: 1px solid var(--primary-color-500);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .menu {
@@ -49,6 +52,9 @@ header {
 }
 
 nav {
+  position: fixed;
+  top: 4rem;
+  left: 0;
   width: 13rem;
   height: calc(100vh - 4rem);
   background-color: var(--primary-color-700);
