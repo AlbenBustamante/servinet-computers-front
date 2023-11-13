@@ -1,0 +1,27 @@
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 4rem;
+}
+
+h2,
+p {
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.1rem;
+  color: var(--gray-color-950);
+}
+
+p {
+  font-size: 1rem;
+  color: var(--gray-color-900);
+}
+
+.separator {
+  width: 1px;
+  height: 100%;
+  background-color: var(--gray-color-400);
+}
