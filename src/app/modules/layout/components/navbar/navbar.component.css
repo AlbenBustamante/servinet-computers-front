@@ -6,12 +6,12 @@ h1 {
 
 hr {
   width: 85%;
-  border: 1px solid var(--light-primary-color);
+  border: 1px solid var(--primary-color-400);
 }
 
 nav {
   color: var(--background-color);
-  background-color: var(--darker-primary-color);
+  background-color: var(--primary-color-700);
 }
 
 ul {
@@ -44,7 +44,11 @@ ul li a span {
 }
 
 ul li:hover {
-  background-color: var(--light-primary-color);
+  background-color: var(--primary-color-800);
+}
+
+ul li:active {
+  background-color: var(--primary-color-900);
 }
 
 @media (min-width: 700px) {

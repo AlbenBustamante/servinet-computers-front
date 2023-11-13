@@ -13,23 +13,23 @@ fieldset {
 
 label {
   display: block;
-  color: var(--label-color);
+  color: var(--gray-color-900);
   font-size: 0.8rem;
-  margin-bottom: 0.25rem;
   font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 input {
   font-size: 0.9rem;
   background-color: var(--background-color);
-  color: var(--input-color);
+  color: var(--gray-color-900);
   border: none;
-  border-bottom: 2px solid var(--light-gray-color);
+  border-bottom: 2px solid var(--gray-color-400);
   width: 100%;
 }
 
 button {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-500);
   color: var(--background-color);
   width: 50%;
   font-weight: 600;
@@ -48,11 +48,15 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: var(--darker-primary-color);
+  background-color: var(--primary-color-600);
+}
+
+button:active {
+  background-color: var(--primary-color-700);
 }
 
 input:focus,
 input:valid {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--secondary-color-500);
 }

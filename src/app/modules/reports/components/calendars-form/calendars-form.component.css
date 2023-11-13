@@ -3,23 +3,39 @@ form {
   justify-content: space-around;
 }
 
-form * {
-  font-family: inherit;
-  font-size: 0.75rem;
-  padding: 0.1rem 0.8rem;
+input {
+  color: var(--gray-color-900);
   border-radius: 0.2rem;
-  width: 200px;
-  border: 0.15rem solid var(--darker-primary-color);
 }
 
 button {
+  background-color: var(--secondary-color-50);
+  color: var(--secondary-color-900);
   font-weight: 600;
-  background-color: var(--background-color);
-  color: var(--primary-color);
+  border-radius: 0.45rem;
+}
+
+input,
+button {
+  font-family: inherit;
+  font-size: 0.75rem;
+  width: 10rem;
+  padding: 0.2rem 0.8rem;
+  border: 0.1rem solid var(--secondary-color-500);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--secondary-color-600);
 }
 
 button:hover {
   cursor: pointer;
-  background-color: var(--darker-primary-color);
+  background-color: var(--secondary-color-500);
   color: var(--background-color);
+}
+
+button:active {
+  border-color: var(--secondary-color-600);
+  background-color: var(--secondary-color-600);
 }

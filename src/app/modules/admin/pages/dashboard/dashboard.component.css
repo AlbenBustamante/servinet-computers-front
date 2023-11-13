@@ -13,6 +13,7 @@ main {
 .card {
   box-shadow: var(--shadow);
   border-radius: 1rem;
+  background-color: var(--white-color);
 }
 
 .card h2 {
@@ -66,7 +67,7 @@ article .card select {
   font-family: inherit;
   font-size: 0.85rem;
   outline: none;
-  border: 2px solid var(--input-border-color);
+  border: 2px solid var(--gray-color-400);
   border-radius: 0.5rem;
 }
 
@@ -81,5 +82,5 @@ article .card select {
   display: block;
   height: 2px;
   width: 100%;
-  background: var(--input-border-color);
+  background: var(--gray-color-400);
 }

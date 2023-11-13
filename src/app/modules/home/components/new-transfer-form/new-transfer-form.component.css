@@ -1,5 +1,5 @@
 form {
-  background-color: var(--background-color);
+  background-color: var(--white-color);
   box-shadow: var(--shadow);
   border-radius: 0.8rem;
   padding: 1.25rem 1rem;
@@ -10,24 +10,27 @@ fieldset {
 }
 
 legend {
-  font-size: 1.2rem;
-  font-weight: 600;
+  color: var(--gray-color-950);
+  font-size: 1.25rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
 label {
   display: block;
-  font-size: 1.05rem;
-  margin-bottom: 0.25rem;
-  color: var(--label-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--gray-color-900);
 }
 
 button {
   margin-top: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-500);
   color: var(--background-color);
+  border: none;
 }
 
 input,
@@ -36,28 +39,31 @@ button {
   width: 100%;
   font-family: inherit;
   border-radius: 0.5rem;
-  padding: 0.3rem 0.6rem;
-  border: 0.15rem solid;
+  padding: 0.5rem 0.8rem;
 }
 
 input,
 select {
-  font-size: 0.8rem;
   margin-bottom: 1rem;
-  color: var(--input-color);
+  font-size: 0.9rem;
+  color: var(--gray-color-900);
   background-color: var(--white-color);
-  border-color: var(--input-border-color);
+  border: 0.15rem solid var(--gray-color-400);
 }
 
 button:hover {
   cursor: pointer;
-  background-color: var(--darker-primary-color);
+  background-color: var(--primary-color-600);
+}
+
+button:active {
+  background-color: var(--primary-color-700);
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: var(--input-border-color-focus);
+  border-color: var(--secondary-color-500);
 }
 
 @media (min-width: 1024px) {

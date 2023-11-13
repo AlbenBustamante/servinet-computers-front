@@ -1,20 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --input-border-color: #b1aaba;
-  --input-border-color-focus: #74707e;
-  --light-primary-color: #ae8bf5;
-  --primary-color: #9767f9;
-  --darker-primary-color: #8d66da;
-  --secondary-color: #3f7fce;
+  --primary-color-50: #fcf5fe;
+  --primary-color-100: #f8eafd;
+  --primary-color-200: #f1d5f9;
+  --primary-color-300: #e8b4f3;
+  --primary-color-400: #d36ee7;
+  --primary-color-500: #c758dd;
+  --primary-color-600: #ad39c0;
+  --primary-color-700: #912c9f;
+  --primary-color-800: #782682;
+  --primary-color-900: #65246b;
+  --primary-color-950: #410c46;
+
+  --secondary-color-50: #eefbfd;
+  --secondary-color-100: #d4f4f9;
+  --secondary-color-200: #afe8f2;
+  --secondary-color-300: #6ed3e7;
+  --secondary-color-400: #39bad7;
+  --secondary-color-500: #1d9ebd;
+  --secondary-color-600: #1b7f9f;
+  --secondary-color-700: #1d6781;
+  --secondary-color-800: #20546a;
+  --secondary-color-900: #1f475a;
+  --secondary-color-950: #0f2e3d;
+
+  --gray-color-50: #f7f7f7;
+  --gray-color-100: #e7e7e7;
+  --gray-color-200: #dfdfdf;
+  --gray-color-300: #c8c8c8;
+  --gray-color-400: #adadad;
+  --gray-color-500: #999999;
+  --gray-color-600: #888888;
+  --gray-color-700: #7b7b7b;
+  --gray-color-800: #676767;
+  --gray-color-900: #545454;
+  --gray-color-950: #363636;
+
+  --white-color: #f0f0f0;
+  --background-color: var(--gray-color-100);
   --black-color: #0f0f0f;
-  --white-color: #ffffff;
-  --background-color: #f7f7f7;
-  --shadow-color: #dfdfdf;
-  --light-gray-color: #7f7f7f;
-  --label-color: #4f4f4f;
-  --input-color: #3f3f3f;
-  --text-color: #2f2f2f;
-  --shadow: 0 0 0.8rem 0.2rem var(--shadow-color);
+
+  --shadow: 0 0 1rem var(--gray-color-300);
 }
 
 * {

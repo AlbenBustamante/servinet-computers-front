@@ -20,5 +20,5 @@ hr {
 
 hr {
   margin: 2rem auto;
-  border: 1px solid #afafaf;
+  border: 1px solid var(--gray-color-300);
 }

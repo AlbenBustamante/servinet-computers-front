@@ -1,16 +1,15 @@
 table {
   border-collapse: collapse;
-  table-layout: fixed;
   width: 100%;
 }
 
 thead {
-  color: var(--input-color);
-  border-bottom: 2px solid var(--light-primary-color);
+  color: var(--gray-color-900);
+  border-bottom: 2px solid var(--secondary-color-600);
 }
 
 tbody {
-  color: var(--text-color);
+  color: var(--gray-color-900);
   font-size: 0.9rem;
 }
 
@@ -21,9 +20,9 @@ td {
 }
 
 tbody tr:nth-child(even) {
-  background-color: #efefef;
+  background-color: var(--gray-color-100);
 }
 
 tbody tr:hover {
-  background-color: #dfdfdf;
+  background-color: var(--gray-color-300);
 }

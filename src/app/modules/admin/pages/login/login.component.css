@@ -28,7 +28,7 @@ main {
   color: var(--background-color);
   width: 55%;
   text-align: center;
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color-500);
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
