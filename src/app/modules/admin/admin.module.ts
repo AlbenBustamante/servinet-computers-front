@@ -8,6 +8,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { CampusesComponent } from './components/campuses/campuses.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     RegisterComponent,
     NavbarComponent,
     DashboardComponent,
+    StatsComponent,
+    CampusesComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule],
 })
