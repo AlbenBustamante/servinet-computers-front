@@ -1,0 +1,28 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  color: var(--gray-color-900);
+  border-bottom: 2px solid var(--primary-color-600);
+}
+
+tbody {
+  color: var(--gray-color-900);
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.8rem 1.2rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--gray-color-100);
+}
+
+tbody tr:hover {
+  background-color: var(--gray-color-300);
+}
