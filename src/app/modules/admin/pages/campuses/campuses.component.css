@@ -1,0 +1,58 @@
+main {
+  background-color: var(--white-color);
+  margin: 6rem 2rem 2rem 15rem;
+  height: calc(100vh - 8rem);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  width: 90%;
+  border: 0.15rem solid var(--primary-color-400);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gray-color-400);
+  padding: 0 1rem 0.5rem;
+}
+
+h2,
+.add {
+  font-size: 1.2rem;
+  color: var(--gray-color-950);
+}
+
+.add {
+  cursor: pointer;
+  color: var(--background-color);
+  background-color: var(--primary-color-500);
+  border-radius: 0.5rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.add:hover {
+  background-color: var(--primary-color-600);
+}
+
+.add:active {
+  background-color: var(--primary-color-700);
+}
+
+table {
+  margin-top: 1rem;
+}
+
+.right {
+  cursor: default;
+  color: var(--gray-color-600);
+}

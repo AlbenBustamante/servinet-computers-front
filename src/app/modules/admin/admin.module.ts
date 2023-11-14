@@ -10,6 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { CampusesComponent } from './components/campuses/campuses.component';
 import { PlatformsComponent } from './pages/platforms/platforms.component';
+import { CampusesComponent as CampusesPageComponent } from './pages/campuses/campuses.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     StatsComponent,
     CampusesComponent,
     PlatformsComponent,
+    CampusesPageComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, RouterModule],
 })
