@@ -1,12 +1,13 @@
+import { IResponse } from './response.model';
+
 export interface ITransferReq {
   campusId: number;
   platformName: string;
   value: number;
+  amount: string;
 }
 
-export interface ITransferRes {
-  id: number;
+export interface ITransferRes extends IResponse {
   campusId: number;
-  platformName: string;
   value: string;
 }
