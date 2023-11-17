@@ -10,9 +10,30 @@ export class TransferService {
 
   constructor(private readonly platformService: PlatformService) {
     this.transfers = [
-      { id: 1, campusId: 1, platformName: 'MoviiRed', value: '$1.000.000' },
-      { id: 2, campusId: 1, platformName: 'Puntored', value: '$800.000' },
-      { id: 3, campusId: 1, platformName: 'TuLlave', value: '$300.000' },
+      {
+        id: 1,
+        platformName: 'MoviiRed',
+        value: '$1.000.000',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isAvailable: true,
+      },
+      {
+        id: 2,
+        platformName: 'Puntored',
+        value: '$800.000',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isAvailable: true,
+      },
+      {
+        id: 3,
+        platformName: 'TuLlave',
+        value: '$300.000',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isAvailable: true,
+      },
     ];
   }
 
@@ -20,11 +41,14 @@ export class TransferService {
     const platformFound = this.platformService.getByName(req.platformName);
     const platformName = !platformFound ? '' : platformFound.name;
 
-    const newTransfer = {
+    const newTransfer: ITransferRes = {
       ...req,
       id: this.transfers.length,
       value: `$${req.value}`,
       platformName,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      isAvailable: true,
     };
 
     this.transfers.push(newTransfer);

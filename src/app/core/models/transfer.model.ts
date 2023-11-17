@@ -8,6 +8,6 @@ export interface ITransferReq {
 }
 
 export interface ITransferRes extends IResponse {
-  campusId: number;
+  platformName: string;
   value: string;
 }

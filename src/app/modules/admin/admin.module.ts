@@ -12,6 +12,7 @@ import { CampusesComponent } from './components/campuses/campuses.component';
 import { PlatformsComponent } from './pages/platforms/platforms.component';
 import { CampusesComponent as CampusesPageComponent } from './pages/campuses/campuses.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,12 @@ import { RouterModule } from '@angular/router';
     PlatformsComponent,
     CampusesPageComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, SharedModule, RouterModule],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    SharedModule,
+    RouterModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AdminModule {}

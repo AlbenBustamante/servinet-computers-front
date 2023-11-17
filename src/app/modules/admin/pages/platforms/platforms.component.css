@@ -47,11 +47,96 @@ h2,
   background-color: var(--primary-color-700);
 }
 
-table {
+table,
+form {
   margin-top: 1rem;
 }
 
 .right {
   cursor: default;
   color: var(--gray-color-600);
+}
+
+form {
+  width: 90%;
+  margin: 1rem auto auto;
+}
+
+label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--gray-color-900);
+}
+
+input,
+button {
+  font-family: inherit;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.8rem;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--gray-color-900);
+  background-color: var(--white-color);
+  border: 0.15rem solid var(--gray-color-400);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+button {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 40%;
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color-500);
+  color: var(--background-color);
+  border: 0.15rem solid var(--primary-color-500);
+}
+
+button[type="button"] {
+  background-color: var(--gray-color-50);
+  color: var(--secondary-color-500);
+  border: 0.15rem solid var(--secondary-color-500);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-color-600);
+  border-color: var(--primary-color-600);
+}
+
+button[type="submit"]:active {
+  background-color: var(--primary-color-700);
+  border-color: var(--primary-color-700);
+}
+
+button[type="button"]:hover {
+  background-color: var(--secondary-color-500);
+  color: var(--background-color);
+}
+
+button[type="button"]:active {
+  background-color: var(--secondary-color-600);
+  border-color: var(--secondary-color-600);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--secondary-color-500);
 }
