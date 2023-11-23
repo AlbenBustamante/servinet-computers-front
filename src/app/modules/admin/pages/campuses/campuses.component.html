@@ -15,29 +15,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Sede 1</td>
-          <td>Carrera 15 #14 - 24 Norte, Mosquita, Los Laureles</td>
-          <td>315 948 2584</td>
-          <td class="right">
-            <span class="material-symbols-outlined"> chevron_right </span>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Sede 1</td>
-          <td>Carrera 15 #14 - 24 Norte, Mosquita, Los Laureles</td>
-          <td>315 948 2584</td>
-          <td class="right">
-            <span class="material-symbols-outlined"> chevron_right </span>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Sede 1</td>
-          <td>Carrera 15 #14 - 24 Norte, Mosquita, Los Laureles</td>
-          <td>315 948 2584</td>
+        <tr *ngFor="let campus of campuses">
+          <td>{{ campus.id }}</td>
+          <td>Sede #{{ campus.numeral }}</td>
+          <td>{{ campus.address }}</td>
+          <td>{{ campus.cellphone }}</td>
           <td class="right">
             <span class="material-symbols-outlined"> chevron_right </span>
           </td>
