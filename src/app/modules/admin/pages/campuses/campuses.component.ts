@@ -9,7 +9,7 @@ import { CampusService } from 'src/app/core/services/campus.service';
 })
 export class CampusesComponent {
   campuses: ICampusRes[];
-  isRegistering: boolean = true;
+  isRegistering: boolean = false;
 
   constructor(private readonly campusService: CampusService) {
     this.campuses = this.campusService.getAll();
