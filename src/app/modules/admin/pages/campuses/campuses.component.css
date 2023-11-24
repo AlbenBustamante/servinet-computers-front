@@ -1,7 +1,7 @@
 main {
   background-color: var(--white-color);
   margin: 6rem 2rem 2rem 15rem;
-  height: calc(100vh - 8rem);
+  min-height: calc(100vh - 8rem);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: var(--shadow);
@@ -55,4 +55,106 @@ table {
 .right {
   cursor: default;
   color: var(--gray-color-600);
+}
+
+form {
+  width: 80%;
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--gray-color-900);
+}
+
+.info label {
+  display: block;
+}
+
+.info input,
+button {
+  font-family: inherit;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.8rem;
+}
+
+.info input {
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--gray-color-900);
+  background-color: var(--white-color);
+  border: 0.15rem solid var(--gray-color-400);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flex .info {
+  width: 50%;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+button {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 40%;
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color-500);
+  color: var(--background-color);
+  border: 0.15rem solid var(--primary-color-500);
+}
+
+button[type="button"] {
+  background-color: var(--gray-color-50);
+  color: var(--secondary-color-500);
+  border: 0.15rem solid var(--secondary-color-500);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-color-600);
+  border-color: var(--primary-color-600);
+}
+
+button[type="submit"]:active {
+  background-color: var(--primary-color-700);
+  border-color: var(--primary-color-700);
+}
+
+button[type="button"]:hover {
+  background-color: var(--secondary-color-500);
+  color: var(--background-color);
+}
+
+button[type="button"]:active {
+  background-color: var(--secondary-color-600);
+  border-color: var(--secondary-color-600);
+}
+
+.info input:focus {
+  outline: none;
+  border-color: var(--secondary-color-500);
+}
+
+.info input:valid {
+  border-color: var(--primary-color-500);
 }
