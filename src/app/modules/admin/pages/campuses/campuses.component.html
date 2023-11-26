@@ -1,5 +1,11 @@
 <app-navbar></app-navbar>
 <main>
+  <dialog [open]="modal">
+    <h2>Sede #{{ modalData.numeral }}</h2>
+    <hr />
+    <hr />
+    <button type="button" (click)="closeModal()">Cerrar</button>
+  </dialog>
   <section>
     <header>
       <h2>Sedes registradas</h2>
@@ -21,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let campus of campuses">
+        <tr *ngFor="let campus of campuses" (click)="openModal(campus)">
           <td>{{ campus.id }}</td>
           <td>Sede #{{ campus.numeral }}</td>
           <td>{{ campus.address }}</td>

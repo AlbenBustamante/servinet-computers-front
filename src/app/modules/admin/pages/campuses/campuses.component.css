@@ -9,6 +9,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 section {
@@ -157,4 +158,13 @@ button[type="button"]:active {
 
 .info input:valid {
   border-color: var(--primary-color-500);
+}
+
+dialog {
+  margin: auto;
+  width: 80%;
+  padding: 1.6rem 2rem;
+  max-width: 700px;
+  border: 0.2rem solid var(--secondary-color-500);
+  border-radius: 2rem;
 }
