@@ -4,6 +4,7 @@ import { IUserReq, IUserRes } from '../models/user.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
+import { ICampusRes } from '../models/campus.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +29,8 @@ export class UserService {
     return this.http.delete<Boolean>(`${this.url}/${userId}`);
   }
 
-  getCampuses(userId: number): Observable<IPageResponse<IUserRes>> {
-    return this.http.get<IPageResponse<IUserRes>>(
+  getCampuses(userId: number): Observable<IPageResponse<ICampusRes>> {
+    return this.http.get<IPageResponse<ICampusRes>>(
       `${this.url}/${userId}/campuses`
     );
   }
