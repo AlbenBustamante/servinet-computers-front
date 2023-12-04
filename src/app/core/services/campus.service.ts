@@ -1,67 +1,63 @@
 import { Injectable } from '@angular/core';
 import { ICampusReq, ICampusRes } from '../models/campus.model';
-import { PlatformService } from './platform.service';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { IPageResponse } from '../models/response.model';
+import { ITransferRes } from '../models/transfer.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CampusService {
-  private readonly campuses: ICampusRes[] = [];
+  private readonly url: string = `${environment.apiUrl}/campuses`;
 
-  constructor(private readonly platformService: PlatformService) {
-    this.campuses.push({
-      numeral: 1,
-      address: 'Cra. 15 #70 - 79 Norte',
-      cellphone: '310 310 1010',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      isAvailable: true,
-      id: 1,
-      platforms: [],
-      terminal: '154213',
-    });
+  constructor(private readonly http: HttpClient) {}
+
+  register(req: ICampusReq): Observable<IPageResponse<ICampusRes>> {
+    return this.http.post<IPageResponse<ICampusRes>>(this.url, req);
   }
 
-  register(req: ICampusReq): ICampusRes {
-    const res: ICampusRes = {
-      ...req,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      id: this.campuses.length + 1,
-      isAvailable: true,
-      platforms: [],
-    };
-
-    this.campuses.push(res);
-
-    return res;
+  get(campusId: number): Observable<IPageResponse<ICampusRes>> {
+    return this.http.get<IPageResponse<ICampusRes>>(`${this.url}/${campusId}`);
   }
 
-  getAll() {
-    return this.campuses;
+  update(
+    campusId: number,
+    req: ICampusReq
+  ): Observable<IPageResponse<ICampusRes>> {
+    return this.http.patch<IPageResponse<ICampusRes>>(
+      `${this.url}/${campusId}`,
+      req
+    );
   }
 
-  addPlatform(campusId: number, platformName: string) {
-    const platform = this.platformService.getByName(platformName);
-
-    if (!platform) {
-      return alert('Plataforma no encontrada');
-    }
-
-    this.campuses[campusId].platforms.push(platform);
-
-    return this.campuses[campusId];
+  delete(campusId: number): Observable<Boolean> {
+    return this.http.delete<Boolean>(`${this.url}/${campusId}`);
   }
 
-  removePlatform(campusId: number, platformName: string) {
-    const platform = this.platformService.getByName(platformName);
+  addPlatform(
+    campusId: number,
+    platformName: string
+  ): Observable<IPageResponse<ICampusRes>> {
+    return this.http.post<IPageResponse<ICampusRes>>(
+      `${this.url}/${campusId}/platform/${platformName}`,
+      undefined
+    );
+  }
 
-    if (!platform) {
-      return alert('Plataforma no encontrada');
-    }
+  removePlatform(
+    campusId: number,
+    platformName: string
+  ): Observable<IPageResponse<ICampusRes>> {
+    return this.http.delete<IPageResponse<ICampusRes>>(
+      `${this.url}/${campusId}/platform/${platformName}`
+    );
+  }
 
-    this.campuses[campusId].platforms.splice(platform.id - 1, 1);
-
-    return this.campuses[campusId];
+  getTransfers(campusId: number): Observable<IPageResponse<ITransferRes>> {
+    return this.http.get<IPageResponse<ITransferRes>>(
+      `${this.url}/${campusId}/transfers`
+    );
   }
 }
