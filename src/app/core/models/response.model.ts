@@ -1,6 +1,6 @@
 export interface IResponse {
   id: number;
-  isAvailable: boolean;
+  available: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

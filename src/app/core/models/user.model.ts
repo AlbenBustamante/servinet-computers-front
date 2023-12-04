@@ -1,4 +1,4 @@
-import { ICampusReq } from './campus.model';
+import { ICampusRes } from './campus.model';
 import { Role } from './enums';
 import { IResponse } from './response.model';
 
@@ -16,5 +16,5 @@ export interface IUserRes extends IResponse {
   lastName: string;
   email: string;
   role: Role;
-  campuses: ICampusReq[];
+  campuses: ICampusRes[];
 }
