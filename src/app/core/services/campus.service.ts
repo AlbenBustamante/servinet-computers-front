@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { ICampusReq, ICampusRes } from '../models/campus.model';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
 import { ITransferRes } from '../models/transfer.model';
+import { IPagination } from '../models/pagination.model';
 
 @Injectable({
   providedIn: 'root',
@@ -55,9 +56,40 @@ export class CampusService {
     );
   }
 
-  getTransfers(campusId: number): Observable<IPageResponse<ITransferRes>> {
+  getTransfers(
+    campusId: number,
+    pageReq: IPagination
+  ): Observable<IPageResponse<ITransferRes>> {
+    const params = new HttpParams();
+    const { size, direction, startDate, endDate, page, property } = pageReq;
+
+    if (size) {
+      params.append('size', size);
+    }
+
+    if (direction) {
+      params.append('direction', direction);
+    }
+
+    if (startDate) {
+      params.append('startDate', startDate.toUTCString());
+    }
+
+    if (endDate) {
+      params.append('endDate', endDate.toUTCString());
+    }
+
+    if (page) {
+      params.append('page', page);
+    }
+
+    if (property) {
+      params.append('property', property);
+    }
+
     return this.http.get<IPageResponse<ITransferRes>>(
-      `${this.url}/${campusId}/transfers`
+      `${this.url}/${campusId}/transfers`,
+      { params }
     );
   }
 }
