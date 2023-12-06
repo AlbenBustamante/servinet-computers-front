@@ -1,78 +1,37 @@
 import { Injectable } from '@angular/core';
 import { IPlatformReq, IPlatformRes } from '../models/platform.model';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { IPageResponse } from '../models/response.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlatformService {
-  private platforms: IPlatformRes[];
+  private readonly url: string = `${environment.apiUrl}/platforms`;
 
-  constructor() {
-    this.platforms = [
-      {
-        id: 1,
-        name: 'MoviiRed',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-      {
-        id: 2,
-        name: 'Puntored',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-      {
-        id: 3,
-        name: 'ReFácil',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-      {
-        id: 4,
-        name: 'Recargas',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-      {
-        id: 5,
-        name: 'Venezuela',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-      {
-        id: 6,
-        name: 'Conred',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-    ];
+  constructor(private readonly http: HttpClient) {}
+
+  register(req: IPlatformReq): Observable<IPageResponse<IPlatformRes>> {
+    return this.http.post<IPageResponse<IPlatformRes>>(this.url, req);
   }
 
-  register(req: IPlatformReq): IPlatformRes {
-    const res = {
-      ...req,
-      id: this.platforms.length + 1,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      isAvailable: true,
-    };
-
-    this.platforms.push(res);
-
-    return res;
+  getAll(): Observable<IPageResponse<IPlatformRes>> {
+    return this.http.get<IPageResponse<IPlatformRes>>(this.url);
   }
 
-  getAll(): IPlatformRes[] {
-    return this.platforms;
+  update(
+    platformId: number,
+    req: IPlatformReq
+  ): Observable<IPageResponse<IPlatformRes>> {
+    return this.http.patch<IPageResponse<IPlatformRes>>(
+      `${this.url}/${platformId}`,
+      req
+    );
   }
 
-  getByName(platformName: string): IPlatformRes | undefined {
-    return this.platforms.find((platform) => platform.name === platformName);
+  delete(platformId: number): Observable<Boolean> {
+    return this.http.delete<Boolean>(`${this.url}/${platformId}`);
   }
 }
