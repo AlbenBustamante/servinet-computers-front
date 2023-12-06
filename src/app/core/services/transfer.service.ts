@@ -1,62 +1,39 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { ITransferReq, ITransferRes } from '../models/transfer.model';
-import { PlatformService } from './platform.service';
+import { Observable } from 'rxjs';
+import { IPageResponse } from '../models/response.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransferService {
-  transfers: ITransferRes[];
+  private readonly url: string = `${environment.apiUrl}/transfers`;
 
-  constructor(private readonly platformService: PlatformService) {
-    this.transfers = [
-      {
-        id: 1,
-        platformName: 'MoviiRed',
-        value: '$1.000.000',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-      {
-        id: 2,
-        platformName: 'Puntored',
-        value: '$800.000',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-      {
-        id: 3,
-        platformName: 'TuLlave',
-        value: '$300.000',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isAvailable: true,
-      },
-    ];
+  constructor(private readonly http: HttpClient) {}
+
+  register(req: ITransferReq): Observable<IPageResponse<ITransferRes>> {
+    return this.http.post<IPageResponse<ITransferRes>>(this.url, req);
   }
 
-  register(req: ITransferReq): ITransferRes {
-    const platformFound = this.platformService.getByName(req.platformName);
-    const platformName = !platformFound ? '' : platformFound.name;
-
-    const newTransfer: ITransferRes = {
-      ...req,
-      id: this.transfers.length,
-      value: `$${req.value}`,
-      platformName,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      isAvailable: true,
-    };
-
-    this.transfers.push(newTransfer);
-
-    return newTransfer;
+  get(transferId: number): Observable<IPageResponse<ITransferRes>> {
+    return this.http.get<IPageResponse<ITransferRes>>(
+      `${this.url}/${transferId}`
+    );
   }
 
-  getAll(): ITransferRes[] {
-    return this.transfers;
+  update(
+    transferId: number,
+    req: ITransferReq
+  ): Observable<IPageResponse<ITransferRes>> {
+    return this.http.patch<IPageResponse<ITransferRes>>(
+      `${this.url}/${transferId}`,
+      req
+    );
+  }
+
+  delete(transferId: number): Observable<Boolean> {
+    return this.http.delete<Boolean>(`${this.url}/${transferId}`);
   }
 }
