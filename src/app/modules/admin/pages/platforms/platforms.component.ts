@@ -11,14 +11,17 @@ import { PlatformService } from 'src/app/core/services/platform.service';
 export class PlatformsComponent {
   isRegistering: boolean = false;
   headerTitle: string = 'Plataformas registradas';
-  platforms: IPlatformRes[];
+  platforms!: IPlatformRes[];
   form: FormGroup;
 
   constructor(
     private readonly platformService: PlatformService,
     private readonly formBuilder: FormBuilder
   ) {
-    this.platforms = this.platformService.getAll();
+    this.platformService
+      .getAll()
+      .subscribe((res) => (this.platforms = res.data.results));
+
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
     });

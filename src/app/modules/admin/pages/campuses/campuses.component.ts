@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ICampusRes } from 'src/app/core/models/campus.model';
 import { CampusService } from 'src/app/core/services/campus.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-campuses-page',
@@ -8,13 +9,18 @@ import { CampusService } from 'src/app/core/services/campus.service';
   styleUrls: ['./campuses.component.css'],
 })
 export class CampusesComponent {
-  campuses: ICampusRes[];
+  campuses!: ICampusRes[];
   isRegistering: boolean = false;
   modal: boolean = false;
   modalData!: ICampusRes;
 
-  constructor(private readonly campusService: CampusService) {
-    this.campuses = this.campusService.getAll();
+  constructor(
+    private readonly userService: UserService,
+    private readonly campusService: CampusService
+  ) {
+    this.userService
+      .getCampuses(1)
+      .subscribe((res) => (this.campuses = res.data.results));
 
     if (this.campuses) {
       this.modalData = this.campuses[0];

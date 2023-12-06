@@ -10,7 +10,7 @@ import { TransferService } from 'src/app/core/services/transfer.service';
   styleUrls: ['./new-transfer-form.component.css'],
 })
 export class NewTransferFormComponent implements OnInit {
-  platforms: IPlatformRes[];
+  platforms!: IPlatformRes[];
   numbers: number[] = [];
   form: FormGroup;
   private readonly maxAmount: number = 10;
@@ -20,8 +20,6 @@ export class NewTransferFormComponent implements OnInit {
     private readonly transferService: TransferService,
     private readonly fb: FormBuilder
   ) {
-    this.platforms = this.platformService.getAll();
-
     this.form = this.fb.group({
       platform: ['', Validators.required],
       value: ['', Validators.required],
@@ -30,6 +28,10 @@ export class NewTransferFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.platformService
+      .getAll()
+      .subscribe((res) => (this.platforms = res.data.results));
+
     for (let i = 1; i <= this.maxAmount; i++) {
       this.numbers.push(i);
     }
@@ -37,6 +39,5 @@ export class NewTransferFormComponent implements OnInit {
 
   onSubmit(): void {
     this.transferService.register(this.form.value);
-    console.log(this.transferService.getAll());
   }
 }
