@@ -160,6 +160,12 @@ button[type="button"]:active {
   border-color: var(--primary-color-500);
 }
 
+h3 {
+  color: var(--gray-color-900);
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
 dialog {
   margin: auto;
   width: 80%;

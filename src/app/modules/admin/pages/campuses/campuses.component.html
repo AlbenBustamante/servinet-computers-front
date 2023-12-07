@@ -1,14 +1,8 @@
 <app-navbar></app-navbar>
 <main>
-  <dialog [open]="modal">
-    <h2>Sede #{{ modalData.numeral }}</h2>
-    <hr />
-    <hr />
-    <button type="button" (click)="closeModal()">Cerrar</button>
-  </dialog>
   <section>
     <header>
-      <h2>Sedes registradas</h2>
+      <h2>{{ headerTitle }}</h2>
       <span
         class="add material-symbols-outlined"
         (click)="setIsRegistering()"
@@ -17,7 +11,10 @@
         add
       </span>
     </header>
-    <table *ngIf="!isRegistering">
+    <h3 *ngIf="campuses.length === 0 && !isRegistering">
+      No hay sedes registradas
+    </h3>
+    <table *ngIf="!isRegistering && campuses.length > 0">
       <thead>
         <tr>
           <th>#</th>
@@ -69,4 +66,10 @@
       </div>
     </form>
   </section>
+  <dialog [open]="modal">
+    <h2>Sede #{{ modalData.numeral }}</h2>
+    <hr />
+    <hr />
+    <button type="button" (click)="closeModal()">Cerrar</button>
+  </dialog>
 </main>
