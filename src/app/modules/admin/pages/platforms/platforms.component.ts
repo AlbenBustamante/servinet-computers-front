@@ -11,7 +11,7 @@ import { PlatformService } from 'src/app/core/services/platform.service';
 export class PlatformsComponent {
   isRegistering: boolean = false;
   headerTitle: string = 'Plataformas registradas';
-  platforms!: IPlatformRes[];
+  platforms: IPlatformRes[] = [];
   form: FormGroup;
 
   constructor(
@@ -36,9 +36,13 @@ export class PlatformsComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.platformService.register(this.form.value);
-      this.form.reset();
-      this.isRegistering = false;
+      this.platformService.register(this.form.value).subscribe((res) => {
+        if (res.ok) {
+          this.platforms.push(res.data.results[0]);
+          this.form.reset();
+          this.setIsRegistering();
+        }
+      });
     }
   }
 }

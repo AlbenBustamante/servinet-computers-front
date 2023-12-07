@@ -11,7 +11,10 @@
         add
       </span>
     </header>
-    <table *ngIf="!isRegistering">
+    <h3 *ngIf="platforms.length === 0 && !isRegistering">
+      No hay plataformas registradas
+    </h3>
+    <table *ngIf="!isRegistering && platforms.length > 0">
       <thead>
         <tr>
           <th>#</th>
