@@ -16,6 +16,7 @@ export class CampusService {
   constructor(private readonly http: HttpClient) {}
 
   register(req: ICampusReq): Observable<IPageResponse<ICampusRes>> {
+    req.userId = 3; // temporal
     return this.http.post<IPageResponse<ICampusRes>>(this.url, req);
   }
 
