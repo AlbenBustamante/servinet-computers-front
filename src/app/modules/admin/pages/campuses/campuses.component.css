@@ -12,7 +12,7 @@ main {
   position: relative;
 }
 
-section {
+section:not(.dialog-content) {
   width: 90%;
   border: 0.15rem solid var(--primary-color-400);
   border-radius: 1rem;
@@ -173,4 +173,14 @@ dialog {
   max-width: 700px;
   border: 0.2rem solid var(--secondary-color-500);
   border-radius: 2rem;
+}
+
+.dialog-content p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialog-content p > span:nth-of-type(2) {
+  text-align: right;
 }

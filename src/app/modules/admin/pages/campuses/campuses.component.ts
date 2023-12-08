@@ -18,12 +18,12 @@ export class CampusesComponent {
     address: '',
     available: false,
     cellphone: '',
-    createdAt: new Date(),
+    createdAt: '',
     id: 0,
     numeral: -1,
     platforms: [],
     terminal: '0',
-    updatedAt: new Date(),
+    updatedAt: '',
   };
   form: FormGroup;
 
@@ -53,8 +53,8 @@ export class CampusesComponent {
   }
 
   openModal(campus: ICampusRes) {
-    this.modal = true;
     this.modalData = campus;
+    this.modal = true;
   }
 
   closeModal() {
