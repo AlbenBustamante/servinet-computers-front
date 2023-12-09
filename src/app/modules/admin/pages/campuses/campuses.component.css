@@ -12,7 +12,7 @@ main {
   position: relative;
 }
 
-section:not(.dialog-content) {
+section:not(.dialog-content, .platforms, .actions) {
   width: 90%;
   border: 0.15rem solid var(--primary-color-400);
   border-radius: 1rem;
@@ -172,15 +172,34 @@ dialog {
   padding: 1.6rem 2rem;
   max-width: 700px;
   border: 0.2rem solid var(--secondary-color-500);
-  border-radius: 2rem;
+  border-radius: 0.2rem;
+  max-height: 25rem;
+  overflow-y: scroll;
 }
 
 .dialog-content p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.3rem 0.6rem;
+  color: var(--gray-color-900);
+}
+
+.dialog-content p > span {
+  font-size: 0.75rem;
 }
 
 .dialog-content p > span:nth-of-type(2) {
   text-align: right;
+}
+
+.platforms {
+  width: 70%;
+  margin: auto;
+}
+
+.platform-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
