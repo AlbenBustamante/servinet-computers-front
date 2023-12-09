@@ -15,9 +15,9 @@ export class CampusesComponent {
   campuses: ICampusRes[] = [];
   platforms: IPlatformRes[] = [];
   isRegistering: boolean = false;
-  modal: boolean = false;
+  isShowingInfo: boolean = false;
   headerTitle: string = 'Sedes registradas';
-  modalData: ICampusRes = {
+  campusData: ICampusRes = {
     address: '',
     available: false,
     cellphone: '',
@@ -54,19 +54,30 @@ export class CampusesComponent {
   }
 
   setIsRegistering() {
+    if (this.isShowingInfo) {
+      this.isShowingInfo = false;
+    }
+
     this.isRegistering = !this.isRegistering;
     this.headerTitle = this.isRegistering
       ? 'Registro de nueva sede'
       : 'Sedes registradas';
   }
 
-  openModal(campus: ICampusRes) {
-    this.modalData = campus;
-    this.modal = true;
-  }
+  setIsShowingInfo(campus: ICampusRes | undefined) {
+    if (this.isRegistering) {
+      this.isRegistering = false;
+    }
 
-  closeModal() {
-    this.modal = false;
+    this.isShowingInfo = !this.isShowingInfo;
+
+    this.headerTitle = this.isShowingInfo
+      ? `Información de la Sede #${campus?.numeral}`
+      : 'Sedes registradas';
+
+    if (campus !== undefined) {
+      this.campusData = campus;
+    }
   }
 
   onSubmit() {

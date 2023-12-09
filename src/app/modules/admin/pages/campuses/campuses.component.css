@@ -9,10 +9,9 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
-section:not(.dialog-content, .platforms, .actions) {
+section:not(.campus-info, .platforms, .actions, .form-section) {
   width: 90%;
   border: 0.15rem solid var(--primary-color-400);
   border-radius: 1rem;
@@ -166,40 +165,37 @@ h3 {
   padding: 2rem 0 1rem;
 }
 
-dialog {
-  margin: auto;
-  width: 80%;
-  padding: 1.6rem 2rem;
-  max-width: 700px;
-  border: 0.2rem solid var(--secondary-color-500);
-  border-radius: 0.2rem;
-  max-height: 25rem;
-  overflow-y: scroll;
-}
-
-.dialog-content p {
+.campus-info p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 1.2rem;
   color: var(--gray-color-900);
 }
 
-.dialog-content p > span {
+.campus-info p:first-of-type {
+  margin-top: 1rem;
+}
+
+.campus-info p:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.campus-info p > span {
   font-size: 0.75rem;
 }
 
-.dialog-content p > span:nth-of-type(2) {
+.campus-info p > span:nth-of-type(2) {
   text-align: right;
-}
-
-.platforms {
-  width: 70%;
-  margin: auto;
 }
 
 .platform-info {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+}
+
+.form-section {
+  width: 70%;
+  margin: auto;
 }

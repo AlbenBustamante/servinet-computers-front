@@ -6,7 +6,7 @@
       <span
         class="add material-symbols-outlined"
         (click)="setIsRegistering()"
-        *ngIf="!isRegistering"
+        *ngIf="!isRegistering && !isShowingInfo"
       >
         add
       </span>
@@ -14,7 +14,7 @@
     <h3 *ngIf="campuses.length === 0 && !isRegistering">
       No hay sedes registradas
     </h3>
-    <table *ngIf="!isRegistering && campuses.length > 0">
+    <table *ngIf="!isRegistering && campuses.length > 0 && !isShowingInfo">
       <thead>
         <tr>
           <th>#</th>
@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let campus of campuses" (click)="openModal(campus)">
+        <tr *ngFor="let campus of campuses" (click)="setIsShowingInfo(campus)">
           <td>{{ campus.id }}</td>
           <td>Sede #{{ campus.numeral }}</td>
           <td>{{ campus.address }}</td>
@@ -85,41 +85,44 @@
         <button type="button" (click)="setIsRegistering()">Cancelar</button>
       </div>
     </form>
+    <article *ngIf="isShowingInfo">
+      <section class="campus-info">
+        <p>
+          <span>ID generado</span>
+          <span>{{ campusData.id }}</span>
+        </p>
+        <p>
+          <span>Fecha y hora de creación</span>
+          <span>{{ campusData.createdAt }}</span>
+        </p>
+        <p>
+          <span>Actualizado por última vez</span>
+          <span>{{ campusData.updatedAt }}</span>
+        </p>
+        <p>
+          <span>Terminal generado</span>
+          <span>{{ campusData.terminal }}</span>
+        </p>
+      </section>
+      <hr />
+      <section class="platforms">
+        <h3>Plataformas enlazadas</h3>
+        <form>
+          <section class="form-section">
+            <div *ngFor="let platform of platforms" class="platform-info">
+              <label [for]="platform.name">{{ platform.name }}</label>
+              <input type="checkbox" [id]="platform.name" />
+            </div>
+          </section>
+          <hr />
+          <section class="actions">
+            <button type="submit">Guardar cambios</button>
+            <button type="button" (click)="setIsShowingInfo(undefined)">
+              Cancelar
+            </button>
+          </section>
+        </form>
+      </section>
+    </article>
   </section>
-  <dialog [open]="modal">
-    <h2>Sede #{{ modalData.numeral }}</h2>
-    <hr />
-    <section class="dialog-content">
-      <p>
-        <span>ID generado</span>
-        <span>{{ modalData.id }}</span>
-      </p>
-      <p>
-        <span>Fecha y hora de creación</span>
-        <span>{{ modalData.createdAt }}</span>
-      </p>
-      <p>
-        <span>Actualizado por última vez</span>
-        <span>{{ modalData.updatedAt }}</span>
-      </p>
-      <p>
-        <span>Terminal generado</span>
-        <span>{{ modalData.terminal }}</span>
-      </p>
-    </section>
-    <hr />
-    <section class="platforms">
-      <h3>Plataformas enlazadas</h3>
-      <form>
-        <div *ngFor="let platform of platforms" class="platform-info">
-          <label [for]="platform.name">{{ platform.name }}</label>
-          <input type="checkbox" [id]="platform.name" />
-        </div>
-      </form>
-    </section>
-    <hr />
-    <section class="actions">
-      <button type="button" (click)="closeModal()">Cerrar</button>
-    </section>
-  </dialog>
 </main>
