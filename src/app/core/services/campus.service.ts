@@ -38,22 +38,17 @@ export class CampusService {
     return this.http.delete<Boolean>(`${this.url}/${campusId}`);
   }
 
-  addPlatform(
-    campusId: number,
-    platformName: string
+  updatePlatforms(
+    platformNames: string[]
   ): Observable<IPageResponse<ICampusRes>> {
-    return this.http.post<IPageResponse<ICampusRes>>(
-      `${this.url}/${campusId}/platform/${platformName}`,
-      undefined
-    );
-  }
+    const params = new HttpParams();
 
-  removePlatform(
-    campusId: number,
-    platformName: string
-  ): Observable<IPageResponse<ICampusRes>> {
-    return this.http.delete<IPageResponse<ICampusRes>>(
-      `${this.url}/${campusId}/platform/${platformName}`
+    params.appendAll({ platformNames });
+
+    return this.http.put<IPageResponse<ICampusRes>>(
+      `${this.url}/${3}`,
+      undefined,
+      { params }
     );
   }
 

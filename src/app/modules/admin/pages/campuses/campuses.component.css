@@ -189,7 +189,7 @@ h3 {
   text-align: right;
 }
 
-.platform-info {
+.platform-info label {
   display: flex;
   align-items: baseline;
   justify-content: space-between;

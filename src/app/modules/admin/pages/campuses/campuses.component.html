@@ -107,11 +107,17 @@
       <hr />
       <section class="platforms">
         <h3>Plataformas enlazadas</h3>
-        <form>
+        <form [formGroup]="platformsForm" (ngSubmit)="updatePlatforms()">
           <section class="form-section">
             <div *ngFor="let platform of platforms" class="platform-info">
-              <label [for]="platform.name">{{ platform.name }}</label>
-              <input type="checkbox" [id]="platform.name" />
+              <label>
+                <span>{{ platform.name }}</span>
+                <input
+                  type="checkbox"
+                  [value]="platform.name"
+                  (change)="platformChangeHandle($event)"
+                />
+              </label>
             </div>
           </section>
           <hr />
