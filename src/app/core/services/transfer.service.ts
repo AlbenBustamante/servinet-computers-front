@@ -14,6 +14,7 @@ export class TransferService {
   constructor(private readonly http: HttpClient) {}
 
   register(req: ITransferReq): Observable<IPageResponse<ITransferRes>> {
+    req.campusId = 1; // temporal
     return this.http.post<IPageResponse<ITransferRes>>(this.url, req);
   }
 

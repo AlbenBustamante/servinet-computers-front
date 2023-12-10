@@ -41,12 +41,12 @@ export class CampusService {
   updatePlatforms(
     platformNames: string[]
   ): Observable<IPageResponse<ICampusRes>> {
-    const params = new HttpParams();
+    const arrayParam = platformNames.join(',');
 
-    params.appendAll({ platformNames });
+    const params = new HttpParams().set('platformNames', arrayParam);
 
     return this.http.put<IPageResponse<ICampusRes>>(
-      `${this.url}/${3}`,
+      `${this.url}/${1}/platforms`,
       undefined,
       { params }
     );

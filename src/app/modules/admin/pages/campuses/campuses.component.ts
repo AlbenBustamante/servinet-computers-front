@@ -77,7 +77,9 @@ export class CampusesComponent {
   }
 
   updatePlatforms() {
-    this.campusService.updatePlatforms(this.platformsArray.value);
+    this.campusService
+      .updatePlatforms(this.platformsArray.value)
+      .subscribe(() => this.setIsShowingInfo(undefined));
   }
 
   setIsRegistering() {
