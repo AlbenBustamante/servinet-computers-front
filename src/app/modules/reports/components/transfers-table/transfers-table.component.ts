@@ -14,14 +14,7 @@ export class TransfersTableComponent {
 
   constructor(private readonly campusService: CampusService) {
     this.campusService
-      .getTransfers(1, {
-        size: 10,
-        page: 1,
-        direction: SortDirection.ASC,
-        property: 'createdAt',
-        startDate: new Date(),
-        endDate: new Date(),
-      })
+      .getTransfers(1, {})
       .subscribe((res) => (this.transfers = res.data.results));
   }
 }

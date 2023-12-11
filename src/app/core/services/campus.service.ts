@@ -56,31 +56,31 @@ export class CampusService {
     campusId: number,
     pageReq: IPagination
   ): Observable<IPageResponse<ITransferRes>> {
-    const params = new HttpParams();
+    let params = new HttpParams();
     const { size, direction, startDate, endDate, page, property } = pageReq;
 
     if (size) {
-      params.append('size', size);
+      params = params.append('size', size);
     }
 
     if (direction) {
-      params.append('direction', direction);
+      params = params.append('direction', direction);
     }
 
     if (startDate) {
-      params.append('startDate', startDate.toUTCString());
+      params = params.append('startDate', startDate.toUTCString());
     }
 
     if (endDate) {
-      params.append('endDate', endDate.toUTCString());
+      params = params.append('endDate', endDate.toUTCString());
     }
 
     if (page) {
-      params.append('page', page);
+      params = params.append('page', page);
     }
 
     if (property) {
-      params.append('property', property);
+      params = params.append('property', property);
     }
 
     return this.http.get<IPageResponse<ITransferRes>>(
