@@ -1,5 +1,5 @@
-<form>
-  <input type="date" />
-  <input type="date" />
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input type="datetime-local" formControlName="startDate" />
+  <input type="datetime-local" formControlName="endDate" />
   <button type="submit">Consultar</button>
 </form>

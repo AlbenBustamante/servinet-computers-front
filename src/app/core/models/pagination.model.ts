@@ -8,3 +8,8 @@ export interface IPagination {
   startDate?: Date;
   endDate?: Date;
 }
+
+export interface IDateRange {
+  startDate?: Date;
+  endDate?: Date;
+}

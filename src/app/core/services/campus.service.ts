@@ -68,11 +68,11 @@ export class CampusService {
     }
 
     if (startDate) {
-      params = params.append('startDate', startDate.toUTCString());
+      params = params.append('startDate', startDate.toString());
     }
 
     if (endDate) {
-      params = params.append('endDate', endDate.toUTCString());
+      params = params.append('endDate', endDate.toString());
     }
 
     if (page) {
