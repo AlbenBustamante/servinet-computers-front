@@ -10,7 +10,7 @@ main {
   justify-content: center;
 }
 
-section {
+section:not(.platform-info, .actions) {
   width: 60%;
   border: 0.15rem solid var(--primary-color-400);
   border-radius: 1rem;
@@ -145,4 +145,24 @@ h3 {
   color: var(--gray-color-900);
   text-align: center;
   padding: 2rem 0 1rem;
+}
+
+.platform-info p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 1.2rem;
+  color: var(--gray-color-900);
+}
+
+.platform-info p:first-of-type {
+  margin-top: 1rem;
+}
+
+.platform-info p:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.platform-info p > span {
+  font-size: 0.75rem;
 }

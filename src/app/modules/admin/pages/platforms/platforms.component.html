@@ -6,15 +6,15 @@
       <span
         class="add material-symbols-outlined"
         (click)="setIsRegistering()"
-        *ngIf="!isRegistering"
+        *ngIf="!isRegistering && !isShowingInfo"
       >
         add
       </span>
     </header>
-    <h3 *ngIf="platforms.length === 0 && !isRegistering">
+    <h3 *ngIf="platforms.length === 0 && !isRegistering && !isShowingInfo">
       No hay plataformas registradas
     </h3>
-    <table *ngIf="!isRegistering && platforms.length > 0">
+    <table *ngIf="!isRegistering && platforms.length > 0 && !isShowingInfo">
       <thead>
         <tr>
           <th>#</th>
@@ -23,7 +23,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let platform of platforms">
+        <tr
+          *ngFor="let platform of platforms"
+          (click)="setIsShowingInfo(platform)"
+        >
           <td>{{ platform.id }}</td>
           <td>{{ platform.name }}</td>
           <td>
@@ -32,7 +35,11 @@
         </tr>
       </tbody>
     </table>
-    <form *ngIf="isRegistering" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <form
+      *ngIf="isRegistering && !isShowingInfo"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="form"
+    >
       <label for="platform">Nombre de la plataforma</label>
       <input type="text" id="platform" formControlName="name" />
       <div class="actions">
@@ -40,5 +47,31 @@
         <button type="button" (click)="setIsRegistering()">Cancelar</button>
       </div>
     </form>
+    <article *ngIf="isShowingInfo">
+      <section class="platform-info">
+        <p>
+          <span>ID generado</span>
+          <span>{{ platformInfo.id }}</span>
+        </p>
+        <p>
+          <span>Fecha y hora de creación</span>
+          <span>{{ platformInfo.createdAt }}</span>
+        </p>
+        <p>
+          <span>Actualizado por última vez</span>
+          <span>{{ platformInfo.updatedAt }}</span>
+        </p>
+        <p>
+          <span>Nombre asignado</span>
+          <span>{{ platformInfo.name }}</span>
+        </p>
+      </section>
+      <hr />
+      <section class="actions">
+        <button type="button" (click)="setIsShowingInfo(undefined)">
+          Regresar
+        </button>
+      </section>
+    </article>
   </section>
 </main>

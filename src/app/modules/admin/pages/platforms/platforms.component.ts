@@ -10,8 +10,16 @@ import { PlatformService } from 'src/app/core/services/platform.service';
 })
 export class PlatformsComponent {
   isRegistering: boolean = false;
+  isShowingInfo: boolean = false;
   headerTitle: string = 'Plataformas registradas';
   platforms: IPlatformRes[] = [];
+  platformInfo: IPlatformRes = {
+    available: false,
+    createdAt: '',
+    updatedAt: '',
+    id: -1,
+    name: '',
+  };
   form: FormGroup;
 
   constructor(
@@ -28,10 +36,24 @@ export class PlatformsComponent {
   }
 
   setIsRegistering(): void {
+    this.isShowingInfo = false;
     this.isRegistering = !this.isRegistering;
     this.headerTitle = this.isRegistering
       ? 'Registro de nueva plataforma'
       : 'Plataformas registradas';
+  }
+
+  setIsShowingInfo(platform: IPlatformRes | undefined): void {
+    this.isRegistering = false;
+    this.isShowingInfo = !this.isShowingInfo;
+
+    this.headerTitle = this.isShowingInfo
+      ? `${platform?.name}`
+      : 'Plataformas registradas';
+
+    if (platform !== undefined) {
+      this.platformInfo = platform;
+    }
   }
 
   onSubmit(): void {
