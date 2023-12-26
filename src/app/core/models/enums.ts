@@ -7,3 +7,8 @@ export enum SortDirection {
   ASC = 'ASC',
   DESC = 'DESC',
 }
+
+export enum AuthToken {
+  USER = 'u',
+  CAMPUS = 'c',
+}
