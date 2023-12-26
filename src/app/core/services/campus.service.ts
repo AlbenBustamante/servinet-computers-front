@@ -6,6 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
 import { ITransferRes } from '../models/transfer.model';
 import { IPagination } from '../models/pagination.model';
+import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -15,47 +16,46 @@ export class CampusService {
 
   constructor(private readonly http: HttpClient) {}
 
-  register(req: ICampusReq): Observable<IPageResponse<ICampusRes>> {
+  register(req: ICampusReq) {
     req.userId = 3; // temporal
-    return this.http.post<IPageResponse<ICampusRes>>(this.url, req);
+    return this.http.post<IPageResponse<ICampusRes>>(this.url, req, {
+      context: checkToken(),
+    });
   }
 
-  get(campusId: number): Observable<IPageResponse<ICampusRes>> {
-    return this.http.get<IPageResponse<ICampusRes>>(`${this.url}/${campusId}`);
+  get(campusId: number) {
+    return this.http.get<IPageResponse<ICampusRes>>(`${this.url}/${campusId}`, {
+      context: checkToken(),
+    });
   }
 
-  update(
-    campusId: number,
-    req: ICampusReq
-  ): Observable<IPageResponse<ICampusRes>> {
+  update(campusId: number, req: ICampusReq) {
     return this.http.patch<IPageResponse<ICampusRes>>(
       `${this.url}/${campusId}`,
-      req
+      req,
+      { context: checkToken() }
     );
   }
 
-  delete(campusId: number): Observable<Boolean> {
-    return this.http.delete<Boolean>(`${this.url}/${campusId}`);
+  delete(campusId: number) {
+    return this.http.delete<Boolean>(`${this.url}/${campusId}`, {
+      context: checkToken(),
+    });
   }
 
-  updatePlatforms(
-    platformNames: string[]
-  ): Observable<IPageResponse<ICampusRes>> {
+  updatePlatforms(platformNames: string[]) {
     const arrayParam = platformNames.join(',');
 
     const params = new HttpParams().set('platformNames', arrayParam);
 
     return this.http.put<IPageResponse<ICampusRes>>(
       `${this.url}/${1}/platforms`,
-      undefined,
-      { params }
+      null,
+      { params, context: checkToken() }
     );
   }
 
-  getTransfers(
-    campusId: number,
-    pageReq: IPagination
-  ): Observable<IPageResponse<ITransferRes>> {
+  getTransfers(campusId: number, pageReq: IPagination) {
     let params = new HttpParams();
     const { size, direction, startDate, endDate, page, property } = pageReq;
 
@@ -85,7 +85,7 @@ export class CampusService {
 
     return this.http.get<IPageResponse<ITransferRes>>(
       `${this.url}/${campusId}/transfers`,
-      { params }
+      { params, context: checkToken() }
     );
   }
 }

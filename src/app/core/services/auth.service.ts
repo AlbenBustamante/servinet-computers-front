@@ -5,6 +5,9 @@ import { IAuthRequest, IAuthResponse } from '../models/auth.model';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
+import { IPageResponse } from '../models/response.model';
+import { IUserReq, IUserRes } from '../models/user.model';
+import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +20,19 @@ export class AuthService {
     private readonly tokenService: TokenService
   ) {}
 
-  login(req: IAuthRequest): Observable<IAuthResponse> {
+  register(req: IUserReq) {
+    return this.http.post<IPageResponse<IUserRes>>(`${this.url}/register`, req);
+  }
+
+  login(req: IAuthRequest) {
     return this.http
       .post<IAuthResponse>(`${this.url}/sign-in`, req)
       .pipe(tap((res) => this.tokenService.save(res.jwt)));
+  }
+
+  logout() {
+    return this.http.post<Boolean>(`${this.url}/sign-out`, null, {
+      context: checkToken(),
+    });
   }
 }

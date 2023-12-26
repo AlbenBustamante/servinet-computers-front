@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
 import { ICampusRes } from '../models/campus.model';
+import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -14,24 +15,24 @@ export class UserService {
 
   constructor(private readonly http: HttpClient) {}
 
-  register(req: IUserReq): Observable<IPageResponse<IUserRes>> {
-    return this.http.post<IPageResponse<IUserRes>>(this.url, req);
-  }
-
-  update(userId: number, req: IUserReq): Observable<IPageResponse<IUserRes>> {
+  update(userId: number, req: IUserReq) {
     return this.http.patch<IPageResponse<IUserRes>>(
       `${this.url}/${userId}`,
-      req
+      req,
+      { context: checkToken() }
     );
   }
 
-  delete(userId: number): Observable<Boolean> {
-    return this.http.delete<Boolean>(`${this.url}/${userId}`);
+  delete(userId: number) {
+    return this.http.delete<Boolean>(`${this.url}/${userId}`, {
+      context: checkToken(),
+    });
   }
 
-  getCampuses(userId: number): Observable<IPageResponse<ICampusRes>> {
+  getCampuses(userId: number) {
     return this.http.get<IPageResponse<ICampusRes>>(
-      `${this.url}/${userId}/campuses`
+      `${this.url}/${userId}/campuses`,
+      { context: checkToken() }
     );
   }
 }

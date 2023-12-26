@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { ITransferReq, ITransferRes } from '../models/transfer.model';
 import { Observable } from 'rxjs';
 import { IPageResponse } from '../models/response.model';
+import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -13,28 +14,31 @@ export class TransferService {
 
   constructor(private readonly http: HttpClient) {}
 
-  register(req: ITransferReq): Observable<IPageResponse<ITransferRes>> {
+  register(req: ITransferReq) {
     req.campusId = 1; // temporal
-    return this.http.post<IPageResponse<ITransferRes>>(this.url, req);
+    return this.http.post<IPageResponse<ITransferRes>>(this.url, req, {
+      context: checkToken(),
+    });
   }
 
-  get(transferId: number): Observable<IPageResponse<ITransferRes>> {
+  get(transferId: number) {
     return this.http.get<IPageResponse<ITransferRes>>(
-      `${this.url}/${transferId}`
+      `${this.url}/${transferId}`,
+      { context: checkToken() }
     );
   }
 
-  update(
-    transferId: number,
-    req: ITransferReq
-  ): Observable<IPageResponse<ITransferRes>> {
+  update(transferId: number, req: ITransferReq) {
     return this.http.patch<IPageResponse<ITransferRes>>(
       `${this.url}/${transferId}`,
-      req
+      req,
+      { context: checkToken() }
     );
   }
 
-  delete(transferId: number): Observable<Boolean> {
-    return this.http.delete<Boolean>(`${this.url}/${transferId}`);
+  delete(transferId: number) {
+    return this.http.delete<Boolean>(`${this.url}/${transferId}`, {
+      context: checkToken(),
+    });
   }
 }

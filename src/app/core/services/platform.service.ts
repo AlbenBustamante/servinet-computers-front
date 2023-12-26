@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
 import { Observable } from 'rxjs';
+import { checkToken } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -13,25 +14,29 @@ export class PlatformService {
 
   constructor(private readonly http: HttpClient) {}
 
-  register(req: IPlatformReq): Observable<IPageResponse<IPlatformRes>> {
-    return this.http.post<IPageResponse<IPlatformRes>>(this.url, req);
+  register(req: IPlatformReq) {
+    return this.http.post<IPageResponse<IPlatformRes>>(this.url, req, {
+      context: checkToken(),
+    });
   }
 
-  getAll(): Observable<IPageResponse<IPlatformRes>> {
-    return this.http.get<IPageResponse<IPlatformRes>>(this.url);
+  getAll() {
+    return this.http.get<IPageResponse<IPlatformRes>>(this.url, {
+      context: checkToken(),
+    });
   }
 
-  update(
-    platformId: number,
-    req: IPlatformReq
-  ): Observable<IPageResponse<IPlatformRes>> {
+  update(platformId: number, req: IPlatformReq) {
     return this.http.patch<IPageResponse<IPlatformRes>>(
       `${this.url}/${platformId}`,
-      req
+      req,
+      { context: checkToken() }
     );
   }
 
-  delete(platformId: number): Observable<Boolean> {
-    return this.http.delete<Boolean>(`${this.url}/${platformId}`);
+  delete(platformId: number) {
+    return this.http.delete<Boolean>(`${this.url}/${platformId}`, {
+      context: checkToken(),
+    });
   }
 }
