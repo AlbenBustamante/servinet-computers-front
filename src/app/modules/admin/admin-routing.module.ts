@@ -4,6 +4,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PlatformsComponent } from './pages/platforms/platforms.component';
 import { CampusesComponent } from './pages/campuses/campuses.component';
+import { authGuard } from 'src/app/core/guards/auth.guard';
+
+const loginPath: string = '/admin/login';
 
 const routes: Routes = [
   {
@@ -11,10 +14,22 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'platforms', component: PlatformsComponent },
-  { path: 'campuses', component: CampusesComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard(loginPath)],
+  },
+  {
+    path: 'platforms',
+    component: PlatformsComponent,
+    canActivate: [authGuard(loginPath)],
+  },
+  {
+    path: 'campuses',
+    component: CampusesComponent,
+    canActivate: [authGuard(loginPath)],
+  },
 ];
 
 @NgModule({
