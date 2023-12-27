@@ -10,7 +10,7 @@ export function redirectGuard(route: string): CanActivateFn {
       return true;
     }
 
-    inject(Router).navigate([route]);
+    inject(Router).navigateByUrl(route);
 
     return false;
   };

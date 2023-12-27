@@ -32,7 +32,7 @@ export class LoginFormComponent {
     this.authService.login(this.form.value).subscribe({
       next: (res) => {
         this.status = 'success';
-        console.log(res);
+        this.router.navigateByUrl('/');
       },
       error: (error) => {
         this.status = 'failed';
