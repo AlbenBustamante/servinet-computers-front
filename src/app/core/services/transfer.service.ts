@@ -5,6 +5,7 @@ import { ITransferReq, ITransferRes } from '../models/transfer.model';
 import { Observable } from 'rxjs';
 import { IPageResponse } from '../models/response.model';
 import { checkToken } from '../interceptors/token.interceptor';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,13 @@ import { checkToken } from '../interceptors/token.interceptor';
 export class TransferService {
   private readonly url: string = `${environment.apiUrl}/transfers`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly tokenService: TokenService
+  ) {}
 
   register(req: ITransferReq) {
-    req.campusId = 1; // temporal
+    req.campusId = this.tokenService.getInfo().id;
     return this.http.post<IPageResponse<ITransferRes>>(this.url, req, {
       context: checkToken(),
     });
@@ -29,6 +33,7 @@ export class TransferService {
   }
 
   update(transferId: number, req: ITransferReq) {
+    req.campusId = this.tokenService.getInfo().id;
     return this.http.patch<IPageResponse<ITransferRes>>(
       `${this.url}/${transferId}`,
       req,

@@ -52,7 +52,7 @@ export class CampusesComponent {
     });
 
     this.userService
-      .getCampuses(3) // temporal
+      .getCampuses()
       .subscribe((res) => (this.campuses = res.data.results));
 
     this.platformsForm = this.fb.group({
@@ -78,7 +78,7 @@ export class CampusesComponent {
 
   updatePlatforms() {
     this.campusService
-      .updatePlatforms(this.platformsArray.value)
+      .updatePlatforms(this.campusData.id, this.platformsArray.value)
       .subscribe(() => this.setIsShowingInfo(undefined));
   }
 
@@ -114,7 +114,7 @@ export class CampusesComponent {
       this.campusService.register(this.form.value).subscribe((res) => {
         if (res.ok) {
           this.userService
-            .getCampuses(3)
+            .getCampuses()
             .subscribe((res) => (this.campuses = res.data.results));
 
           this.form.reset();

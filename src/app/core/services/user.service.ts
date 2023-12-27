@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
 import { ICampusRes } from '../models/campus.model';
 import { checkToken } from '../interceptors/token.interceptor';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,25 +14,29 @@ import { checkToken } from '../interceptors/token.interceptor';
 export class UserService {
   private readonly url: string = `${environment.apiUrl}/users`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly tokenService: TokenService
+  ) {}
 
-  update(userId: number, req: IUserReq) {
+  update(req: IUserReq) {
     return this.http.patch<IPageResponse<IUserRes>>(
-      `${this.url}/${userId}`,
+      `${this.url}/${this.tokenService.getInfo().id}`,
       req,
       { context: checkToken() }
     );
   }
 
-  delete(userId: number) {
-    return this.http.delete<Boolean>(`${this.url}/${userId}`, {
-      context: checkToken(),
-    });
+  delete() {
+    return this.http.delete<Boolean>(
+      `${this.url}/${this.tokenService.getInfo().id}`,
+      { context: checkToken() }
+    );
   }
 
-  getCampuses(userId: number) {
+  getCampuses() {
     return this.http.get<IPageResponse<ICampusRes>>(
-      `${this.url}/${userId}/campuses`,
+      `${this.url}/${this.tokenService.getInfo().id}/campuses`,
       { context: checkToken() }
     );
   }

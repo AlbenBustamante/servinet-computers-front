@@ -20,14 +20,14 @@ export class TransfersTableComponent {
     private readonly dateRangeService: DateRangeService
   ) {
     this.campusService
-      .getTransfers(1, {})
+      .getTransfers({})
       .subscribe((res) => (this.transfers = res.data.results));
 
     this.dateRangeService.currentDateRange$.subscribe((dateRange) => {
       this.dateRange = dateRange;
 
       this.campusService
-        .getTransfers(1, {
+        .getTransfers({
           startDate: this.dateRange.startDate,
           endDate: this.dateRange.endDate,
         })

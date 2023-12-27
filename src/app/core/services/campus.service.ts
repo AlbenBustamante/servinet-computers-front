@@ -7,6 +7,7 @@ import { IPageResponse } from '../models/response.model';
 import { ITransferRes } from '../models/transfer.model';
 import { IPagination } from '../models/pagination.model';
 import { checkToken } from '../interceptors/token.interceptor';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,13 @@ import { checkToken } from '../interceptors/token.interceptor';
 export class CampusService {
   private readonly url: string = `${environment.apiUrl}/campuses`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly tokenService: TokenService
+  ) {}
 
   register(req: ICampusReq) {
-    req.userId = 3; // temporal
+    req.userId = this.tokenService.getInfo().id;
     return this.http.post<IPageResponse<ICampusRes>>(this.url, req, {
       context: checkToken(),
     });
@@ -30,6 +34,7 @@ export class CampusService {
   }
 
   update(campusId: number, req: ICampusReq) {
+    req.userId = this.tokenService.getInfo().id;
     return this.http.patch<IPageResponse<ICampusRes>>(
       `${this.url}/${campusId}`,
       req,
@@ -43,19 +48,19 @@ export class CampusService {
     });
   }
 
-  updatePlatforms(platformNames: string[]) {
+  updatePlatforms(campusId: number, platformNames: string[]) {
     const arrayParam = platformNames.join(',');
 
     const params = new HttpParams().set('platformNames', arrayParam);
 
     return this.http.put<IPageResponse<ICampusRes>>(
-      `${this.url}/${1}/platforms`,
+      `${this.url}/${campusId}/platforms`,
       null,
       { params, context: checkToken() }
     );
   }
 
-  getTransfers(campusId: number, pageReq: IPagination) {
+  getTransfers(pageReq: IPagination) {
     let params = new HttpParams();
     const { size, direction, startDate, endDate, page, property } = pageReq;
 
@@ -84,7 +89,7 @@ export class CampusService {
     }
 
     return this.http.get<IPageResponse<ITransferRes>>(
-      `${this.url}/${campusId}/transfers`,
+      `${this.url}/${this.tokenService.getInfo().id}/transfers`,
       { params, context: checkToken() }
     );
   }
