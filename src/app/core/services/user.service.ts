@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { IUserReq, IUserRes } from '../models/user.model';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
 import { ICampusRes } from '../models/campus.model';
 import { checkToken } from '../interceptors/token.interceptor';
 import { TokenService } from './token.service';
+import { IDashboardResponse } from '../models/dashboard.model';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +37,13 @@ export class UserService {
   getCampuses() {
     return this.http.get<IPageResponse<ICampusRes>>(
       `${this.url}/${this.tokenService.getInfo().id}/campuses`,
+      { context: checkToken() }
+    );
+  }
+
+  getReport() {
+    return this.http.get<IDashboardResponse>(
+      `${this.url}/${this.tokenService.getInfo().id}/reports`,
       { context: checkToken() }
     );
   }
