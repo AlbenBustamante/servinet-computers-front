@@ -82,6 +82,7 @@ a {
 }
 
 a:hover {
+  cursor: pointer;
   background-color: var(--primary-color-800);
 }
 
