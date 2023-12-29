@@ -39,9 +39,11 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post<Boolean>(`${this.authUrl}/sign-out`, null, {
-      context: checkToken(),
-    });
+    return this.http
+      .post<Boolean>(`${this.authUrl}/sign-out`, null, {
+        context: checkToken(),
+      })
+      .pipe(tap(() => this.tokenService.remove()));
   }
 
   getProfile() {
