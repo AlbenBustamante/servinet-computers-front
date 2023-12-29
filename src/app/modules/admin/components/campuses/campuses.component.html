@@ -1,16 +1,13 @@
 <div class="flex">
   <div>
     <h2>Total</h2>
-    <p>$12.000.000</p>
+    <p>{{ dashboard?.total }}</p>
   </div>
-  <div class="separator"></div>
-  <div>
-    <h2>Sede 1</h2>
-    <p>$9.999.999</p>
-  </div>
-  <div class="separator"></div>
-  <div>
-    <h2>Sede 2</h2>
-    <p>$2.000.001</p>
-  </div>
+  <ng-container *ngFor="let campus of dashboard?.campuses">
+    <div class="separator"></div>
+    <div>
+      <h2>Sede {{ campus.numeral }}</h2>
+      <p>{{ campus.total }}</p>
+    </div>
+  </ng-container>
 </div>
