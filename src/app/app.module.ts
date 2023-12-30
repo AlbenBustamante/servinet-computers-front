@@ -6,6 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
+import locale from '@angular/common/locales/es-CO';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(locale);
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
