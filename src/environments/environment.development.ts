@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://sc-api.fly.dev/api/v1',
+  apiUrl: 'localhost:8080/api/v1',
 };
