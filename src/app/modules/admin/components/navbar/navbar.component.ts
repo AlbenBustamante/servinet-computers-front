@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IUserRes } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -7,11 +8,17 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  user: IUserRes | null = null;
+
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.authService.user$.subscribe((res) => (this.user = res));
+  }
 
   logout() {
     this.authService.logout().subscribe({

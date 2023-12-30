@@ -18,7 +18,7 @@ export class AuthService {
   private readonly authUrl: string = `${environment.apiUrl}/auth`;
   private readonly campusUrl: string = `${environment.apiUrl}/campuses`;
   private readonly userUrl: string = `${environment.apiUrl}/users`;
-  profile$ = new BehaviorSubject<ICampusRes | IUserRes | null>(null);
+  user$ = new BehaviorSubject<IUserRes | null>(null);
 
   constructor(
     private readonly http: HttpClient,
@@ -46,7 +46,7 @@ export class AuthService {
       .pipe(tap(() => this.tokenService.remove()));
   }
 
-  getProfile() {
+  getUser() {
     const { type, id } = this.tokenService.getInfo();
 
     if (type === AuthToken.USER) {
@@ -54,13 +54,9 @@ export class AuthService {
         .get<IPageResponse<IUserRes>>(`${this.userUrl}/${id}`, {
           context: checkToken(),
         })
-        .pipe(tap((res) => this.profile$.next(res.data.results[0])));
+        .pipe(tap((res) => this.user$.next(res.data.results[0])));
     }
 
-    return this.http
-      .get<IPageResponse<ICampusRes>>(`${this.campusUrl}/${id}`, {
-        context: checkToken(),
-      })
-      .pipe(tap((res) => this.profile$.next(res.data.results[0])));
+    return null;
   }
 }
