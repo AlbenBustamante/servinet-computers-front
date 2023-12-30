@@ -13,13 +13,13 @@ const routes: Routes = [
   },
   {
     path: 'portal',
-    canActivate: [redirectGuard('/')],
+    // canActivate: [redirectGuard('/')],
     loadChildren: () =>
       import('./modules/portal/portal.module').then((m) => m.PortalModule),
   },
   {
     path: '',
-    canActivate: [authGuard('/portal'), tokenGuard(AuthToken.CAMPUS)],
+    // canActivate: [authGuard('/portal'), tokenGuard(AuthToken.CAMPUS)],
     loadChildren: () =>
       import('./modules/layout/layout.module').then((m) => m.LayoutModule),
   },
