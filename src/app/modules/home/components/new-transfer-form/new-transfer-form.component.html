@@ -9,7 +9,7 @@
         ></option>
       </datalist>
       <label for="platform">Selecciona la plataforma</label>
-      <input list="platforms" id="platform" formControlName="platform" />
+      <input list="platforms" id="platform" formControlName="platformName" />
     </div>
     <div class="flex">
       <div>
@@ -18,7 +18,7 @@
       </div>
       <div>
         <label for="amount">Cantidad</label>
-        <select id="amount">
+        <select id="amount" formControlName="amount">
           <option *ngFor="let number of numbers" [value]="number">
             {{ number }}
           </option>

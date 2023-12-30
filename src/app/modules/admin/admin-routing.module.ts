@@ -4,6 +4,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PlatformsComponent } from './pages/platforms/platforms.component';
 import { CampusesComponent } from './pages/campuses/campuses.component';
+import { authGuard } from 'src/app/core/guards/auth.guard';
+import { redirectGuard } from 'src/app/core/guards/redirect.guard';
+import { tokenGuard } from 'src/app/core/guards/token.guard';
+import { AuthToken } from 'src/app/core/models/enums';
+
+const loginPath: string = '/admin/login';
 
 const routes: Routes = [
   {
@@ -11,10 +17,26 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'platforms', component: PlatformsComponent },
-  { path: 'campuses', component: CampusesComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [redirectGuard('/admin/')],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+  },
+  {
+    path: 'platforms',
+    component: PlatformsComponent,
+    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+  },
+  {
+    path: 'campuses',
+    component: CampusesComponent,
+    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+  },
 ];
 
 @NgModule({

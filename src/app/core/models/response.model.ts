@@ -1,11 +1,11 @@
 export interface IResponse {
   id: number;
   available: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface IPageResponse<T> {
+export interface IPageResponse<T extends IResponse> {
   statusCode: number;
   ok: boolean;
   data: {

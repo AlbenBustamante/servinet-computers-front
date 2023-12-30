@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from 'src/app/core/models/platform.model';
-import { PlatformService } from 'src/app/core/services/platform.service';
+import { CampusService } from 'src/app/core/services/campus.service';
+import { TokenService } from 'src/app/core/services/token.service';
 import { TransferService } from 'src/app/core/services/transfer.service';
 
 @Component({
@@ -16,21 +17,22 @@ export class NewTransferFormComponent implements OnInit {
   private readonly maxAmount: number = 10;
 
   constructor(
-    private readonly platformService: PlatformService,
+    private readonly campusService: CampusService,
     private readonly transferService: TransferService,
+    private readonly tokenService: TokenService,
     private readonly fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      platform: ['', Validators.required],
+      platformName: ['', Validators.required],
       value: ['', Validators.required],
       amount: [1],
     });
   }
 
   ngOnInit(): void {
-    this.platformService
-      .getAll()
-      .subscribe((res) => (this.platforms = res.data.results));
+    this.campusService.get(this.tokenService.getInfo().id).subscribe((res) => {
+      this.platforms = res.data.results[0].platforms;
+    });
 
     for (let i = 1; i <= this.maxAmount; i++) {
       this.numbers.push(i);
@@ -38,6 +40,10 @@ export class NewTransferFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.transferService.register(this.form.value);
+    if (this.form.valid) {
+      this.transferService
+        .register(this.form.value)
+        .subscribe((res) => console.log(res));
+    }
   }
 }

@@ -10,4 +10,5 @@ export interface ITransferReq {
 export interface ITransferRes extends IResponse {
   platformName: string;
   value: string;
+  time: string;
 }

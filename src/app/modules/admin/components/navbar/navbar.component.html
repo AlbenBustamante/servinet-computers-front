@@ -3,7 +3,10 @@
     <span class="material-symbols-outlined"> menu </span>
   </button>
   <button type="button" class="account">
-    <span>ID 7 - ACCOUNT NAME</span>
+    <span
+      >ID {{ user?.id }} - {{ user?.name?.toUpperCase() }}
+      {{ user?.lastName?.toUpperCase() }}</span
+    >
     <span class="material-symbols-outlined"> expand_more </span>
   </button>
 </header>
@@ -30,7 +33,7 @@
   </ul>
   <div>
     <hr />
-    <a>
+    <a (click)="logout()">
       <span class="material-symbols-outlined"> logout </span>
       Cerrar sesión
     </a>

@@ -8,17 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>2</td>
-      <td>MoviiRed</td>
-      <td>8</td>
-      <td>$8.000.000</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Puntored</td>
-      <td>2</td>
-      <td>$1.999.999</td>
+    <tr *ngFor="let platform of platforms">
+      <td>{{ platform.platformId }}</td>
+      <td>{{ platform.platformName }}</td>
+      <td>{{ platform.transfersAmount }}</td>
+      <td>{{ platform.total }}</td>
     </tr>
   </tbody>
 </table>

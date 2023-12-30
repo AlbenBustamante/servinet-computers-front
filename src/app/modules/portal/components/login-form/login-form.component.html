@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <fieldset>
     <div>
       <label for="terminal">Terminal</label>
@@ -6,12 +6,19 @@
         type="text"
         id="terminal"
         placeholder="Ingresa el número de terminal"
+        formControlName="username"
         required
       />
     </div>
     <div>
       <label for="password">Contraseña</label>
-      <input type="password" id="password" placeholder="******" required />
+      <input
+        type="password"
+        id="password"
+        placeholder="******"
+        formControlName="password"
+        required
+      />
     </div>
     <button type="submit">Ingresar</button>
   </fieldset>
