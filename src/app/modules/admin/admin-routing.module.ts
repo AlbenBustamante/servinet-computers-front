@@ -20,22 +20,22 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [redirectGuard('/admin/')],
+    canActivate: [redirectGuard('/admin/')],
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    // canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
   },
   {
     path: 'platforms',
     component: PlatformsComponent,
-    // canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
   },
   {
     path: 'campuses',
     component: CampusesComponent,
-    // canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
   },
 ];
 
