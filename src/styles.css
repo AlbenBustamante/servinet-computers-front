@@ -35,8 +35,61 @@ body {
   background-color: var(--bg);
 }
 
-.material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+h1,
+h2,
+h3,
+p {
+  color: var(--text-100);
+}
+
+label {
+  display: block;
+  font-size: 1.6rem;
+  color: var(--text-200);
+}
+
+input,
+select {
+  color: var(--text-100);
+}
+
+button {
+  color: var(--bg);
+  background-color: var(--primary-100);
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 1.6rem;
+  transition-duration: 105ms;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+input,
+select {
+  padding: 1rem 0.6rem;
+  border: 2px solid var(--text-200);
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+}
+
+input,
+select,
+button {
+  font-family: inherit;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
 }
 
 table {
@@ -68,49 +121,14 @@ tbody tr:hover {
   background-color: var(--gray-color-300);
 }
 
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
 .shadow {
-  box-shadow: 0 0 1rem #00000077;
+  box-shadow: 0 0 1rem #00000055;
 }
 
-h1,
-h2,
-h3,
-p,
-label {
-  color: var(--text-100);
-}
-
-input,
-select {
-  color: var(--text-200);
-}
-
-button {
-  color: var(--bg);
-  background-color: var(--primary-100);
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  padding: 0.5rem 0.8rem;
-  transition-duration: 105ms;
-}
-
-button:hover {
-  cursor: pointer;
-  transform: scale(1.02);
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-input,
-select,
-button {
-  font-family: inherit;
-}
-
-input:focus,
-select:focus {
-  outline: none;
+.background-gradient {
+  background: linear-gradient(to bottom, var(--bg) 80%, var(--bg-200));
 }
