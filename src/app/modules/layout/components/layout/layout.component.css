@@ -1,5 +1,5 @@
 @media (min-width: 700px) {
   .page {
-    margin-left: 250px;
+    margin-left: var(--nav-w);
   }
 }
