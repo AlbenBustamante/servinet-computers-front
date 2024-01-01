@@ -7,5 +7,5 @@ import { IRoute } from 'src/app/core/models/route.model';
   styleUrls: ['./little-nav.component.css'],
 })
 export class LittleNavComponent {
-  @Input() route: IRoute[] = [];
+  @Input() routes: IRoute[] = [];
 }
