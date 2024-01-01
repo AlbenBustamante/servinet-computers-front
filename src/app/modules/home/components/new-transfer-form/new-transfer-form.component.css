@@ -1,58 +1,15 @@
 form {
-  background-color: var(--white-color);
-  box-shadow: var(--shadow);
-  border-radius: 0.8rem;
-  padding: 1.5rem 1.8rem;
-}
-
-fieldset {
-  border: none;
-}
-
-legend {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-label {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 button {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 input,
 select,
 button {
   width: 100%;
-  border-radius: 0.5rem;
-}
-
-input,
-select {
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  background-color: var(--white-color);
-  border: 0.15rem solid var(--gray-color-400);
-}
-
-@media (min-width: 1024px) {
-  .flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .flex div:nth-of-type(1) {
-    width: calc(70% - 0.5rem);
-  }
-
-  .flex div:nth-of-type(2) {
-    width: calc(30% - 0.5rem);
-  }
 }
