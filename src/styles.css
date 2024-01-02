@@ -45,13 +45,19 @@ a {
   color: inherit;
 }
 
+p {
+  font-size: 1.6rem;
+}
+
 h1,
 h2,
 h3,
 p,
 label,
 input,
-select {
+select,
+tbody,
+thead {
   color: var(--text-100);
 }
 
@@ -76,7 +82,7 @@ button {
   font-size: 1.8rem;
   border: none;
   border-radius: 1rem;
-  padding: 1rem 1.6rem;
+  padding: 1rem 2.4rem;
   transition-duration: 105ms;
 }
 
@@ -93,7 +99,8 @@ input {
   padding: 0.8rem 1.6rem;
 }
 
-select {
+select,
+input[type="date"] {
   padding: 0.7rem 1.6rem;
 }
 
@@ -121,28 +128,32 @@ table {
   width: 100%;
 }
 
-thead {
-  color: var(--text-100);
+thead tr {
   border-bottom: 2px solid var(--accent-100);
+  background-color: var(--bg-300);
 }
 
+thead,
 tbody {
-  color: var(--text-100);
-  font-size: 0.9rem;
+  font-size: 1.6rem;
 }
 
 th,
 td {
   text-align: left;
-  padding: 0.8rem 1.2rem;
+  padding: 1.4rem 2.8rem;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--bg);
 }
 
 tbody tr:nth-child(even) {
-  background-color: var(--gray-color-100);
+  background-color: var(--bg-300);
 }
 
 tbody tr:hover {
-  background-color: var(--gray-color-300);
+  background-color: var(--bg-200);
 }
 
 .material-symbols-outlined {
