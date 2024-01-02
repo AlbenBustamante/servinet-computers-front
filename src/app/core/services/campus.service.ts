@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { ICampusReq, ICampusRes } from '../models/campus.model';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IPageResponse } from '../models/response.model';
 import { ITransferRes } from '../models/transfer.model';
 import { IPagination } from '../models/pagination.model';
 import { checkToken } from '../interceptors/token.interceptor';
 import { TokenService } from './token.service';
+import { IPlatformRes } from '../models/platform.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CampusService {
   private readonly url: string = `${environment.apiUrl}/campuses`;
+  platforms$ = new BehaviorSubject<IPlatformRes[]>([]);
 
   constructor(
     private readonly http: HttpClient,
@@ -92,5 +94,14 @@ export class CampusService {
       `${this.url}/${this.tokenService.getInfo().id}/transfers`,
       { params, context: checkToken() }
     );
+  }
+
+  getPlatforms() {
+    return this.http
+      .get<IPageResponse<ICampusRes>>(
+        `${this.url}/${this.tokenService.getInfo().id}`,
+        { context: checkToken() }
+      )
+      .pipe(tap((res) => this.platforms$.next(res.data.results[0].platforms)));
   }
 }

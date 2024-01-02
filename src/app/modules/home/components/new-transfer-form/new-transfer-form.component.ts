@@ -11,7 +11,7 @@ import { TransferService } from 'src/app/core/services/transfer.service';
   styleUrls: ['./new-transfer-form.component.css'],
 })
 export class NewTransferFormComponent implements OnInit {
-  platforms!: IPlatformRes[];
+  platforms: IPlatformRes[] | null = null;
   numbers: number[] = [];
   form: FormGroup;
   private readonly maxAmount: number = 10;
@@ -30,9 +30,7 @@ export class NewTransferFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.campusService.get(this.tokenService.getInfo().id).subscribe((res) => {
-      this.platforms = res.data.results[0].platforms;
-    });
+    this.campusService.platforms$.subscribe((res) => (this.platforms = res));
 
     for (let i = 1; i <= this.maxAmount; i++) {
       this.numbers.push(i);
