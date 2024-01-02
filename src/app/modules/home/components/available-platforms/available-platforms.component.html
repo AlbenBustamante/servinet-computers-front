@@ -1,0 +1,8 @@
+<ul>
+  <li
+    *ngFor="let platform of platforms; index as i"
+    [ngClass]="i === platforms!.length - 1 ? '' : 'border'"
+  >
+    {{ platform.name }}
+  </li>
+</ul>
