@@ -54,4 +54,5 @@ li a {
 li a:hover {
   background-color: var(--accent-200);
   color: var(--bg);
+  cursor: pointer;
 }
