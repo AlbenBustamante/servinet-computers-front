@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from 'src/app/core/models/platform.model';
 import { CampusService } from 'src/app/core/services/campus.service';
-import { TokenService } from 'src/app/core/services/token.service';
 import { TransferService } from 'src/app/core/services/transfer.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class NewTransferFormComponent implements OnInit {
   constructor(
     private readonly campusService: CampusService,
     private readonly transferService: TransferService,
-    private readonly tokenService: TokenService,
     private readonly fb: FormBuilder
   ) {
     this.form = this.fb.group({
