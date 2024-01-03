@@ -1,5 +1,6 @@
 nav {
   width: 100%;
+  height: var(--little-nav-h);
   padding: 2rem;
   margin: 1rem 0rem;
 }
@@ -17,15 +18,13 @@ li a {
   gap: 0.4rem;
 }
 
-.chevron {
-  cursor: default;
-}
-
-li a.last {
-  cursor: text;
-}
-
 .chevron,
 li a.last {
   color: var(--text-200);
+  cursor: default;
+}
+
+li a:hover:not(li a.last) {
+  color: var(--primary-100);
+  cursor: pointer;
 }
