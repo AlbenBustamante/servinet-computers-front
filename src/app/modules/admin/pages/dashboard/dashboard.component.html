@@ -1,9 +1,15 @@
 <app-navbar></app-navbar>
-<main>
-  <section id="stats" role="region">
-    <app-stats></app-stats>
-  </section>
-  <section id="campuses" role="region">
-    <app-campuses></app-campuses>
-  </section>
-</main>
+<div class="page">
+  <app-little-nav [routes]="routes" class="nav"></app-little-nav>
+  <main>
+    <section id="stats" role="region">
+      <h2>Transferencias del día</h2>
+      <app-stats></app-stats>
+    </section>
+    <div class="divider"></div>
+    <section id="campuses" role="region">
+      <h2>Estadísticas</h2>
+      <app-campuses></app-campuses>
+    </section>
+  </main>
+</div>
