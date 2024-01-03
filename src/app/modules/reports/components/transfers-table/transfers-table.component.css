@@ -1,3 +1,12 @@
 thead {
   border-bottom: 2px solid var(--secondary-color-600);
 }
+
+.center {
+  text-align: center;
+}
+
+th:nth-of-type(1),
+td:nth-of-type(1) {
+  width: 10%;
+}
