@@ -1,27 +1,31 @@
-.flex {
+.container {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 4rem;
+  flex-direction: column;
+  gap: 5rem;
 }
 
-h2,
-p {
+article {
+  background-color: var(--bg-300);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+article h2 {
+  background-color: var(--primary-200);
+  color: var(--bg-300);
+  font-weight: 500;
+  font-size: 1.8rem;
   text-align: center;
+  border-radius: 2rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
-h2 {
-  font-size: 1.1rem;
-  color: var(--gray-color-950);
+article p {
+  font-size: 2.2rem;
+  text-align: right;
 }
 
-p {
-  font-size: 1rem;
-  color: var(--gray-color-900);
-}
-
-.separator {
-  width: 1px;
-  height: 100%;
-  background-color: var(--gray-color-400);
+article p::before {
+  content: "$";
 }
