@@ -1,96 +1,58 @@
-header {
-  height: 4rem;
-  background-color: var(--primary-color-700);
-  color: var(--background-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0.4rem;
-  border-bottom: 1px solid var(--primary-color-500);
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.menu {
-  background-color: unset;
-  border: none;
-  padding: 0.2rem 0.4rem;
-}
-
-.menu span {
-  color: var(--background-color);
-  font-size: 2rem;
-}
-
-.account {
-  color: var(--background-color);
-  background-color: inherit;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.4rem 0.8rem;
-}
-
-.menu,
-.account {
-  border: none;
-  border-radius: 0.6rem;
-}
-
-.menu:hover,
-.account:hover {
-  cursor: pointer;
-  background-color: var(--primary-color-800);
-}
-
-.menu:active,
-.account:active {
-  background-color: var(--primary-color-900);
-}
-
 nav {
+  width: var(--nav-w);
+  height: 100vh;
   position: fixed;
-  top: 4rem;
   left: 0;
-  width: 13rem;
-  height: calc(100vh - 4rem);
-  background-color: var(--primary-color-700);
+  top: 0;
+  color: var(--text-100);
+  padding: 4rem 2rem;
+  border-right: 2px solid var(--bg-200);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.8rem 0.8rem;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  border: none;
+  background: var(--bg-200);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+header h2 {
+  color: var(--text-200);
+  font-weight: 500;
+  font-size: 1.8rem;
 }
 
 ul {
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-a {
-  color: var(--background-color);
-  text-decoration: none;
+li a {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.9rem;
-  border-radius: 0.5rem;
+  gap: 1rem;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
 }
 
-a:hover {
+li a:hover {
+  background-color: var(--accent-200);
+  color: var(--bg);
   cursor: pointer;
-  background-color: var(--primary-color-800);
-}
-
-a:active {
-  background-color: var(--primary-color-900);
-}
-
-hr {
-  margin-bottom: 1rem;
-  border: 1px solid var(--primary-color-500);
 }
