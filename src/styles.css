@@ -172,6 +172,22 @@ tbody tr:hover {
   background: linear-gradient(to bottom, var(--bg) 80%, var(--bg-200));
 }
 
-.input-spacing label {
+form.form-spacing {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+form.form-spacing label {
   margin-bottom: 0.5rem;
+}
+
+form.form-spacing button {
+  margin-top: 1rem;
+}
+
+form.form-spacing input,
+form.form-spacing select,
+form.form-spacing button {
+  width: 100%;
 }

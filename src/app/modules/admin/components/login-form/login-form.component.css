@@ -1,80 +1,19 @@
 form {
-  width: 90%;
+  width: 60%;
   margin: auto;
 }
 
-fieldset {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  border: 0;
-}
-
-label {
-  display: block;
-  font-size: 0.8rem;
-  margin-bottom: 0.25rem;
+a {
+  font-size: 1.6rem;
   font-weight: 600;
-  color: var(--gray-color-900);
+  text-align: center;
+  color: #52aacd;
 }
 
-button {
-  color: var(--background-color);
-  background-color: var(--primary-color-500);
-  font-weight: 600;
-  font-size: 1rem;
-  border: 2px solid;
-  border-radius: 0.5rem;
-  width: 65%;
-  display: block;
-  margin: auto;
+a:hover {
+  color: #6ebede;
 }
 
-input {
-  background-color: var(--white-color);
-  font-size: 0.9rem;
-  color: var(--gray-color-900);
-  border: 2px solid var(--gray-color-400);
-  border-radius: 0.4rem;
-  width: 100%;
-}
-
-input,
-button {
-  font-family: inherit;
-  padding: 0.5rem 0.8rem;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: var(--primary-color-600);
-}
-
-button:active {
-  background-color: var(--primary-color-700);
-}
-
-input:focus,
-input:valid {
-  outline: none;
-  border-color: var(--secondary-color-500);
-}
-
-.input-password {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.input-password a {
-  color: var(--secondary-color-600);
-  display: block;
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.input-password a:hover {
-  color: var(--secondary-color-500);
+a:active {
+  color: #4b8fa9;
 }

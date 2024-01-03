@@ -1,5 +1,10 @@
-<form method="post" (ngSubmit)="onSubmit()" [formGroup]="form">
-  <div class="input-spacing">
+<form
+  method="post"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="form-spacing"
+>
+  <div>
     <datalist id="platforms">
       <option
         *ngFor="let platform of platforms"
@@ -9,11 +14,11 @@
     <label for="platform">Selecciona la plataforma</label>
     <input list="platforms" id="platform" formControlName="platformName" />
   </div>
-  <div class="input-spacing">
+  <div>
     <label for="value">Valor transferido</label>
     <input type="text" id="value" formControlName="value" />
   </div>
-  <div class="input-spacing">
+  <div>
     <label for="amount">Cantidad</label>
     <select id="amount" formControlName="amount">
       <option *ngFor="let number of numbers" [value]="number">
