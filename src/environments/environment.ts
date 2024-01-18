@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://sc-api.fly.dev/api/v1',
+  apiUrl: 'https://api-sc.onrender.com/api/v1',
 };
