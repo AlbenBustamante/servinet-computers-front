@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ICampusRes } from 'src/app/core/models/campus.model';
 import { IPlatformRes } from 'src/app/core/models/platform.model';
+import { IRoute } from 'src/app/core/models/route.model';
 import { CampusService } from 'src/app/core/services/campus.service';
 import { PlatformService } from 'src/app/core/services/platform.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -18,9 +19,12 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./campuses.component.css'],
 })
 export class CampusesComponent {
+  routes: IRoute[] = [
+    { title: 'Admin', icon: 'home', route: '/admin' },
+    { title: 'Sedes' },
+  ];
   platforms: IPlatformRes[] = [];
   campuses: ICampusRes[] = [];
-  isRegistering: boolean = false;
   isShowingInfo: boolean = false;
   headerTitle: string = 'Sedes registradas';
   campusData: ICampusRes = {
@@ -82,22 +86,7 @@ export class CampusesComponent {
       .subscribe(() => this.setIsShowingInfo(undefined));
   }
 
-  setIsRegistering() {
-    if (this.isShowingInfo) {
-      this.isShowingInfo = false;
-    }
-
-    this.isRegistering = !this.isRegistering;
-    this.headerTitle = this.isRegistering
-      ? 'Registro de nueva sede'
-      : 'Sedes registradas';
-  }
-
   setIsShowingInfo(campus: ICampusRes | undefined) {
-    if (this.isRegistering) {
-      this.isRegistering = false;
-    }
-
     this.isShowingInfo = !this.isShowingInfo;
 
     this.headerTitle = this.isShowingInfo
@@ -106,21 +95,6 @@ export class CampusesComponent {
 
     if (campus !== undefined) {
       this.campusData = campus;
-    }
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      this.campusService.register(this.form.value).subscribe((res) => {
-        if (res.ok) {
-          this.userService
-            .getCampuses()
-            .subscribe((res) => (this.campuses = res.data.results));
-
-          this.form.reset();
-          this.setIsRegistering();
-        }
-      });
     }
   }
 
