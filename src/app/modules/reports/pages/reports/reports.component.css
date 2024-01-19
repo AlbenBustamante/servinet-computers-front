@@ -1,24 +1,23 @@
-#calendars {
+main {
+  padding: 0 2rem;
   margin: auto;
-  margin-top: -2.5rem;
-  height: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
 }
 
-#calendars,
-#transfers,
-hr {
-  width: 80%;
-  max-width: 840px;
+main * {
+  width: 100%;
 }
 
 #transfers {
-  box-shadow: var(--shadow);
-  background-color: var(--white-color);
-  border-radius: 0.25rem;
-  margin: auto;
+  overflow-x: auto;
 }
 
-hr {
-  margin: 2rem auto;
-  border: 1px solid var(--gray-color-300);
+#final-stats {
+  padding: 2rem 0;
+  border: 2px solid var(--accent-100);
+  border-radius: 3rem;
+  background-color: var(--bg-300);
 }

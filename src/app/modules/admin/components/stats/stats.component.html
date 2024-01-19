@@ -1,18 +1,18 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
+      <th class="center">ID</th>
       <th>Plataforma</th>
-      <th>Transferencias</th>
-      <th>Total</th>
+      <th class="center">Transferencias</th>
+      <th class="right">Total</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let platform of platforms">
-      <td>{{ platform.platformId }}</td>
+      <td class="center">{{ platform.platformId }}</td>
       <td>{{ platform.platformName }}</td>
-      <td>{{ platform.transfersAmount }}</td>
-      <td>{{ platform.total }}</td>
+      <td class="center">{{ platform.transfersAmount }}</td>
+      <td class="right">{{ platform.total }}</td>
     </tr>
   </tbody>
 </table>

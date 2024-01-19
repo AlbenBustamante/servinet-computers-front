@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from 'src/app/core/models/platform.model';
+import { IRoute } from 'src/app/core/models/route.model';
 import { PlatformService } from 'src/app/core/services/platform.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { PlatformService } from 'src/app/core/services/platform.service';
   styleUrls: ['./platforms.component.css'],
 })
 export class PlatformsComponent {
-  isRegistering: boolean = false;
+  routes: IRoute[] = [
+    { icon: 'home', title: 'Admin', route: '/admin' },
+    { title: 'Plataformas' },
+  ];
   isShowingInfo: boolean = false;
   headerTitle: string = 'Plataformas registradas';
   platforms: IPlatformRes[] = [];
@@ -35,16 +39,7 @@ export class PlatformsComponent {
     });
   }
 
-  setIsRegistering(): void {
-    this.isShowingInfo = false;
-    this.isRegistering = !this.isRegistering;
-    this.headerTitle = this.isRegistering
-      ? 'Registro de nueva plataforma'
-      : 'Plataformas registradas';
-  }
-
   setIsShowingInfo(platform: IPlatformRes | undefined): void {
-    this.isRegistering = false;
     this.isShowingInfo = !this.isShowingInfo;
 
     this.headerTitle = this.isShowingInfo
@@ -53,18 +48,6 @@ export class PlatformsComponent {
 
     if (platform !== undefined) {
       this.platformInfo = platform;
-    }
-  }
-
-  onSubmit(): void {
-    if (this.form.valid) {
-      this.platformService.register(this.form.value).subscribe((res) => {
-        if (res.ok) {
-          this.platforms.push(res.data.results[0]);
-          this.form.reset();
-          this.setIsRegistering();
-        }
-      });
     }
   }
 }

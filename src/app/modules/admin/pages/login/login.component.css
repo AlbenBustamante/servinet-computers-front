@@ -1,48 +1,35 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
-main {
-  height: calc(100vh - 134px);
-}
-
-.card {
-  background-color: var(--white-color);
-  width: 80%;
-  display: flex;
-  flex-direction: row-reverse;
-  box-shadow: var(--shadow);
-  border-radius: 1rem;
-  height: 80%;
-}
-
-.card section,
-main {
+main,
+section {
+  height: calc(100vh - var(--login-footer-h));
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #welcome {
-  color: var(--background-color);
-  width: 55%;
+  color: var(--bg);
+  width: 60%;
   text-align: center;
-  background-color: var(--secondary-color-500);
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  background-color: var(--accent-100);
 }
 
 #welcome h1 {
   font-size: 5rem;
+  margin-bottom: 5rem;
 }
 
-#welcome h2 {
-  font-size: 2.5rem;
+#welcome p {
+  font-size: 2.2rem;
 }
 
 #login-form {
-  width: 45%;
+  flex-direction: column;
+  gap: 8rem;
+  width: 40%;
+}
+
+#login-form h2 {
+  font-size: 3rem;
 }
 
 app-login-form {

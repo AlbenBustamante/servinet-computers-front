@@ -1,63 +1,58 @@
-h1 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin: 1.4rem 0;
-}
-
-hr {
-  width: 85%;
-  border: 1px solid var(--primary-color-400);
-  margin: auto;
-}
-
 nav {
-  color: var(--background-color);
-  background-color: var(--primary-color-700);
+  width: var(--nav-w);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: var(--text-100);
+  padding: 4rem 2rem;
+  border-right: 2px solid var(--bg-200);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  border: none;
+  background: var(--bg-200);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+header h2 {
+  color: var(--text-200);
+  font-weight: 500;
+  font-size: 1.8rem;
 }
 
 ul {
-  list-style: none;
-  margin: 0;
-  margin-top: 1.4rem;
-  padding: 0 calc(15% / 2);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-ul li {
-  font-size: 1.1rem;
-  border-radius: 0.5rem;
-}
-
-ul li a {
-  color: inherit;
-  text-decoration: none;
-  padding: 0.6rem 1rem;
+li a {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
 }
 
-ul li a span {
-  transform: scale(1.4);
-}
-
-ul li:hover {
-  background-color: var(--primary-color-800);
-}
-
-ul li:active {
-  background-color: var(--primary-color-900);
-}
-
-@media (min-width: 700px) {
-  nav {
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
+li a:hover {
+  background-color: var(--accent-200);
+  color: var(--bg);
+  cursor: pointer;
 }

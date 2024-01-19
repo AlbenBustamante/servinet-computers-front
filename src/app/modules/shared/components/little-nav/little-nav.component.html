@@ -1,0 +1,22 @@
+<nav>
+  <ul>
+    <ng-container *ngFor="let route of routes; index as i">
+      <li>
+        <a
+          [routerLink]="route.route ?? undefined"
+          [ngClass]="routes.length > 1 && i === routes.length - 1 ? 'last' : ''"
+        >
+          <span
+            class="material-symbols-outlined"
+            *ngIf="route.icon !== undefined"
+            >{{ route.icon }}</span
+          >
+          {{ route.title }}
+        </a>
+      </li>
+      <li *ngIf="routes.length > 1 && i < routes.length - 1">
+        <span class="material-symbols-outlined chevron">chevron_right</span>
+      </li>
+    </ng-container>
+  </ul>
+</nav>

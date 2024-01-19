@@ -1,6 +1,15 @@
-<app-header-title headerTitle="Inicio"></app-header-title>
+<app-little-nav [routes]="routes"></app-little-nav>
 <main>
-  <section role="region" id="new-transfer">
+  <section role="region" id="new-transfer" class="shadow">
+    <header>
+      <h2 class="title">Registrar Transferencia</h2>
+    </header>
     <app-new-transfer-form></app-new-transfer-form>
+  </section>
+  <section role="region" id="available-platforms">
+    <header>
+      <h2 class="title">Plataformas disponibles</h2>
+    </header>
+    <app-available-platforms></app-available-platforms>
   </section>
 </main>

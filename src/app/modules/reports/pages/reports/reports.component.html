@@ -1,11 +1,12 @@
-<app-header-title headerTitle="Reportes"></app-header-title>
+<app-little-nav [routes]="routes"></app-little-nav>
 <main>
   <section role="region" id="calendars">
     <app-calendars-form></app-calendars-form>
   </section>
-  <section role="region" id="transfers">
+  <section role="region" id="transfers" class="shadow">
     <app-transfers-table></app-transfers-table>
   </section>
-  <hr />
-  <app-final-stats></app-final-stats>
+  <section role="region" id="final-stats" class="shadow">
+    <app-final-stats></app-final-stats>
+  </section>
 </main>

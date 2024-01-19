@@ -1,0 +1,30 @@
+nav {
+  width: 100%;
+  height: var(--little-nav-h);
+  padding: 2rem;
+  margin: 1rem 0rem;
+}
+
+ul,
+ul * {
+  display: flex;
+  align-items: center;
+}
+
+li a {
+  color: var(--text-100);
+  font-size: 1.6rem;
+  font-weight: 600;
+  gap: 0.4rem;
+}
+
+.chevron,
+li a.last {
+  color: var(--text-200);
+  cursor: default;
+}
+
+li a:hover:not(li a.last) {
+  color: var(--primary-100);
+  cursor: pointer;
+}

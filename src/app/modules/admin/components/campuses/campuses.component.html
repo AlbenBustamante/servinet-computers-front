@@ -1,13 +1,6 @@
-<div class="flex">
-  <div>
-    <h2>Total</h2>
-    <p>{{ dashboard?.total }}</p>
-  </div>
-  <ng-container *ngFor="let campus of dashboard?.campuses">
-    <div class="separator"></div>
-    <div>
-      <h2>Sede {{ campus.numeral }}</h2>
-      <p>{{ campus.total }}</p>
-    </div>
-  </ng-container>
+<div class="container">
+  <article class="shadow" *ngFor="let campus of dashboard?.campuses">
+    <h2>{{ campus.numeral }}</h2>
+    <p>{{ campus.total }}</p>
+  </article>
 </div>

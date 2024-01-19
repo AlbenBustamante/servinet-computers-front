@@ -1,5 +1,22 @@
-#new-transfer {
-  width: 80%;
-  max-width: 600px;
+main {
+  width: 90%;
   margin: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+#new-transfer {
+  width: 50%;
+  padding: 3rem;
+  border-radius: 2rem;
+  background-color: var(--bg-300);
+}
+
+#available-platforms {
+  width: 40%;
+  height: calc(100vh - 15rem);
+  padding: 3rem;
+  border-radius: 2rem;
+  background-color: var(--bg-200);
 }

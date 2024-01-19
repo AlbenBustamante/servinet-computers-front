@@ -15,9 +15,6 @@ export class CalendarsFormComponent {
     private readonly fb: FormBuilder,
     private readonly dateRangeService: DateRangeService
   ) {
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
-
     this.form = this.fb.group({
       startDate: [, Validators.required],
       endDate: [, Validators.required],

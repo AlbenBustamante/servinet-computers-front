@@ -1,92 +1,217 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color-50: #fcf5fe;
-  --primary-color-100: #f8eafd;
-  --primary-color-200: #f1d5f9;
-  --primary-color-300: #e8b4f3;
-  --primary-color-400: #d36ee7;
-  --primary-color-500: #c758dd;
-  --primary-color-600: #ad39c0;
-  --primary-color-700: #912c9f;
-  --primary-color-800: #782682;
-  --primary-color-900: #65246b;
-  --primary-color-950: #410c46;
-
-  --secondary-color-50: #eefbfd;
-  --secondary-color-100: #d4f4f9;
-  --secondary-color-200: #afe8f2;
-  --secondary-color-300: #6ed3e7;
-  --secondary-color-400: #39bad7;
-  --secondary-color-500: #1d9ebd;
-  --secondary-color-600: #1b7f9f;
-  --secondary-color-700: #1d6781;
-  --secondary-color-800: #20546a;
-  --secondary-color-900: #1f475a;
-  --secondary-color-950: #0f2e3d;
-
-  --gray-color-50: #f7f7f7;
-  --gray-color-100: #e7e7e7;
-  --gray-color-200: #dfdfdf;
-  --gray-color-300: #c8c8c8;
-  --gray-color-400: #adadad;
-  --gray-color-500: #999999;
-  --gray-color-600: #888888;
-  --gray-color-700: #7b7b7b;
-  --gray-color-800: #676767;
-  --gray-color-900: #545454;
-  --gray-color-950: #363636;
-
-  --white-color: #f0f0f0;
-  --background-color: var(--gray-color-100);
-  --black-color: #0f0f0f;
-
-  --shadow: 0 0 1rem var(--gray-color-300);
+  /* -- colors */
+  /* lavendar by https://aicolors.co/ */
+  --primary-100: #8b5fbf;
+  --primary-200: #61398f;
+  --primary-300: #ffffff;
+  --accent-100: #d6c6e1;
+  --accent-200: #9a73b5;
+  --text-100: #4a4a4a;
+  --text-200: #878787;
+  --bg-100: #f5f3f7;
+  --bg-200: #e9e4ed;
+  --bg-300: #ffffff;
+  --bg: var(--bg-100);
+  --black: #0f0f0f;
+  /* -- measures -- */
+  --login-footer-h: 12rem;
+  --nav-w: 25rem;
+  --little-nav-h: 6.4rem;
 }
 
-* {
+*,
+::before,
+::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  font-size: 20px;
+  font-size: 62.5%;
 }
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--background-color);
+  background-color: var(--bg);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p,
+li {
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+p,
+label,
+input,
+select,
+tbody,
+thead,
+li {
+  color: var(--text-100);
+}
+
+h2.title {
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  color: var(--text-200);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid var(--text-200);
+}
+
+label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+button {
+  color: var(--bg);
+  background-color: var(--primary-100);
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 2.4rem;
+  transition-duration: 105ms;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+input {
+  padding: 0.8rem 1.6rem;
+}
+
+select,
+input[type="date"] {
+  padding: 0.7rem 1.6rem;
+}
+
+input,
+select {
+  border: 2px solid #c0c0c0;
+  border-radius: 1rem;
+  font-size: 1.7rem;
+}
+
+input,
+select,
+button {
+  font-family: inherit;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid var(--accent-100);
+  width: 100%;
+}
+
+thead tr {
+  border-bottom: 2px solid var(--accent-100);
+  background-color: var(--bg-300);
+}
+
+thead,
+tbody {
+  font-size: 1.6rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 1.4rem 2.8rem;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--bg);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--bg-300);
+}
+
+tbody tr:hover {
+  background-color: var(--bg-200);
 }
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
-table {
-  border-collapse: collapse;
+.shadow {
+  box-shadow: 0 0 1rem #c0c0c0;
+}
+
+.background-gradient {
+  background: linear-gradient(to bottom, var(--bg) 80%, var(--bg-200));
+}
+
+form.form-spacing {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+form.form-spacing label {
+  margin-bottom: 0.5rem;
+}
+
+form.form-spacing button {
+  margin-top: 1rem;
+}
+
+form.form-spacing input,
+form.form-spacing select,
+form.form-spacing button {
   width: 100%;
 }
 
-thead {
-  color: var(--gray-color-900);
-  border-bottom: 2px solid var(--primary-color-600);
+section.dash-card {
+  width: 100%;
+  background-color: var(--bg-200);
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 1rem var(--accent-100);
 }
 
-tbody {
-  color: var(--gray-color-900);
-  font-size: 0.9rem;
+section.dash-card header {
+  border-bottom: 2px solid var(--accent-100);
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
-th,
-td {
-  text-align: left;
-  padding: 0.8rem 1.2rem;
+section.dash-card header h2 {
+  font-size: 2.2rem;
 }
 
-tbody tr:nth-child(even) {
-  background-color: var(--gray-color-100);
-}
-
-tbody tr:hover {
-  background-color: var(--gray-color-300);
+@media (min-width: 700px) {
+  .page {
+    margin-left: var(--nav-w);
+  }
 }
