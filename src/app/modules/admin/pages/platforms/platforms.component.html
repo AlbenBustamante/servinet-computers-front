@@ -5,7 +5,11 @@
     <section class="dash-card">
       <header>
         <h2>{{ headerTitle }}</h2>
-        <span class="add material-symbols-outlined" *ngIf="!isShowingInfo">
+        <span
+          class="add material-symbols-outlined"
+          *ngIf="!isShowingInfo"
+          (click)="openModal()"
+        >
           add
         </span>
       </header>
@@ -63,5 +67,23 @@
         </section>
       </article>
     </section>
+    <dialog id="new-platform-modal">
+      <header>
+        <span>Registro de nueva plataforma</span>
+        <span class="material-symbols-outlined close" (click)="closeModal()"
+          >close</span
+        >
+      </header>
+      <div class="divider"></div>
+      <section>
+        <form class="form-spacing" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div>
+            <label for="name">Nombre de la plataforma</label>
+            <input type="text" id="name" formControlName="name" />
+          </div>
+          <button type="submit">Registrar</button>
+        </form>
+      </section>
+    </dialog>
   </main>
 </div>

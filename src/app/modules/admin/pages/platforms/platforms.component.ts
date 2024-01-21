@@ -24,6 +24,7 @@ export class PlatformsComponent {
     id: -1,
     name: '',
   };
+  newPlatformModal!: HTMLDialogElement;
   form: FormGroup;
 
   constructor(
@@ -49,5 +50,35 @@ export class PlatformsComponent {
     if (platform !== undefined) {
       this.platformInfo = platform;
     }
+  }
+
+  onSubmit() {
+    this.platformService.register(this.form.value).subscribe({
+      next: (res) => {
+        this.platforms.push(res.data.results[0]);
+        this.closeModal();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  openModal() {
+    this.modal.showModal();
+  }
+
+  closeModal() {
+    this.modal.close();
+  }
+
+  private get modal() {
+    if (!this.newPlatformModal) {
+      this.newPlatformModal = document.querySelector(
+        '#new-platform-modal'
+      ) as HTMLDialogElement;
+    }
+
+    return this.newPlatformModal;
   }
 }
