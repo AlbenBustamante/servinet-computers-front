@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Plataforma</th>
+      <th>Valor</th>
+      <th>Hora</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transfer of transfers">
+      <td>{{ transfer.id }}</td>
+      <td>{{ transfer.platformName }}</td>
+      <td>{{ transfer.value }}</td>
+      <td>{{ transfer.time }}</td>
+      <td>
+        <span class="material-symbols-outlined">edit</span>
+        <span class="material-symbols-outlined" (click)="delete(transfer.id)"
+          >delete</span
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
