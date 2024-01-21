@@ -1,0 +1,10 @@
+<dialog [id]="modalId">
+  <header>
+    <span>{{ modalTitle }}</span>
+    <span class="material-symbols-outlined close" (click)="closeModal()"
+      >close</span
+    >
+  </header>
+  <div class="divider"></div>
+  <ng-content></ng-content>
+</dialog>

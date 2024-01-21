@@ -67,14 +67,10 @@
         </section>
       </article>
     </section>
-    <dialog id="new-platform-modal">
-      <header>
-        <span>Registro de nueva plataforma</span>
-        <span class="material-symbols-outlined close" (click)="closeModal()"
-          >close</span
-        >
-      </header>
-      <div class="divider"></div>
+    <app-modal
+      modalId="new-platform-modal"
+      modalTitle="Registro de nueva plataforma"
+    >
       <section>
         <form class="form-spacing" [formGroup]="form" (ngSubmit)="onSubmit()">
           <div>
@@ -84,6 +80,6 @@
           <button type="submit">Registrar</button>
         </form>
       </section>
-    </dialog>
+    </app-modal>
   </main>
 </div>

@@ -56,7 +56,7 @@ export class PlatformsComponent {
     this.platformService.register(this.form.value).subscribe({
       next: (res) => {
         this.platforms.push(res.data.results[0]);
-        this.closeModal();
+        this.modal.close();
       },
       error: (err) => {
         console.log(err);
@@ -66,10 +66,6 @@ export class PlatformsComponent {
 
   openModal() {
     this.modal.showModal();
-  }
-
-  closeModal() {
-    this.modal.close();
   }
 
   private get modal() {

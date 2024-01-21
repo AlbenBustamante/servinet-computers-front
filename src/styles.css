@@ -210,45 +210,6 @@ section.dash-card header h2 {
   font-size: 2.2rem;
 }
 
-dialog {
-  margin: auto;
-  padding: 2rem;
-  width: 90%;
-  max-width: 40rem;
-  border: 1px solid #c0c0c0;
-  border-radius: 1rem;
-}
-
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-}
-
-dialog header {
-  width: 100%;
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-dialog .divider {
-  margin: 1rem 0 2rem;
-}
-
-dialog .close {
-  cursor: pointer;
-  color: var(--text-200);
-  font-size: 2.4rem;
-  transition: 100ms ease-in-out;
-}
-
-dialog .close:hover {
-  transform: scale(1.4);
-}
-
-dialog .close:active {
-  transform: scale(0.8);
-}
-
 @media (min-width: 700px) {
   .page {
     margin-left: var(--nav-w);
