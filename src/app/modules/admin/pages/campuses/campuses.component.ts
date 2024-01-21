@@ -38,6 +38,7 @@ export class CampusesComponent {
     terminal: '0',
     updatedAt: '',
   };
+  newCampusModal!: HTMLDialogElement;
   form: FormGroup;
   platformsForm!: FormGroup;
 
@@ -100,5 +101,31 @@ export class CampusesComponent {
 
   get platformsArray() {
     return this.platformsForm.get('platforms') as FormArray;
+  }
+
+  openModal() {
+    this.modal.showModal();
+  }
+
+  onSubmit() {
+    this.campusService.register(this.form.value).subscribe({
+      next: (res) => {
+        this.campuses.push(res.data.results[0]);
+        this.modal.close();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  private get modal() {
+    if (!this.newCampusModal) {
+      this.newCampusModal = document.querySelector(
+        '#new-campus-modal'
+      ) as HTMLDialogElement;
+    }
+
+    return this.newCampusModal;
   }
 }
