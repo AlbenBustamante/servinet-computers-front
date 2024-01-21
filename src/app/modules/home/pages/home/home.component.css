@@ -37,7 +37,7 @@ section {
   overflow: auto;
 }
 
-@media (max-width: 1085px) {
+@media (max-width: 1258px) {
   main {
     display: flex;
     flex-direction: column;

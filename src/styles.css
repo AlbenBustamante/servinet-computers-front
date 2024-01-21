@@ -17,6 +17,7 @@
   /* -- measures -- */
   --login-footer-h: 12rem;
   --nav-w: 25rem;
+  --nav-h: 8rem;
   --little-nav-h: 6.4rem;
 }
 
@@ -210,8 +211,56 @@ section.dash-card header h2 {
   font-size: 2.2rem;
 }
 
-@media (min-width: 700px) {
+.page {
+  margin-bottom: var(--nav-h);
+}
+
+@media (min-width: 701px) {
   .page {
     margin-left: var(--nav-w);
+  }
+}
+
+@media (max-width: 700px) {
+  p,
+  li {
+    font-size: 1.5rem;
+  }
+
+  h2.title {
+    font-size: 1.6rem;
+  }
+
+  label {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1.6rem;
+    padding: 0.85rem 4rem;
+  }
+
+  input {
+    padding: 0.6rem 1.4rem;
+  }
+
+  select,
+  input[type="date"] {
+    padding: 0.5rem 1.4rem;
+  }
+
+  input,
+  select {
+    font-size: 1.6rem;
+  }
+
+  thead,
+  tbody {
+    font-size: 1.5rem;
+  }
+
+  th,
+  td {
+    padding: 0.8rem 2.4rem;
   }
 }
