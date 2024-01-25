@@ -1,51 +1,52 @@
 main {
   min-height: calc(100vh - var(--little-nav-h) - 2rem);
-  margin: auto;
   padding: 0 2rem 4rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 418px 1fr;
-  grid-template-areas:
-    "new-transfer transfers transfers"
-    "available-platforms available-platforms available-platforms";
+  display: flex;
+  /* display: grid;
+  grid-template-columns: minmax(34rem, 2fr) 3fr;
+  grid-template-rows: 42rem; */
   gap: 3rem;
 }
 
 section {
   padding: 3rem;
   border-radius: 1rem;
+  background-color: var(--bg-300);
+  height: 42rem;
 }
 
 #new-transfer {
-  grid-area: new-transfer;
-  background-color: var(--bg-300);
+  min-width: 32rem;
+  width: 40%;
 }
 
 #transfers {
-  grid-area: transfers;
-  background-color: var(--bg-300);
+  width: 60%;
 }
 
-#available-platforms {
-  grid-area: available-platforms;
-  background-color: var(--bg-200);
-  box-shadow: inset 0 0 1rem var(--accent-100);
-}
-
-.scroll {
-  max-height: 90%;
+.scroll,
+.scroll * {
+  height: 86%;
   overflow: auto;
 }
 
-@media (max-width: 1258px) {
+@media (max-width: 1170px) {
   main {
-    display: flex;
     flex-direction: column;
   }
 
+  section {
+    height: unset;
+  }
+
   #new-transfer {
+    min-width: unset;
     width: 100%;
-    max-width: 40rem;
+    max-width: 35rem;
     margin: auto;
+  }
+
+  #transfers {
+    width: 100%;
   }
 }

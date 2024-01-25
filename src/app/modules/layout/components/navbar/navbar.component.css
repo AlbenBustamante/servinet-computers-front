@@ -92,8 +92,4 @@
     color: var(--bg);
     cursor: pointer;
   }
-
-  .hidden {
-    display: initial;
-  }
 }

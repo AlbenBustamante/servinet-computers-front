@@ -9,3 +9,8 @@
 td.right::before {
   content: "$";
 }
+
+th:first-of-type,
+td:first-of-type {
+  width: 10%;
+}
