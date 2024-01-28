@@ -9,19 +9,18 @@
           [routerLink]="route.route"
           [ngClass]="route.selected ? 'selected' : ''"
         >
-          <span class="material-symbols-outlined icon">{{ route.icon }}</span>
-          <span class="title">{{ route.title }}</span>
+          <span class="material-symbols-outlined">{{ route.icon }}</span>
+          <span>{{ route.title }}</span>
         </a>
       </li>
     </ul>
   </div>
   <div class="hidden">
-    <div class="divider"></div>
     <ul>
       <li>
         <a (click)="logout()">
           <span class="material-symbols-outlined">logout</span>
-          Cerrar sesión
+          <span>Cerrar sesión</span>
         </a>
       </li>
     </ul>
