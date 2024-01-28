@@ -2,20 +2,15 @@
   <div>
     <header class="hidden">
       <h1>Servinet Computers</h1>
-      <h2>Sede #2</h2>
     </header>
-    <div class="divider hidden"></div>
     <ul>
-      <li>
-        <a routerLink="/home">
-          <span class="material-symbols-outlined">home</span>
-          Inicio
-        </a>
-      </li>
-      <li>
-        <a routerLink="/reports">
-          <span class="material-symbols-outlined">lists</span>
-          Reportes
+      <li *ngFor="let route of routes; index as i" (click)="clickHandler(i)">
+        <a
+          [routerLink]="route.route"
+          [ngClass]="route.selected ? 'selected' : ''"
+        >
+          <span class="material-symbols-outlined icon">{{ route.icon }}</span>
+          <span class="title">{{ route.title }}</span>
         </a>
       </li>
     </ul>
