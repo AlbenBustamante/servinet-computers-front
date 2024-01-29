@@ -3,7 +3,7 @@
     <tr>
       <th class="center">Código</th>
       <th>Plataforma</th>
-      <th>Valor</th>
+      <th class="right">Valor</th>
       <th class="center">Hora</th>
     </tr>
   </thead>
@@ -11,7 +11,7 @@
     <tr *ngFor="let transfer of transfers">
       <td class="center">{{ transfer.id }}</td>
       <td>{{ transfer.platformName }}</td>
-      <td>{{ transfer.value }}</td>
+      <td class="right">{{ transfer.value }}</td>
       <td class="center">{{ transfer.time }}</td>
     </tr>
   </tbody>

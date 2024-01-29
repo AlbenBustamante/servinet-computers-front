@@ -1,12 +1,14 @@
 <app-little-nav [routes]="routes"></app-little-nav>
 <main>
-  <section role="region" id="calendars">
-    <app-calendars-form></app-calendars-form>
-  </section>
-  <section role="region" id="transfers" class="shadow">
-    <app-transfers-table></app-transfers-table>
-  </section>
-  <section role="region" id="final-stats" class="shadow">
+  <article>
+    <section role="region" id="calendars">
+      <app-calendars-form></app-calendars-form>
+    </section>
+    <section role="region" id="transfers">
+      <app-transfers-table></app-transfers-table>
+    </section>
+  </article>
+  <section role="region" id="final-stats" class="border">
     <app-final-stats></app-final-stats>
   </section>
 </main>

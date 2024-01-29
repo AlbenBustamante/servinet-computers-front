@@ -6,7 +6,6 @@ nav {
 
 ul {
   background-color: var(--bg-300);
-  border: 1px solid var(--bg-200);
   padding: 3rem;
   border-radius: 3rem;
 }

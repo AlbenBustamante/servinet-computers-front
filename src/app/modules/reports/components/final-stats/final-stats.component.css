@@ -22,3 +22,7 @@ p span {
   height: 4rem;
   background-color: var(--accent-100);
 }
+
+.total::before {
+  content: "$";
+}
