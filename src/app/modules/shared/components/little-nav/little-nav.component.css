@@ -6,6 +6,7 @@ nav {
 
 ul {
   background-color: var(--bg-300);
+  border: 1px solid var(--bg-200);
   padding: 3rem;
   border-radius: 3rem;
 }
@@ -18,14 +19,17 @@ ul * {
 }
 
 li a {
-  font-size: 2rem;
   color: var(--text-100);
   font-weight: 600;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
-li a span {
-  font-size: 2.4rem;
+li a span:first-of-type {
+  font-size: 2.6rem;
+}
+
+li a span:last-of-type {
+  font-size: 2rem;
 }
 
 .chevron,

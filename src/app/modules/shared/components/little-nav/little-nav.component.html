@@ -1,17 +1,17 @@
 <nav>
-  <ul class="shadow">
+  <ul>
     <ng-container *ngFor="let route of routes; index as i">
       <li>
         <a
           [routerLink]="route.route ?? undefined"
-          [ngClass]="routes.length > 1 && i === routes.length - 1 ? 'last' : ''"
+          [ngClass]="i === routes.length - 1 ? 'last' : ''"
         >
           <span
             class="material-symbols-outlined"
             *ngIf="route.icon !== undefined"
             >{{ route.icon }}</span
           >
-          {{ route.title }}
+          <span>{{ route.title }}</span>
         </a>
       </li>
       <li *ngIf="routes.length > 1 && i < routes.length - 1">
