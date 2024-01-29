@@ -1,13 +1,6 @@
-footer {
-  width: 100%;
-  height: var(--login-footer-h);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+footer * {
   text-align: center;
-  background-color: var(--black);
+  color: var(--text-100);
 }
 
 footer h2 {
@@ -17,9 +10,4 @@ footer h2 {
 
 footer address {
   font-size: 1.6rem;
-}
-
-footer h2,
-footer address {
-  color: var(--bg);
 }
