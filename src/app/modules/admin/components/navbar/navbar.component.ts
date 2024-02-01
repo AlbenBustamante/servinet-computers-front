@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IRoute } from 'src/app/core/models/route.model';
 import { IUserRes } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -10,14 +11,25 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   user: IUserRes | null = null;
+  routes: IRoute[];
 
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router
-  ) {}
+  ) {
+    this.routes = [
+      { title: 'Panel', icon: 'dashboard', route: '../dashboard' },
+      { title: 'Plataformas', icon: 'lists', route: '../platforms' },
+      { title: 'Sedes', icon: 'holiday_village', route: '../campuses' },
+    ];
+  }
 
   ngOnInit(): void {
     this.authService.user$.subscribe((res) => (this.user = res));
+  }
+
+  clickHandler(index: number) {
+    this.routes.forEach((route, i) => (route.selected = index === i));
   }
 
   logout() {

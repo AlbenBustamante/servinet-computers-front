@@ -1,31 +1,23 @@
 <nav>
-  <ul>
-    <li>
-      <a routerLink="../dashboard">
-        <span class="material-symbols-outlined"> dashboard </span>
-        Panel de usuario
-      </a>
-    </li>
-    <li>
-      <a routerLink="../platforms">
-        <span class="material-symbols-outlined"> lists </span>
-        Plataformas
-      </a>
-    </li>
-    <li>
-      <a routerLink="../campuses">
-        <span class="material-symbols-outlined"> holiday_village </span>
-        Sedes
-      </a>
-    </li>
-  </ul>
   <div>
-    <div class="divider"></div>
+    <header class="hidden">
+      <h1>{{ user?.name }} {{ user?.lastName }}</h1>
+    </header>
+    <ul>
+      <li *ngFor="let route of routes; index as i" (click)="clickHandler(i)">
+        <a [routerLink]="route.route">
+          <span class="material-symbols-outlined"> {{ route.icon }} </span>
+          <span>{{ route.title }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="hidden">
     <ul>
       <li>
         <a (click)="logout()">
           <span class="material-symbols-outlined"> logout </span>
-          Cerrar sesión
+          <span>Cerrar sesión</span>
         </a>
       </li>
     </ul>

@@ -1,13 +1,5 @@
-footer * {
-  text-align: center;
-  color: var(--text-100);
-}
-
-footer h2 {
-  text-transform: uppercase;
-  font-size: 2rem;
-}
-
 footer address {
+  color: var(--text-200);
+  text-align: center;
   font-size: 1.6rem;
 }
