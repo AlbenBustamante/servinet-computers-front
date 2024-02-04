@@ -91,3 +91,7 @@ article h3 {
 .campus-info p:last-of-type {
   margin-bottom: 2rem;
 }
+
+app-modal {
+  position: absolute;
+}

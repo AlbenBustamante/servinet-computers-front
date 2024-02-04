@@ -4,8 +4,11 @@
       <h1>{{ user?.name }} {{ user?.lastName }}</h1>
     </header>
     <ul>
-      <li *ngFor="let route of routes; index as i" (click)="clickHandler(i)">
-        <a [routerLink]="route.route">
+      <li *ngFor="let route of routes; index as i">
+        <a
+          [routerLink]="route.route"
+          [ngClass]="selectedRoute === i ? 'selected' : ''"
+        >
           <span class="material-symbols-outlined"> {{ route.icon }} </span>
           <span>{{ route.title }}</span>
         </a>

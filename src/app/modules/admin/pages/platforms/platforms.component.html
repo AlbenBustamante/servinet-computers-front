@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [selectedRoute]="1"></app-navbar>
 <div class="page">
   <app-little-nav [routes]="routes"></app-little-nav>
   <main>
@@ -16,29 +16,31 @@
       <h3 *ngIf="platforms.length === 0 && !isShowingInfo">
         No hay plataformas registradas
       </h3>
-      <table *ngIf="platforms.length > 0 && !isShowingInfo" class="shadow">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let platform of platforms"
-            (click)="setIsShowingInfo(platform)"
-          >
-            <td>{{ platform.id }}</td>
-            <td>{{ platform.name }}</td>
-            <td>
-              <span class="right material-symbols-outlined">
-                chevron_right
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll">
+        <table *ngIf="platforms.length > 0 && !isShowingInfo" class="shadow">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let platform of platforms"
+              (click)="setIsShowingInfo(platform)"
+            >
+              <td>{{ platform.id }}</td>
+              <td>{{ platform.name }}</td>
+              <td>
+                <span class="right material-symbols-outlined">
+                  chevron_right
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <article *ngIf="isShowingInfo">
         <section class="platform-info">
           <h3>Información detallada</h3>

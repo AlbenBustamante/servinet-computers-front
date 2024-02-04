@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from 'src/app/core/models/platform.model';
 import { IRoute } from 'src/app/core/models/route.model';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { PlatformService } from 'src/app/core/services/platform.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { PlatformService } from 'src/app/core/services/platform.service';
   templateUrl: './platforms.component.html',
   styleUrls: ['./platforms.component.css'],
 })
-export class PlatformsComponent {
+export class PlatformsComponent implements OnInit {
   routes: IRoute[] = [
     { icon: 'home', title: 'Admin', route: '/admin' },
     { title: 'Plataformas' },
@@ -29,6 +30,7 @@ export class PlatformsComponent {
 
   constructor(
     private readonly platformService: PlatformService,
+    private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder
   ) {
     this.platformService
@@ -38,6 +40,10 @@ export class PlatformsComponent {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    this.authService.getUser()?.subscribe();
   }
 
   setIsShowingInfo(platform: IPlatformRes | undefined): void {

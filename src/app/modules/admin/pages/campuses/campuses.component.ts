@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -9,6 +9,7 @@ import {
 import { ICampusRes } from 'src/app/core/models/campus.model';
 import { IPlatformRes } from 'src/app/core/models/platform.model';
 import { IRoute } from 'src/app/core/models/route.model';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CampusService } from 'src/app/core/services/campus.service';
 import { PlatformService } from 'src/app/core/services/platform.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -18,7 +19,7 @@ import { UserService } from 'src/app/core/services/user.service';
   templateUrl: './campuses.component.html',
   styleUrls: ['./campuses.component.css'],
 })
-export class CampusesComponent {
+export class CampusesComponent implements OnInit {
   routes: IRoute[] = [
     { title: 'Admin', icon: 'home', route: '/admin' },
     { title: 'Sedes' },
@@ -46,6 +47,7 @@ export class CampusesComponent {
     private readonly userService: UserService,
     private readonly campusService: CampusService,
     private readonly platformService: PlatformService,
+    private readonly authService: AuthService,
     private readonly fb: FormBuilder
   ) {
     this.form = this.fb.group({
@@ -67,6 +69,10 @@ export class CampusesComponent {
     this.platformService.getAll().subscribe((res) => {
       this.platforms = res.data.results;
     });
+  }
+
+  ngOnInit(): void {
+    this.authService.getUser()?.subscribe();
   }
 
   platformChangeHandle(event: any) {

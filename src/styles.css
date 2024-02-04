@@ -214,6 +214,10 @@ section.dash-card header h2 {
   font-size: 2.2rem;
 }
 
+.scroll {
+  overflow: auto;
+}
+
 @media (min-width: 701px) {
   .page {
     margin-left: var(--nav-w);

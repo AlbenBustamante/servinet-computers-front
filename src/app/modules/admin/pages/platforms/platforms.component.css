@@ -73,3 +73,7 @@ article .actions {
   align-items: center;
   justify-content: center;
 }
+
+app-modal {
+  position: absolute;
+}

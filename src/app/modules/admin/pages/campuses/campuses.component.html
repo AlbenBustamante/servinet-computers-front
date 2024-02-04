@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [selectedRoute]="2"></app-navbar>
 <div class="page">
   <app-little-nav [routes]="routes"></app-little-nav>
   <main>
@@ -14,31 +14,33 @@
         </span>
       </header>
       <h3 *ngIf="campuses.length === 0">No hay sedes registradas</h3>
-      <table *ngIf="campuses.length > 0 && !isShowingInfo" class="shadow">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Celular</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let campus of campuses"
-            (click)="setIsShowingInfo(campus)"
-          >
-            <td>{{ campus.id }}</td>
-            <td>Sede #{{ campus.numeral }}</td>
-            <td>{{ campus.address }}</td>
-            <td>{{ campus.cellphone }}</td>
-            <td class="right">
-              <span class="material-symbols-outlined"> chevron_right </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scroll">
+        <table *ngIf="campuses.length > 0 && !isShowingInfo" class="shadow">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Dirección</th>
+              <th>Celular</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let campus of campuses"
+              (click)="setIsShowingInfo(campus)"
+            >
+              <td>{{ campus.id }}</td>
+              <td>Sede #{{ campus.numeral }}</td>
+              <td>{{ campus.address }}</td>
+              <td>{{ campus.cellphone }}</td>
+              <td class="right">
+                <span class="material-symbols-outlined"> chevron_right </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <article *ngIf="isShowingInfo">
         <section class="campus-info">
           <h3>Información detallada</h3>
