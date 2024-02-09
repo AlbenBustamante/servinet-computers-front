@@ -6,6 +6,15 @@ import { FormGroup } from '@angular/forms';
 })
 export class GeneralValidators {
   hasError(form: FormGroup, controlName: string, errorName: string) {
-    return form.controls[controlName].hasError(errorName);
+    return (
+      this.isInvalid(form, controlName) &&
+      form.controls[controlName].hasError(errorName)
+    );
+  }
+
+  isInvalid(form: FormGroup, controlName: string) {
+    return (
+      form.controls[controlName].touched && form.controls[controlName].invalid
+    );
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestStatus } from 'src/app/core/models/request-status.model';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { GeneralValidators } from 'src/app/core/utils/general-validators';
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,8 @@ export class LoginFormComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly validator: GeneralValidators
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -39,5 +41,9 @@ export class LoginFormComponent {
         console.log(error);
       },
     });
+  }
+
+  hasError(controlName: string, errorName: string) {
+    return this.validator.hasError(this.form, controlName, errorName);
   }
 }
