@@ -195,6 +195,10 @@ form.form-spacing strong {
   color: #bb1818;
 }
 
+form.form-spacing strong::after {
+  content: ".";
+}
+
 form.form-spacing button {
   margin-top: 1rem;
 }
