@@ -31,6 +31,8 @@ export class LoginFormComponent {
       return this.form.markAllAsTouched();
     }
 
+    this.status = 'loading';
+
     this.authService.login(this.form.value).subscribe({
       next: (res) => {
         this.status = 'success';
