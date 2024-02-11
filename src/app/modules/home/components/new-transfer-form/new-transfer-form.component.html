@@ -13,10 +13,16 @@
     </datalist>
     <label for="platform">Selecciona la plataforma</label>
     <input list="platforms" id="platform" formControlName="platformName" />
+    <strong *ngIf="hasError('platformName', 'required')"
+      >Ingresa el nombre de la plataforma</strong
+    >
   </div>
   <div>
     <label for="value">Valor transferido</label>
     <input type="text" id="value" formControlName="value" />
+    <strong *ngIf="hasError('value', 'required')"
+      >Ingresa un valor válido</strong
+    >
   </div>
   <div>
     <label for="amount">Cantidad</label>
@@ -25,6 +31,8 @@
         {{ number }}
       </option>
     </select>
+    <strong *ngIf="hasError('amount', 'min')">No puede ser menor a 1</strong>
   </div>
   <button type="submit">Enviar</button>
 </form>
+<app-loading [loading]="formStatus === 'loading'"></app-loading>
