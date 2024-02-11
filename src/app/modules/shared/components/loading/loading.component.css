@@ -7,8 +7,9 @@ article {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1px);
+  z-index: 10;
 }
 
 .display {
@@ -19,7 +20,47 @@ article {
   gap: 2rem;
 }
 
+.loading {
+  width: 20rem;
+  height: 20rem;
+  border: 5rem dashed var(--accent-100);
+  border-radius: 50%;
+  animation: loading 5s linear infinite;
+}
+
 footer p {
   color: var(--bg-300);
   font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  animation: loadingText 5s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    border-color: var(--accent-200);
+  }
+
+  100% {
+    transform: rotate(360deg);
+    border-color: var(--accent-100);
+  }
+}
+
+@keyframes loadingText {
+  0% {
+    color: var(--bg-300);
+  }
+
+  15% {
+    color: var(--text-200);
+  }
+
+  30% {
+    color: var(--bg-300);
+  }
 }
