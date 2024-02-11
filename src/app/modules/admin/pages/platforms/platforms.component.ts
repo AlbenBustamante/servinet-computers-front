@@ -80,6 +80,7 @@ export class PlatformsComponent implements OnInit {
     this.platformService.register(this.form.value).subscribe({
       next: (res) => {
         this.formStatus = 'success';
+        this.form.reset();
         this.platforms.push(res.data.results[0]);
       },
       error: (err) => {
