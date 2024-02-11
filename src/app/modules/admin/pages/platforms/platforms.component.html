@@ -77,7 +77,15 @@
         <form class="form-spacing" [formGroup]="form" (ngSubmit)="onSubmit()">
           <div>
             <label for="name">Nombre de la plataforma</label>
-            <input type="text" id="name" formControlName="name" />
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              autocomplete="name"
+            />
+            <strong *ngIf="hasError('name', 'required')"
+              >El nombre es requerido</strong
+            >
           </div>
           <button type="submit">Registrar</button>
         </form>
@@ -85,3 +93,6 @@
     </app-modal>
   </main>
 </div>
+<app-loading
+  [loading]="platformsStatus === 'loading' || formStatus === 'loading'"
+></app-loading>
