@@ -8,11 +8,13 @@ import {
 } from '@angular/forms';
 import { ICampusRes } from 'src/app/core/models/campus.model';
 import { IPlatformRes } from 'src/app/core/models/platform.model';
+import { RequestStatus } from 'src/app/core/models/request-status.model';
 import { IRoute } from 'src/app/core/models/route.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CampusService } from 'src/app/core/services/campus.service';
 import { PlatformService } from 'src/app/core/services/platform.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { GeneralValidators } from 'src/app/core/utils/general-validators';
 
 @Component({
   selector: 'app-campuses-page',
@@ -42,32 +44,47 @@ export class CampusesComponent implements OnInit {
   newCampusModal!: HTMLDialogElement;
   form: FormGroup;
   platformsForm!: FormGroup;
+  campusesAndPlatformsStatus: RequestStatus = 'loading';
+  formStatus: RequestStatus = 'init';
+  platformsFormStatus: RequestStatus = 'init';
 
   constructor(
     private readonly userService: UserService,
     private readonly campusService: CampusService,
     private readonly platformService: PlatformService,
     private readonly authService: AuthService,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly validator: GeneralValidators
   ) {
     this.form = this.fb.group({
-      numeral: [Validators.required],
+      numeral: [, Validators.required],
       cellphone: [, Validators.required],
       address: ['', Validators.required],
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required],
     });
 
-    this.userService
-      .getCampuses()
-      .subscribe((res) => (this.campuses = res.data.results));
+    this.userService.getCampuses().subscribe({
+      next: (res) => {
+        this.campuses = res.data.results;
+
+        this.platformService.getAll().subscribe({
+          next: (res) => {
+            this.campusesAndPlatformsStatus = 'success';
+            this.platforms = res.data.results;
+          },
+          error: (error) => {
+            this.campusesAndPlatformsStatus = 'failed';
+          },
+        });
+      },
+      error: (error) => {
+        this.campusesAndPlatformsStatus = 'failed';
+      },
+    });
 
     this.platformsForm = this.fb.group({
       platforms: this.fb.array([]),
-    });
-
-    this.platformService.getAll().subscribe((res) => {
-      this.platforms = res.data.results;
     });
   }
 
@@ -88,9 +105,16 @@ export class CampusesComponent implements OnInit {
   }
 
   updatePlatforms() {
+    this.platformsFormStatus = 'loading';
+
     this.campusService
       .updatePlatforms(this.campusData.id, this.platformsArray.value)
-      .subscribe(() => this.setIsShowingInfo(undefined));
+      .subscribe({
+        next: () => {
+          this.platformsFormStatus = 'success';
+          this.setIsShowingInfo(undefined);
+        },
+      });
   }
 
   setIsShowingInfo(campus: ICampusRes | undefined) {
@@ -114,12 +138,22 @@ export class CampusesComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+
+    this.formStatus = 'loading';
+    this.modal.close();
+
     this.campusService.register(this.form.value).subscribe({
       next: (res) => {
+        this.formStatus = 'success';
         this.campuses.push(res.data.results[0]);
-        this.modal.close();
+        this.form.reset();
       },
       error: (error) => {
+        this.formStatus = 'failed';
+        this.openModal();
         console.log(error);
       },
     });
@@ -133,5 +167,9 @@ export class CampusesComponent implements OnInit {
     }
 
     return this.newCampusModal;
+  }
+
+  hasError(controlName: string, error: string) {
+    return this.validator.hasError(this.form, controlName, error);
   }
 }

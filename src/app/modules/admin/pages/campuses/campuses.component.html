@@ -94,18 +94,30 @@
           <div>
             <label for="numeral">Número de sede</label>
             <input type="number" id="numeral" formControlName="numeral" />
+            <strong *ngIf="hasError('numeral', 'required')"
+              >El numeral es requerido</strong
+            >
           </div>
           <div>
             <label for="cellphone">Número de celular</label>
-            <input type="text" id="cellphone" formControlName="cellphone" />
+            <input type="tel" id="cellphone" formControlName="cellphone" />
+            <strong *ngIf="hasError('cellphone', 'required')"
+              >El número de celular es requerido</strong
+            >
           </div>
           <div>
             <label for="address">Dirección</label>
             <input type="text" id="address" formControlName="address" />
+            <strong *ngIf="hasError('address', 'required')"
+              >La dirección es requerida</strong
+            >
           </div>
           <div>
             <label for="password">Contraseña</label>
             <input type="password" id="password" formControlName="password" />
+            <strong *ngIf="hasError('password', 'required')"
+              >La contraseña es requerida</strong
+            >
           </div>
           <div>
             <label for="repeatPassword">Confirma la contraseña</label>
@@ -114,6 +126,9 @@
               id="repeatPassword"
               formControlName="repeatPassword"
             />
+            <strong *ngIf="hasError('repeatPassword', 'required')"
+              >Por favor, confirma la contraseña</strong
+            >
           </div>
           <button type="submit">Registrar</button>
         </form>
@@ -121,3 +136,10 @@
     </app-modal>
   </main>
 </div>
+<app-loading
+  [loading]="
+    campusesAndPlatformsStatus === 'loading' ||
+    formStatus === 'loading' ||
+    platformsFormStatus === 'loading'
+  "
+></app-loading>
