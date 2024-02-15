@@ -19,6 +19,8 @@ export class NavbarComponent {
   ) {
     this.routes = [
       { title: 'Inicio', icon: 'home', route: '/home' },
+      { title: 'Transferencias', route: '/transfers' },
+      { title: 'Saldos', route: '/balances' },
       { title: 'Reportes', icon: 'lists', route: '/reports' },
     ];
   }
