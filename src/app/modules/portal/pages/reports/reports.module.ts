@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { DateRangeService } from '@services/date-range.service';
+import { SharedModule } from '@shared/shared.module';
 import { ReportsRoutingModule } from './reports-routing.module';
 import { ReportsComponent } from './reports.component';
-import { SharedModule } from '../shared/shared.module';
 import { CalendarsFormComponent } from './components/calendars-form/calendars-form.component';
 import { TransfersTableComponent } from './components/transfers-table/transfers-table.component';
 import { FinalStatsComponent } from './components/final-stats/final-stats.component';
-import { DateRangeService } from 'src/app/core/services/date-range.service';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

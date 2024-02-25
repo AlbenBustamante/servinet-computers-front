@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IRoute } from 'src/app/core/models/route.model';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { IRoute } from '@models/route.model';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-dashboard',

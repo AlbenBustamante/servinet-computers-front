@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { RequestStatus } from 'src/app/core/models/request-status.model';
-import { ITransferRes } from 'src/app/core/models/transfer.model';
-import { CampusService } from 'src/app/core/services/campus.service';
-import { TransferService } from 'src/app/core/services/transfer.service';
+import { RequestStatus } from '@models/request-status.model';
+import { ITransferRes } from '@models/transfer.model';
+import { CampusService } from '@services/campus.service';
+import { TransferService } from '@services/transfer.service';
 
 @Component({
   selector: 'app-transfers',

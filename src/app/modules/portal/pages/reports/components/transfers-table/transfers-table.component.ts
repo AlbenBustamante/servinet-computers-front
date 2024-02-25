@@ -1,11 +1,9 @@
-import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
-import { SortDirection } from 'src/app/core/models/enums';
-import { IDateRange } from 'src/app/core/models/pagination.model';
-import { RequestStatus } from 'src/app/core/models/request-status.model';
-import { ITransferRes } from 'src/app/core/models/transfer.model';
-import { CampusService } from 'src/app/core/services/campus.service';
-import { DateRangeService } from 'src/app/core/services/date-range.service';
+import { IDateRange } from '@models/pagination.model';
+import { RequestStatus } from '@models/request-status.model';
+import { ITransferRes } from '@models/transfer.model';
+import { CampusService } from '@services/campus.service';
+import { DateRangeService } from '@services/date-range.service';
 
 @Component({
   selector: 'app-transfers-table',

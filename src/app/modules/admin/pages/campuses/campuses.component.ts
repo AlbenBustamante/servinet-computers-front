@@ -6,15 +6,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ICampusRes } from 'src/app/core/models/campus.model';
-import { IPlatformRes } from 'src/app/core/models/platform.model';
-import { RequestStatus } from 'src/app/core/models/request-status.model';
-import { IRoute } from 'src/app/core/models/route.model';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { CampusService } from 'src/app/core/services/campus.service';
-import { PlatformService } from 'src/app/core/services/platform.service';
-import { UserService } from 'src/app/core/services/user.service';
-import { GeneralValidators } from 'src/app/core/utils/general-validators';
+import { ICampusRes } from '@models/campus.model';
+import { IPlatformRes } from '@models/platform.model';
+import { RequestStatus } from '@models/request-status.model';
+import { IRoute } from '@models/route.model';
+import { AuthService } from '@services/auth.service';
+import { CampusService } from '@services/campus.service';
+import { PlatformService } from '@services/platform.service';
+import { UserService } from '@services/user.service';
+import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
   selector: 'app-campuses-page',

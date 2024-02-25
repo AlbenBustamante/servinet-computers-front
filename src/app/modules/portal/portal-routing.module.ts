@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PortalComponent } from './portal.component';
+import { authGuard } from '@guards/auth.guard';
+import { tokenGuard } from '@guards/token.guard';
+import { AuthToken } from '@models/enums';
+import { redirectGuard } from '@guards/redirect.guard';
+
+const loginPath: string = '/portal/login';
 
 const routes: Routes = [
   {
@@ -14,29 +20,39 @@ const routes: Routes = [
       },
       {
         path: 'home',
+        canActivate: [authGuard(loginPath), tokenGuard(AuthToken.CAMPUS)],
         loadChildren: () =>
-          import('../home/home.module').then((m) => m.HomeModule),
+          import('./pages/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'transfers',
+        canActivate: [authGuard(loginPath), tokenGuard(AuthToken.CAMPUS)],
         loadChildren: () =>
-          import('../portal/pages/transfers/transfers.module').then(
+          import('./pages/transfers/transfers.module').then(
             (m) => m.TransfersModule
           ),
       },
       {
         path: 'balances',
+        canActivate: [authGuard(loginPath), tokenGuard(AuthToken.CAMPUS)],
         loadChildren: () =>
-          import('../portal/pages/balances/balances.module').then(
+          import('./pages/balances/balances.module').then(
             (m) => m.BalancesModule
           ),
       },
       {
         path: 'reports',
+        canActivate: [authGuard(loginPath), tokenGuard(AuthToken.CAMPUS)],
         loadChildren: () =>
-          import('../reports/reports.module').then((m) => m.ReportsModule),
+          import('./pages/reports/reports.module').then((m) => m.ReportsModule),
       },
     ],
+  },
+  {
+    path: 'login',
+    canActivate: [redirectGuard('/portal/')],
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
   },
 ];
 

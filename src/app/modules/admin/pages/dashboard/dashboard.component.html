@@ -1,20 +1,17 @@
-<app-navbar [selectedRoute]="0"></app-navbar>
-<div class="page">
-  <app-little-nav [routes]="routes" class="nav"></app-little-nav>
-  <main>
-    <section id="stats" role="region" class="dash-card">
-      <header>
-        <h2>Transferencias del día</h2>
-      </header>
-      <div class="scroll">
-        <app-stats></app-stats>
-      </div>
-    </section>
-    <section id="campuses" role="region" class="dash-card">
-      <header>
-        <h2>Total por sedes</h2>
-      </header>
-      <app-campuses></app-campuses>
-    </section>
-  </main>
-</div>
+<app-little-nav [routes]="routes" class="nav"></app-little-nav>
+<main>
+  <section id="stats" role="region" class="dash-card">
+    <header>
+      <h2>Transferencias del día</h2>
+    </header>
+    <div class="scroll">
+      <app-stats></app-stats>
+    </div>
+  </section>
+  <section id="campuses" role="region" class="dash-card">
+    <header>
+      <h2>Total por sedes</h2>
+    </header>
+    <app-campuses-list></app-campuses-list>
+  </section>
+</main>

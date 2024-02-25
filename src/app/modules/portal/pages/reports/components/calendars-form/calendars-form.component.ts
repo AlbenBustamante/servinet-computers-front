@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IDateRange } from 'src/app/core/models/pagination.model';
-import { DateRangeService } from 'src/app/core/services/date-range.service';
+import { DateRangeService } from '@services/date-range.service';
 
 @Component({
   selector: 'app-calendars-form',

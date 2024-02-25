@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IRoute } from 'src/app/core/models/route.model';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { TokenService } from 'src/app/core/services/token.service';
+import { IRoute } from '@models/route.model';
+import { AuthService } from '@services/auth.service';
+import { TokenService } from '@services/token.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,10 +18,10 @@ export class NavbarComponent {
     private readonly router: Router
   ) {
     this.routes = [
-      { title: 'Inicio', icon: 'home', route: '/home' },
-      { title: 'Transferencias', route: '/transfers' },
-      { title: 'Saldos', route: '/balances' },
-      { title: 'Reportes', icon: 'lists', route: '/reports' },
+      { title: 'Inicio', icon: 'home', route: './home' },
+      { title: 'Transferencias', route: './transfers' },
+      { title: 'Saldos', route: './balances' },
+      { title: 'Reportes', icon: 'lists', route: './reports' },
     ];
   }
 

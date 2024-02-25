@@ -1,9 +1,9 @@
 import { formatNumber } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IPageResponse } from 'src/app/core/models/response.model';
-import { ITransferRes } from 'src/app/core/models/transfer.model';
-import { CampusService } from 'src/app/core/services/campus.service';
-import { DateRangeService } from 'src/app/core/services/date-range.service';
+import { IPageResponse } from '@models/response.model';
+import { ITransferRes } from '@models/transfer.model';
+import { CampusService } from '@services/campus.service';
+import { DateRangeService } from '@services/date-range.service';
 
 @Component({
   selector: 'app-final-stats',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IDateRange } from '../models/pagination.model';
+import { IDateRange } from '@models/pagination.model';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RequestStatus } from 'src/app/core/models/request-status.model';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { GeneralValidators } from 'src/app/core/utils/general-validators';
+import { RequestStatus } from '@models/request-status.model';
+import { AuthService } from '@services/auth.service';
+import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
   selector: 'app-login-form',

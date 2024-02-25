@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPlatformRes } from 'src/app/core/models/platform.model';
-import { RequestStatus } from 'src/app/core/models/request-status.model';
-import { IRoute } from 'src/app/core/models/route.model';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { PlatformService } from 'src/app/core/services/platform.service';
-import { GeneralValidators } from 'src/app/core/utils/general-validators';
+import { IPlatformRes } from '@models/platform.model';
+import { RequestStatus } from '@models/request-status.model';
+import { IRoute } from '@models/route.model';
+import { AuthService } from '@services/auth.service';
+import { PlatformService } from '@services/platform.service';
+import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
   selector: 'app-platforms',

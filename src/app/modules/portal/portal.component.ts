@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CampusService } from 'src/app/core/services/campus.service';
+import { CampusService } from '@services/campus.service';
 
 @Component({
   selector: 'app-portal',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { setCookie, getCookie, removeCookie } from 'typescript-cookie';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
-import { IJwtResponse } from '../models/auth.model';
+import { jwtDecode } from 'jwt-decode';
+import { IJwtResponse } from '@models/auth.model';
 
 @Injectable({
   providedIn: 'root',

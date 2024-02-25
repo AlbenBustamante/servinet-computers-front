@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IRoute } from 'src/app/core/models/route.model';
+import { IRoute } from '@models/route.model';
 
 @Component({
   selector: 'app-little-nav',
