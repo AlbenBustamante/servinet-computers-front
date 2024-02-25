@@ -1,41 +1,50 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { PlatformsComponent } from './pages/platforms/platforms.component';
-import { CampusesComponent } from './pages/campuses/campuses.component';
-import { authGuard } from 'src/app/core/guards/auth.guard';
-import { redirectGuard } from 'src/app/core/guards/redirect.guard';
-import { tokenGuard } from 'src/app/core/guards/token.guard';
-import { AuthToken } from 'src/app/core/models/enums';
+import { authGuard } from '@guards/auth.guard';
+import { redirectGuard } from '@guards/redirect.guard';
+import { tokenGuard } from '@guards/token.guard';
+import { AuthToken } from '@models/enums';
+import { AdminComponent } from './admin.component';
 
 const loginPath: string = '/admin/login';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    component: AdminComponent,
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+        loadChildren: () =>
+          import('./pages/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'platforms',
+        canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+        loadChildren: () =>
+          import('./pages/platforms/platforms.module').then(
+            (m) => m.PlatformsModule
+          ),
+      },
+      {
+        path: 'campuses',
+        canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+        loadChildren: () =>
+          import('./pages/campuses/campuses.module').then(
+            (m) => m.CampusesModule
+          ),
+      },
+    ],
   },
   {
     path: 'login',
-    component: LoginComponent,
     canActivate: [redirectGuard('/admin/')],
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
-  },
-  {
-    path: 'platforms',
-    component: PlatformsComponent,
-    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
-  },
-  {
-    path: 'campuses',
-    component: CampusesComponent,
-    canActivate: [authGuard(loginPath), tokenGuard(AuthToken.USER)],
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
   },
 ];
 

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ICampusReq, ICampusRes } from '../models/campus.model';
-import { environment } from '../../../environments/environment';
 import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { IPageResponse } from '../models/response.model';
-import { ITransferRes } from '../models/transfer.model';
-import { IPagination } from '../models/pagination.model';
-import { checkToken } from '../interceptors/token.interceptor';
+import { environment } from '@environments/environment';
+import { ICampusReq, ICampusRes } from '@models/campus.model';
+import { IPageResponse } from '@models/response.model';
+import { ITransferRes } from '@models/transfer.model';
+import { IPagination } from '@models/pagination.model';
+import { IPlatformRes } from '@models/platform.model';
+import { checkToken } from '@interceptors/token.interceptor';
 import { TokenService } from './token.service';
-import { IPlatformRes } from '../models/platform.model';
 
 @Injectable({
   providedIn: 'root',

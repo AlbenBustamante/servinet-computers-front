@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { IUserReq, IUserRes } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { IPageResponse } from '../models/response.model';
-import { ICampusRes } from '../models/campus.model';
-import { checkToken } from '../interceptors/token.interceptor';
+import { environment } from '@environments/environment';
+import { IUserReq, IUserRes } from '@models/user.model';
+import { IPageResponse } from '@models/response.model';
+import { ICampusRes } from '@models/campus.model';
+import { IDashboardResponse } from '@models/dashboard.model';
+import { checkToken } from '@interceptors/token.interceptor';
 import { TokenService } from './token.service';
-import { IDashboardResponse } from '../models/dashboard.model';
 
 @Injectable({
   providedIn: 'root',

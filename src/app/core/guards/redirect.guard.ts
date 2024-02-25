@@ -1,5 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { TokenService } from '../services/token.service';
+import { TokenService } from '@services/token.service';
 import { inject } from '@angular/core';
 
 export function redirectGuard(route: string): CanActivateFn {

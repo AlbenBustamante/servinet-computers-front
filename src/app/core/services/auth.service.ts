@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { IAuthRequest, IAuthResponse } from '../models/auth.model';
+import { environment } from '@environments/environment';
+import { IAuthRequest, IAuthResponse } from '@models/auth.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
-import { IPageResponse } from '../models/response.model';
-import { IUserReq, IUserRes } from '../models/user.model';
-import { checkToken } from '../interceptors/token.interceptor';
-import { ICampusRes } from '../models/campus.model';
-import { AuthToken } from '../models/enums';
+import { IPageResponse } from '@models/response.model';
+import { IUserReq, IUserRes } from '@models/user.model';
+import { checkToken } from '@interceptors/token.interceptor';
+import { AuthToken } from '@models/enums';
 
 @Injectable({
   providedIn: 'root',

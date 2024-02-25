@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { ITransferReq, ITransferRes } from '../models/transfer.model';
-import { Observable } from 'rxjs';
-import { IPageResponse } from '../models/response.model';
-import { checkToken } from '../interceptors/token.interceptor';
+import { environment } from '@environments/environment';
+import { ITransferReq, ITransferRes } from '@models/transfer.model';
+import { IPageResponse } from '@models/response.model';
+import { checkToken } from '@interceptors/token.interceptor';
 import { TokenService } from './token.service';
 
 @Injectable({
