@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
   user: IUserRes | null = null;
   routes: IRoute[];
   logoutStatus: RequestStatus = 'init';
-  @Input() selectedRoute!: number;
 
   constructor(
     private readonly authService: AuthService,
@@ -31,6 +30,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.user$.subscribe((res) => (this.user = res));
+  }
+
+  clickHandler(index: number) {
+    this.routes.forEach((route, i) => (route.selected = index === i));
   }
 
   logout() {

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
+import { checkToken } from '@interceptors/token.interceptor';
 import { ICampusReq, ICampusRes } from '@models/campus.model';
 import { IPageResponse } from '@models/response.model';
 import { ITransferRes } from '@models/transfer.model';
 import { IPagination } from '@models/pagination.model';
 import { IPlatformRes } from '@models/platform.model';
-import { checkToken } from '@interceptors/token.interceptor';
 import { TokenService } from './token.service';
 
 @Injectable({

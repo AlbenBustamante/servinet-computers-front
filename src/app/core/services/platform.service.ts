@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IPlatformReq, IPlatformRes } from '@models/platform.model';
-import { environment } from '@environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { IPageResponse } from '@models/response.model';
+import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
+import { IPlatformReq, IPlatformRes } from '@models/platform.model';
+import { IPageResponse } from '@models/response.model';
 
 @Injectable({
   providedIn: 'root',

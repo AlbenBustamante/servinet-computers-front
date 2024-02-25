@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RequestStatus } from '@models/request-status.model';
 import { IRoute } from '@models/route.model';
 import { AuthService } from '@services/auth.service';
 import { TokenService } from '@services/token.service';
@@ -11,6 +12,7 @@ import { TokenService } from '@services/token.service';
 })
 export class NavbarComponent {
   routes: IRoute[];
+  logoutStatus: RequestStatus = 'init';
 
   constructor(
     private readonly authService: AuthService,
@@ -30,13 +32,17 @@ export class NavbarComponent {
   }
 
   logout() {
+    this.logoutStatus = 'loading';
+
     this.authService.logout().subscribe({
       next: () => {
-        this.router.navigateByUrl('/portal');
+        this.logoutStatus = 'success';
+        this.router.navigateByUrl('/portal/login');
       },
       error: () => {
+        this.logoutStatus = 'failed';
         this.tokenService.remove();
-        this.router.navigateByUrl('/portal');
+        this.router.navigateByUrl('/portal/login');
       },
     });
   }
