@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CampusService } from 'src/app/core/services/campus.service';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css'],
+  selector: 'app-portal',
+  templateUrl: './portal.component.html',
+  styleUrls: ['./portal.component.css'],
 })
-export class LayoutComponent implements OnInit {
+export class PortalComponent {
   constructor(private readonly campusService: CampusService) {}
 
   ngOnInit(): void {

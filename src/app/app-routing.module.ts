@@ -7,6 +7,11 @@ import { AuthToken } from './core/models/enums';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'portal',
+    pathMatch: 'full',
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
@@ -16,12 +21,6 @@ const routes: Routes = [
     canActivate: [redirectGuard('/')],
     loadChildren: () =>
       import('./modules/portal/portal.module').then((m) => m.PortalModule),
-  },
-  {
-    path: '',
-    canActivate: [authGuard('/portal'), tokenGuard(AuthToken.CAMPUS)],
-    loadChildren: () =>
-      import('./modules/layout/layout.module').then((m) => m.LayoutModule),
   },
 ];
 

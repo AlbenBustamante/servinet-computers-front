@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReportsRoutingModule } from './reports-routing.module';
-import { ReportsComponent } from './pages/reports/reports.component';
+import { ReportsComponent } from './reports.component';
 import { SharedModule } from '../shared/shared.module';
 import { CalendarsFormComponent } from './components/calendars-form/calendars-form.component';
 import { TransfersTableComponent } from './components/transfers-table/transfers-table.component';

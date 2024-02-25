@@ -6,9 +6,16 @@ import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PortalComponent } from './portal.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [LoginComponent, LoginFormComponent],
+  declarations: [
+    LoginComponent,
+    LoginFormComponent,
+    PortalComponent,
+    NavbarComponent,
+  ],
   imports: [
     CommonModule,
     PortalRoutingModule,
