@@ -9,6 +9,7 @@ import { ITransferRes } from '@models/transfer.model';
 import { IPagination } from '@models/pagination.model';
 import { IPlatformRes } from '@models/platform.model';
 import { TokenService } from './token.service';
+import { IBalanceRes } from '@models/balance.model';
 
 @Injectable({
   providedIn: 'root',
@@ -103,5 +104,20 @@ export class CampusService {
         { context: checkToken() }
       )
       .pipe(tap((res) => this.platforms$.next(res.data.results[0].platforms)));
+  }
+
+  createInitialBalances() {
+    return this.http.post<IPageResponse<IBalanceRes>>(
+      `${this.url}/${this.tokenService.getInfo().id}/balances`,
+      null,
+      { context: checkToken() }
+    );
+  }
+
+  getBalances() {
+    return this.http.get<IPageResponse<IBalanceRes>>(
+      `${this.url}/${this.tokenService.getInfo().id}/balances`,
+      { context: checkToken() }
+    );
   }
 }
