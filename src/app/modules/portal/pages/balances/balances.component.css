@@ -1,0 +1,55 @@
+main {
+  min-height: calc(100vh - var(--little-nav-h) - 2rem);
+  padding: 0 2rem 4rem;
+}
+
+.platforms-page,
+.platforms-page__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.platforms-page {
+  gap: 5rem;
+}
+
+.platforms-page__header {
+  gap: 1rem;
+  padding: 1rem 2rem 0;
+}
+
+.platforms-page__header h2 {
+  font-weight: 600;
+  font-size: 2.4rem;
+  color: var(--text-100);
+}
+
+.platforms-page__header p {
+  font-size: 1.7rem;
+  color: var(--text-200);
+}
+
+.card {
+  padding: 2.5rem;
+  border-radius: 2rem;
+  background-color: var(--bg-200);
+}
+
+.card header {
+  margin-bottom: 2rem;
+}
+
+.card header h3 {
+  font-size: 1.8rem;
+}
+
+.card section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.card section p {
+  display: flex;
+  justify-content: space-between;
+}

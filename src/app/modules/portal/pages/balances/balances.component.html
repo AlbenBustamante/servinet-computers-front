@@ -1,1 +1,29 @@
-<p>balances works!</p>
+<app-header-title headerTitle="Saldos"></app-header-title>
+<main>
+  <section class="platforms-page">
+    <header class="platforms-page__header">
+      <h2>Listado de plataformas</h2>
+      <p>
+        Selecciona la plataforma correspondiente para añadir su saldo inicial y
+        final.
+      </p>
+    </header>
+    <div class="container">
+      <article class="card" *ngFor="let platform of platforms">
+        <header>
+          <h3>{{ platform.name }}</h3>
+        </header>
+        <section>
+          <p>
+            <span>Saldo Inicial</span>
+            <span>$19.99</span>
+          </p>
+          <p>
+            <span>Saldo Final</span>
+            <span>$24.99</span>
+          </p>
+        </section>
+      </article>
+    </div>
+  </section>
+</main>
