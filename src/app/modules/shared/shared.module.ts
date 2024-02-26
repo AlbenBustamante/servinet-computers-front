@@ -5,6 +5,7 @@ import { LittleNavComponent } from './components/little-nav/little-nav.component
 import { RouterModule } from '@angular/router';
 import { ModalComponent } from './components/modal/modal.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { HeaderTitleComponent } from './components/header-title/header-title.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     LittleNavComponent,
     ModalComponent,
     LoadingComponent,
+    HeaderTitleComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -19,6 +21,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     LittleNavComponent,
     ModalComponent,
     LoadingComponent,
+    HeaderTitleComponent,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,9 @@
+header {
+  padding: 2rem;
+  height: var(--little-nav-h);
+  margin-bottom: 2rem;
+  background-color: var(--bg);
+  border-bottom: 2px solid var(--bg-200);
+  display: flex;
+  align-items: center;
+}
