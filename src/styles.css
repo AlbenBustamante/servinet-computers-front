@@ -1,17 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   /* -- colors */
-  /* lavendar by https://aicolors.co/ */
+  /* modified lavendar by https://aicolors.co/ */
   --primary-100: #8b5fbf;
   --primary-200: #61398f;
-  --primary-300: #ffffff;
   --accent-100: #d6c6e1;
   --accent-200: #9a73b5;
-  --text-100: #4a4a4a;
-  --text-200: #878787;
-  --bg-100: #f5f3f7;
-  --bg-200: #e9e4ed;
-  --bg-300: #ffffff;
+  --text-100: #333333;
+  --text-200: #666666;
+  --bg-100: #fffefb;
+  --bg-200: #f5f4f1;
+  --bg-300: #cccbc8;
   --bg: var(--bg-100);
   --black: #0f0f0f;
   /* -- measures -- */
@@ -80,12 +79,13 @@ label {
 }
 
 button {
+  width: fit-content;
   color: var(--bg);
   background-color: var(--primary-100);
   font-size: 1.8rem;
   border: none;
-  border-radius: 1rem;
-  padding: 1rem 5rem;
+  border-radius: 1.5rem;
+  padding: 1.1rem 3rem;
   transition-duration: 105ms;
 }
 
@@ -128,13 +128,13 @@ button:focus {
 
 table {
   border-collapse: collapse;
-  border: 2px solid var(--accent-100);
+  border: 2px solid var(--bg-300);
   width: 100%;
 }
 
 thead tr {
   border-bottom: 2px solid var(--accent-100);
-  background-color: var(--bg-300);
+  background-color: var(--bg-200);
 }
 
 thead,
@@ -149,15 +149,15 @@ td {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: var(--bg);
+  background-color: var(--bg-100);
 }
 
 tbody tr:nth-child(even) {
-  background-color: var(--bg-300);
+  background-color: var(--bg-200);
 }
 
 tbody tr:hover {
-  background-color: var(--bg-200);
+  background-color: #e0e0e0;
 }
 
 .material-symbols-outlined {

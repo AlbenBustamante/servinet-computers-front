@@ -2,26 +2,23 @@ main {
   min-height: calc(100vh - var(--little-nav-h) - 2rem);
   padding: 0 2rem 4rem;
   display: flex;
-  /* display: grid;
-  grid-template-columns: minmax(34rem, 2fr) 3fr;
-  grid-template-rows: 42rem; */
+  align-items: flex-start;
   gap: 3rem;
 }
 
 section {
-  padding: 3rem;
-  border-radius: 1rem;
-  background-color: var(--bg-300);
-  height: 42rem;
+  padding: 2.5rem;
+  border-radius: 2rem;
 }
 
 #new-transfer {
   min-width: 32rem;
-  width: 40%;
+  width: 30%;
 }
 
 #transfers {
-  width: 60%;
+  width: 70%;
+  background-color: var(--bg-200);
 }
 
 .scroll,

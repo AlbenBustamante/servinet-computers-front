@@ -9,7 +9,7 @@ import { IRoute } from '@models/route.model';
 export class ReportsComponent {
   routes: IRoute[] = [
     {
-      icon: 'lists',
+      icon: 'lab_profile',
       title: 'Reportes',
       route: '/reports',
     },
