@@ -45,6 +45,12 @@ main {
   font-size: 1.8rem;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 3rem;
+}
+
 .card {
   padding: 2.5rem;
   border-radius: 2rem;
@@ -56,7 +62,7 @@ main {
 }
 
 .card header h3 {
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
 .card section {
@@ -68,4 +74,5 @@ main {
 .card section p {
   display: flex;
   justify-content: space-between;
+  font-size: 1.7rem;
 }
