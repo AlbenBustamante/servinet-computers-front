@@ -8,7 +8,17 @@
         final.
       </p>
     </header>
-    <div class="container">
+    <section class="info">
+      <header>
+        <h2>Vaya... ¿aún no haz iniciado los saldos de hoy?</h2>
+        <p>
+          Don't worry, be happy! usa el <strong>botón de abajo</strong> para
+          iniciarlos
+        </p>
+      </header>
+      <button>Iniciar Saldos</button>
+    </section>
+    <div class="container" style="display: none">
       <article class="card" *ngFor="let balance of balances">
         <header>
           <h3>{{ balance.platformName }}</h3>

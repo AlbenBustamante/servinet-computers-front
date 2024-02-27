@@ -29,6 +29,22 @@ main {
   color: var(--text-200);
 }
 
+.info {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.info header h2 {
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+
 .card {
   padding: 2.5rem;
   border-radius: 2rem;
