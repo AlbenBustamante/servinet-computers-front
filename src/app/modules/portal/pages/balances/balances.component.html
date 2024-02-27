@@ -8,7 +8,7 @@
         final.
       </p>
     </header>
-    <section class="info">
+    <section class="info" *ngIf="balances.length < 1">
       <header>
         <h2>Vaya... ¿aún no haz iniciado los saldos de hoy?</h2>
         <p>
@@ -18,7 +18,7 @@
       </header>
       <button>Iniciar Saldos</button>
     </section>
-    <div class="container" style="display: none">
+    <div class="container" *ngIf="balances.length >= 1">
       <article class="card" *ngFor="let balance of balances">
         <header>
           <h3>{{ balance.platformName }}</h3>
