@@ -4,9 +4,15 @@ import { CommonModule } from '@angular/common';
 import { BalancesRoutingModule } from './balances-routing.module';
 import { BalancesComponent } from './balances.component';
 import { SharedModule } from '@shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [BalancesComponent],
-  imports: [CommonModule, BalancesRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    BalancesRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
 })
 export class BalancesModule {}

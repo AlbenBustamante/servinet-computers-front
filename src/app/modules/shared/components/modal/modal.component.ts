@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ModalComponent {
   @Input() modalId!: string;
-  @Input() modalTitle!: string;
+  @Input() modalTitle!: string | undefined;
   myModal!: HTMLDialogElement;
 
   closeModal() {
