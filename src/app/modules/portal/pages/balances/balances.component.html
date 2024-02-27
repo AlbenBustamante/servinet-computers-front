@@ -9,21 +9,22 @@
       </p>
     </header>
     <div class="container">
-      <article class="card" *ngFor="let platform of platforms">
+      <article class="card" *ngFor="let balance of balances">
         <header>
-          <h3>{{ platform.name }}</h3>
+          <h3>{{ balance.platformName }}</h3>
         </header>
         <section>
           <p>
             <span>Saldo Inicial</span>
-            <span>$19.99</span>
+            <span>${{ balance.initialBalance }}</span>
           </p>
           <p>
             <span>Saldo Final</span>
-            <span>$24.99</span>
+            <span>${{ balance.finalBalance }}</span>
           </p>
         </section>
       </article>
     </div>
   </section>
 </main>
+<app-loading [loading]="balancesStatus === 'loading'"></app-loading>
