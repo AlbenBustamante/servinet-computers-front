@@ -55,6 +55,7 @@ main {
   padding: 2.5rem;
   border-radius: 2rem;
   background-color: var(--bg-200);
+  transition: all cubic-bezier(1, 0, 0, 1) 100ms;
 }
 
 .card header {
@@ -75,4 +76,15 @@ main {
   display: flex;
   justify-content: space-between;
   font-size: 1.7rem;
+}
+
+.card:hover {
+  scale: 1.04;
+  cursor: pointer;
+  box-shadow: 0 0 0.25rem var(--accent-200);
+}
+
+.card:active {
+  scale: 0.95;
+  box-shadow: 0 0 0.5rem var(--primary-100);
 }
