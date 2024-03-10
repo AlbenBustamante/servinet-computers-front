@@ -1,6 +1,5 @@
 main {
   min-height: calc(100vh - var(--little-nav-h) - 2rem);
-  padding: 0 2rem 4rem;
 }
 
 .platforms-page,
@@ -15,7 +14,8 @@ main {
 
 .platforms-page__header {
   gap: 1rem;
-  padding: 1rem 2rem 0;
+  padding: 0 2rem 2rem;
+  border-bottom: 2px solid var(--bg-200);
 }
 
 .platforms-page__header h2 {
@@ -29,20 +29,44 @@ main {
   color: var(--text-200);
 }
 
+.info,
+.container {
+  padding: 0 2rem 4rem;
+}
+
 .info {
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
   text-align: center;
   text-wrap: pretty;
+  background-color: var(--bg-200);
+  width: fit-content;
+  margin: auto;
+  padding: 2.5rem 4rem;
+  border-radius: 2rem;
 }
 
 .info header h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-weight: 500;
+  font-size: 2.4rem;
+}
+
+.info header p {
   font-size: 1.8rem;
+}
+
+.info .divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--accent-100);
+}
+
+.info button {
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 
 .container {

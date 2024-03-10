@@ -10,12 +10,10 @@
     </header>
     <section class="info" *ngIf="balances.length < 1">
       <header>
-        <h2>Vaya... ¿aún no haz iniciado los saldos de hoy?</h2>
-        <p>
-          Don't worry, be happy! usa el <strong>botón de abajo</strong> para
-          iniciarlos
-        </p>
+        <h2>Parece que no hay saldos el día de hoy...</h2>
+        <p>Usa el botón de abajo para iniciarlos.</p>
       </header>
+      <div class="divider"></div>
       <button>Iniciar Saldos</button>
     </section>
     <div class="container" *ngIf="balances.length >= 1">
