@@ -14,7 +14,7 @@
         <p>Usa el botón de abajo para iniciarlos.</p>
       </header>
       <div class="divider"></div>
-      <button>Iniciar Saldos</button>
+      <button (click)="loadInitialBalances()">Iniciar Saldos</button>
     </section>
     <div class="container" *ngIf="balances.length >= 1">
       <article

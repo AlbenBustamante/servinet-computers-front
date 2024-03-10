@@ -84,6 +84,20 @@ export class BalancesComponent implements OnInit {
       });
   }
 
+  loadInitialBalances() {
+    this.balanceStatus = 'loading';
+
+    this.campusService.createInitialBalances().subscribe({
+      next: (res) => {
+        this.balances = res.data.results;
+        this.balanceStatus = 'success';
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
   hasError(control: string, error: string) {
     return this.validator.hasError(this.balanceForm, control, error);
   }
