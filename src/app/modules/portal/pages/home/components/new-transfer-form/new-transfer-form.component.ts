@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from '@models/platform.model';
 import { RequestStatus } from '@models/request-status.model';
@@ -11,11 +11,11 @@ import { GeneralValidators } from '@utils/general-validators';
   templateUrl: './new-transfer-form.component.html',
   styleUrls: ['./new-transfer-form.component.css'],
 })
-export class NewTransferFormComponent implements OnInit {
-  platforms: IPlatformRes[] | null = null;
-  numbers: number[] = [];
-  form: FormGroup;
+export class NewTransferFormComponent {
   formStatus: RequestStatus = 'init';
+  readonly platforms = signal<IPlatformRes[]>([]);
+  readonly numbers = signal<number[]>([]);
+  readonly form: FormGroup;
   private readonly maxAmount: number = 10;
 
   constructor(
@@ -24,6 +24,10 @@ export class NewTransferFormComponent implements OnInit {
     private readonly fb: FormBuilder,
     private readonly validator: GeneralValidators
   ) {
+    for (let i = 1; i <= this.maxAmount; i++) {
+      this.numbers.update((prevNumbers) => [...prevNumbers, i]);
+    }
+
     this.form = this.fb.group({
       platformName: ['', Validators.required],
       value: ['', Validators.required],
@@ -32,11 +36,9 @@ export class NewTransferFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.campusService.platforms$.subscribe((res) => (this.platforms = res));
-
-    for (let i = 1; i <= this.maxAmount; i++) {
-      this.numbers.push(i);
-    }
+    this.campusService
+      .getPlatforms()
+      .subscribe((res) => this.platforms.set(res.data.results[0].platforms));
   }
 
   onSubmit(): void {

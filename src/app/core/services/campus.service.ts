@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -16,7 +16,6 @@ import { IBalanceRes } from '@models/balance.model';
 })
 export class CampusService {
   private readonly url: string = `${environment.apiUrl}/campuses`;
-  platforms$ = new BehaviorSubject<IPlatformRes[]>([]);
   readonly transfers = signal<ITransferRes[]>([]);
 
   constructor(
@@ -101,12 +100,10 @@ export class CampusService {
   }
 
   getPlatforms() {
-    return this.http
-      .get<IPageResponse<ICampusRes>>(
-        `${this.url}/${this.tokenService.getInfo().id}`,
-        { context: checkToken() }
-      )
-      .pipe(tap((res) => this.platforms$.next(res.data.results[0].platforms)));
+    return this.http.get<IPageResponse<ICampusRes>>(
+      `${this.url}/${this.tokenService.getInfo().id}`,
+      { context: checkToken() }
+    );
   }
 
   createInitialBalances() {
