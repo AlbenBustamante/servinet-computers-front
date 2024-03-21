@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let transfer of transfers">
+    <tr *ngFor="let transfer of transfers()">
       <td class="center">{{ transfer.id }}</td>
       <td>{{ transfer.platformName }}</td>
       <td class="right">{{ transfer.value }}</td>

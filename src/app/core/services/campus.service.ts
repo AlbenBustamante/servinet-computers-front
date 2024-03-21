@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
@@ -17,6 +17,7 @@ import { IBalanceRes } from '@models/balance.model';
 export class CampusService {
   private readonly url: string = `${environment.apiUrl}/campuses`;
   platforms$ = new BehaviorSubject<IPlatformRes[]>([]);
+  readonly transfers = signal<ITransferRes[]>([]);
 
   constructor(
     private readonly http: HttpClient,
@@ -91,10 +92,12 @@ export class CampusService {
       params = params.append('property', property);
     }
 
-    return this.http.get<IPageResponse<ITransferRes>>(
-      `${this.url}/${this.tokenService.getInfo().id}/transfers`,
-      { params, context: checkToken() }
-    );
+    return this.http
+      .get<IPageResponse<ITransferRes>>(
+        `${this.url}/${this.tokenService.getInfo().id}/transfers`,
+        { params, context: checkToken() }
+      )
+      .pipe(tap((res) => this.transfers.set(res.data.results)));
   }
 
   getPlatforms() {

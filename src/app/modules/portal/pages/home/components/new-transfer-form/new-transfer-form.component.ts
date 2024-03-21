@@ -47,11 +47,14 @@ export class NewTransferFormComponent implements OnInit {
     this.formStatus = 'loading';
 
     this.transferService.register(this.form.value).subscribe({
-      next: (res) => {
+      next: () => {
         this.formStatus = 'success';
         this.form.reset();
+
+        this.campusService.getTransfers({}).subscribe();
       },
       error: (error) => {
+        console.log(error);
         this.formStatus = 'failed';
       },
     });
