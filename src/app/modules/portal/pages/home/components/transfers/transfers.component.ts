@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RequestStatus } from '@models/request-status.model';
-import { ITransferRes } from '@models/transfer.model';
 import { CampusService } from '@services/campus.service';
 import { TransferService } from '@services/transfer.service';
 

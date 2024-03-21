@@ -1,16 +1,37 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { ITransferReq, ITransferRes } from '@models/transfer.model';
 import { IPageResponse } from '@models/response.model';
 import { TokenService } from './token.service';
+import { formatNumber } from '@angular/common';
+import { CampusService } from './campus.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransferService {
   private readonly url: string = `${environment.apiUrl}/transfers`;
+  private readonly campusService = inject(CampusService);
+
+  reports = computed(() => {
+    const transfers = this.campusService.transfers();
+
+    let total = 0;
+
+    transfers.forEach((transfer) => {
+      // 150.000
+      const fullValue = transfer.value.replaceAll('.', '');
+
+      total += Number(fullValue);
+    });
+
+    return {
+      total: formatNumber(total, 'es-CO'),
+      amount: transfers.length,
+    };
+  });
 
   constructor(
     private readonly http: HttpClient,
