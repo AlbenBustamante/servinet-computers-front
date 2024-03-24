@@ -11,6 +11,6 @@ export class AppComponent {
   private readonly testService = inject(TestService);
 
   ngOnInit() {
-    interval(5000 * 60).subscribe(() => this.testService.pong().subscribe());
+    interval(300000).subscribe(() => this.testService.pong().subscribe());
   }
 }
