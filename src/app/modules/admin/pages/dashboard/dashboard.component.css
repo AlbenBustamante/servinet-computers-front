@@ -26,6 +26,7 @@
 } */
 
 main {
+  width: calc(100% - var(--info-w));
   min-height: 100vh;
   padding: 2rem;
   display: flex;
@@ -33,7 +34,7 @@ main {
   gap: 5rem;
 }
 
-section > h2 {
+h2.subtitle {
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--text-200);
@@ -71,4 +72,15 @@ section > h2 {
 
 #platforms {
   grid-area: platforms;
+}
+
+aside {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 2rem;
+  width: var(--info-w);
+  background-color: var(--bg);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
