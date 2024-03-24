@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TestService } from '@services/test.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'client';
+  private readonly testService = inject(TestService);
+
+  ngOnInit() {
+    interval(5000 * 60).subscribe(() => this.testService.pong().subscribe());
+  }
 }
