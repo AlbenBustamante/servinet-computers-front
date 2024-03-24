@@ -26,7 +26,18 @@
 } */
 
 main {
-  padding: 2rem 2rem 4rem;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+section > h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-200);
+  margin-bottom: 1rem;
 }
 
 #totals {
@@ -34,6 +45,7 @@ main {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 10rem;
   gap: 3rem;
+  grid-area: totals;
 }
 
 #totals article {
@@ -55,4 +67,8 @@ main {
   font-size: 2rem;
   font-weight: 600;
   color: var(--text-200);
+}
+
+#platforms {
+  grid-area: platforms;
 }
