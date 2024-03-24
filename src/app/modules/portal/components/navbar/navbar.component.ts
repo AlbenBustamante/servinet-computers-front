@@ -27,10 +27,6 @@ export class NavbarComponent {
     ];
   }
 
-  clickHandler(index: number) {
-    this.routes.forEach((route, i) => (route.selected = index === i));
-  }
-
   logout() {
     this.logoutStatus = 'loading';
 

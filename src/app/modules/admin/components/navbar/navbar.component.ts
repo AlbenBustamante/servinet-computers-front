@@ -32,10 +32,6 @@ export class NavbarComponent implements OnInit {
     this.authService.user$.subscribe((res) => (this.user = res));
   }
 
-  clickHandler(index: number) {
-    this.routes.forEach((route, i) => (route.selected = index === i));
-  }
-
   logout() {
     this.logoutStatus = 'loading';
 

@@ -5,11 +5,8 @@
       <h1>Servinet</h1>
     </header>
     <ul>
-      <li *ngFor="let route of routes; index as i" (click)="clickHandler(i)">
-        <a
-          [routerLink]="route.route"
-          [ngClass]="route.selected ? 'selected' : ''"
-        >
+      <li *ngFor="let route of routes; index as i">
+        <a [routerLink]="route.route" routerLinkActive="selected">
           <span class="material-symbols-outlined">{{ route.icon }}</span>
           <span>{{ route.title }}</span>
         </a>
