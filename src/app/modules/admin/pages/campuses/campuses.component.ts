@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -20,7 +20,7 @@ import { GeneralValidators } from '@utils/general-validators';
   templateUrl: './campuses.component.html',
   styleUrls: ['./campuses.component.css'],
 })
-export class CampusesComponent implements OnInit {
+export class CampusesComponent {
   platforms: IPlatformRes[] = [];
   campuses: ICampusRes[] = [];
   isShowingInfo: boolean = false;
@@ -81,10 +81,6 @@ export class CampusesComponent implements OnInit {
     this.platformsForm = this.fb.group({
       platforms: this.fb.array([]),
     });
-  }
-
-  ngOnInit(): void {
-    this.authService.getUser()?.subscribe();
   }
 
   platformChangeHandle(event: any) {

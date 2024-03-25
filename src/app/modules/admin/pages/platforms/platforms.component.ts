@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from '@models/platform.model';
 import { RequestStatus } from '@models/request-status.model';
-import { AuthService } from '@services/auth.service';
 import { PlatformService } from '@services/platform.service';
 import { GeneralValidators } from '@utils/general-validators';
 
@@ -11,7 +10,7 @@ import { GeneralValidators } from '@utils/general-validators';
   templateUrl: './platforms.component.html',
   styleUrls: ['./platforms.component.css'],
 })
-export class PlatformsComponent implements OnInit {
+export class PlatformsComponent {
   isShowingInfo: boolean = false;
   headerTitle: string = 'Plataformas registradas';
   platforms: IPlatformRes[] = [];
@@ -29,7 +28,6 @@ export class PlatformsComponent implements OnInit {
 
   constructor(
     private readonly platformService: PlatformService,
-    private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly validator: GeneralValidators
   ) {
@@ -46,10 +44,6 @@ export class PlatformsComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
     });
-  }
-
-  ngOnInit(): void {
-    this.authService.getUser()?.subscribe();
   }
 
   setIsShowingInfo(platform: IPlatformRes | undefined): void {
