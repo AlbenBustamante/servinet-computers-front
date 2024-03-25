@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from '@models/platform.model';
 import { RequestStatus } from '@models/request-status.model';
-import { IRoute } from '@models/route.model';
 import { AuthService } from '@services/auth.service';
 import { PlatformService } from '@services/platform.service';
 import { GeneralValidators } from '@utils/general-validators';
@@ -13,10 +12,6 @@ import { GeneralValidators } from '@utils/general-validators';
   styleUrls: ['./platforms.component.css'],
 })
 export class PlatformsComponent implements OnInit {
-  routes: IRoute[] = [
-    { icon: 'home', title: 'Admin', route: '/admin' },
-    { title: 'Plataformas' },
-  ];
   isShowingInfo: boolean = false;
   headerTitle: string = 'Plataformas registradas';
   platforms: IPlatformRes[] = [];

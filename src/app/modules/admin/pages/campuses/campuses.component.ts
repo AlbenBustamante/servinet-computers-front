@@ -9,7 +9,6 @@ import {
 import { ICampusRes } from '@models/campus.model';
 import { IPlatformRes } from '@models/platform.model';
 import { RequestStatus } from '@models/request-status.model';
-import { IRoute } from '@models/route.model';
 import { AuthService } from '@services/auth.service';
 import { CampusService } from '@services/campus.service';
 import { PlatformService } from '@services/platform.service';
@@ -22,10 +21,6 @@ import { GeneralValidators } from '@utils/general-validators';
   styleUrls: ['./campuses.component.css'],
 })
 export class CampusesComponent implements OnInit {
-  routes: IRoute[] = [
-    { title: 'Admin', icon: 'home', route: '/admin' },
-    { title: 'Sedes' },
-  ];
   platforms: IPlatformRes[] = [];
   campuses: ICampusRes[] = [];
   isShowingInfo: boolean = false;
