@@ -53,6 +53,7 @@ li a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: var(--bg);
   }
 
   header {

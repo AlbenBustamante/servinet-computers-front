@@ -7,6 +7,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { HeaderTitleComponent } from './components/header-title/header-title.component';
 import { NavComponent } from './components/nav/nav.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NavComponent } from './components/nav/nav.component';
     LoadingComponent,
     HeaderTitleComponent,
     NavComponent,
+    HeaderComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -25,6 +27,7 @@ import { NavComponent } from './components/nav/nav.component';
     LoadingComponent,
     HeaderTitleComponent,
     NavComponent,
+    HeaderComponent,
   ],
 })
 export class SharedModule {}
