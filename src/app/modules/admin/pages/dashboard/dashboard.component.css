@@ -77,10 +77,11 @@ h2.subtitle {
 aside {
   position: fixed;
   right: 0;
-  top: 0;
+  top: var(--header-h);
   bottom: 0;
   padding: 2rem;
   width: var(--info-w);
   background-color: var(--bg);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  clip-path: inset(0 0 0 -1rem);
 }
