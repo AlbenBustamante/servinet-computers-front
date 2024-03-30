@@ -15,4 +15,4 @@ import { CampusesComponent } from './campuses.component';
     ReactiveFormsModule,
   ],
 })
-export class CampusesModule {}
+export default class CampusesModule {}

@@ -1,0 +1,22 @@
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { Role } from '@models/enums';
+import { TokenService } from '@services/token.service';
+
+export const adminGuard: CanActivateFn = () => {
+  const token = inject(TokenService).get();
+
+  if (!token) {
+    inject(Router).navigateByUrl('/login');
+    return false;
+  }
+
+  const tokenInfo = inject(TokenService).getInfo();
+
+  if (tokenInfo.role !== Role.ADMIN) {
+    inject(Router).navigateByUrl('/login');
+    return false;
+  }
+
+  return true;
+};

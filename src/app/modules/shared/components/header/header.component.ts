@@ -8,6 +8,5 @@ import { AuthService } from '@services/auth.service';
 })
 export class HeaderComponent {
   private readonly authService = inject(AuthService);
-  readonly userLogged = this.authService.userLogged;
-  readonly campusLogged = this.authService.campusLogged;
+  readonly loggedIn = this.authService.loggedIn;
 }

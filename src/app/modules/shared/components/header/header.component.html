@@ -1,17 +1,13 @@
 <header>
-  <h4>
-    {{ !userLogged() ? "Terminal" : "ID" }}<span>: </span
-    ><strong>{{
-      !userLogged() ? campusLogged()?.terminal : userLogged()?.id
-    }}</strong>
-  </h4>
+  <!-- <h4>
+    ID<span>: </span><strong>{{ loggedIn()?.id }}</strong>
+  </h4> -->
   <button>
     <img src="assets/icons/account.svg" alt="profile" />
-    <span>{{
-      !userLogged()
-        ? "Sede " + campusLogged()?.numeral
-        : userLogged()?.name + " " + userLogged()?.lastName
-    }}</span>
+    <span
+      >ID {{ loggedIn()?.id }} - {{ loggedIn()?.name }}
+      {{ loggedIn()?.lastName }}</span
+    >
     <img src="assets/icons/expand_more.svg" alt="more" />
   </button>
 </header>

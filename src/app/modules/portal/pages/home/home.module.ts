@@ -12,4 +12,4 @@ import { TransfersComponent } from './components/transfers/transfers.component';
   declarations: [HomeComponent, NewTransferFormComponent, TransfersComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule, ReactiveFormsModule],
 })
-export class HomeModule {}
+export default class HomeModule {}

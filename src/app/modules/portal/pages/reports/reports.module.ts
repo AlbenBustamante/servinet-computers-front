@@ -23,4 +23,4 @@ import { FinalStatsComponent } from './components/final-stats/final-stats.compon
     ReactiveFormsModule,
   ],
 })
-export class ReportsModule {}
+export default class ReportsModule {}

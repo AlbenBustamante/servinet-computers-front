@@ -1,4 +1,4 @@
-import { AuthToken } from './enums';
+import { Role } from './enums';
 
 export interface IAuthRequest {
   code: string;
@@ -13,7 +13,7 @@ export interface IJwtResponse {
   sub: string;
   iss: string;
   id: number;
-  type: AuthToken;
+  role: Role;
   iat: Date;
   exp: Date;
 }

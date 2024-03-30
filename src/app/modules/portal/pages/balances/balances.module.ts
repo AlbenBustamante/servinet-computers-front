@@ -15,4 +15,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
 })
-export class BalancesModule {}
+export default class BalancesModule {}

@@ -11,4 +11,4 @@ import { SharedModule } from '@shared/shared.module';
   declarations: [NavbarComponent, AdminComponent],
   imports: [CommonModule, AdminRoutingModule, RouterModule, SharedModule],
 })
-export class AdminModule {}
+export default class AdminModule {}
