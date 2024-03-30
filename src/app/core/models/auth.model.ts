@@ -1,7 +1,7 @@
 import { AuthToken } from './enums';
 
 export interface IAuthRequest {
-  username: string;
+  code: string;
   password: string;
 }
 
