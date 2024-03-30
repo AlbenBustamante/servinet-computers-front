@@ -11,9 +11,9 @@ export const adminGuard: CanActivateFn = () => {
     return false;
   }
 
-  const tokenInfo = inject(TokenService).getInfo();
+  const { role } = inject(TokenService).getInfo();
 
-  if (tokenInfo.role !== Role.ADMIN) {
+  if (role !== Role.ADMIN) {
     inject(Router).navigateByUrl('/login');
     return false;
   }

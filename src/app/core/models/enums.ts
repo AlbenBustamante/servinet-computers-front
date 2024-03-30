@@ -1,7 +1,7 @@
 export enum Role {
-  CASHIER = 'C',
-  SUPERVISOR = 'S',
-  ADMIN = 'A',
+  CASHIER = 'CASHIER',
+  SUPERVISOR = 'SUPERVISOR',
+  ADMIN = 'ADMIN',
 }
 
 export enum SortDirection {
