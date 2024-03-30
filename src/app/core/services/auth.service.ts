@@ -29,12 +29,9 @@ export class AuthService {
   }
 
   login(req: IAuthRequest) {
-    return this.http.post<IAuthResponse>(`${this.authUrl}/sign-in`, req).pipe(
-      tap((res) => {
-        this.tokenService.save(res.jwt);
-        this.getLoggedIn().subscribe();
-      })
-    );
+    return this.http
+      .post<IAuthResponse>(`${this.authUrl}/sign-in`, req)
+      .pipe(tap((res) => this.tokenService.save(res.jwt)));
   }
 
   logout() {
@@ -45,9 +42,12 @@ export class AuthService {
       .pipe(tap(() => this.tokenService.remove()));
   }
 
-  private getLoggedIn() {
+  getLoggedIn() {
     return this.http
-      .get<IUserRes>(`${this.userUrl}/${this.tokenService.getInfo().id}`)
-      .pipe(tap((res) => this.loggedIn.set(res)));
+      .get<IPageResponse<IUserRes>>(
+        `${this.userUrl}/${this.tokenService.getInfo().id}`,
+        { context: checkToken() }
+      )
+      .pipe(tap((res) => this.loggedIn.set(res.data.results[0])));
   }
 }

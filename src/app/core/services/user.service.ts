@@ -4,7 +4,6 @@ import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { IUserReq, IUserRes } from '@models/user.model';
 import { IPageResponse } from '@models/response.model';
-import { ICampusRes } from '@models/campus.model';
 import { IDashboardResponse } from '@models/dashboard.model';
 import { TokenService } from './token.service';
 
@@ -30,13 +29,6 @@ export class UserService {
   delete() {
     return this.http.delete<Boolean>(
       `${this.url}/${this.tokenService.getInfo().id}`,
-      { context: checkToken() }
-    );
-  }
-
-  getCampuses() {
-    return this.http.get<IPageResponse<ICampusRes>>(
-      `${this.url}/${this.tokenService.getInfo().id}/campuses`,
       { context: checkToken() }
     );
   }

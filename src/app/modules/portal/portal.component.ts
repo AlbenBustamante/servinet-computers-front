@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-portal',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./portal.component.css'],
 })
 export class PortalComponent {
-  constructor() {}
+  constructor(private readonly authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.getLoggedIn().subscribe((res) => console.log(res));
+  }
 }

@@ -15,9 +15,9 @@ export class PlatformsComponent {
   headerTitle: string = 'Plataformas registradas';
   platforms: IPlatformRes[] = [];
   platformInfo: IPlatformRes = {
-    available: false,
-    createdAt: '',
-    updatedAt: '',
+    enabled: false,
+    createdDate: '',
+    modifiedDate: '',
     id: -1,
     name: '',
   };

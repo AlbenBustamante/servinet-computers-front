@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RequestStatus } from '@models/request-status.model';
-import { CampusService } from '@services/campus.service';
 import { TransferService } from '@services/transfer.service';
 
 @Component({
@@ -9,41 +8,19 @@ import { TransferService } from '@services/transfer.service';
   styleUrls: ['./transfers.component.css'],
 })
 export class TransfersComponent {
-  private readonly campusService = inject(CampusService);
   private readonly transferService = inject(TransferService);
-  readonly transfers = this.campusService.transfers;
-  transfersStatus: RequestStatus = 'loading';
+  transfersStatus: RequestStatus = 'init';
 
   constructor() {}
 
-  ngOnInit() {
-    this.campusService.getTransfers({}).subscribe({
-      next: () => {
-        this.transfersStatus = 'success';
-      },
-      error: (error) => {
-        console.log(error);
-        this.transfersStatus = 'failed';
-      },
-    });
-  }
+  ngOnInit() {}
 
   delete(transferId: number) {
     this.transfersStatus = 'loading';
 
     this.transferService.delete(transferId).subscribe({
       next: (ok) => {
-        if (ok) {
-          this.campusService.getTransfers({}).subscribe({
-            next: () => {
-              this.transfersStatus = 'success';
-            },
-            error: (error) => {
-              console.log(error);
-              this.transfersStatus = 'failed';
-            },
-          });
-        }
+        this.transfersStatus = 'success';
       },
       error: (error) => {
         console.log(error);

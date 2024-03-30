@@ -1,11 +1,10 @@
-import { ICampusRes } from './campus.model';
 import { Role } from './enums';
 import { IResponse } from './response.model';
 
 export interface IUserReq {
   name: string;
   lastName: string;
-  email: string;
+  code: string;
   password: string;
   repeatPassword: string;
   role: Role;
@@ -14,7 +13,6 @@ export interface IUserReq {
 export interface IUserRes extends IResponse {
   name: string;
   lastName: string;
-  email: string;
+  code: string;
   role: Role;
-  campuses: ICampusRes[];
 }

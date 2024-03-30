@@ -3,7 +3,7 @@ import { RequestStatus } from '@models/request-status.model';
 import { IRoute } from '@models/route.model';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-portal-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })

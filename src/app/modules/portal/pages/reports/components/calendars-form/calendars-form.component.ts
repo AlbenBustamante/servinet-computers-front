@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RequestStatus } from '@models/request-status.model';
-import { CampusService } from '@services/campus.service';
 
 @Component({
   selector: 'app-calendars-form',
@@ -12,10 +11,7 @@ export class CalendarsFormComponent {
   form: FormGroup;
   transfersStatus: RequestStatus = 'init';
 
-  constructor(
-    private readonly fb: FormBuilder,
-    private readonly campusService: CampusService
-  ) {
+  constructor(private readonly fb: FormBuilder) {
     this.form = this.fb.group({
       startDate: [, Validators.required],
       endDate: [, Validators.required],
@@ -24,14 +20,6 @@ export class CalendarsFormComponent {
 
   ngOnInit() {
     this.transfersStatus = 'loading';
-
-    this.campusService.getTransfers({}).subscribe({
-      next: () => (this.transfersStatus = 'success'),
-      error: (error) => {
-        console.log(error);
-        this.transfersStatus = 'failed';
-      },
-    });
   }
 
   onSubmit() {
@@ -42,18 +30,5 @@ export class CalendarsFormComponent {
     }
 
     this.transfersStatus = 'loading';
-
-    this.campusService
-      .getTransfers({
-        startDate: this.form.get('startDate')?.value,
-        endDate: this.form.get('endDate')?.value,
-      })
-      .subscribe({
-        next: () => (this.transfersStatus = 'success'),
-        error: (error) => {
-          console.log(error);
-          this.transfersStatus = 'failed';
-        },
-      });
   }
 }

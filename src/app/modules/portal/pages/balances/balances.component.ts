@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBalanceRes } from '@models/balance.model';
 import { RequestStatus } from '@models/request-status.model';
 import { BalanceService } from '@services/balance.service';
-import { CampusService } from '@services/campus.service';
 import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
@@ -19,7 +18,6 @@ export class BalancesComponent implements OnInit {
   selectedBalance: IBalanceRes | null = null;
 
   constructor(
-    private readonly campusService: CampusService,
     private readonly balanceService: BalanceService,
     private readonly validator: GeneralValidators,
     private readonly fb: FormBuilder
@@ -32,16 +30,6 @@ export class BalancesComponent implements OnInit {
 
   ngOnInit(): void {
     this.balanceStatus = 'loading';
-
-    this.campusService.getBalances().subscribe({
-      next: (res) => {
-        this.balances = res.data.results;
-        this.balanceStatus = 'success';
-      },
-      error: () => {
-        this.balanceStatus = 'failed';
-      },
-    });
   }
 
   openModal(balance: IBalanceRes) {
@@ -67,17 +55,7 @@ export class BalancesComponent implements OnInit {
     this.balanceService
       .update(this.selectedBalance!.id, this.balanceForm.value)
       .subscribe({
-        next: () => {
-          this.campusService.getBalances().subscribe({
-            next: (res) => {
-              this.balances = res.data.results;
-              this.balanceStatus = 'success';
-            },
-            error: () => {
-              this.balanceStatus = 'failed';
-            },
-          });
-        },
+        next: () => {},
         error: () => {
           this.balanceStatus = 'failed';
         },
@@ -86,16 +64,6 @@ export class BalancesComponent implements OnInit {
 
   loadInitialBalances() {
     this.balanceStatus = 'loading';
-
-    this.campusService.createInitialBalances().subscribe({
-      next: (res) => {
-        this.balances = res.data.results;
-        this.balanceStatus = 'success';
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
   }
 
   hasError(control: string, error: string) {

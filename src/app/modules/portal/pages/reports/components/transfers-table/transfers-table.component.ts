@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { CampusService } from '@services/campus.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-transfers-table',
@@ -7,8 +6,5 @@ import { CampusService } from '@services/campus.service';
   styleUrls: ['./transfers-table.component.css'],
 })
 export class TransfersTableComponent {
-  private readonly campusService = inject(CampusService);
-  readonly transfers = this.campusService.transfers;
-
   constructor() {}
 }

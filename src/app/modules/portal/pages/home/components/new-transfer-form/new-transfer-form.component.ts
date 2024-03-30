@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from '@models/platform.model';
 import { RequestStatus } from '@models/request-status.model';
-import { CampusService } from '@services/campus.service';
 import { TransferService } from '@services/transfer.service';
 import { GeneralValidators } from '@utils/general-validators';
 
@@ -19,7 +18,6 @@ export class NewTransferFormComponent {
   private readonly maxAmount: number = 10;
 
   constructor(
-    private readonly campusService: CampusService,
     private readonly transferService: TransferService,
     private readonly fb: FormBuilder,
     private readonly validator: GeneralValidators
@@ -35,11 +33,7 @@ export class NewTransferFormComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.campusService
-      .getPlatforms()
-      .subscribe((res) => this.platforms.set(res.data.results[0].platforms));
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.form.invalid) {
@@ -52,8 +46,6 @@ export class NewTransferFormComponent {
       next: () => {
         this.formStatus = 'success';
         this.form.reset();
-
-        this.campusService.getTransfers({}).subscribe();
       },
       error: (error) => {
         console.log(error);
