@@ -5,7 +5,6 @@ import { LittleNavComponent } from './components/little-nav/little-nav.component
 import { RouterModule } from '@angular/router';
 import { ModalComponent } from './components/modal/modal.component';
 import { LoadingComponent } from './components/loading/loading.component';
-import { HeaderTitleComponent } from './components/header-title/header-title.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HeaderComponent } from './components/header/header.component';
 
@@ -15,7 +14,6 @@ import { HeaderComponent } from './components/header/header.component';
     LittleNavComponent,
     ModalComponent,
     LoadingComponent,
-    HeaderTitleComponent,
     NavComponent,
     HeaderComponent,
   ],
@@ -25,7 +23,6 @@ import { HeaderComponent } from './components/header/header.component';
     LittleNavComponent,
     ModalComponent,
     LoadingComponent,
-    HeaderTitleComponent,
     NavComponent,
     HeaderComponent,
   ],
