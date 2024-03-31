@@ -1,23 +1,23 @@
 <nav
-  class="w-56 h-screen fixed px-5 left-0 top-0 bottom-0 bg-purple-50 border-r-2 border-gray-200 flex flex-col justify-between"
+  class="w-56 h-screen fixed px-5 left-0 top-0 bottom-0 bg-purple-900 text-purple-200 border-r-2 border-gray-200 flex flex-col justify-between"
 >
   <section>
     <header class="h-16 flex items-center gap-2 mb-5 px-4 py-2">
       <img src="assets/icons/computer.svg" alt="computer" />
-      <h1 class="text-gray-800 text-xl font-semibold">Servinet</h1>
+      <h1 class="text-xl font-semibold">Servinet</h1>
     </header>
     <ul class="flex flex-col gap-5">
       <li *ngFor="let route of routes(); index as i">
         <a
           [routerLink]="route.route"
-          routerLinkActive="bg-purple-200"
-          class="flex items-center gap-2 px-4 py-2 rounded-3xl"
+          routerLinkActive="bg-purple-700 text-purple-50"
+          class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-purple-700"
         >
           <img
             [src]="'assets/icons/' + route.icon + '.svg'"
             [alt]="route.title"
           />
-          <span class="text-lg text-gray-800">{{ route.title }}</span>
+          <span class="text-lg">{{ route.title }}</span>
         </a>
       </li>
     </ul>
@@ -27,10 +27,10 @@
       <li>
         <a
           (click)="logout()"
-          class="flex items-center gap-2 px-4 py-2 rounded-3xl cursor-pointer"
+          class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-purple-700 cursor-pointer"
         >
           <img src="assets/icons/logout.svg" alt="logout" />
-          <span class="text-lg text-gray-800">Cerrar sesión</span>
+          <span class="text-lg">Cerrar sesión</span>
         </a>
       </li>
     </ul>
