@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, WritableSignal, signal } from '@angular/core';
 import { IPlatformRes } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 
@@ -9,16 +9,15 @@ import { PlatformService } from '@services/platform.service';
 })
 export class PlatformsListComponent {
   readonly loading = signal<boolean>(true);
-  readonly platforms = signal<IPlatformRes[]>([]);
+  readonly platforms: WritableSignal<IPlatformRes[]>;
 
-  constructor(private readonly platformService: PlatformService) {}
+  constructor(private readonly platformService: PlatformService) {
+    this.platforms = this.platformService.platforms;
+  }
 
   ngOnInit() {
     this.platformService.getAll().subscribe({
-      next: (res) => {
-        this.loading.set(false);
-        this.platforms.set(res);
-      },
+      next: () => this.loading.set(false),
       error: (error) => {
         this.loading.set(false);
         console.log(error);
