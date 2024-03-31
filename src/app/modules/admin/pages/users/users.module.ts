@@ -6,9 +6,16 @@ import { UsersComponent } from './users.component';
 import { SharedModule } from '@shared/shared.module';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { RolePipe } from 'app/core/pipes/role.pipe';
+import { EnabledPipe } from 'app/core/pipes/enabled.pipe';
 
 @NgModule({
   declarations: [UsersComponent, UsersListComponent],
-  imports: [CommonModule, UsersRoutingModule, SharedModule, RolePipe],
+  imports: [
+    CommonModule,
+    UsersRoutingModule,
+    SharedModule,
+    RolePipe,
+    EnabledPipe,
+  ],
 })
 export default class UsersModule {}

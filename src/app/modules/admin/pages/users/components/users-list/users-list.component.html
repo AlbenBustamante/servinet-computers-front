@@ -34,7 +34,9 @@
           <td class="text-left text-gray-900 px-5 py-2">
             {{ user.role | role }}
           </td>
-          <td class="text-left text-gray-900 px-5 py-2">{{ user.enabled }}</td>
+          <td class="text-left text-gray-900 px-5 py-2">
+            {{ user.enabled | enabled }}
+          </td>
           <td class="text-left text-gray-900 px-5 py-2">
             {{ user.createdDate | date }}
           </td>
