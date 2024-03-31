@@ -16,6 +16,10 @@ const routes: Routes = [
         path: 'platforms',
         loadChildren: () => import('./pages/platforms/platforms.module'),
       },
+      {
+        path: 'users',
+        loadChildren: () => import('./pages/users/users.module'),
+      },
     ],
   },
 ];
