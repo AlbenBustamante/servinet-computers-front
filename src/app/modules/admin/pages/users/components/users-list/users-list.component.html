@@ -31,7 +31,9 @@
             {{ user.name }} {{ user.lastName }}
           </td>
           <td class="text-left text-gray-900 px-5 py-2">{{ user.code }}</td>
-          <td class="text-left text-gray-900 px-5 py-2">{{ user.role }}</td>
+          <td class="text-left text-gray-900 px-5 py-2">
+            {{ user.role | role }}
+          </td>
           <td class="text-left text-gray-900 px-5 py-2">{{ user.enabled }}</td>
           <td class="text-left text-gray-900 px-5 py-2">
             {{ user.createdDate | date }}
