@@ -18,6 +18,10 @@ export class UserService {
     private readonly tokenService: TokenService
   ) {}
 
+  getAll() {
+    return this.http.get<IUserRes[]>(this.url, { context: checkToken() });
+  }
+
   update(req: IUserReq) {
     return this.http.patch<IUserRes>(
       `${this.url}/${this.tokenService.getInfo().id}`,
