@@ -1,5 +1,5 @@
 <nav
-  class="w-56 h-screen fixed px-5 left-0 top-0 bottom-0 bg-purple-900 text-purple-200 border-r-2 border-gray-200 flex flex-col justify-between"
+  class="w-56 h-screen fixed px-5 left-0 top-0 bottom-0 bg-purple-900 text-purple-200 flex flex-col justify-between"
 >
   <section>
     <header class="h-16 flex items-center gap-2 mb-5 px-4 py-2">
@@ -11,7 +11,7 @@
         <a
           [routerLink]="route.route"
           routerLinkActive="bg-purple-700 text-purple-50"
-          class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-purple-700"
+          class="flex items-center gap-2 px-4 py-2 rounded-xl font-medium hover:bg-purple-700"
         >
           <img
             [src]="'assets/icons/' + route.icon + '.svg'"
@@ -30,7 +30,7 @@
           class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-purple-700 cursor-pointer"
         >
           <img src="assets/icons/logout.svg" alt="logout" />
-          <span class="text-lg">Cerrar sesión</span>
+          <span class="text-lg font-medium">Cerrar sesión</span>
         </a>
       </li>
     </ul>
