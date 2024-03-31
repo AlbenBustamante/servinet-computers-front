@@ -2,3 +2,55 @@
   hTitle="Usuarios"
   hDescription="Aquí podrás administrar todo tipo de usuarios vinculados con la empresa mediante roles"
 ></app-header-title>
+<section class="mt-10">
+  <h3 class="text-2xl text-gray-700 font-medium mb-3">
+    Listado de usuarios registrados
+  </h3>
+  <div
+    class="px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg overflow-x-auto"
+  >
+    <table class="w-full">
+      <thead>
+        <tr class="bg-gray-50">
+          <th
+            class="text-center text-gray-800 text-sm px-5 py-2 uppercase w-20"
+          >
+            #
+          </th>
+          <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase">
+            Nombre y Apellido
+          </th>
+          <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase w-fit">
+            Código
+          </th>
+          <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase">
+            Rol
+          </th>
+          <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase">
+            Estado
+          </th>
+          <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase">
+            Fecha de registro
+          </th>
+          <th class="w-24"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="even:bg-gray-50 odd:bg-white hover:bg-gray-100">
+          <td class="text-center text-gray-900 px-5 py-2">1</td>
+          <td class="text-left text-gray-900 px-5 py-2">José Grisales</td>
+          <td class="text-left text-gray-900 px-5 py-2">a999</td>
+          <td class="text-left text-gray-900 px-5 py-2">ADMINISTRADOR</td>
+          <td class="text-left text-gray-900 px-5 py-2">Habilitado</td>
+          <td class="text-left text-gray-900 px-5 py-2">
+            {{ date | date }}
+          </td>
+          <td class="flex items-center justify-center gap-3">
+            <span class="w-7 h-7 bg-neutral-400 block rounded-md"></span>
+            <span class="w-7 h-7 bg-neutral-400 block rounded-md"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
