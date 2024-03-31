@@ -4,7 +4,6 @@ import { tap } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { IAuthRequest, IAuthResponse } from '@models/auth.model';
-import { IPageResponse } from '@models/response.model';
 import { IUserReq, IUserRes } from '@models/user.model';
 import { TokenService } from './token.service';
 
@@ -22,10 +21,7 @@ export class AuthService {
   ) {}
 
   register(req: IUserReq) {
-    return this.http.post<IPageResponse<IUserRes>>(
-      `${this.authUrl}/register`,
-      req
-    );
+    return this.http.post<IUserRes>(`${this.authUrl}/register`, req);
   }
 
   login(req: IAuthRequest) {
@@ -44,10 +40,9 @@ export class AuthService {
 
   getLoggedIn() {
     return this.http
-      .get<IPageResponse<IUserRes>>(
-        `${this.userUrl}/${this.tokenService.getInfo().id}`,
-        { context: checkToken() }
-      )
-      .pipe(tap((res) => this.loggedIn.set(res.data.results[0])));
+      .get<IUserRes>(`${this.userUrl}/${this.tokenService.getInfo().id}`, {
+        context: checkToken(),
+      })
+      .pipe(tap((res) => this.loggedIn.set(res)));
   }
 }

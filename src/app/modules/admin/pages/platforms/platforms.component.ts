@@ -33,7 +33,7 @@ export class PlatformsComponent {
   ) {
     this.platformService.getAll().subscribe({
       next: (res) => {
-        this.platforms = res.data.results;
+        this.platforms = res;
         this.platformsStatus = 'success';
       },
       error: (error) => {
@@ -70,7 +70,7 @@ export class PlatformsComponent {
       next: (res) => {
         this.formStatus = 'success';
         this.form.reset();
-        this.platforms.push(res.data.results[0]);
+        this.platforms.push(res);
       },
       error: (err) => {
         this.formStatus = 'failed';

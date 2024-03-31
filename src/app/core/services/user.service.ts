@@ -19,7 +19,7 @@ export class UserService {
   ) {}
 
   update(req: IUserReq) {
-    return this.http.patch<IPageResponse<IUserRes>>(
+    return this.http.patch<IUserRes>(
       `${this.url}/${this.tokenService.getInfo().id}`,
       req,
       { context: checkToken() }
