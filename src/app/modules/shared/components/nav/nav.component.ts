@@ -9,6 +9,7 @@ import { AuthService } from '@services/auth.service';
 })
 export class NavComponent {
   @Input({ required: true }) routes!: WritableSignal<IRoute[]>;
+  loading = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -16,7 +17,10 @@ export class NavComponent {
   ) {}
 
   logout() {
-    this.authService.logout().subscribe();
-    this.router.navigateByUrl('/login');
+    this.loading = true;
+    this.authService.logout().subscribe(() => {
+      this.loading = false;
+      this.router.navigateByUrl('/login');
+    });
   }
 }
