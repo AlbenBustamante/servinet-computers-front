@@ -26,6 +26,7 @@
         <button
           type="button"
           class="bg-purple-600 text-purple-100 text-lg px-6 py-1.5 rounded-xl font-semibold"
+          (click)="toggleShowSideBar()"
         >
           Añadir usuario
         </button>
@@ -49,7 +50,10 @@
     </div>
   </div>
 </section>
-<aside class="fixed w-72 top-16 right-0 bottom-0 bg-white drop-shadow-xl py-5">
+<aside
+  class="fixed w-72 top-16 right-0 bottom-0 bg-white drop-shadow-xl py-5 ease-in duration-200"
+  [ngClass]="{ 'translate-x-full': !showSideBar() }"
+>
   <h4 class="text-xl text-gray-800 font-medium px-5 mb-3">
     Registro de usuario
   </h4>
@@ -123,6 +127,7 @@
     <button
       type="button"
       class="bg-neutral-600 text-neutral-100 text-lg px-6 py-1.5 rounded-xl font-semibold"
+      (click)="cancelRegister()"
     >
       Cancelar
     </button>
