@@ -6,7 +6,7 @@ import { Component, signal } from '@angular/core';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent {
-  showSideBar = signal<boolean>(false);
+  readonly showSideBar = signal<boolean>(false);
 
   toggleShowSideBar() {
     this.showSideBar.update((prevValue) => !prevValue);

@@ -7,9 +7,10 @@ import { SharedModule } from '@shared/shared.module';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { RolePipe } from 'app/core/pipes/role.pipe';
 import { EnabledPipe } from 'app/core/pipes/enabled.pipe';
+import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
 
 @NgModule({
-  declarations: [UsersComponent, UsersListComponent],
+  declarations: [UsersComponent, UsersListComponent, NewUserFormComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
