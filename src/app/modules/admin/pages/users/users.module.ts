@@ -8,9 +8,11 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { RolePipe } from 'app/core/pipes/role.pipe';
 import { EnabledPipe } from 'app/core/pipes/enabled.pipe';
 import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
+import { FilterByRoleComponent } from './components/filter-by-role/filter-by-role.component';
+import { FilterByEnabledComponent } from './components/filter-by-enabled/filter-by-enabled.component';
 
 @NgModule({
-  declarations: [UsersComponent, UsersListComponent, NewUserFormComponent],
+  declarations: [UsersComponent, UsersListComponent, NewUserFormComponent, FilterByRoleComponent, FilterByEnabledComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
