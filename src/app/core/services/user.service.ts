@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { IUserReq, IUserRes } from '@models/user.model';
-import { IPageResponse } from '@models/response.model';
 import { IDashboardResponse } from '@models/dashboard.model';
 import { TokenService } from './token.service';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private readonly url: string = `${environment.apiUrl}/users`;
+  readonly users = signal<IUserRes[]>([]);
 
   constructor(
     private readonly http: HttpClient,
@@ -19,7 +20,9 @@ export class UserService {
   ) {}
 
   getAll() {
-    return this.http.get<IUserRes[]>(this.url, { context: checkToken() });
+    return this.http
+      .get<IUserRes[]>(this.url, { context: checkToken() })
+      .pipe(tap((res) => this.users.set(res)));
   }
 
   update(req: IUserReq) {

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '@models/enums';
 import { AuthService } from '@services/auth.service';
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-new-user-form',
@@ -14,7 +15,8 @@ export class NewUserFormComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly userService: UserService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -31,9 +33,11 @@ export class NewUserFormComponent {
     }
 
     this.authService.register(this.form.value).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.emitOnCancel();
+      next: () => {
+        this.userService.getAll().subscribe({
+          next: () => this.emitOnCancel(),
+          error: (error) => console.log(error),
+        });
       },
       error: (error) => {
         console.log(error);
