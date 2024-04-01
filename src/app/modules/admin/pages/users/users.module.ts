@@ -10,15 +10,23 @@ import { EnabledPipe } from 'app/core/pipes/enabled.pipe';
 import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
 import { FilterByRoleComponent } from './components/filter-by-role/filter-by-role.component';
 import { FilterByEnabledComponent } from './components/filter-by-enabled/filter-by-enabled.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [UsersComponent, UsersListComponent, NewUserFormComponent, FilterByRoleComponent, FilterByEnabledComponent],
+  declarations: [
+    UsersComponent,
+    UsersListComponent,
+    NewUserFormComponent,
+    FilterByRoleComponent,
+    FilterByEnabledComponent,
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     SharedModule,
     RolePipe,
     EnabledPipe,
+    ReactiveFormsModule,
   ],
 })
 export default class UsersModule {}

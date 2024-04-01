@@ -4,7 +4,6 @@ import { IResponse } from './response.model';
 export interface IUserReq {
   name: string;
   lastName: string;
-  code: string;
   password: string;
   repeatPassword: string;
   role: Role;
