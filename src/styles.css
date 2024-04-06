@@ -6,3 +6,30 @@
 body {
   @apply bg-violet-50;
 }
+
+.row-spacing {
+  @apply flex flex-col gap-3;
+}
+
+form {
+  @apply row-spacing;
+}
+
+form div.control {
+  @apply flex flex-col gap-1.5;
+}
+
+form div.control-row {
+  @apply flex flex-row gap-1.5;
+}
+
+label {
+  @apply block text-gray-700 font-medium;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  @apply w-full rounded-lg px-4 py-2 border border-gray-300 bg-gray-50 text-gray-700 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none;
+}

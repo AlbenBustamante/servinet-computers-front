@@ -1,13 +1,10 @@
 <form class="w-full" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <label for="name" class="block text-gray-700 font-medium">Nombre</label>
-  <div class="flex items-center gap-7">
-    <input
-      type="text"
-      id="name"
-      class="w-full outline-none rounded-lg px-4 py-1 border border-gray-400 text-lg text-gray-700"
-      formControlName="name"
-    />
-    <app-button type="submit">Registrar</app-button>
+  <div class="control">
+    <label for="name">Nombre</label>
+    <div class="flex items-center gap-7">
+      <input type="text" id="name" formControlName="name" />
+      <app-button type="submit">Registrar</app-button>
+    </div>
   </div>
 </form>
 <app-loading [loading]="loading()"></app-loading>
