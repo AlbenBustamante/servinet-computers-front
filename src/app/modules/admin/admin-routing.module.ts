@@ -16,6 +16,7 @@ const routes: Routes = [
         path: 'platforms',
         loadChildren: () => import('./pages/platforms/platforms.module'),
       },
+      { path: 'cash', loadChildren: () => import('./pages/cash/cash.module') },
       {
         path: 'users',
         loadChildren: () => import('./pages/users/users.module'),

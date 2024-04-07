@@ -13,6 +13,7 @@ export class NavbarComponent {
     this.routes.set([
       { title: 'Panel', icon: 'dashboard', route: './dashboard' },
       { title: 'Plataformas', icon: 'lists', route: './platforms' },
+      { title: 'Cajas', route: './cash' },
       { title: 'Usuarios', route: './users' },
     ]);
   }
