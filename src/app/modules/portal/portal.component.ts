@@ -10,6 +10,6 @@ export class PortalComponent {
   constructor(private readonly authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.getLoggedIn().subscribe((res) => console.log(res));
+    this.authService.getLoggedIn().subscribe();
   }
 }
