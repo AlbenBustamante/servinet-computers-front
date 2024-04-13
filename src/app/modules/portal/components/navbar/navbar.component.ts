@@ -14,6 +14,7 @@ export class NavbarComponent {
   constructor() {
     this.routes.set([
       { title: 'Inicio', icon: 'home', route: './home' },
+      { title: 'Mi caja', route: './my-cash' },
       // { title: 'Transferencias', route: './transfers' },
       { title: 'Saldos', icon: 'account_balance', route: './balances' },
       { title: 'Reportes', icon: 'lab_profile', route: './reports' },
