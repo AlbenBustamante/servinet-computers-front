@@ -3,11 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { MyCashRoutingModule } from './my-cash-routing.module';
 import { MyCashComponent } from './my-cash.component';
+import { SharedModule } from '@shared/shared.module';
+import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
 
 @NgModule({
-  declarations: [
-    MyCashComponent
+  declarations: [MyCashComponent],
+  imports: [
+    CommonModule,
+    MyCashRoutingModule,
+    SharedModule,
+    CashRegisterStatusPipe,
   ],
-  imports: [CommonModule, MyCashRoutingModule],
 })
 export default class MyCashModule {}
