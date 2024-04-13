@@ -1,8 +1,8 @@
-import { Component, ViewChild, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICashRegisterRes } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { CashRegisterService } from '@services/cash-register.service';
-import { ModalComponent } from '@shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-my-cash',
@@ -10,19 +10,32 @@ import { ModalComponent } from '@shared/components/modal/modal.component';
   styleUrls: ['./my-cash.component.css'],
 })
 export class MyCashComponent {
-  @ViewChild(ModalComponent) modal!: ModalComponent;
-  readonly isOpen = signal<boolean>(false);
+  readonly cashRegisterStatus = signal<'open' | 'opening' | 'available'>(
+    'available'
+  );
+  // readonly isCountingBase = signal<boolean>(false);
+  readonly isCountingBase = signal<boolean>(true);
   readonly cashRegisters = signal<ICashRegisterRes[]>([]);
+  readonly selectedCashRegister = signal<ICashRegisterRes | undefined>(
+    undefined
+  );
+  readonly initialWorkingForm: FormGroup;
 
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService,
-    private readonly cashRegisterService: CashRegisterService
-  ) {}
+    private readonly cashRegisterService: CashRegisterService,
+    private readonly fb: FormBuilder
+  ) {
+    this.initialWorkingForm = this.fb.group({
+      initialWorking: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.cashRegisterDetailService.isAlreadyCreated().subscribe({
       next: (alreadyExists) => {
-        this.isOpen.set(alreadyExists);
+        // this.cashRegisterStatus.set(alreadyExists ? 'open' : 'available');
+        this.cashRegisterStatus.set('opening');
 
         if (!alreadyExists) {
           this.cashRegisterService.getAll(true).subscribe({
@@ -35,7 +48,40 @@ export class MyCashComponent {
     });
   }
 
-  openCash() {
-    this.modal.openModal();
+  openCash(cashRegister: ICashRegisterRes) {
+    this.selectedCashRegister.set(cashRegister);
+    this.cashRegisterStatus.set('opening');
+  }
+
+  setInitialWorking() {
+    if (this.initialWorkingForm.invalid) {
+      return this.initialWorkingForm.markAllAsTouched();
+    }
+
+    this.isCountingBase.set(true);
+  }
+
+  get headerTitle() {
+    if (this.cashRegisterStatus() === 'available') {
+      return 'Cajas registradoras';
+    }
+
+    if (this.cashRegisterStatus() === 'opening') {
+      return 'Apertura de caja';
+    }
+
+    return 'Caja 1';
+  }
+
+  get headerDescription() {
+    if (this.cashRegisterStatus() === 'available') {
+      return 'Por favor, selecciona la caja que vas a utilizar en el día';
+    }
+
+    if (this.cashRegisterStatus() === 'opening') {
+      return 'Completa los datos para abrir la caja';
+    }
+
+    return '¡Bienvenido/a!';
   }
 }

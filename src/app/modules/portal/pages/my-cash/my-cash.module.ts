@@ -6,6 +6,7 @@ import { MyCashComponent } from './my-cash.component';
 import { SharedModule } from '@shared/shared.module';
 import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
 import { CashRegisterCardComponent } from './components/cash-register-card/cash-register-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MyCashComponent, CashRegisterCardComponent],
@@ -14,6 +15,7 @@ import { CashRegisterCardComponent } from './components/cash-register-card/cash-
     MyCashRoutingModule,
     SharedModule,
     CashRegisterStatusPipe,
+    ReactiveFormsModule,
   ],
 })
 export default class MyCashModule {}

@@ -8,9 +8,9 @@ import { ICashRegisterRes } from '@models/cash-register.model';
 })
 export class CashRegisterCardComponent {
   @Input({ required: true }) cashRegister!: ICashRegisterRes;
-  @Output() openCash = new EventEmitter();
+  @Output() openCash = new EventEmitter<ICashRegisterRes>();
 
   clickHandler() {
-    this.openCash.emit();
+    this.openCash.emit(this.cashRegister);
   }
 }
