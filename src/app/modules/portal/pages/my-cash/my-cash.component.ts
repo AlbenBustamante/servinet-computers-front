@@ -32,4 +32,8 @@ export class MyCashComponent {
       error: (error) => console.log(error),
     });
   }
+
+  openCash() {
+    alert('Hello world');
+  }
 }

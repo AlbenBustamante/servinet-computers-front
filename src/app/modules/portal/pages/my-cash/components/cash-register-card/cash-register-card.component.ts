@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICashRegisterRes } from '@models/cash-register.model';
 
 @Component({
@@ -8,8 +8,9 @@ import { ICashRegisterRes } from '@models/cash-register.model';
 })
 export class CashRegisterCardComponent {
   @Input({ required: true }) cashRegister!: ICashRegisterRes;
+  @Output() openCash = new EventEmitter();
 
   clickHandler() {
-    alert('hello');
+    this.openCash.emit();
   }
 }
