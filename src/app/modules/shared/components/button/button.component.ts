@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input({ required: true }) type!: 'submit' | 'button';
   @Input() color: 'primary' | 'neutral' = 'primary';
+  @Input() disabled: boolean = false;
 
   private mapColor = {
     primary: {
@@ -16,6 +17,8 @@ export class ButtonComponent {
       'hover:bg-violet-700': true,
       'hover:text-violet-50': true,
       'focus:ring-violet-300': true,
+      'disabled:hover:bg-violet-600': true,
+      'disabled:hover:text-violet-100': true,
     },
     neutral: {
       'bg-neutral-600': true,
@@ -23,6 +26,8 @@ export class ButtonComponent {
       'hover:bg-neutral-700': true,
       'hover:text-neutral-50': true,
       'focus:ring-neutral-300': true,
+      'disabled:hover:bg-neutral-600': true,
+      'disabled:hover:text-neutral-100': true,
     },
   };
 

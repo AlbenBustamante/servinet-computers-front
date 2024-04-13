@@ -5,9 +5,10 @@ import { MyCashRoutingModule } from './my-cash-routing.module';
 import { MyCashComponent } from './my-cash.component';
 import { SharedModule } from '@shared/shared.module';
 import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
+import { CashRegisterCardComponent } from './components/cash-register-card/cash-register-card.component';
 
 @NgModule({
-  declarations: [MyCashComponent],
+  declarations: [MyCashComponent, CashRegisterCardComponent],
   imports: [
     CommonModule,
     MyCashRoutingModule,
