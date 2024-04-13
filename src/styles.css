@@ -38,3 +38,7 @@ select {
 .card {
   @apply px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg;
 }
+
+.divider {
+  @apply h-px w-full bg-neutral-300;
+}
