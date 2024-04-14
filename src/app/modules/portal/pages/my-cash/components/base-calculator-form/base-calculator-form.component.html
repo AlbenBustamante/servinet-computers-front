@@ -1,0 +1,23 @@
+<form>
+  <div class="grid grid-cols-4 text-center text-gray-700 font-medium">
+    <h5>Valor</h5>
+    <h5 class="col-span-2">Cantidad</h5>
+    <h5>Total</h5>
+  </div>
+  <div
+    class="grid grid-cols-4 items-center gap-x-5 text-right text-gray-700"
+    *ngFor="let base of cashBase"
+  >
+    <label [for]="base.title">{{
+      base.value | currency : "symbol" : "$" : "0.00"
+    }}</label>
+    <input
+      type="number"
+      [id]="base.title"
+      placeholder="0"
+      class="text-right col-span-2"
+    />
+    <p>{{ "0" | currency : "symbol" : "$" : "0.00" }}</p>
+  </div>
+  <app-button type="submit" class="mt-3">Guardar base inicial</app-button>
+</form>

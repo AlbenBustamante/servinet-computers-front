@@ -14,8 +14,7 @@
         *ngFor="let cashRegister of cashRegisters()"
         [cashRegister]="cashRegister"
         (openCash)="openCash($event)"
-      >
-      </app-cash-register-card>
+      />
     </section>
   </section>
 </ng-container>
@@ -41,32 +40,10 @@
   <h3 class="text-lg text-gray-700 text-center font-medium mb-3">
     Cuenta o verifica la base inicial para finalizar la apertura de caja.
   </h3>
-  <section class="w-1/2 m-auto card" *ngIf="isCountingBase()">
+  <section class="w-full max-w-xl m-auto card" *ngIf="isCountingBase()">
     <h4 class="text-2xl text-gray-700 text-center font-medium mb-5">
       Base inicial
     </h4>
-    <form class="">
-      <div
-        class="grid grid-cols-4 place-items-center text-center text-gray-700 font-medium"
-      >
-        <h5>Valor</h5>
-        <h5 class="col-span-2">Cantidad</h5>
-        <h5>Total</h5>
-      </div>
-      <div
-        class="grid grid-cols-4 items-center gap-x-5 text-right text-gray-700"
-      >
-        <label for="oneHundredThousand" class="">{{
-          "100000" | currency : "symbol" : "$" : "0.00"
-        }}</label>
-        <input
-          type="number"
-          id="oneHundredThousand"
-          placeholder="0"
-          class="text-right col-span-2"
-        />
-        <p>{{ "0" | currency : "symbol" : "$" : "0.00" }}</p>
-      </div>
-    </form>
+    <app-base-calculator-form />
   </section>
 </ng-container>
