@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
+  ICashRegisterBaseRes,
   ICashRegisterDetailReq,
   ICashRegisterDetailRes,
   ICashRegisterReq,
@@ -22,6 +23,12 @@ export class CashRegisterDetailService {
     });
   }
 
+  get() {
+    return this.http.get<ICashRegisterDetailRes>(this.url, {
+      context: checkToken(),
+    });
+  }
+
   isAlreadyCreated() {
     return this.http.get<boolean>(`${this.url}/already-exists`, {
       context: checkToken(),
@@ -36,6 +43,12 @@ export class CashRegisterDetailService {
 
   delete(cashRegisterDetailId: number) {
     return this.http.delete<boolean>(`${this.url}/${cashRegisterDetailId}`, {
+      context: checkToken(),
+    });
+  }
+
+  getBase(id: number) {
+    return this.http.get<ICashRegisterBaseRes>(`${this.url}/${id}/base`, {
       context: checkToken(),
     });
   }
