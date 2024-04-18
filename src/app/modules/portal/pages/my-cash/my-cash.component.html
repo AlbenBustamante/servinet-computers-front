@@ -37,13 +37,12 @@
       >
     </form>
   </section>
-  <h3 class="text-lg text-gray-700 text-center font-medium mb-3">
-    Cuenta o verifica la base inicial para finalizar la apertura de caja.
-  </h3>
-  <section class="w-full max-w-xl m-auto card" *ngIf="isCountingBase()">
-    <h4 class="text-2xl text-gray-700 text-center font-medium mb-5">
-      Base inicial
-    </h4>
+  <section class="max-w-xl m-auto card" *ngIf="isCountingBase()">
+    <header>
+      <h3 class="text-lg text-gray-700 text-center font-medium mb-3">
+        Cuenta o verifica la base inicial para finalizar la apertura de caja.
+      </h3>
+    </header>
     <app-base-calculator-form />
   </section>
 </ng-container>
