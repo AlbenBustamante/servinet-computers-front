@@ -42,10 +42,10 @@ input[type="number"] {
   appearance: none;
 }
 
-input[type="text"],
+input[type="text"]:not(.cash_amount_input),
 input[type="email"],
 input[type="password"],
-input[type="number"]:not(.cash_amount_input),
+input[type="number"],
 input[type="time"],
 select {
   @apply w-full rounded-lg px-4 py-2 border border-gray-300 bg-gray-50 text-gray-700 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none;

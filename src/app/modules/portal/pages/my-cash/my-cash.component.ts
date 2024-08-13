@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IBase } from '@models/base.model';
 import { ICashRegisterRes } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { CashRegisterService } from '@services/cash-register.service';
@@ -13,8 +14,7 @@ export class MyCashComponent {
   readonly cashRegisterStatus = signal<'open' | 'opening' | 'available'>(
     'available'
   );
-  // readonly isCountingBase = signal<boolean>(false);
-  readonly isCountingBase = signal<boolean>(true);
+  readonly isCountingBase = signal<boolean>(false);
   readonly cashRegisters = signal<ICashRegisterRes[]>([]);
   readonly selectedCashRegister = signal<ICashRegisterRes | undefined>(
     undefined
@@ -34,8 +34,7 @@ export class MyCashComponent {
   ngOnInit() {
     this.cashRegisterDetailService.isAlreadyCreated().subscribe({
       next: (alreadyExists) => {
-        // this.cashRegisterStatus.set(alreadyExists ? 'open' : 'available');
-        this.cashRegisterStatus.set('opening');
+        this.cashRegisterStatus.set(alreadyExists ? 'open' : 'available');
 
         if (!alreadyExists) {
           this.cashRegisterService.getAll(true).subscribe({
@@ -59,6 +58,10 @@ export class MyCashComponent {
     }
 
     this.isCountingBase.set(true);
+  }
+
+  finish(base: IBase) {
+    console.log(base);
   }
 
   get headerTitle() {
