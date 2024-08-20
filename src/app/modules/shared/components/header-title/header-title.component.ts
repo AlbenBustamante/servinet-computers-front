@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class HeaderTitleComponent {
   @Input({ required: true }) hTitle!: string;
   @Input({ required: true }) hDescription!: string;
+  @Input() hDescriptionSecondLine!: string;
 }

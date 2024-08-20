@@ -3,4 +3,7 @@
 >
   <h2 class="text-3xl text-gray-800 font-medium">{{ hTitle }}</h2>
   <p class="text-gray-600 mt-1">{{ hDescription }}.</p>
+  <ng-container *ngIf="hDescriptionSecondLine">
+    <p class="text-gray-600">{{ hDescriptionSecondLine }}.</p>
+  </ng-container>
 </header>
