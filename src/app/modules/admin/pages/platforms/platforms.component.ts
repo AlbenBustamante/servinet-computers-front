@@ -6,7 +6,7 @@ import { PlatformService } from '@services/platform.service';
 import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
-  selector: 'app-platforms',
+  selector: 'app-admin-platforms',
   templateUrl: './platforms.component.html',
   styleUrls: ['./platforms.component.css'],
 })

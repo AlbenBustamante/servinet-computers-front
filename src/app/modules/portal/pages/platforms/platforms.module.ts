@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BalancesRoutingModule } from './balances-routing.module';
-import { BalancesComponent } from './balances.component';
+import { PlatformsRoutingModule } from './platforms-routing.module';
+import { PlatformsComponent } from './platforms.component';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [BalancesComponent],
+  declarations: [PlatformsComponent],
   imports: [
     CommonModule,
-    BalancesRoutingModule,
+    PlatformsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
   ],
 })
-export default class BalancesModule {}
+export default class PlatformsModule {}

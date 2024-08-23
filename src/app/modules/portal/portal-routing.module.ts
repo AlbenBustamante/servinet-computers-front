@@ -25,8 +25,8 @@ const routes: Routes = [
         loadChildren: () => import('./pages/transfers/transfers.module'),
       },
       {
-        path: 'balances',
-        loadChildren: () => import('./pages/balances/balances.module'),
+        path: 'platforms',
+        loadChildren: () => import('./pages/platforms/platforms.module'),
       },
       {
         path: 'reports',

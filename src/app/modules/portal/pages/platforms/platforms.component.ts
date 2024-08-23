@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformBalanceRes } from '@models/platform.model';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
-  selector: 'app-balances',
-  templateUrl: './balances.component.html',
-  styleUrls: ['./balances.component.css'],
+  selector: 'app-portal-platforms',
+  templateUrl: './platforms.component.html',
+  styleUrls: ['./platforms.component.css'],
 })
-export class BalancesComponent implements OnInit {
-  platformBalances: IPlatformBalanceRes[] = [];
+export class PlatformsComponent implements OnInit {
+  readonly platforms = signal<IPlatformBalanceRes[]>([]);
+  readonly selectedPlatform = signal<IPlatformBalanceRes | null>(null);
   balanceForm: FormGroup;
-  loading = false;
+  loading = signal<boolean>(false);
 
   constructor(
     private readonly platformBalanceService: PlatformBalanceService,
@@ -26,18 +27,21 @@ export class BalancesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.loading.set(true);
 
     this.platformBalanceService.loadInitialBalances().subscribe({
       next: (platformBalances) => {
-        this.platformBalances = platformBalances;
-        this.loading = false;
-        console.log(platformBalances);
+        this.platforms.set(platformBalances);
+        this.loading.set(false);
       },
       error: (_) => {
-        this.loading = false;
+        this.loading.set(false);
       },
     });
+  }
+
+  onSelectPlatform(platform: IPlatformBalanceRes) {
+    this.selectedPlatform.set(platform);
   }
 
   openModal(balance: IPlatformBalanceRes) {
