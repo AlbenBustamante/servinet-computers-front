@@ -12,8 +12,9 @@ import { GeneralValidators } from '@utils/general-validators';
 export class PlatformsComponent implements OnInit {
   readonly platforms = signal<IPlatformBalanceRes[]>([]);
   readonly selectedPlatform = signal<IPlatformBalanceRes | null>(null);
+  readonly loading = signal<boolean>(false);
+  readonly selectedPlatformIndex = signal<number | null>(null);
   balanceForm: FormGroup;
-  loading = signal<boolean>(false);
 
   constructor(
     private readonly platformBalanceService: PlatformBalanceService,
@@ -40,8 +41,9 @@ export class PlatformsComponent implements OnInit {
     });
   }
 
-  onSelectPlatform(platform: IPlatformBalanceRes) {
+  onSelectPlatform(platform: IPlatformBalanceRes, index: number) {
     this.selectedPlatform.set(platform);
+    this.selectedPlatformIndex.set(index);
   }
 
   openModal(balance: IPlatformBalanceRes) {

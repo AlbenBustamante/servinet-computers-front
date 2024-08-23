@@ -14,9 +14,10 @@
     </header>
     <ul class="flex flex-col gap-1">
       <li
-        *ngFor="let platform of platforms()"
+        *ngFor="let platform of platforms(); index as i"
         class="text-gray-800 text-lg px-2 py-1 rounded-md cursor-pointer hover:bg-violet-100"
-        (click)="onSelectPlatform(platform)"
+        [ngClass]="i == selectedPlatformIndex() ? 'bg-violet-100' : ''"
+        (click)="onSelectPlatform(platform, i)"
       >
         {{ platform.platformName }}
       </li>

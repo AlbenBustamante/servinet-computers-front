@@ -16,7 +16,7 @@ export class NavbarComponent {
       { title: 'Inicio', icon: 'home', route: './home' },
       { title: 'Mi caja', route: './my-cash' },
       // { title: 'Transferencias', route: './transfers' },
-      { title: 'Plataformas', icon: 'account_balance', route: './platforms' },
+      { title: 'Plataformas', icon: 'lists', route: './platforms' },
       { title: 'Reportes', icon: 'lab_profile', route: './reports' },
     ]);
   }
