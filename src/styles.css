@@ -7,49 +7,43 @@ body {
   @apply bg-violet-50 bg-opacity-50;
 }
 
-.row-spacing {
+.form {
   @apply flex flex-col gap-3;
 }
 
-form {
-  @apply row-spacing;
-}
-
-form div.control {
+.form div.control {
   @apply flex flex-col gap-1.5;
 }
 
-form div.control-row {
+.form div.control label {
+  @apply block text-gray-700 font-medium;
+}
+
+.form div.control-row {
   @apply flex items-center gap-1.5;
 }
 
-label {
-  @apply block text-gray-700 font-medium;
+.form div.control-row label:not(.font-normal) {
+  @apply text-gray-700 font-medium;
 }
 
 .cash_amount_input {
   @apply px-3 py-1 focus:outline-none text-right border-l-2 border-r-2 border-gray-300;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type="number"] {
+.input[type="number"] {
   -moz-appearance: textfield;
   appearance: none;
 }
 
-input[type="text"]:not(.cash_amount_input),
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="time"],
-input[type="search"],
-select {
-  @apply w-full rounded-lg px-4 py-2 border border-gray-300 bg-gray-50 text-gray-700 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none;
+.input {
+  @apply rounded-lg px-4 py-2 border border-gray-300 bg-gray-50 text-gray-700 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none;
 }
 
 .card {
@@ -58,4 +52,8 @@ select {
 
 .divider {
   @apply h-px w-full bg-neutral-300;
+}
+
+.divider-md {
+  @apply h-0.5 w-full bg-neutral-300;
 }

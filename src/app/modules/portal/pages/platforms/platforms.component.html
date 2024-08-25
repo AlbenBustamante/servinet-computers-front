@@ -4,9 +4,10 @@
   hDescriptionSecondLine="Eres libre de editarlos y añadir transferencias"
 ></app-header-title>
 <section class="w-full grid grid-cols-3 gap-x-5">
-  <article class="card col-span-1 h-[276px] overflow-y-scroll">
+  <article class="card col-span-1">
     <header class="h-12 mb-2 flex items-center justify-center">
       <input
+        class="input w-full"
         type="search"
         id="search-platform"
         placeholder="Buscar plataforma"
@@ -23,50 +24,93 @@
       </li>
     </ul>
   </article>
-  <article class="card col-span-2 h-[276px] flex items-center w-full">
+  <article class="card col-span-2 flex items-center w-full">
     <div class="w-full">
       <header class="h-12 mb-2 flex items-center justify-center">
         <h3 class="text-2xl text-gray-800 font-semibold">
-          {{ selectedPlatform()?.platformName ?? "Selecciona una plataforma" }}
+          {{
+            selectedPlatformBalance()?.platformName ??
+              "Selecciona una plataforma"
+          }}
         </h3>
       </header>
-      <ng-container *ngIf="selectedPlatform()">
-        <section class="grid grid-cols-2 text-gray-700 text-lg mb-3">
-          <ul class="text-left flex flex-col gap-1">
-            <li>Saldo Inicial</li>
-            <li class="divider"></li>
-            <li>Saldo Final</li>
-            <li class="divider"></li>
-            <li>Transferencias en el día</li>
-            <li class="divider"></li>
-            <li>Total transferido</li>
-          </ul>
-          <ul class="text-right flex flex-col gap-1">
-            <li>
-              {{
-                selectedPlatform()?.initialBalance
-                  | currency : "symbol" : "$" : "0.00"
-              }}
-            </li>
-            <li class="divider"></li>
-            <li>
-              {{
-                selectedPlatform()?.finalBalance
-                  | currency : "symbol" : "$" : "0.00"
-              }}
-            </li>
-            <li class="divider"></li>
-            <li>0</li>
-            <li class="divider"></li>
-            <li>0</li>
-          </ul>
-        </section>
-        <footer class="flex justify-end">
-          <p
-            class="w-fit cursor-pointer text-cyan-700 text-lg hover:text-cyan-600 hover:underline hover:underline-offset-2"
+      <ng-container *ngIf="selectedPlatformBalance()">
+        <section>
+          <form
+            [formGroup]="balanceForm"
+            (ngSubmit)="onSubmit()"
+            class="form"
+            *ngIf="editingBalances(); else platform_info"
           >
-            Añadir transferencia
-          </p>
+            <div class="control">
+              <label for="initialBalance">Saldo Inicial</label>
+              <input
+                type="number"
+                id="initialBalance"
+                class="input"
+                formControlName="initialBalance"
+              />
+            </div>
+            <div class="control">
+              <label for="finalBalance">Saldo Final</label>
+              <input
+                type="number"
+                id="finalBalance"
+                class="input"
+                formControlName="finalBalance"
+              />
+            </div>
+            <app-button type="submit">Guardar</app-button>
+          </form>
+          <ng-template #platform_info>
+            <div class="flex flex-col gap-2.5 mb-3">
+              <p class="text-gray-700 flex items-center justify-between">
+                <span>Saldo Inicial</span>
+                <span class="font-medium">{{
+                  selectedPlatformBalance()?.initialBalance
+                    | currency : "symbol" : "$" : "0.00"
+                }}</span>
+              </p>
+              <div class="divider"></div>
+              <p class="text-gray-700 flex items-center justify-between">
+                <span>Saldo Final</span>
+                <span class="font-medium">{{
+                  selectedPlatformBalance()?.finalBalance
+                    | currency : "symbol" : "$" : "0.00"
+                }}</span>
+              </p>
+              <div class="divider"></div>
+              <p class="text-gray-700 flex items-center justify-between">
+                <span>Transferencias del día</span>
+                <span class="font-medium">0</span>
+              </p>
+              <div class="divider"></div>
+              <p class="text-gray-700 flex items-center justify-between">
+                <span>Total transferido</span>
+                <span class="font-medium">{{
+                  0 | currency : "symbol" : "$" : "0.00"
+                }}</span>
+              </p>
+            </div>
+            <app-button
+              type="button"
+              color="neutral"
+              (click)="handleEditingBalances()"
+              >Editar Saldos</app-button
+            >
+          </ng-template>
+        </section>
+        <div class="divider-md my-3"></div>
+        <footer class="w-full">
+          <form class="w-full flex items-center gap-5">
+            <input type="number" id="transfer-value" class="input w-4/6" />
+            <button
+              type="submit"
+              class="w-2/6 cursor-pointer text-cyan-700 text-lg hover:text-cyan-600 hover:underline hover:underline-offset-2"
+            >
+              Añadir transferencia
+            </button>
+          </form>
         </footer>
       </ng-container>
     </div>

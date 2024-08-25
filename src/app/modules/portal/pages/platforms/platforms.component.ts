@@ -1,6 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPlatformBalanceRes } from '@models/platform.model';
+import {
+  IPlatformBalanceReq,
+  IPlatformBalanceRes,
+} from '@models/platform.model';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { GeneralValidators } from '@utils/general-validators';
 
@@ -11,10 +14,11 @@ import { GeneralValidators } from '@utils/general-validators';
 })
 export class PlatformsComponent implements OnInit {
   readonly platforms = signal<IPlatformBalanceRes[]>([]);
-  readonly selectedPlatform = signal<IPlatformBalanceRes | null>(null);
+  readonly selectedPlatformBalance = signal<IPlatformBalanceRes | null>(null);
   readonly loading = signal<boolean>(false);
   readonly selectedPlatformIndex = signal<number | null>(null);
-  balanceForm: FormGroup;
+  readonly editingBalances = signal<boolean>(false);
+  readonly balanceForm: FormGroup;
 
   constructor(
     private readonly platformBalanceService: PlatformBalanceService,
@@ -41,15 +45,17 @@ export class PlatformsComponent implements OnInit {
     });
   }
 
-  onSelectPlatform(platform: IPlatformBalanceRes, index: number) {
-    this.selectedPlatform.set(platform);
-    this.selectedPlatformIndex.set(index);
+  handleEditingBalances() {
+    this.editingBalances.update((prevValue) => !prevValue);
   }
 
-  openModal(balance: IPlatformBalanceRes) {
+  onSelectPlatform(platform: IPlatformBalanceRes, index: number) {
+    this.selectedPlatformBalance.set(platform);
+    this.selectedPlatformIndex.set(index);
+
     this.balanceForm.setValue({
-      initialBalance: balance.initialBalance,
-      finalBalance: balance.finalBalance,
+      initialBalance: this.selectedPlatformBalance()?.initialBalance,
+      finalBalance: this.selectedPlatformBalance()?.finalBalance,
     });
   }
 
@@ -57,6 +63,38 @@ export class PlatformsComponent implements OnInit {
     if (this.balanceForm.invalid) {
       return this.balanceForm.markAllAsTouched();
     }
+
+    const balanceReq: IPlatformBalanceReq = {
+      ...this.balanceForm.value,
+      platformId: this.selectedPlatformBalance()!.platformId,
+    };
+
+    this.loading.set(true);
+
+    this.platformBalanceService
+      .update(this.selectedPlatformBalance()!.id, balanceReq)
+      .subscribe({
+        next: (res) => {
+          const platforms = this.platforms();
+
+          const index = platforms.findIndex(
+            (platform) => platform.platformId === res.platformId
+          );
+
+          if (index > -1) {
+            platforms[index] = res;
+            this.platforms.set(platforms);
+            this.selectedPlatformBalance.set(res);
+          }
+
+          this.editingBalances.set(false);
+          this.loading.set(false);
+        },
+        error: (error) => {
+          this.editingBalances.set(false);
+          this.loading.set(false);
+        },
+      });
   }
 
   hasError(control: string, error: string) {

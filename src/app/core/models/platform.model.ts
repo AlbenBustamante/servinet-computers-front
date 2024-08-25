@@ -10,12 +10,10 @@ export interface IPlatformRes extends IResponse {
 
 export interface IPlatformBalanceReq {
   platformId: number;
-  initialBalance: string;
-  finalBalance: string;
+  initialBalance: number;
+  finalBalance: number;
 }
 
-export interface IPlatformBalanceRes extends IResponse {
+export interface IPlatformBalanceRes extends IResponse, IPlatformBalanceReq {
   platformName: string;
-  initialBalance: string;
-  finalBalance: string;
 }
