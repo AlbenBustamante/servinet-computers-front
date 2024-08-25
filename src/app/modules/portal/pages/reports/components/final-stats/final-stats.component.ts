@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { TransferService } from '@services/transfer.service';
+import { PlatformTransferService } from '@services/platform-transfer.service';
 
 @Component({
   selector: 'app-final-stats',
@@ -7,7 +7,7 @@ import { TransferService } from '@services/transfer.service';
   styleUrls: ['./final-stats.component.css'],
 })
 export class FinalStatsComponent {
-  private readonly transferService = inject(TransferService);
+  private readonly transferService = inject(PlatformTransferService);
   readonly reports = this.transferService.reports;
 
   constructor() {}

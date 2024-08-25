@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IPlatformBalanceReq,
   IPlatformBalanceRes,
+  IPlatformTransferReq,
 } from '@models/platform.model';
 import { PlatformBalanceService } from '@services/platform-balance.service';
+import { PlatformTransferService } from '@services/platform-transfer.service';
 import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
@@ -19,15 +21,21 @@ export class PlatformsComponent implements OnInit {
   readonly selectedPlatformIndex = signal<number | null>(null);
   readonly editingBalances = signal<boolean>(false);
   readonly balanceForm: FormGroup;
+  readonly transferForm: FormGroup;
 
   constructor(
     private readonly platformBalanceService: PlatformBalanceService,
+    private readonly platformTransferService: PlatformTransferService,
     private readonly validator: GeneralValidators,
     private readonly fb: FormBuilder
   ) {
     this.balanceForm = this.fb.group({
       initialBalance: ['', Validators.required],
       finalBalance: ['', Validators.required],
+    });
+
+    this.transferForm = this.fb.group({
+      value: ['', Validators.required],
     });
   }
 
@@ -59,7 +67,7 @@ export class PlatformsComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onBalancesSubmit() {
     if (this.balanceForm.invalid) {
       return this.balanceForm.markAllAsTouched();
     }
@@ -99,5 +107,24 @@ export class PlatformsComponent implements OnInit {
 
   hasError(control: string, error: string) {
     return this.validator.hasError(this.balanceForm, control, error);
+  }
+
+  onTransferSubmit() {
+    this.loading.set(true);
+
+    const transfer: IPlatformTransferReq = {
+      ...this.transferForm.value,
+      platformId: this.selectedPlatformBalance()?.platformId,
+    };
+
+    this.platformTransferService.register(transfer).subscribe({
+      next: (res) => {
+        this.transferForm.reset();
+        this.loading.set(false);
+      },
+      error: (error) => {
+        this.loading.set(false);
+      },
+    });
   }
 }

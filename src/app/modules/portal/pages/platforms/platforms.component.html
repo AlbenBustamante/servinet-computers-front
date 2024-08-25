@@ -38,7 +38,7 @@
         <section>
           <form
             [formGroup]="balanceForm"
-            (ngSubmit)="onSubmit()"
+            (ngSubmit)="onBalancesSubmit()"
             class="form"
             *ngIf="editingBalances(); else platform_info"
           >
@@ -102,8 +102,17 @@
         </section>
         <div class="divider-md my-3"></div>
         <footer class="w-full">
-          <form class="w-full flex items-center gap-5">
-            <input type="number" id="transfer-value" class="input w-4/6" />
+          <form
+            class="w-full flex items-center gap-5"
+            [formGroup]="transferForm"
+            (ngSubmit)="onTransferSubmit()"
+          >
+            <input
+              type="number"
+              id="transfer-value"
+              class="input w-4/6"
+              formControlName="value"
+            />
             <button
               type="submit"
               class="w-2/6 cursor-pointer text-cyan-700 text-lg hover:text-cyan-600 hover:underline hover:underline-offset-2"

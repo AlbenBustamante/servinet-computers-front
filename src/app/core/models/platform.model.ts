@@ -17,3 +17,10 @@ export interface IPlatformBalanceReq {
 export interface IPlatformBalanceRes extends IResponse, IPlatformBalanceReq {
   platformName: string;
 }
+
+export interface IPlatformTransferReq {
+  platformId: number;
+  value: number;
+}
+
+export interface IPlatformTransferRes extends IResponse, IPlatformBalanceReq {}
