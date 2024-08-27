@@ -20,6 +20,7 @@ export class PlatformsComponent implements OnInit {
   readonly loading = signal<boolean>(false);
   readonly selectedPlatformIndex = signal<number | null>(null);
   readonly editingBalances = signal<boolean>(false);
+  readonly voucherPicked = signal<File | null>(null);
   readonly balanceForm: FormGroup;
   readonly transferForm: FormGroup;
 
@@ -35,7 +36,8 @@ export class PlatformsComponent implements OnInit {
     });
 
     this.transferForm = this.fb.group({
-      value: ['', Validators.required],
+      voucher: [null],
+      value: ['', Validators.required, Validators.min(1)],
     });
   }
 
@@ -107,6 +109,12 @@ export class PlatformsComponent implements OnInit {
 
   hasError(control: string, error: string) {
     return this.validator.hasError(this.balanceForm, control, error);
+  }
+
+  onVoucherPicked(event: Event) {
+    const voucher = (event.target as HTMLInputElement).files![0];
+    this.transferForm.patchValue({ file: voucher });
+    this.voucherPicked.set(voucher);
   }
 
   onTransferSubmit() {
