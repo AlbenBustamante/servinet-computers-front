@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IPlatformBalanceReq,
@@ -15,25 +15,21 @@ import { GeneralValidators } from '@utils/general-validators';
   styleUrls: ['./platforms.component.css'],
 })
 export class PlatformsComponent implements OnInit {
-  readonly platforms = signal<IPlatformBalanceRes[]>([]);
-  readonly selectedPlatformBalance = signal<IPlatformBalanceRes | null>(null);
   readonly loading = signal<boolean>(false);
-  readonly selectedPlatformIndex = signal<number | null>(null);
-  readonly editingBalances = signal<boolean>(false);
   readonly voucherPicked = signal<File | null>(null);
-  readonly balanceForm: FormGroup;
   readonly transferForm: FormGroup;
+  readonly editing: WritableSignal<boolean>;
+  readonly selectedPlatformBalance: WritableSignal<IPlatformBalanceRes | null>;
 
   constructor(
     private readonly platformBalanceService: PlatformBalanceService,
     private readonly platformTransferService: PlatformTransferService,
-    private readonly validator: GeneralValidators,
     private readonly fb: FormBuilder
   ) {
-    this.balanceForm = this.fb.group({
-      initialBalance: ['', Validators.required],
-      finalBalance: ['', Validators.required],
-    });
+    this.editing = this.platformBalanceService.editing;
+
+    this.selectedPlatformBalance =
+      this.platformBalanceService.selectedPlatformBalance;
 
     this.transferForm = this.fb.group({
       voucher: [null],
@@ -45,70 +41,13 @@ export class PlatformsComponent implements OnInit {
     this.loading.set(true);
 
     this.platformBalanceService.loadInitialBalances().subscribe({
-      next: (platformBalances) => {
-        this.platforms.set(platformBalances);
+      next: (_) => {
         this.loading.set(false);
       },
       error: (_) => {
         this.loading.set(false);
       },
     });
-  }
-
-  handleEditingBalances() {
-    this.editingBalances.update((prevValue) => !prevValue);
-  }
-
-  onSelectPlatform(platform: IPlatformBalanceRes, index: number) {
-    this.selectedPlatformBalance.set(platform);
-    this.selectedPlatformIndex.set(index);
-
-    this.balanceForm.setValue({
-      initialBalance: this.selectedPlatformBalance()?.initialBalance,
-      finalBalance: this.selectedPlatformBalance()?.finalBalance,
-    });
-  }
-
-  onBalancesSubmit() {
-    if (this.balanceForm.invalid) {
-      return this.balanceForm.markAllAsTouched();
-    }
-
-    const balanceReq: IPlatformBalanceReq = {
-      ...this.balanceForm.value,
-      platformId: this.selectedPlatformBalance()!.platformId,
-    };
-
-    this.loading.set(true);
-
-    this.platformBalanceService
-      .update(this.selectedPlatformBalance()!.id, balanceReq)
-      .subscribe({
-        next: (res) => {
-          const platforms = this.platforms();
-
-          const index = platforms.findIndex(
-            (platform) => platform.platformId === res.platformId
-          );
-
-          if (index > -1) {
-            platforms[index] = res;
-            this.platforms.set(platforms);
-            this.selectedPlatformBalance.set(res);
-          }
-
-          this.editingBalances.set(false);
-          this.loading.set(false);
-        },
-        error: (error) => {
-          this.editingBalances.set(false);
-          this.loading.set(false);
-        },
-      });
-  }
-
-  hasError(control: string, error: string) {
-    return this.validator.hasError(this.balanceForm, control, error);
   }
 
   onVoucherPicked(event: Event) {
