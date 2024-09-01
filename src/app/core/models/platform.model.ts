@@ -23,4 +23,8 @@ export interface IPlatformTransferReq {
   value: number;
 }
 
-export interface IPlatformTransferRes extends IResponse, IPlatformBalanceReq {}
+export interface IPlatformTransferRes extends IResponse {
+  platformId: number;
+  value: number;
+  voucherUrls: string[];
+}

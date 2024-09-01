@@ -1,0 +1,38 @@
+<form
+  class="w-full flex flex-wrap justify-between items-center gap-3"
+  [formGroup]="transferForm"
+  (ngSubmit)="onTransferSubmit()"
+>
+  <div>
+    <label
+      for="voucher"
+      class="px-3 py-2 border border-gray-300 bg-gray-50 rounded-lg text-gray-700 text-sm cursor-pointer"
+      >{{
+        vouchers().length > 0
+          ? "Archivos cargados: " + vouchers().length
+          : "Adjuntar comprobante"
+      }}</label
+    >
+    <input
+      type="file"
+      id="voucher"
+      class="sr-only"
+      (change)="onPickVouchers($event)"
+      multiple
+      accept="image/*, .pdf"
+    />
+  </div>
+  <input
+    type="number"
+    id="transfer-value"
+    placeholder="10000"
+    class="input"
+    formControlName="value"
+  />
+  <button
+    type="submit"
+    class="cursor-pointer text-cyan-700 text-lg hover:text-cyan-600 hover:underline hover:underline-offset-2"
+  >
+    Añadir transferencia
+  </button>
+</form>

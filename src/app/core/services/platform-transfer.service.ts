@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, computed } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
@@ -12,15 +12,22 @@ import {
 })
 export class PlatformTransferService {
   private readonly url: string = `${environment.apiUrl}/platform-transfers`;
+  readonly vouchers = signal<File[]>([]);
 
-  reports = computed(() => {
-    return {};
-  });
+  reports = computed(() => {});
 
   constructor(private readonly http: HttpClient) {}
 
   register(req: IPlatformTransferReq) {
-    return this.http.post<IPlatformTransferRes>(this.url, req, {
+    const formData = new FormData();
+
+    this.vouchers().forEach((voucher) =>
+      formData.append('vouchers', voucher, voucher.name)
+    );
+
+    formData.append('request', JSON.stringify(req));
+
+    return this.http.post<IPlatformTransferRes>(this.url, formData, {
       context: checkToken(),
     });
   }

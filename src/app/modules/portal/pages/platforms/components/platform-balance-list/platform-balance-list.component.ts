@@ -1,6 +1,7 @@
 import { Component, WritableSignal } from '@angular/core';
 import { IPlatformBalanceRes } from '@models/platform.model';
 import { PlatformBalanceService } from '@services/platform-balance.service';
+import { PlatformTransferService } from '@services/platform-transfer.service';
 
 @Component({
   selector: 'app-platform-balance-list',
@@ -12,8 +13,12 @@ export class PlatformBalanceListComponent {
   readonly selectedPlatformBalance: WritableSignal<IPlatformBalanceRes | null>;
   readonly selectedPlatformBalanceIndex: WritableSignal<number | null>;
   readonly editing: WritableSignal<boolean>;
+  readonly vouchers: WritableSignal<File[]>;
 
-  constructor(private readonly platformBalanceService: PlatformBalanceService) {
+  constructor(
+    private readonly platformBalanceService: PlatformBalanceService,
+    private readonly platformTransferService: PlatformTransferService
+  ) {
     this.editing = this.platformBalanceService.editing;
     this.platformBalances = this.platformBalanceService.platformBalances;
 
@@ -22,6 +27,8 @@ export class PlatformBalanceListComponent {
 
     this.selectedPlatformBalanceIndex =
       this.platformBalanceService.selectedPlatformBalanceIndex;
+
+    this.vouchers = this.platformTransferService.vouchers;
   }
 
   handleSelectedPlatformBalance(
@@ -35,5 +42,6 @@ export class PlatformBalanceListComponent {
     this.editing.set(false);
     this.selectedPlatformBalance.set(platformBalance);
     this.selectedPlatformBalanceIndex.set(index);
+    this.vouchers.set([]);
   }
 }
