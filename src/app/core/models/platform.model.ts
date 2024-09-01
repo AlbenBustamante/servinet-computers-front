@@ -28,3 +28,13 @@ export interface IPlatformTransferRes extends IResponse {
   value: number;
   voucherUrls: string[];
 }
+
+export interface IPortalPlatform {
+  platformId: number;
+  platformName: string;
+  platformBalanceId: number;
+  initialBalance: number;
+  finalBalance: number;
+  transfersAmount: number;
+  transfersTotal: number;
+}

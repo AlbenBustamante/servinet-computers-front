@@ -8,11 +8,11 @@
 </header>
 <ul class="flex flex-col gap-1">
   <li
-    *ngFor="let platformBalance of platformBalances(); index as i"
+    *ngFor="let portalPlatform of portalPlatforms(); index as i"
     class="text-gray-800 text-lg px-2 py-1 rounded-md cursor-pointer hover:bg-violet-100"
-    [ngClass]="i == selectedPlatformBalanceIndex() ? 'bg-violet-100' : ''"
-    (click)="handleSelectedPlatformBalance(platformBalance, i)"
+    [ngClass]="i == selectedPortalPlatformIndex() ? 'bg-violet-100' : ''"
+    (click)="handleSelectedPlatformBalance(portalPlatform, i)"
   >
-    {{ platformBalance.platformName }}
+    {{ portalPlatform.platformName }}
   </li>
 </ul>

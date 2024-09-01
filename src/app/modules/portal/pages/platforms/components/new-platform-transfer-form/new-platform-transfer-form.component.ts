@@ -1,11 +1,8 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  IPlatformBalanceRes,
-  IPlatformTransferReq,
-} from '@models/platform.model';
-import { PlatformBalanceService } from '@services/platform-balance.service';
+import { IPlatformTransferReq, IPortalPlatform } from '@models/platform.model';
 import { PlatformTransferService } from '@services/platform-transfer.service';
+import { PlatformService } from '@services/platform.service';
 
 @Component({
   selector: 'app-new-platform-transfer-form',
@@ -16,17 +13,15 @@ export class NewPlatformTransferFormComponent {
   readonly transferForm: FormGroup;
   readonly loading = signal<boolean>(false);
   readonly vouchers: WritableSignal<File[]>;
-  readonly selectedPlatformBalance: WritableSignal<IPlatformBalanceRes | null>;
+  readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly platformBalanceService: PlatformBalanceService,
+    private readonly platformService: PlatformService,
     private readonly platformTransferService: PlatformTransferService
   ) {
     this.vouchers = this.platformTransferService.vouchers;
-
-    this.selectedPlatformBalance =
-      this.platformBalanceService.selectedPlatformBalance;
+    this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
 
     this.transferForm = this.fb.group({
       value: ['', Validators.required],
@@ -49,7 +44,7 @@ export class NewPlatformTransferFormComponent {
 
     const transfer: IPlatformTransferReq = {
       ...this.transferForm.value,
-      platformId: this.selectedPlatformBalance()?.platformId,
+      platformId: this.selectedPortalPlatform()?.platformId,
     };
 
     this.platformTransferService.register(transfer).subscribe({

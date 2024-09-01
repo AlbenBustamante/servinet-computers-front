@@ -1,7 +1,7 @@
 import { Component, WritableSignal } from '@angular/core';
-import { IPlatformBalanceRes } from '@models/platform.model';
-import { PlatformBalanceService } from '@services/platform-balance.service';
+import { IPortalPlatform } from '@models/platform.model';
 import { PlatformTransferService } from '@services/platform-transfer.service';
+import { PlatformService } from '@services/platform.service';
 
 @Component({
   selector: 'app-platform-balance-list',
@@ -9,39 +9,37 @@ import { PlatformTransferService } from '@services/platform-transfer.service';
   styleUrls: ['./platform-balance-list.component.css'],
 })
 export class PlatformBalanceListComponent {
-  readonly platformBalances: WritableSignal<IPlatformBalanceRes[]>;
-  readonly selectedPlatformBalance: WritableSignal<IPlatformBalanceRes | null>;
-  readonly selectedPlatformBalanceIndex: WritableSignal<number | null>;
+  readonly portalPlatforms: WritableSignal<IPortalPlatform[]>;
+  readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
+  readonly selectedPortalPlatformIndex: WritableSignal<number | null>;
   readonly editing: WritableSignal<boolean>;
   readonly vouchers: WritableSignal<File[]>;
 
   constructor(
-    private readonly platformBalanceService: PlatformBalanceService,
+    private readonly platformService: PlatformService,
     private readonly platformTransferService: PlatformTransferService
   ) {
-    this.editing = this.platformBalanceService.editing;
-    this.platformBalances = this.platformBalanceService.platformBalances;
+    this.editing = this.platformService.editing;
+    this.portalPlatforms = this.platformService.portalPlatforms;
+    this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
 
-    this.selectedPlatformBalance =
-      this.platformBalanceService.selectedPlatformBalance;
-
-    this.selectedPlatformBalanceIndex =
-      this.platformBalanceService.selectedPlatformBalanceIndex;
+    this.selectedPortalPlatformIndex =
+      this.platformService.selectedPortalPlatformIndex;
 
     this.vouchers = this.platformTransferService.vouchers;
   }
 
   handleSelectedPlatformBalance(
-    platformBalance: IPlatformBalanceRes,
+    portalPlatform: IPortalPlatform,
     index: number
   ) {
-    if (this.selectedPlatformBalanceIndex() === index) {
+    if (this.selectedPortalPlatformIndex() === index) {
       return;
     }
 
     this.editing.set(false);
-    this.selectedPlatformBalance.set(platformBalance);
-    this.selectedPlatformBalanceIndex.set(index);
+    this.selectedPortalPlatform.set(portalPlatform);
+    this.selectedPortalPlatformIndex.set(index);
     this.vouchers.set([]);
   }
 }

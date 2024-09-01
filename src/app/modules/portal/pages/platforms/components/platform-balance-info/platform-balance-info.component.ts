@@ -1,6 +1,6 @@
 import { Component, WritableSignal } from '@angular/core';
-import { IPlatformBalanceRes } from '@models/platform.model';
-import { PlatformBalanceService } from '@services/platform-balance.service';
+import { IPortalPlatform } from '@models/platform.model';
+import { PlatformService } from '@services/platform.service';
 
 @Component({
   selector: 'app-platform-balance-info',
@@ -8,14 +8,12 @@ import { PlatformBalanceService } from '@services/platform-balance.service';
   styleUrls: ['./platform-balance-info.component.css'],
 })
 export class PlatformBalanceInfoComponent {
-  readonly selectedPlatformBalance: WritableSignal<IPlatformBalanceRes | null>;
+  readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
   readonly editing: WritableSignal<boolean>;
 
-  constructor(private readonly platformBalanceService: PlatformBalanceService) {
-    this.editing = this.platformBalanceService.editing;
-
-    this.selectedPlatformBalance =
-      this.platformBalanceService.selectedPlatformBalance;
+  constructor(private readonly platformService: PlatformService) {
+    this.editing = this.platformService.editing;
+    this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
   }
 
   handleEditing() {

@@ -2,7 +2,11 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { IPlatformReq, IPlatformRes } from '@models/platform.model';
+import {
+  IPlatformReq,
+  IPlatformRes,
+  IPortalPlatform,
+} from '@models/platform.model';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -11,6 +15,10 @@ import { tap } from 'rxjs';
 export class PlatformService {
   private readonly url: string = `${environment.apiUrl}/platforms`;
   readonly platforms = signal<IPlatformRes[]>([]);
+  readonly editing = signal<boolean>(false);
+  readonly portalPlatforms = signal<IPortalPlatform[]>([]);
+  readonly selectedPortalPlatform = signal<IPortalPlatform | null>(null);
+  readonly selectedPortalPlatformIndex = signal<number | null>(null);
 
   constructor(private readonly http: HttpClient) {}
 
@@ -29,7 +37,17 @@ export class PlatformService {
       .get<IPlatformRes[]>(this.url, {
         context: checkToken(),
       })
-      .pipe(tap((res) => this.platforms.set(res)));
+      .pipe(tap((platforms) => this.platforms.set(platforms)));
+  }
+
+  loadPortalPlatforms() {
+    return this.http
+      .get<IPortalPlatform[]>(`${this.url}/portal`, {
+        context: checkToken(),
+      })
+      .pipe(
+        tap((portalPlatforms) => this.portalPlatforms.set(portalPlatforms))
+      );
   }
 
   update(platformId: number, req: IPlatformReq) {

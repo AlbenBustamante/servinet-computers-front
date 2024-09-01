@@ -1,10 +1,8 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  IPlatformBalanceReq,
-  IPlatformBalanceRes,
-} from '@models/platform.model';
+import { IPlatformBalanceReq, IPortalPlatform } from '@models/platform.model';
 import { PlatformBalanceService } from '@services/platform-balance.service';
+import { PlatformService } from '@services/platform.service';
 
 @Component({
   selector: 'app-update-platform-balances-form',
@@ -13,23 +11,22 @@ import { PlatformBalanceService } from '@services/platform-balance.service';
 })
 export class UpdatePlatformBalancesFormComponent {
   readonly balancesForm: FormGroup;
-  readonly selectedPlatformBalance: WritableSignal<IPlatformBalanceRes | null>;
+  readonly portalPlatforms: WritableSignal<IPortalPlatform[]>;
+  readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
   readonly editing: WritableSignal<boolean>;
-  readonly platformBalances: WritableSignal<IPlatformBalanceRes[]>;
   readonly loading = signal<boolean>(false);
 
   constructor(
     private readonly fb: FormBuilder,
+    private readonly platformService: PlatformService,
     private readonly platformBalanceService: PlatformBalanceService
   ) {
-    this.platformBalances = this.platformBalanceService.platformBalances;
-    this.editing = this.platformBalanceService.editing;
+    this.portalPlatforms = this.platformService.portalPlatforms;
+    this.editing = this.platformService.editing;
+    this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
 
-    this.selectedPlatformBalance =
-      this.platformBalanceService.selectedPlatformBalance;
-
-    const initialBalance = this.selectedPlatformBalance()?.initialBalance;
-    const finalBalance = this.selectedPlatformBalance()?.finalBalance;
+    const initialBalance = this.selectedPortalPlatform()?.initialBalance;
+    const finalBalance = this.selectedPortalPlatform()?.finalBalance;
 
     this.balancesForm = this.fb.group({
       initialBalance: [
@@ -50,31 +47,40 @@ export class UpdatePlatformBalancesFormComponent {
 
     const balanceReq: IPlatformBalanceReq = {
       ...this.balancesForm.value,
-      platformId: this.selectedPlatformBalance()!.platformId,
+      platformId: this.selectedPortalPlatform()!.platformId,
     };
 
     this.loading.set(true);
 
     this.platformBalanceService
-      .update(this.selectedPlatformBalance()!.id, balanceReq)
+      .update(this.selectedPortalPlatform()!.platformBalanceId, balanceReq)
       .subscribe({
-        next: (res) => {
-          const platformBalances = this.platformBalances();
+        next: (platformBalance) => {
+          const portalPlatforms = this.portalPlatforms();
 
-          const index = platformBalances.findIndex(
-            (platform) => platform.platformId === res.platformId
+          const index = portalPlatforms.findIndex(
+            (portalPlatform) =>
+              portalPlatform.platformId === platformBalance.platformId
           );
 
           if (index > -1) {
-            platformBalances[index] = res;
-            this.platformBalances.set(platformBalances);
-            this.selectedPlatformBalance.set(res);
+            const selectedPortalPlatform = this.selectedPortalPlatform()!;
+
+            selectedPortalPlatform.initialBalance =
+              platformBalance.initialBalance;
+
+            selectedPortalPlatform.finalBalance = platformBalance.finalBalance;
+
+            portalPlatforms[index] = selectedPortalPlatform;
+
+            this.portalPlatforms.set(portalPlatforms);
+            this.selectedPortalPlatform.set(selectedPortalPlatform);
           }
 
           this.editing.set(false);
           this.loading.set(false);
         },
-        error: (error) => {
+        error: (_) => {
           this.editing.set(false);
           this.loading.set(false);
         },

@@ -12,12 +12,12 @@
       <header class="h-12 mb-2 flex items-center justify-center">
         <h3 class="text-2xl text-gray-800 font-semibold">
           {{
-            selectedPlatformBalance()?.platformName ??
+            selectedPortalPlatform()?.platformName ??
               "Selecciona una plataforma"
           }}
         </h3>
       </header>
-      <ng-container *ngIf="selectedPlatformBalance()">
+      <ng-container *ngIf="selectedPortalPlatform()">
         <section>
           <app-update-platform-balances-form
             *ngIf="editing()"
