@@ -13,6 +13,7 @@ export class NewPlatformTransferFormComponent {
   readonly transferForm: FormGroup;
   readonly loading = signal<boolean>(false);
   readonly vouchers: WritableSignal<File[]>;
+  readonly portalPlatforms: WritableSignal<IPortalPlatform[]>;
   readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
 
   constructor(
@@ -21,6 +22,7 @@ export class NewPlatformTransferFormComponent {
     private readonly platformTransferService: PlatformTransferService
   ) {
     this.vouchers = this.platformTransferService.vouchers;
+    this.portalPlatforms = this.platformService.portalPlatforms;
     this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
 
     this.transferForm = this.fb.group({
@@ -48,7 +50,26 @@ export class NewPlatformTransferFormComponent {
     };
 
     this.platformTransferService.register(transfer).subscribe({
-      next: (_) => {
+      next: (platformTransfer) => {
+        const portalPlatforms = this.portalPlatforms();
+
+        const index = portalPlatforms.findIndex(
+          (portalPlatform) =>
+            portalPlatform.platformId === platformTransfer.platformId
+        );
+
+        if (index > -1) {
+          const selectedPortalPlatform = this.selectedPortalPlatform()!;
+
+          selectedPortalPlatform.transfersAmount++;
+          selectedPortalPlatform.transfersTotal += platformTransfer.value;
+
+          portalPlatforms[index] = selectedPortalPlatform;
+
+          this.selectedPortalPlatform.set(selectedPortalPlatform);
+          this.portalPlatforms.set(portalPlatforms);
+        }
+
         this.transferForm.reset();
         this.vouchers.set([]);
         this.loading.set(false);
