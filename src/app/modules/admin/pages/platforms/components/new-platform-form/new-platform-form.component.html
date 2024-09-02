@@ -1,8 +1,13 @@
-<form class="w-full" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form class="w-full form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="control">
     <label for="name">Nombre</label>
     <div class="flex items-center gap-7">
-      <input type="text" id="name" formControlName="name" />
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="w-full input"
+      />
       <app-button type="submit">Registrar</app-button>
     </div>
   </div>
