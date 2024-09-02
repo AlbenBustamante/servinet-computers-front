@@ -4,6 +4,7 @@
     <input
       type="number"
       id="initialBalance"
+      [readOnly]="loading()"
       class="input"
       formControlName="initialBalance"
     />
@@ -13,9 +14,10 @@
     <input
       type="number"
       id="finalBalance"
+      [readOnly]="loading()"
       class="input"
       formControlName="finalBalance"
     />
   </div>
-  <app-button type="submit">Guardar</app-button>
+  <app-button type="submit" [loading]="loading()">Guardar</app-button>
 </form>

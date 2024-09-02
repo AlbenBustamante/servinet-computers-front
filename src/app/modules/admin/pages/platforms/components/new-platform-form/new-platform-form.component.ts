@@ -8,7 +8,7 @@ import { PlatformService } from '@services/platform.service';
   styleUrls: ['./new-platform-form.component.css'],
 })
 export class NewPlatformFormComponent {
-  form: FormGroup;
+  readonly form: FormGroup;
   readonly loading = signal<boolean>(false);
 
   constructor(

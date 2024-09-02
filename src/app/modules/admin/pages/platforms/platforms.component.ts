@@ -1,9 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPlatformRes } from '@models/platform.model';
-import { RequestStatus } from '@models/request-status.model';
+import { Component, signal } from '@angular/core';
 import { PlatformService } from '@services/platform.service';
-import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
   selector: 'app-admin-platforms',
@@ -11,89 +7,17 @@ import { GeneralValidators } from '@utils/general-validators';
   styleUrls: ['./platforms.component.css'],
 })
 export class PlatformsComponent {
-  isShowingInfo: boolean = false;
-  headerTitle: string = 'Plataformas registradas';
-  platforms: IPlatformRes[] = [];
-  platformInfo: IPlatformRes = {
-    enabled: false,
-    createdDate: '',
-    modifiedDate: '',
-    id: -1,
-    name: '',
-  };
-  newPlatformModal!: HTMLDialogElement;
-  form: FormGroup;
-  platformsStatus: RequestStatus = 'loading';
-  formStatus: RequestStatus = 'init';
+  readonly loading = signal<boolean>(true);
 
-  constructor(
-    private readonly platformService: PlatformService,
-    private readonly formBuilder: FormBuilder,
-    private readonly validator: GeneralValidators
-  ) {
+  constructor(private readonly platformService: PlatformService) {}
+
+  ngOnInit() {
     this.platformService.getAll().subscribe({
-      next: (res) => {
-        this.platforms = res;
-        this.platformsStatus = 'success';
-      },
+      next: () => this.loading.set(false),
       error: (error) => {
-        this.platformsStatus = 'failed';
+        this.loading.set(false);
+        console.log(error);
       },
     });
-
-    this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-    });
-  }
-
-  setIsShowingInfo(platform: IPlatformRes | undefined): void {
-    this.isShowingInfo = !this.isShowingInfo;
-
-    this.headerTitle = this.isShowingInfo
-      ? `${platform?.name}`
-      : 'Plataformas registradas';
-
-    if (platform !== undefined) {
-      this.platformInfo = platform;
-    }
-  }
-
-  onSubmit() {
-    if (this.form.invalid) {
-      return this.form.markAllAsTouched();
-    }
-
-    this.modal.close();
-    this.formStatus = 'loading';
-
-    this.platformService.register(this.form.value).subscribe({
-      next: (res) => {
-        this.formStatus = 'success';
-        this.form.reset();
-        this.platforms.push(res);
-      },
-      error: (err) => {
-        this.formStatus = 'failed';
-        console.log(err);
-      },
-    });
-  }
-
-  openModal() {
-    this.modal.showModal();
-  }
-
-  private get modal() {
-    if (!this.newPlatformModal) {
-      this.newPlatformModal = document.querySelector(
-        '#new-platform-modal'
-      ) as HTMLDialogElement;
-    }
-
-    return this.newPlatformModal;
-  }
-
-  hasError(controlName: string, error: string) {
-    return this.validator.hasError(this.form, controlName, error);
   }
 }

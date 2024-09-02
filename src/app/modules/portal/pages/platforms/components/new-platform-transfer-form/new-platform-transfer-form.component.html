@@ -16,6 +16,7 @@
     <input
       type="file"
       id="voucher"
+      [disabled]="loading()"
       class="sr-only"
       (change)="onPickVouchers($event)"
       multiple
@@ -25,6 +26,7 @@
   <input
     type="number"
     id="transfer-value"
+    [readOnly]="loading()"
     placeholder="10000"
     class="input"
     formControlName="value"
@@ -33,6 +35,6 @@
     type="submit"
     class="cursor-pointer text-cyan-700 text-lg hover:text-cyan-600 hover:underline hover:underline-offset-2"
   >
-    Añadir transferencia
+    {{ loading() ? "Cargando..." : "Añadir transferencia" }}
   </button>
 </form>
