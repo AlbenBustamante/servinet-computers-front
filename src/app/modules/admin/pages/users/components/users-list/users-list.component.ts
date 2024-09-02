@@ -13,8 +13,4 @@ export class UsersListComponent {
   constructor(private readonly userService: UserService) {
     this.users = this.userService.users;
   }
-
-  ngOnInit() {
-    this.userService.getAll().subscribe();
-  }
 }

@@ -28,7 +28,9 @@ export class PlatformService {
         context: checkToken(),
       })
       .pipe(
-        tap((res) => this.platforms.update((prevValue) => [...prevValue, res]))
+        tap((platform) =>
+          this.platforms.update((prevValue) => [...prevValue, platform])
+        )
       );
   }
 

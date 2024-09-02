@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CashRegisterService } from '@services/cash-register.service';
 
@@ -9,6 +9,7 @@ import { CashRegisterService } from '@services/cash-register.service';
 })
 export class NewCashRegisterFormComponent {
   readonly form: FormGroup;
+  readonly loading = signal<boolean>(false);
 
   constructor(
     private readonly fb: FormBuilder,
@@ -25,9 +26,17 @@ export class NewCashRegisterFormComponent {
       return this.form.markAllAsTouched();
     }
 
+    this.loading.set(true);
+
     this.cashRegister.register(this.form.value).subscribe({
-      next: (res) => console.log(res),
-      error: (error) => console.log(error),
+      next: (res) => {
+        this.loading.set(false);
+        console.log(res);
+      },
+      error: (error) => {
+        this.loading.set(false);
+        console.log(error);
+      },
     });
   }
 }

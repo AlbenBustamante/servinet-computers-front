@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -9,6 +9,7 @@ export class ButtonComponent {
   @Input({ required: true }) type!: 'submit' | 'button';
   @Input() color: 'primary' | 'neutral' = 'primary';
   @Input() disabled: boolean = false;
+  @Input() loading: boolean = false;
 
   private mapColor = {
     primary: {

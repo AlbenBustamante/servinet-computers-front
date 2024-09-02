@@ -42,6 +42,10 @@ export class NewPlatformTransferFormComponent {
   }
 
   onTransferSubmit() {
+    if (this.transferForm.invalid) {
+      return this.transferForm.markAllAsTouched();
+    }
+
     this.loading.set(true);
 
     const transfer: IPlatformTransferReq = {

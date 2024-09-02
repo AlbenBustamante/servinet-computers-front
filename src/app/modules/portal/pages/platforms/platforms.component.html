@@ -5,7 +5,8 @@
 ></app-header-title>
 <section class="w-full grid grid-cols-3 gap-x-5">
   <article class="card col-span-1">
-    <app-platform-balance-list></app-platform-balance-list>
+    <app-spinner [loading]="loading"></app-spinner>
+    <app-platform-balance-list *ngIf="!loading()"></app-platform-balance-list>
   </article>
   <article class="card col-span-2 flex items-center w-full">
     <div class="w-full">

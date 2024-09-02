@@ -9,6 +9,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderTitleComponent } from './components/header-title/header-title.component';
 import { ButtonComponent } from './components/button/button.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ButtonComponent } from './components/button/button.component';
     HeaderComponent,
     HeaderTitleComponent,
     ButtonComponent,
+    SpinnerComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -31,6 +33,7 @@ import { ButtonComponent } from './components/button/button.component';
     HeaderComponent,
     HeaderTitleComponent,
     ButtonComponent,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {}
