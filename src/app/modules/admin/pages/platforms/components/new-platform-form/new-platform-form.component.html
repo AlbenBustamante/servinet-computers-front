@@ -1,0 +1,10 @@
+<form class="w-full" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="control">
+    <label for="name">Nombre</label>
+    <div class="flex items-center gap-7">
+      <input type="text" id="name" formControlName="name" />
+      <app-button type="submit">Registrar</app-button>
+    </div>
+  </div>
+</form>
+<app-loading [loading]="loading()"></app-loading>

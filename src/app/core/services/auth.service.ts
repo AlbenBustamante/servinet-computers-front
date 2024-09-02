@@ -1,13 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { IAuthRequest, IAuthResponse } from '@models/auth.model';
-import { IPageResponse } from '@models/response.model';
 import { IUserReq, IUserRes } from '@models/user.model';
-import { AuthToken } from '@models/enums';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -15,9 +12,8 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
   private readonly authUrl: string = `${environment.apiUrl}/auth`;
-  private readonly campusUrl: string = `${environment.apiUrl}/campuses`;
   private readonly userUrl: string = `${environment.apiUrl}/users`;
-  user$ = new BehaviorSubject<IUserRes | null>(null);
+  readonly loggedIn = signal<IUserRes | undefined>(undefined);
 
   constructor(
     private readonly http: HttpClient,
@@ -25,10 +21,7 @@ export class AuthService {
   ) {}
 
   register(req: IUserReq) {
-    return this.http.post<IPageResponse<IUserRes>>(
-      `${this.authUrl}/register`,
-      req
-    );
+    return this.http.post<IUserRes>(`${this.authUrl}/register`, req);
   }
 
   login(req: IAuthRequest) {
@@ -45,17 +38,11 @@ export class AuthService {
       .pipe(tap(() => this.tokenService.remove()));
   }
 
-  getUser() {
-    const { type, id } = this.tokenService.getInfo();
-
-    if (type === AuthToken.USER) {
-      return this.http
-        .get<IPageResponse<IUserRes>>(`${this.userUrl}/${id}`, {
-          context: checkToken(),
-        })
-        .pipe(tap((res) => this.user$.next(res.data.results[0])));
-    }
-
-    return null;
+  getLoggedIn() {
+    return this.http
+      .get<IUserRes>(`${this.userUrl}/${this.tokenService.getInfo().id}`, {
+        context: checkToken(),
+      })
+      .pipe(tap((res) => this.loggedIn.set(res)));
   }
 }

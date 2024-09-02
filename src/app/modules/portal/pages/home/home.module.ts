@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '@shared/shared.module';
-import { NewTransferFormComponent } from './components/new-transfer-form/new-transfer-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TransfersComponent } from './components/transfers/transfers.component';
+import { NewTransactionFormComponent } from './components/new-transaction-form/new-transaction-form.component';
+import { NewCashRegisterTransferFormComponent } from './components/new-cash-register-transfer-form/new-cash-register-transfer-form.component';
+import { NewExpenseFormComponent } from './components/new-expense-form/new-expense-form.component';
 
 @NgModule({
-  declarations: [HomeComponent, NewTransferFormComponent, TransfersComponent],
+  declarations: [HomeComponent, NewTransactionFormComponent, NewCashRegisterTransferFormComponent, NewExpenseFormComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule, ReactiveFormsModule],
 })
-export class HomeModule {}
+export default class HomeModule {}

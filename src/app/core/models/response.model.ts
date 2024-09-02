@@ -1,8 +1,8 @@
 export interface IResponse {
   id: number;
-  available: boolean;
-  createdAt: string;
-  updatedAt: string;
+  enabled: boolean;
+  createdDate: string;
+  modifiedDate: string;
 }
 
 export interface IPageResponse<T extends IResponse> {

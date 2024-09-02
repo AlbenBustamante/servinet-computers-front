@@ -59,13 +59,10 @@ li a:hover {
     height: var(--little-nav-h);
     text-align: center;
     margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   header h1 {
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
   ul {
@@ -74,6 +71,7 @@ li a:hover {
     gap: 1rem;
   }
 
+  header,
   li a {
     display: flex;
     align-items: center;
@@ -82,6 +80,7 @@ li a:hover {
     border-radius: 2rem;
   }
 
+  header span,
   li a span:first-of-type {
     font-size: 3rem;
   }

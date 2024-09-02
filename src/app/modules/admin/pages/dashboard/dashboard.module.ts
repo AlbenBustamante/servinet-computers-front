@@ -11,4 +11,4 @@ import { SharedModule } from '@shared/shared.module';
   declarations: [DashboardComponent, CampusesListComponent, StatsComponent],
   imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })
-export class DashboardModule {}
+export default class DashboardModule {}

@@ -16,4 +16,4 @@ import { PortalComponent } from './portal.component';
     ReactiveFormsModule,
   ],
 })
-export class PortalModule {}
+export default class PortalModule {}

@@ -1,21 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { adminGuard } from '@guards/admin.guard';
+import { portalGuard } from '@guards/portal.guard';
+import { loginGuard } from '@guards/login.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'portal',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
+    path: 'login',
+    canActivate: [loginGuard],
+    loadChildren: () => import('./modules/login/login.module'),
+  },
+  {
     path: 'admin',
-    loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [adminGuard],
+    loadChildren: () => import('./modules/admin/admin.module'),
   },
   {
     path: 'portal',
-    loadChildren: () =>
-      import('./modules/portal/portal.module').then((m) => m.PortalModule),
+    canActivate: [portalGuard],
+    loadChildren: () => import('./modules/portal/portal.module'),
   },
 ];
 

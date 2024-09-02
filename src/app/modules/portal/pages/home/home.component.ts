@@ -6,12 +6,4 @@ import { IRoute } from '@models/route.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  routes: IRoute[] = [
-    {
-      route: '/',
-      icon: 'home',
-      title: 'Inicio',
-    },
-  ];
-}
+export class HomeComponent {}

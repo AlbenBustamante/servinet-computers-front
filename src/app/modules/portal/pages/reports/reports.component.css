@@ -6,7 +6,6 @@ main {
 
 article {
   background-color: var(--bg-200);
-  box-shadow: inset 0 0 0.5rem var(--accent-100);
   padding: 3rem 2rem;
   gap: 3rem;
   border-radius: 1rem;
@@ -30,5 +29,5 @@ main * {
 #final-stats {
   padding: 2rem;
   border-radius: 2rem;
-  background-color: var(--bg-300);
+  background-color: var(--bg-200);
 }

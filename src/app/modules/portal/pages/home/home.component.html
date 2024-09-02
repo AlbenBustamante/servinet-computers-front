@@ -1,17 +1,16 @@
-<app-little-nav [routes]="routes"></app-little-nav>
-<main>
-  <section role="region" id="new-transfer" class="border">
-    <header>
-      <h2 class="title">Registrar Transferencia</h2>
-    </header>
-    <app-new-transfer-form></app-new-transfer-form>
+<article class="mt-5 grid grid-cols-2 gap-5">
+  <section class="px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg">
+    <h3 class="text-2xl text-gray-700 font-medium mb-3">Nueva transacción</h3>
+    <app-new-transaction-form />
   </section>
-  <section role="region" id="transfers" class="border">
-    <header>
-      <h2 class="title">Transferencias</h2>
-    </header>
-    <div class="scroll">
-      <app-transfers></app-transfers>
-    </div>
+  <section class="px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg">
+    <h3 class="text-2xl text-gray-700 font-medium mb-3">Nuevo gasto</h3>
+    <app-new-expense-form />
   </section>
-</main>
+  <section class="px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg">
+    <h3 class="text-2xl text-gray-700 font-medium mb-3">
+      Transferencia entre cajas registradoras
+    </h3>
+    <app-new-cash-register-transfer-form />
+  </section>
+</article>

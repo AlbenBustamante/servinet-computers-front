@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -6,21 +6,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent {
-  @Input() modalId!: string;
-  @Input() modalTitle!: string;
-  myModal!: HTMLDialogElement;
+  @Input({ required: true }) modalTitle!: string | undefined;
+  @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
 
-  closeModal() {
-    this.modal.close();
+  openModal() {
+    this.modal.nativeElement.showModal();
   }
 
-  private get modal() {
-    if (!this.myModal) {
-      this.myModal = document.querySelector(
-        `#${this.modalId}`
-      ) as HTMLDialogElement;
-    }
-
-    return this.myModal;
+  closeModal() {
+    this.modal.nativeElement.close();
   }
 }

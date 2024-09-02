@@ -1,14 +1,16 @@
-export enum Role {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-}
-
 export enum SortDirection {
   ASC = 'ASC',
   DESC = 'DESC',
 }
 
-export enum AuthToken {
-  USER = 'u',
-  CAMPUS = 'c',
+export enum Role {
+  CASHIER = 'CASHIER',
+  SUPERVISOR = 'SUPERVISOR',
+  ADMIN = 'ADMIN',
+}
+
+export enum CashRegisterStatus {
+  AVAILABLE = 'AVAILABLE',
+  OCCUPIED = 'OCCUPIED',
+  DISABLED = 'DISABLED',
 }

@@ -1,0 +1,31 @@
+<app-header-title
+  hTitle="Usuarios"
+  hDescription="Aquí podrás administrar todo tipo de usuarios vinculados con la empresa mediante roles"
+></app-header-title>
+<section class="mt-10">
+  <div class="px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg">
+    <h3 class="text-2xl text-gray-700 font-medium mb-3">
+      Listado de usuarios registrados
+    </h3>
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center justify-between">
+        <app-filter-by-role></app-filter-by-role>
+        <app-button type="button" (click)="toggleShowSideBar()"
+          >Añadir usuario</app-button
+        >
+      </div>
+      <div class="divider"></div>
+      <app-filter-by-enabled></app-filter-by-enabled>
+      <app-users-list></app-users-list>
+    </div>
+  </div>
+</section>
+<aside
+  class="fixed w-72 top-16 right-0 bottom-0 bg-white drop-shadow-xl py-5 ease-in duration-200"
+  [ngClass]="{ 'translate-x-full': !showSideBar() }"
+>
+  <h4 class="text-xl text-gray-800 font-medium px-5 mb-3">
+    Registro de usuario
+  </h4>
+  <app-new-user-form (onCancel)="cancelRegister()"></app-new-user-form>
+</aside>

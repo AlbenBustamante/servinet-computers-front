@@ -1,29 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformRes } from '@models/platform.model';
 import { RequestStatus } from '@models/request-status.model';
-import { IRoute } from '@models/route.model';
-import { AuthService } from '@services/auth.service';
 import { PlatformService } from '@services/platform.service';
 import { GeneralValidators } from '@utils/general-validators';
 
 @Component({
-  selector: 'app-platforms',
+  selector: 'app-admin-platforms',
   templateUrl: './platforms.component.html',
   styleUrls: ['./platforms.component.css'],
 })
-export class PlatformsComponent implements OnInit {
-  routes: IRoute[] = [
-    { icon: 'home', title: 'Admin', route: '/admin' },
-    { title: 'Plataformas' },
-  ];
+export class PlatformsComponent {
   isShowingInfo: boolean = false;
   headerTitle: string = 'Plataformas registradas';
   platforms: IPlatformRes[] = [];
   platformInfo: IPlatformRes = {
-    available: false,
-    createdAt: '',
-    updatedAt: '',
+    enabled: false,
+    createdDate: '',
+    modifiedDate: '',
     id: -1,
     name: '',
   };
@@ -34,13 +28,12 @@ export class PlatformsComponent implements OnInit {
 
   constructor(
     private readonly platformService: PlatformService,
-    private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly validator: GeneralValidators
   ) {
     this.platformService.getAll().subscribe({
       next: (res) => {
-        this.platforms = res.data.results;
+        this.platforms = res;
         this.platformsStatus = 'success';
       },
       error: (error) => {
@@ -51,10 +44,6 @@ export class PlatformsComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
     });
-  }
-
-  ngOnInit(): void {
-    this.authService.getUser()?.subscribe();
   }
 
   setIsShowingInfo(platform: IPlatformRes | undefined): void {
@@ -81,7 +70,7 @@ export class PlatformsComponent implements OnInit {
       next: (res) => {
         this.formStatus = 'success';
         this.form.reset();
-        this.platforms.push(res.data.results[0]);
+        this.platforms.push(res);
       },
       error: (err) => {
         this.formStatus = 'failed';
