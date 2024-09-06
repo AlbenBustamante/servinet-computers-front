@@ -1,5 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RequestStatus } from '@models/request-status.model';
+import {
+  faCashRegister,
+  faChartSimple,
+  faHome,
+  faList,
+} from '@fortawesome/free-solid-svg-icons';
 import { IRoute } from '@models/route.model';
 
 @Component({
@@ -8,16 +13,19 @@ import { IRoute } from '@models/route.model';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  routes = signal<IRoute[]>([]);
-  logoutStatus: RequestStatus = 'init';
+  private readonly faHome = faHome;
+  private readonly faMyCash = faCashRegister;
+  private readonly faList = faList;
+  private readonly faReports = faChartSimple;
+  readonly routes = signal<IRoute[]>([]);
 
   constructor() {
     this.routes.set([
-      { title: 'Inicio', icon: 'home', route: './home' },
-      { title: 'Mi caja', route: './my-cash' },
+      { title: 'Inicio', icon: this.faHome, route: './home' },
+      { title: 'Mi caja', icon: this.faMyCash, route: './my-cash' },
       // { title: 'Transferencias', route: './transfers' },
-      { title: 'Plataformas', icon: 'lists', route: './platforms' },
-      { title: 'Reportes', icon: 'lab_profile', route: './reports' },
+      { title: 'Plataformas', icon: this.faList, route: './platforms' },
+      { title: 'Reportes', icon: this.faReports, route: './reports' },
     ]);
   }
 }
