@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, WritableSignal } from '@angular/core';
+import { DashboardService } from '@services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  constructor() {}
+  readonly totalBalance: WritableSignal<number | undefined>;
+
+  constructor(private readonly dashboardService: DashboardService) {
+    this.totalBalance = this.dashboardService.totalBalance;
+  }
 }
