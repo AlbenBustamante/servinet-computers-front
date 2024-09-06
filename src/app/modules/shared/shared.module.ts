@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HeaderTitleComponent } from './components/header-title/header-title.component';
 import { ButtonComponent } from './components/button/button.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ButtonComponent,
     SpinnerComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
     LoginFooterComponent,
     LittleNavComponent,

@@ -8,10 +8,7 @@
         routerLinkActive="bg-violet-300 text-gray-800"
         class="flex items-center gap-2 px-4 py-2 rounded-xl font-medium hover:bg-violet-300"
       >
-        <img
-          [src]="'assets/icons/' + route.icon + '.svg'"
-          [alt]="route.title"
-        />
+        <fa-icon [icon]="route.icon"></fa-icon>
         <span class="text-lg">{{ route.title }}</span>
       </a>
     </li>
@@ -22,10 +19,9 @@
         (click)="logout()"
         class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-violet-300 cursor-pointer"
       >
-        <img src="assets/icons/logout.svg" alt="logout" />
+        <fa-icon [icon]="faLogout"></fa-icon>
         <span class="text-lg font-medium">Cerrar sesión</span>
       </a>
     </li>
   </ul>
 </nav>
-<app-loading [loading]="loading"></app-loading>

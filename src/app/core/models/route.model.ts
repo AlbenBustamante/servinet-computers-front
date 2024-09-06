@@ -1,5 +1,7 @@
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+
 export interface IRoute {
-  icon?: string;
+  icon: IconDefinition;
   title: string;
   route?: string;
 }
