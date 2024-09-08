@@ -16,7 +16,7 @@
       </div>
       <div class="divider"></div>
       <app-filter-by-enabled></app-filter-by-enabled>
-      <app-spinner [loading]="loading"></app-spinner>
+      <app-spinner *ngIf="loading()"></app-spinner>
       <app-users-list *ngIf="!loading()"></app-users-list>
     </div>
   </div>

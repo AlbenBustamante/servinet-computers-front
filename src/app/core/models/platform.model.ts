@@ -25,8 +25,9 @@ export interface IPlatformTransferReq {
 
 export interface IPlatformTransferRes extends IResponse {
   platformId: number;
+  platformName: string;
   value: number;
-  voucherUrls: string[];
+  voucherUrls?: string[];
 }
 
 export interface IPortalPlatform {

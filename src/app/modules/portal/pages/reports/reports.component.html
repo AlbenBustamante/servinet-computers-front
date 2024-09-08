@@ -1,13 +1,59 @@
-<main>
-  <article>
-    <section role="region" id="calendars">
-      <app-calendars-form></app-calendars-form>
-    </section>
-    <section role="region" id="transfers">
-      <app-transfers-table></app-transfers-table>
-    </section>
-  </article>
-  <section role="region" id="final-stats">
-    <app-final-stats></app-final-stats>
-  </section>
-</main>
+<app-header-title
+  hTitle="Reportes"
+  hDescription="Checa todos los movimientos que realizaste durante el día"
+></app-header-title>
+<section>
+  <form class="w-full px-12">
+    <label for="reportType" class="sr-only">Tipo de reporte</label>
+    <select
+      id="reportType"
+      class="input w-full"
+      (change)="onChangeReport($event)"
+    >
+      <option disabled selected>Tipo de reporte</option>
+      <option value="platformTransfers">Transferencias a plataformas</option>
+    </select>
+  </form>
+  <div class="divider my-5"></div>
+  <app-spinner *ngIf="loading()"></app-spinner>
+  <div class="table card" *ngIf="!loading()">
+    <table *ngIf="selectedReport(); else selectReport">
+      <thead>
+        <tr *ngIf="selectedReport() === 'platformTransfers'">
+          <th class="w-20">#</th>
+          <th class="text-left">Plataforma</th>
+          <th class="text-right">Valor</th>
+          <th>Comprobantes</th>
+          <th class="text-left w-24">Hora</th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="selectedReport() === 'platformTransfers'">
+        <tr *ngFor="let platformTransfer of reports()?.platformTransfers">
+          <td class="text-center">{{ platformTransfer.id }}</td>
+          <td>{{ platformTransfer.platformName }}</td>
+          <td class="text-right">
+            {{ platformTransfer.value | currency : "symbol" : "$" : "0.00" }}
+          </td>
+          <td class="text-center">
+            {{ platformTransfer.voucherUrls?.length ?? "Sin archivos" }}
+          </td>
+          <td class="text-left">
+            {{ platformTransfer.createdDate | date : "H:mm:ss" }}
+          </td>
+          <td class="actions">
+            <div>
+              <fa-icon [icon]="faEdit" class="edit"></fa-icon>
+              <fa-icon [icon]="faRemove" class="remove"></fa-icon>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #selectReport>
+      <h3 class="text-center text-xl text-gray-700 font-medium">
+        Selecciona el tipo de reporte
+      </h3>
+    </ng-template>
+  </div>
+</section>

@@ -1,6 +1,0 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <input type="date" formControlName="startDate" />
-  <input type="date" formControlName="endDate" />
-  <button type="submit">Consultar</button>
-</form>
-<app-loading [loading]="transfersStatus === 'loading'"></app-loading>

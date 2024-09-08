@@ -1,4 +1,5 @@
 import { Role } from './enums';
+import { IPlatformTransferRes } from './platform.model';
 import { IResponse } from './response.model';
 
 export interface IUserReq {
@@ -14,4 +15,8 @@ export interface IUserRes extends IResponse {
   lastName: string;
   code: string;
   role: Role;
+}
+
+export interface IReportsRes {
+  platformTransfers: IPlatformTransferRes[];
 }
