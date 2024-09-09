@@ -37,13 +37,15 @@ export class MyCashComponent {
         this.cashRegisterStatus.set(alreadyExists ? 'open' : 'available');
 
         if (!alreadyExists) {
-          this.cashRegisterService.getAll(true).subscribe({
+          this.cashRegisterService.getAll().subscribe({
             next: (res) => this.cashRegisters.set(res),
             error: (error) => console.log(error),
           });
         }
       },
-      error: (error) => console.log(error),
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 
@@ -81,8 +83,12 @@ export class MyCashComponent {
       return 'Por favor, selecciona la caja que vas a utilizar en el día';
     }
 
-    if (this.cashRegisterStatus() === 'opening') {
+    if (this.cashRegisterStatus() === 'opening' && !this.isCountingBase()) {
       return 'Completa los datos para abrir la caja';
+    }
+
+    if (this.cashRegisterStatus() === 'opening' && this.isCountingBase()) {
+      return 'Cuenta o verifica la base inicial para finalizar la apertura de caja';
     }
 
     return '¡Bienvenido/a!';

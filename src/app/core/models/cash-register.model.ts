@@ -27,6 +27,7 @@ export interface ICashRegisterBaseReq {
   cashRegisterDetailId: number;
   initialBase: IBase;
   finalBase: IBase;
+  observation?: string;
 }
 
 export interface ICashRegisterBaseRes extends IResponse, ICashRegisterBaseReq {}

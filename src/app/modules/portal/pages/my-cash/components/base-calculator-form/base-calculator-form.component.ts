@@ -1,7 +1,8 @@
-import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { BaseService } from '@services/base.service';
+import { CashRegisterService } from '@services/cash-register.service';
 
 @Component({
   selector: 'app-base-calculator-form',
@@ -9,42 +10,114 @@ import { BaseService } from '@services/base.service';
   styleUrls: ['./base-calculator-form.component.css'],
 })
 export class BaseCalculatorFormComponent {
-  private readonly baseService = inject(BaseService);
-  readonly cashBase = signal(this.baseService.cashBase);
+  @Input({ required: true }) cashRegisterId!: number;
+  readonly cashBase;
+  readonly loading = signal<boolean>(false);
   readonly baseForm: FormGroup;
+  readonly billetAmount = signal<string>('0');
+  readonly billetTotal = signal<string>('0');
+  readonly coinAmount = signal<string>('0');
+  readonly coinTotal = signal<string>('0');
   readonly totalAmount = signal<string>('0');
   readonly total = signal<string>('0');
   @Output() calculateBase = new EventEmitter<IBase>();
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly baseService: BaseService,
+    private readonly cashRegisterService: CashRegisterService
+  ) {
+    this.cashBase = signal(this.baseService.cashBase);
+
     this.baseForm = this.fb.group({
-      hundredThousand: [''],
-      fiftyThousand: [''],
-      twentyThousand: [''],
-      tenThousand: [''],
-      fiveThousand: [''],
-      twoThousand: [''],
-      thousand: [''],
-      fiveHundred: [''],
-      twoHundred: [''],
-      hundred: [''],
-      fifty: [''],
+      hundredThousand: ['', [Validators.required, Validators.min(0)]],
+      fiftyThousand: ['', [Validators.required, Validators.min(0)]],
+      twentyThousand: ['', [Validators.required, Validators.min(0)]],
+      tenThousand: ['', [Validators.required, Validators.min(0)]],
+      fiveThousand: ['', [Validators.required, Validators.min(0)]],
+      twoThousand: ['', [Validators.required, Validators.min(0)]],
+      thousand: ['', [Validators.required, Validators.min(0)]],
+      fiveHundred: ['', [Validators.required, Validators.min(0)]],
+      twoHundred: ['', [Validators.required, Validators.min(0)]],
+      hundred: ['', [Validators.required, Validators.min(0)]],
+      fifty: ['', [Validators.required, Validators.min(0)]],
     });
   }
 
-  calculate() {
-    let totalAmount = 0;
-    let total = 0;
+  ngOnInit() {
+    this.loading.set(true);
 
-    for (let i = 0; i < this.cashBase().length; i++) {
+    this.cashRegisterService.getLastBase(this.cashRegisterId).subscribe({
+      next: (cashRegisterBase) => {
+        console.log(cashRegisterBase);
+
+        if (cashRegisterBase !== null) {
+          this.baseForm.setValue({
+            hundredThousand: cashRegisterBase.finalBase.hundredThousand,
+            fiftyThousand: cashRegisterBase.finalBase.fiftyThousand,
+            twentyThousand: cashRegisterBase.finalBase.twentyThousand,
+            tenThousand: cashRegisterBase.finalBase.tenThousand,
+            fiveThousand: cashRegisterBase.finalBase.fiveThousand,
+            twoThousand: cashRegisterBase.finalBase.twoThousand,
+            thousand: cashRegisterBase.finalBase.thousand,
+            fiveHundred: cashRegisterBase.finalBase.fiveHundred,
+            twoHundred: cashRegisterBase.finalBase.twoHundred,
+            hundred: cashRegisterBase.finalBase.hundred,
+            fifty: cashRegisterBase.finalBase.fifty,
+          });
+        }
+
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  private calculateBillet() {
+    let billetAmount = 0;
+    let billetTotal = 0;
+
+    for (let i = 0; i < 6; i++) {
       const amount = Number(this.baseForm.get(this.cashBase()[i].title)?.value);
       const result = amount * this.cashBase()[i].value;
 
       this.cashBase()[i].total = `${result}`;
 
-      totalAmount += amount;
-      total += result;
+      billetAmount += amount;
+      billetTotal += result;
     }
+
+    this.billetAmount.set(`${billetAmount}`);
+    this.billetTotal.set(`${billetTotal}`);
+  }
+
+  private calculateCoin() {
+    let coinAmount = 0;
+    let coinTotal = 0;
+
+    for (let i = 6; i < this.cashBase().length; i++) {
+      const amount = Number(this.baseForm.get(this.cashBase()[i].title)?.value);
+      const result = amount * this.cashBase()[i].value;
+
+      this.cashBase()[i].total = `${result}`;
+
+      coinAmount += amount;
+      coinTotal += result;
+    }
+
+    this.coinAmount.set(`${coinAmount}`);
+    this.coinTotal.set(`${coinTotal}`);
+  }
+
+  calculate() {
+    this.calculateBillet();
+    this.calculateCoin();
+
+    const totalAmount = Number(this.billetAmount()) + Number(this.coinAmount());
+    const total = Number(this.billetTotal()) + Number(this.coinTotal());
 
     this.totalAmount.set(`${totalAmount}`);
     this.total.set(`${total}`);
@@ -62,6 +135,8 @@ export class BaseCalculatorFormComponent {
       hundred: Number(this.baseForm.value.hundred),
       fifty: Number(this.baseForm.value.fifty),
     };
+
+    console.log({ amount: this.totalAmount(), total: this.total() });
 
     this.calculateBase.emit(base);
   }
