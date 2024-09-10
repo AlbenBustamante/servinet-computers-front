@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
+import { IBase } from '@models/base.model';
 import {
-  ICashRegisterBaseRes,
   ICashRegisterReq,
   ICashRegisterRes,
 } from '@models/cash-register.model';
@@ -29,10 +29,9 @@ export class CashRegisterService {
   }
 
   getLastBase(cashRegisterId: number) {
-    return this.http.get<ICashRegisterBaseRes>(
-      `${this.url}/${cashRegisterId}/lastBase`,
-      { context: checkToken() }
-    );
+    return this.http.get<IBase>(`${this.url}/${cashRegisterId}/lastBase`, {
+      context: checkToken(),
+    });
   }
 
   update(id: number, req: ICashRegisterReq) {

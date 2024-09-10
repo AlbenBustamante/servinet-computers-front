@@ -26,7 +26,7 @@
     <form
       class="form"
       [formGroup]="initialWorkingForm"
-      (ngSubmit)="setInitialWorking()"
+      (ngSubmit)="setWorkingHours()"
     >
       <div class="control">
         <label for="initialWorking">Hora de entrada</label>
@@ -41,9 +41,13 @@
     </form>
   </section>
   <section class="flex items-center justify-center" *ngIf="isCountingBase()">
+    <app-spinner *ngIf="registerLoading()"></app-spinner>
     <app-base-calculator-form
+      *ngIf="!registerLoading()"
       [cashRegisterId]="selectedCashRegister()!.id"
-      (calculateBase)="finish($event)"
+      (calculateBase)="setBase($event)"
+      (setObservation)="setObservation($event)"
+      (register)="register()"
     />
   </section>
 </ng-container>

@@ -95,9 +95,31 @@
   </div>
   <input type="submit" value="Calcular" class="sr-only" />
   <div class="w-full flex items-center gap-5">
-    <app-button type="button" class="w-2/6" color="neutral"
+    <app-button
+      type="button"
+      class="w-2/6"
+      color="neutral"
+      (click)="handleShowSideBar()"
       >Añadir observación</app-button
     >
-    <app-button type="button" class="w-4/6">Registrar base</app-button>
+    <app-button type="button" class="w-4/6" (click)="emitRegister()"
+      >Registrar base</app-button
+    >
   </div>
 </form>
+<aside
+  class="fixed w-72 top-16 right-0 bottom-0 bg-white drop-shadow-xl py-5 ease-in duration-200"
+  [ngClass]="{ 'translate-x-full': !showSideBar() }"
+>
+  <h4 class="text-xl text-gray-800 font-medium px-5 mb-3">Observación</h4>
+  <form class="form px-5">
+    <label for="observation" class="sr-only">Observación</label>
+    <textarea
+      [formControl]="observationControl"
+      id="observation"
+      rows="4"
+      class="input mb-3"
+    ></textarea>
+    <app-button type="button" (click)="handleObservation()">Guardar</app-button>
+  </form>
+</aside>

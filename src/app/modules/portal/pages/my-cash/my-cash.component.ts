@@ -1,7 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
-import { ICashRegisterRes } from '@models/cash-register.model';
+import {
+  ICashRegisterDetailReq,
+  ICashRegisterRes,
+} from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { CashRegisterService } from '@services/cash-register.service';
 
@@ -11,6 +14,10 @@ import { CashRegisterService } from '@services/cash-register.service';
   styleUrls: ['./my-cash.component.css'],
 })
 export class MyCashComponent {
+  private workingHours!: string;
+  private base!: IBase;
+  private observation!: string;
+  readonly registerLoading = signal<boolean>(false);
   readonly cashRegisterStatus = signal<'open' | 'opening' | 'available'>(
     'available'
   );
@@ -54,16 +61,48 @@ export class MyCashComponent {
     this.cashRegisterStatus.set('opening');
   }
 
-  setInitialWorking() {
+  setWorkingHours() {
     if (this.initialWorkingForm.invalid) {
       return this.initialWorkingForm.markAllAsTouched();
     }
 
+    const hours = this.initialWorkingForm.value;
+
+    this.workingHours = `${hours.initialWorking};;;`;
+
     this.isCountingBase.set(true);
   }
 
-  finish(base: IBase) {
-    console.log(base);
+  setBase(base: IBase) {
+    this.base = base;
+  }
+
+  setObservation(observation: string) {
+    this.observation = observation;
+  }
+
+  register() {
+    this.registerLoading.set(true);
+
+    const detailReq: ICashRegisterDetailReq = {
+      cashRegisterId: this.selectedCashRegister()!.id,
+      workingHours: this.workingHours,
+      initialBase: this.base,
+      baseObservation: this.observation,
+    };
+
+    this.cashRegisterDetailService.register(detailReq).subscribe({
+      next: (cashRegisterDetail) => {
+        this.isCountingBase.set(false);
+        this.cashRegisterStatus.set('open');
+        this.registerLoading.set(false);
+        console.log(cashRegisterDetail);
+      },
+      error: (err) => {
+        console.log(err);
+        this.registerLoading.set(false);
+      },
+    });
   }
 
   get headerTitle() {

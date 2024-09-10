@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { CashRegisterService } from '@services/cash-register.service';
@@ -20,7 +25,11 @@ export class BaseCalculatorFormComponent {
   readonly coinTotal = signal<string>('0');
   readonly totalAmount = signal<string>('0');
   readonly total = signal<string>('0');
+  readonly showSideBar = signal<boolean>(false);
+  readonly observationControl: FormControl;
   @Output() calculateBase = new EventEmitter<IBase>();
+  @Output() setObservation = new EventEmitter<string>();
+  @Output() register = new EventEmitter();
 
   constructor(
     private readonly fb: FormBuilder,
@@ -42,28 +51,30 @@ export class BaseCalculatorFormComponent {
       hundred: ['', [Validators.required, Validators.min(0)]],
       fifty: ['', [Validators.required, Validators.min(0)]],
     });
+
+    this.observationControl = new FormControl('');
   }
 
   ngOnInit() {
     this.loading.set(true);
 
     this.cashRegisterService.getLastBase(this.cashRegisterId).subscribe({
-      next: (cashRegisterBase) => {
-        console.log(cashRegisterBase);
+      next: (base) => {
+        console.log(base);
 
-        if (cashRegisterBase !== null) {
+        if (base !== null) {
           this.baseForm.setValue({
-            hundredThousand: cashRegisterBase.finalBase.hundredThousand,
-            fiftyThousand: cashRegisterBase.finalBase.fiftyThousand,
-            twentyThousand: cashRegisterBase.finalBase.twentyThousand,
-            tenThousand: cashRegisterBase.finalBase.tenThousand,
-            fiveThousand: cashRegisterBase.finalBase.fiveThousand,
-            twoThousand: cashRegisterBase.finalBase.twoThousand,
-            thousand: cashRegisterBase.finalBase.thousand,
-            fiveHundred: cashRegisterBase.finalBase.fiveHundred,
-            twoHundred: cashRegisterBase.finalBase.twoHundred,
-            hundred: cashRegisterBase.finalBase.hundred,
-            fifty: cashRegisterBase.finalBase.fifty,
+            hundredThousand: base.hundredThousand,
+            fiftyThousand: base.fiftyThousand,
+            twentyThousand: base.twentyThousand,
+            tenThousand: base.tenThousand,
+            fiveThousand: base.fiveThousand,
+            twoThousand: base.twoThousand,
+            thousand: base.thousand,
+            fiveHundred: base.fiveHundred,
+            twoHundred: base.twoHundred,
+            hundred: base.hundred,
+            fifty: base.fifty,
           });
         }
 
@@ -74,6 +85,15 @@ export class BaseCalculatorFormComponent {
         this.loading.set(false);
       },
     });
+  }
+
+  handleShowSideBar() {
+    this.showSideBar.update((prevValue) => !prevValue);
+  }
+
+  handleObservation() {
+    this.showSideBar.set(false);
+    this.setObservation.emit(this.observationControl.value);
   }
 
   private calculateBillet() {
@@ -136,9 +156,11 @@ export class BaseCalculatorFormComponent {
       fifty: Number(this.baseForm.value.fifty),
     };
 
-    console.log({ amount: this.totalAmount(), total: this.total() });
-
     this.calculateBase.emit(base);
+  }
+
+  emitRegister() {
+    this.register.emit();
   }
 
   ngOnDestroy() {
