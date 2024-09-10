@@ -20,6 +20,7 @@ export interface ICashRegisterDetailReq {
 
 export interface ICashRegisterDetailRes extends IResponse {
   cashRegisterId: number;
+  cashRegisterNumeral: number;
   initialWorking: string;
   initialBreak: string;
   finalBreak: string;
@@ -27,4 +28,10 @@ export interface ICashRegisterDetailRes extends IResponse {
   initialBase: IBase;
   finalBase?: IBase;
   baseObservation: string;
+}
+
+export interface IAlreadyExistsCashRegisterDetailDto {
+  alreadyExists: boolean;
+  cashRegisterDetail: ICashRegisterDetailRes;
+  cashRegisters: ICashRegisterRes[];
 }

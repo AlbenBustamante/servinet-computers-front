@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
+  IAlreadyExistsCashRegisterDetailDto,
   ICashRegisterDetailReq,
   ICashRegisterDetailRes,
   ICashRegisterReq,
@@ -28,10 +29,13 @@ export class CashRegisterDetailService {
     });
   }
 
-  isAlreadyCreated() {
-    return this.http.get<boolean>(`${this.url}/already-exists`, {
-      context: checkToken(),
-    });
+  alreadyExists() {
+    return this.http.get<IAlreadyExistsCashRegisterDetailDto>(
+      `${this.url}/already-exists`,
+      {
+        context: checkToken(),
+      }
+    );
   }
 
   updateHours(req: ICashRegisterReq) {
