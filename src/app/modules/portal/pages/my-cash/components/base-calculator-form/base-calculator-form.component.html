@@ -1,4 +1,4 @@
-<app-spinner *ngIf="loading()"></app-spinner>
+<app-spinner *ngIf="loading()" />
 <form
   class="w-full px-5 flex flex-col gap-5"
   [formGroup]="baseForm"
@@ -112,14 +112,5 @@
   [ngClass]="{ 'translate-x-full': !showSideBar() }"
 >
   <h4 class="text-xl text-gray-800 font-medium px-5 mb-3">Observación</h4>
-  <form class="form px-5">
-    <label for="observation" class="sr-only">Observación</label>
-    <textarea
-      [formControl]="observationControl"
-      id="observation"
-      rows="4"
-      class="input mb-3"
-    ></textarea>
-    <app-button type="button" (click)="handleObservation()">Guardar</app-button>
-  </form>
+  <app-base-observation-form (setObservation)="emitObservation($event)" />
 </aside>

@@ -1,10 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { CashRegisterService } from '@services/cash-register.service';
@@ -26,7 +21,6 @@ export class BaseCalculatorFormComponent {
   readonly totalAmount = signal<string>('0');
   readonly total = signal<string>('0');
   readonly showSideBar = signal<boolean>(false);
-  readonly observationControl: FormControl;
   @Output() calculateBase = new EventEmitter<IBase>();
   @Output() setObservation = new EventEmitter<string>();
   @Output() register = new EventEmitter();
@@ -51,8 +45,6 @@ export class BaseCalculatorFormComponent {
       hundred: ['', [Validators.required, Validators.min(0)]],
       fifty: ['', [Validators.required, Validators.min(0)]],
     });
-
-    this.observationControl = new FormControl('');
   }
 
   ngOnInit() {
@@ -91,9 +83,9 @@ export class BaseCalculatorFormComponent {
     this.showSideBar.update((prevValue) => !prevValue);
   }
 
-  handleObservation() {
+  emitObservation(observation: string) {
     this.showSideBar.set(false);
-    this.setObservation.emit(this.observationControl.value);
+    this.setObservation.emit(observation);
   }
 
   private calculateBillet() {

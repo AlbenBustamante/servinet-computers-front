@@ -1,5 +1,4 @@
 import { Component, computed, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import {
   ICashRegisterDetailReq,
@@ -17,6 +16,7 @@ export class MyCashComponent {
   private workingHours!: string;
   private base!: IBase;
   private observation!: string;
+
   readonly loading = signal<boolean>(false);
   readonly registerLoading = signal<boolean>(false);
   readonly cashRegisterStatus = signal<
@@ -28,16 +28,10 @@ export class MyCashComponent {
     undefined
   );
   readonly cashRegisterDetail = signal<ICashRegisterDetailRes | null>(null);
-  readonly initialWorkingForm: FormGroup;
 
   constructor(
-    private readonly cashRegisterDetailService: CashRegisterDetailService,
-    private readonly fb: FormBuilder
-  ) {
-    this.initialWorkingForm = this.fb.group({
-      initialWorking: ['12:00', Validators.required],
-    });
-  }
+    private readonly cashRegisterDetailService: CashRegisterDetailService
+  ) {}
 
   ngOnInit() {
     this.loading.set(true);
@@ -66,14 +60,12 @@ export class MyCashComponent {
     this.cashRegisterStatus.set('opening');
   }
 
-  setWorkingHours() {
-    if (this.initialWorkingForm.invalid) {
-      return this.initialWorkingForm.markAllAsTouched();
+  setWorkingHours(initialWorking: string) {
+    if (initialWorking === '') {
+      return;
     }
 
-    const hours = this.initialWorkingForm.value;
-
-    this.workingHours = `${hours.initialWorking};;;`;
+    this.workingHours = `${initialWorking};;;`;
 
     this.countingBase.set(true);
   }

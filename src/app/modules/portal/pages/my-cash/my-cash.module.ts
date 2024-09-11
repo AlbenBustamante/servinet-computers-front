@@ -8,12 +8,16 @@ import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe
 import { CashRegisterCardComponent } from './components/cash-register-card/cash-register-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BaseCalculatorFormComponent } from './components/base-calculator-form/base-calculator-form.component';
+import { InitialWorkingFormComponent } from './components/initial-working-form/initial-working-form.component';
+import { BaseObservationFormComponent } from './components/base-observation-form/base-observation-form.component';
 
 @NgModule({
   declarations: [
     MyCashComponent,
     CashRegisterCardComponent,
     BaseCalculatorFormComponent,
+    InitialWorkingFormComponent,
+    BaseObservationFormComponent,
   ],
   imports: [
     CommonModule,
