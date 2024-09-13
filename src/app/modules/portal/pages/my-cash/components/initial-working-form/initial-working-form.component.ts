@@ -12,7 +12,7 @@ export class InitialWorkingFormComponent {
 
   constructor(private readonly fb: FormBuilder) {
     this.initialWorkingForm = this.fb.group({
-      initialWorking: ['12:00', Validators.required],
+      initialWorking: ['', Validators.required],
     });
   }
 
