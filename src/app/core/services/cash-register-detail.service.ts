@@ -4,10 +4,12 @@ import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
   IAlreadyExistsCashRegisterDetailDto,
+  ICashRegisterDetailReportsDto,
   ICashRegisterDetailReq,
   ICashRegisterDetailRes,
   ICashRegisterReq,
 } from '@models/cash-register.model';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,26 +17,37 @@ import {
 export class CashRegisterDetailService {
   private readonly url = `${environment.apiUrl}/cash-register-details`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly tokenService: TokenService
+  ) {}
 
   register(req: ICashRegisterDetailReq) {
+    req.userId = this.tokenService.getInfo().id;
+
     return this.http.post<ICashRegisterDetailRes>(this.url, req, {
       context: checkToken(),
     });
   }
 
-  get() {
-    return this.http.get<ICashRegisterDetailRes>(this.url, {
-      context: checkToken(),
-    });
+  getById(cashRegisterDetailId: number) {
+    return this.http.get<ICashRegisterDetailRes>(
+      `${this.url}/${cashRegisterDetailId}`,
+      { context: checkToken() }
+    );
+  }
+
+  getReports(cashRegisterDetailId: number) {
+    return this.http.get<ICashRegisterDetailReportsDto>(
+      `${this.url}/${cashRegisterDetailId}/reports`,
+      { context: checkToken() }
+    );
   }
 
   alreadyExists() {
     return this.http.get<IAlreadyExistsCashRegisterDetailDto>(
       `${this.url}/already-exists`,
-      {
-        context: checkToken(),
-      }
+      { context: checkToken() }
     );
   }
 

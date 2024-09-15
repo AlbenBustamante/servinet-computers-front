@@ -31,6 +31,8 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.clear();
+
     return this.http
       .post<Boolean>(`${this.authUrl}/sign-out`, null, {
         context: checkToken(),

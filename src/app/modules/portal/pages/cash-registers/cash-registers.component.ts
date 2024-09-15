@@ -18,7 +18,7 @@ export class CashRegistersComponent {
 
   private readonly cashRegisterStatus;
   private readonly cashRegisters;
-  private readonly myCash;
+  private readonly myCashRegisters;
 
   readonly loading = signal<boolean>(false);
 
@@ -30,7 +30,7 @@ export class CashRegistersComponent {
   ) {
     this.cashRegisterStatus = this.myCashService.cashRegisterStatus;
     this.cashRegisters = this.myCashService.cashRegisters;
-    this.myCash = this.myCashService.myCash;
+    this.myCashRegisters = this.myCashService.myCashRegisters;
 
     effect(() => {
       if (this.cashRegisterStatus()) {
@@ -60,10 +60,10 @@ export class CashRegistersComponent {
       next: (res) => {
         if (res.alreadyExists) {
           this.cashRegisterStatus.set('open');
-          this.myCash.set(res.cashRegisterDetail);
+          this.myCashRegisters.set(res.myCashRegisters);
         } else {
           this.cashRegisterStatus.set('selecting');
-          this.cashRegisters.set(res.cashRegisters);
+          this.cashRegisters.set(res.availableCashRegisters);
         }
 
         this.loading.set(false);

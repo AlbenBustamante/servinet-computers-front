@@ -10,7 +10,7 @@ import { MyCashService } from '@services/my-cash.service';
   styleUrls: ['./base-cash.component.css'],
 })
 export class BaseCashComponent {
-  private readonly myCash;
+  private readonly myCashRegisters;
   private readonly cashRegisterStatus;
 
   readonly loading = signal<boolean>(false);
@@ -20,7 +20,7 @@ export class BaseCashComponent {
     private readonly myCashService: MyCashService,
     private readonly cashRegisterDetailService: CashRegisterDetailService
   ) {
-    this.myCash = this.myCashService.myCash;
+    this.myCashRegisters = this.myCashService.myCashRegisters;
     this.cashRegisterStatus = this.myCashService.cashRegisterStatus;
     this.selectedCashRegister = this.myCashService.getSelectedCashRegister();
   }
@@ -45,7 +45,11 @@ export class BaseCashComponent {
 
     this.cashRegisterDetailService.register(detailReq).subscribe({
       next: (cashRegisterDetail) => {
-        this.myCash.set(cashRegisterDetail);
+        this.myCashRegisters.update((myCashRegisters) => [
+          ...myCashRegisters,
+          cashRegisterDetail,
+        ]);
+
         this.cashRegisterStatus.set('open');
         this.loading.set(false);
       },

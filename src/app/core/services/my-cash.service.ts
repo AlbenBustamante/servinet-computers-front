@@ -27,7 +27,7 @@ export class MyCashService {
   >(undefined);
 
   readonly cashRegisters = signal<ICashRegisterRes[]>([]);
-  readonly myCash = signal<ICashRegisterDetailRes | undefined>(undefined);
+  readonly myCashRegisters = signal<ICashRegisterDetailRes[]>([]);
 
   constructor() {}
 
