@@ -8,11 +8,11 @@ import { lastValueFrom } from 'rxjs';
 type SelectedReport = 'platformTransfers';
 
 @Component({
-  selector: 'app-reports',
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.css'],
+  selector: 'app-transactions',
+  templateUrl: './transactions.component.html',
+  styleUrls: ['./transactions.component.css'],
 })
-export class ReportsComponent {
+export class TransactionsComponent {
   readonly loading = signal<boolean>(false);
   readonly reports = signal<IReportsRes | null>(null);
   readonly selectedReport = signal<SelectedReport | null>(null);

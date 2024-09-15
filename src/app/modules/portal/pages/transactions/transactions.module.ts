@@ -3,18 +3,18 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@shared/shared.module';
-import { ReportsRoutingModule } from './reports-routing.module';
-import { ReportsComponent } from './reports.component';
+import { TransactionsRoutingModule } from './transactions-routing.module';
+import { TransactionsComponent } from './transactions.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [ReportsComponent],
+  declarations: [TransactionsComponent],
   imports: [
     CommonModule,
-    ReportsRoutingModule,
+    TransactionsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
     FontAwesomeModule,
   ],
 })
-export default class ReportsModule {}
+export default class TransactionsModule {}

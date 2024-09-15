@@ -21,10 +21,10 @@ export class NavbarComponent {
 
   constructor() {
     this.routes.set([
-      { title: 'Panel', icon: this.faDashboard, route: './dashboard' },
-      { title: 'Plataformas', icon: this.faPlatforms, route: './platforms' },
-      { title: 'Cajas', icon: this.faCashRegister, route: './cash' },
-      { title: 'Usuarios', icon: this.faUsers, route: './users' },
+      { title: 'Panel', icon: this.faDashboard, route: './panel' },
+      { title: 'Plataformas', icon: this.faPlatforms, route: './plataformas' },
+      { title: 'Cajas', icon: this.faCashRegister, route: './cajas' },
+      { title: 'Usuarios', icon: this.faUsers, route: './usuarios' },
     ]);
   }
 }

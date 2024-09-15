@@ -7,18 +7,18 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'panel', pathMatch: 'full' },
       {
-        path: 'dashboard',
+        path: 'panel',
         loadChildren: () => import('./pages/dashboard/dashboard.module'),
       },
       {
-        path: 'platforms',
+        path: 'plataformas',
         loadChildren: () => import('./pages/platforms/platforms.module'),
       },
-      { path: 'cash', loadChildren: () => import('./pages/cash/cash.module') },
+      { path: 'cajas', loadChildren: () => import('./pages/cash/cash.module') },
       {
-        path: 'users',
+        path: 'usuarios',
         loadChildren: () => import('./pages/users/users.module'),
       },
     ],

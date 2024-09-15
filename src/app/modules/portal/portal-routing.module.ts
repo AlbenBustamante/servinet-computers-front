@@ -17,20 +17,16 @@ const routes: Routes = [
         loadChildren: () => import('./pages/home/home.module'),
       },
       {
-        path: 'my-cash',
+        path: 'mi-caja',
         loadChildren: () => import('./pages/my-cash/my-cash.module'),
       },
       {
-        path: 'transfers',
-        loadChildren: () => import('./pages/transfers/transfers.module'),
-      },
-      {
-        path: 'platforms',
+        path: 'plataformas',
         loadChildren: () => import('./pages/platforms/platforms.module'),
       },
       {
-        path: 'reports',
-        loadChildren: () => import('./pages/reports/reports.module'),
+        path: 'transacciones',
+        loadChildren: () => import('./pages/transactions/transactions.module'),
       },
     ],
   },
