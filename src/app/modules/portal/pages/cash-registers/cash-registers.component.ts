@@ -4,13 +4,13 @@ import { CashRegisterDetailService } from '@services/cash-register-detail.servic
 import { MyCashService } from '@services/my-cash.service';
 
 @Component({
-  selector: 'app-my-cash',
-  templateUrl: './my-cash.component.html',
-  styleUrls: ['./my-cash.component.css'],
+  selector: 'app-cash-registers',
+  templateUrl: './cash-registers.component.html',
+  styleUrls: ['./cash-registers.component.css'],
 })
-export class MyCashComponent {
+export class CashRegistersComponent {
   private readonly routes = {
-    open: './caja-abierta',
+    open: './mis-cajas',
     selecting: './seleccion',
     'entry-time': './apertura/hora-entrada',
     counting: './apertura/base',

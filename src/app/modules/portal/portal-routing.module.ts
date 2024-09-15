@@ -17,8 +17,8 @@ const routes: Routes = [
         loadChildren: () => import('./pages/home/home.module'),
       },
       {
-        path: 'mi-caja',
-        loadChildren: () => import('./pages/my-cash/my-cash.module'),
+        path: 'cajas',
+        loadChildren: () => import('./pages/cash-registers/cash-registers.module'),
       },
       {
         path: 'plataformas',

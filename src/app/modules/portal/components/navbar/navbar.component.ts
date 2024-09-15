@@ -22,7 +22,7 @@ export class NavbarComponent {
   constructor() {
     this.routes.set([
       { title: 'Inicio', icon: this.faHome, route: './home' },
-      { title: 'Mi caja', icon: this.faMyCash, route: './mi-caja' },
+      { title: 'Mi caja', icon: this.faMyCash, route: './cajas' },
       { title: 'Plataformas', icon: this.faList, route: './plataformas' },
       {
         title: 'Transacciones',

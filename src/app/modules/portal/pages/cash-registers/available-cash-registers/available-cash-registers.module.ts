@@ -5,7 +5,7 @@ import { AvailableCashRegistersRoutingModule } from './available-cash-registers-
 import { AvailableCashRegistersComponent } from './available-cash-registers.component';
 import { CashRegisterCardComponent } from './components/cash-register-card/cash-register-card.component';
 import { SharedModule } from '@shared/shared.module';
-import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
+import { CashRegisterStatusPipe } from '../../../../../core/pipes/cash-register-status.pipe';
 
 @NgModule({
   declarations: [AvailableCashRegistersComponent, CashRegisterCardComponent],

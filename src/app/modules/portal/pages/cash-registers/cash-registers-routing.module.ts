@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MyCashComponent } from './my-cash.component';
+import { CashRegistersComponent } from './cash-registers.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MyCashComponent,
+    component: CashRegistersComponent,
     children: [
       {
-        path: 'caja-abierta',
+        path: 'mis-cajas',
         loadChildren: () =>
-          import('./open-cash-register/open-cash-register.module'),
+          import('./my-cash-registers/my-cash-registers.module'),
       },
       {
         path: 'seleccion',
@@ -30,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MyCashRoutingModule {}
+export class CashRegistersRoutingModule {}
