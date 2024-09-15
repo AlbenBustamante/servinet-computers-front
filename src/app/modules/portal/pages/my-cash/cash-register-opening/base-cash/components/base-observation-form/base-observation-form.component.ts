@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MyCashService } from '@services/my-cash.service';
 
 @Component({
   selector: 'app-base-observation-form',
@@ -7,11 +8,11 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./base-observation-form.component.css'],
 })
 export class BaseObservationFormComponent {
-  readonly observationControl: FormControl;
   @Output() setObservation = new EventEmitter<string>();
+  readonly observationControl: FormControl;
 
-  constructor() {
-    this.observationControl = new FormControl('');
+  constructor(private readonly myCashService: MyCashService) {
+    this.observationControl = new FormControl(this.myCashService.observation);
   }
 
   emitObservation() {

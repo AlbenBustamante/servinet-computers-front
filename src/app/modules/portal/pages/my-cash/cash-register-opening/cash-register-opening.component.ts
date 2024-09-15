@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-cash-register-opening',
-  templateUrl: './cash-register-opening.component.html',
-  styleUrls: ['./cash-register-opening.component.css']
+  template: '<router-outlet />',
 })
-export class CashRegisterOpeningComponent {
-
-}
+export class CashRegisterOpeningComponent {}

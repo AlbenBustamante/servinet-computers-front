@@ -1,8 +1,8 @@
 <app-spinner *ngIf="loading()" />
 <form
-  class="w-full px-5 flex flex-col gap-5"
+  class="w-full px-5 flex flex-col items-center justify-center gap-5"
   [formGroup]="baseForm"
-  (ngSubmit)="calculate()"
+  (ngSubmit)="emitBase()"
   *ngIf="!loading()"
 >
   <div class="flex flex-wrap items-start gap-12">
@@ -94,15 +94,23 @@
     </section>
   </div>
   <input type="submit" value="Calcular" class="sr-only" />
-  <div class="w-full flex items-center gap-5">
+  <div class="w-full grid grid-cols-6 gap-5">
+    <app-icon-button
+      type="button"
+      color="neutral"
+      [icon]="faReturn"
+      class="col-span-1"
+      (click)="emitReturn()"
+      >Regresar</app-icon-button
+    >
     <app-button
       type="button"
-      class="w-2/6"
       color="neutral"
       (click)="handleShowSideBar()"
+      class="col-span-2"
       >Añadir observación</app-button
     >
-    <app-button type="button" class="w-4/6" (click)="emitRegister()"
+    <app-button type="button" (click)="emitRegister()" class="col-span-3"
       >Registrar base</app-button
     >
   </div>

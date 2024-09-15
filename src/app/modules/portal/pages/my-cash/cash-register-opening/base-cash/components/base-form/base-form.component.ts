@@ -1,19 +1,27 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { IBase } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { CashRegisterService } from '@services/cash-register.service';
+import { MyCashService } from '@services/my-cash.service';
 
 @Component({
-  selector: 'app-base-calculator-form',
-  templateUrl: './base-calculator-form.component.html',
-  styleUrls: ['./base-calculator-form.component.css'],
+  selector: 'app-base-form',
+  templateUrl: './base-form.component.html',
+  styleUrls: ['./base-form.component.css'],
 })
-export class BaseCalculatorFormComponent {
+export class BaseFormComponent {
   @Input({ required: true }) cashRegisterId!: number;
+  @Output() setBase = new EventEmitter<IBase>();
+  @Output() setObservation = new EventEmitter<string>();
+  @Output() register = new EventEmitter();
+  @Output() onReturn = new EventEmitter();
+
   readonly cashBase;
-  readonly loading = signal<boolean>(false);
   readonly baseForm: FormGroup;
+  readonly faReturn = faArrowLeft;
+  readonly loading = signal<boolean>(false);
   readonly billetAmount = signal<string>('0');
   readonly billetTotal = signal<string>('0');
   readonly coinAmount = signal<string>('0');
@@ -21,29 +29,56 @@ export class BaseCalculatorFormComponent {
   readonly totalAmount = signal<string>('0');
   readonly total = signal<string>('0');
   readonly showSideBar = signal<boolean>(false);
-  @Output() calculateBase = new EventEmitter<IBase>();
-  @Output() setObservation = new EventEmitter<string>();
-  @Output() register = new EventEmitter();
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly baseService: BaseService,
+    private readonly myCashService: MyCashService,
     private readonly cashRegisterService: CashRegisterService
   ) {
     this.cashBase = signal(this.baseService.cashBase);
 
+    const base = this.myCashService.initialBase;
+
     this.baseForm = this.fb.group({
-      hundredThousand: ['', [Validators.required, Validators.min(0)]],
-      fiftyThousand: ['', [Validators.required, Validators.min(0)]],
-      twentyThousand: ['', [Validators.required, Validators.min(0)]],
-      tenThousand: ['', [Validators.required, Validators.min(0)]],
-      fiveThousand: ['', [Validators.required, Validators.min(0)]],
-      twoThousand: ['', [Validators.required, Validators.min(0)]],
-      thousand: ['', [Validators.required, Validators.min(0)]],
-      fiveHundred: ['', [Validators.required, Validators.min(0)]],
-      twoHundred: ['', [Validators.required, Validators.min(0)]],
-      hundred: ['', [Validators.required, Validators.min(0)]],
-      fifty: ['', [Validators.required, Validators.min(0)]],
+      hundredThousand: [
+        base?.hundredThousand ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      fiftyThousand: [
+        base?.fiftyThousand ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      twentyThousand: [
+        base?.twentyThousand ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      tenThousand: [
+        base?.tenThousand ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      fiveThousand: [
+        base?.fiveThousand ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      twoThousand: [
+        base?.twoThousand ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      thousand: [
+        base?.thousand ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      fiveHundred: [
+        base?.fiveHundred ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      twoHundred: [
+        base?.twoHundred ?? '',
+        [Validators.required, Validators.min(0)],
+      ],
+      hundred: [base?.hundred ?? '', [Validators.required, Validators.min(0)]],
+      fifty: [base?.fifty ?? '', [Validators.required, Validators.min(0)]],
     });
   }
 
@@ -52,8 +87,6 @@ export class BaseCalculatorFormComponent {
 
     this.cashRegisterService.getLastBase(this.cashRegisterId).subscribe({
       next: (base) => {
-        console.log(base);
-
         if (base !== null) {
           this.baseForm.setValue({
             hundredThousand: base.hundredThousand,
@@ -69,6 +102,8 @@ export class BaseCalculatorFormComponent {
             fifty: base.fifty,
           });
         }
+
+        this.calculate();
 
         this.loading.set(false);
       },
@@ -124,7 +159,7 @@ export class BaseCalculatorFormComponent {
     this.coinTotal.set(`${coinTotal}`);
   }
 
-  calculate() {
+  private calculate() {
     this.calculateBillet();
     this.calculateCoin();
 
@@ -133,6 +168,10 @@ export class BaseCalculatorFormComponent {
 
     this.totalAmount.set(`${totalAmount}`);
     this.total.set(`${total}`);
+  }
+
+  emitBase() {
+    this.calculate();
 
     const base: IBase = {
       hundredThousand: Number(this.baseForm.value.hundredThousand),
@@ -148,14 +187,14 @@ export class BaseCalculatorFormComponent {
       fifty: Number(this.baseForm.value.fifty),
     };
 
-    this.calculateBase.emit(base);
+    this.setBase.emit(base);
   }
 
   emitRegister() {
     this.register.emit();
   }
 
-  ngOnDestroy() {
-    this.cashBase().forEach((cash) => (cash.total = '0'));
+  emitReturn() {
+    this.onReturn.emit();
   }
 }

@@ -4,17 +4,16 @@
   [type]="type"
   [disabled]="disabled || loading"
 >
-  <ng-content *ngIf="!loading"></ng-content>
   <div
-    *ngIf="loading"
+    *ngIf="loading; else content"
     role="status"
     class="flex justify-center items-center gap-1.5"
   >
     <div
-      class="flex justify-center items-center w-6 h-6 bg-gradient-to-t from-stone-50 to-stone-300 rounded-full animate-spin"
+      class="flex justify-center items-center w-5 h-5 bg-gradient-to-t from-stone-50 to-stone-300 rounded-full animate-spin"
     >
       <div
-        class="w-4 h-4 rounded-full"
+        class="w-3.5 h-3.5 rounded-full"
         [ngClass]="{
           'bg-violet-600': color === 'primary',
           'bg-neutral-600': color === 'neutral'
@@ -23,4 +22,7 @@
     </div>
     <span>Cargando...</span>
   </div>
+  <ng-template #content>
+    <ng-content></ng-content>
+  </ng-template>
 </button>

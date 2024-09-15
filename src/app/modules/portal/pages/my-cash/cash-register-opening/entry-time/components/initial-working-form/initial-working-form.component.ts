@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { MyCashService } from '@services/my-cash.service';
 
 @Component({
   selector: 'app-initial-working-form',
@@ -7,12 +9,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./initial-working-form.component.css'],
 })
 export class InitialWorkingFormComponent {
-  readonly initialWorkingForm: FormGroup;
   @Output() setInitialWorking = new EventEmitter<string>();
+  @Output() onReturn = new EventEmitter();
+  readonly initialWorkingForm: FormGroup;
+  readonly faReturn = faArrowLeft;
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly myCashService: MyCashService
+  ) {
     this.initialWorkingForm = this.fb.group({
-      initialWorking: ['', Validators.required],
+      initialWorking: [
+        this.myCashService.workingHours.split(';')[0],
+        Validators.required,
+      ],
     });
   }
 
@@ -24,5 +34,9 @@ export class InitialWorkingFormComponent {
     }
 
     this.setInitialWorking.emit(this.initialWorkingForm.value.initialWorking);
+  }
+
+  emitReturn() {
+    this.onReturn.emit();
   }
 }

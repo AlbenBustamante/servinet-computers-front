@@ -11,6 +11,7 @@ import { HeaderTitleComponent } from './components/header-title/header-title.com
 import { ButtonComponent } from './components/button/button.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconButtonComponent } from './components/icon-button/icon-button.component';
 
 @NgModule({
   declarations: [
@@ -23,17 +24,18 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderTitleComponent,
     ButtonComponent,
     SpinnerComponent,
+    IconButtonComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
+    HeaderComponent,
     LoginFooterComponent,
-    LittleNavComponent,
     ModalComponent,
     LoadingComponent,
     NavComponent,
-    HeaderComponent,
     HeaderTitleComponent,
     ButtonComponent,
+    IconButtonComponent,
     SpinnerComponent,
   ],
 })

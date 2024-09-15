@@ -1,11 +1,7 @@
-import { Component, computed, signal } from '@angular/core';
-import { IBase } from '@models/base.model';
-import {
-  ICashRegisterDetailReq,
-  ICashRegisterDetailRes,
-  ICashRegisterRes,
-} from '@models/cash-register.model';
+import { Component, effect, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
+import { MyCashService } from '@services/my-cash.service';
 
 @Component({
   selector: 'app-my-cash',
@@ -13,36 +9,60 @@ import { CashRegisterDetailService } from '@services/cash-register-detail.servic
   styleUrls: ['./my-cash.component.css'],
 })
 export class MyCashComponent {
-  private workingHours!: string;
-  private base!: IBase;
-  private observation!: string;
+  private readonly routes = {
+    open: './caja-abierta',
+    selecting: './seleccion',
+    'entry-time': './apertura/hora-entrada',
+    counting: './apertura/base',
+  };
+
+  private readonly cashRegisterStatus;
+  private readonly cashRegisters;
+  private readonly myCash;
 
   readonly loading = signal<boolean>(false);
-  readonly registerLoading = signal<boolean>(false);
-  readonly cashRegisterStatus = signal<
-    'open' | 'opening' | 'available' | undefined
-  >(undefined);
-  readonly countingBase = signal<boolean>(false);
-  readonly cashRegisters = signal<ICashRegisterRes[]>([]);
-  readonly selectedCashRegister = signal<ICashRegisterRes | undefined>(
-    undefined
-  );
-  readonly cashRegisterDetail = signal<ICashRegisterDetailRes | null>(null);
 
   constructor(
-    private readonly cashRegisterDetailService: CashRegisterDetailService
-  ) {}
+    private readonly cashRegisterDetailService: CashRegisterDetailService,
+    private readonly myCashService: MyCashService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
+    this.cashRegisterStatus = this.myCashService.cashRegisterStatus;
+    this.cashRegisters = this.myCashService.cashRegisters;
+    this.myCash = this.myCashService.myCash;
+
+    effect(() => {
+      if (this.cashRegisterStatus()) {
+        this.router.navigate([this.routes[this.cashRegisterStatus()!]], {
+          relativeTo: this.route,
+        });
+      }
+    });
+  }
 
   ngOnInit() {
+    if (this.cashRegisterStatus()) {
+      return;
+    }
+
+    if (this.myCashService.observation || this.myCashService.initialBase) {
+      return this.cashRegisterStatus.set('counting');
+    }
+
+    if (this.myCashService.workingHours) {
+      return this.cashRegisterStatus.set('entry-time');
+    }
+
     this.loading.set(true);
 
     this.cashRegisterDetailService.alreadyExists().subscribe({
       next: (res) => {
         if (res.alreadyExists) {
           this.cashRegisterStatus.set('open');
-          this.cashRegisterDetail.set(res.cashRegisterDetail);
+          this.myCash.set(res.cashRegisterDetail);
         } else {
-          this.cashRegisterStatus.set('available');
+          this.cashRegisterStatus.set('selecting');
           this.cashRegisters.set(res.cashRegisters);
         }
 
@@ -54,92 +74,4 @@ export class MyCashComponent {
       },
     });
   }
-
-  openCash(cashRegister: ICashRegisterRes) {
-    this.selectedCashRegister.set(cashRegister);
-    this.cashRegisterStatus.set('opening');
-  }
-
-  setWorkingHours(initialWorking: string) {
-    if (initialWorking === '') {
-      return;
-    }
-
-    this.workingHours = `${initialWorking};;;`;
-
-    this.countingBase.set(true);
-  }
-
-  setBase(base: IBase) {
-    this.base = base;
-  }
-
-  setObservation(observation: string) {
-    this.observation = observation;
-  }
-
-  register() {
-    this.registerLoading.set(true);
-
-    const detailReq: ICashRegisterDetailReq = {
-      cashRegisterId: this.selectedCashRegister()!.id,
-      workingHours: this.workingHours,
-      initialBase: this.base,
-      baseObservation: this.observation,
-    };
-
-    this.cashRegisterDetailService.register(detailReq).subscribe({
-      next: (cashRegisterDetail) => {
-        this.cashRegisterDetail.set(cashRegisterDetail);
-        this.countingBase.set(false);
-        this.cashRegisterStatus.set('open');
-        this.registerLoading.set(false);
-        console.log(cashRegisterDetail);
-      },
-      error: (err) => {
-        console.log(err);
-        this.registerLoading.set(false);
-      },
-    });
-  }
-
-  readonly headerTitle = computed(() => {
-    const cashRegisterStatus = this.cashRegisterStatus();
-    const cashRegisterDetail = this.cashRegisterDetail();
-
-    if (cashRegisterStatus === undefined) {
-      return '';
-    }
-
-    if (cashRegisterStatus === 'available') {
-      return 'Cajas registradoras';
-    }
-
-    if (cashRegisterStatus === 'opening') {
-      return 'Apertura de caja';
-    }
-
-    return `Caja ${cashRegisterDetail?.cashRegisterNumeral}`;
-  });
-
-  readonly headerDescription = computed(() => {
-    const cashRegisterStatus = this.cashRegisterStatus();
-    const countingBase = this.countingBase();
-
-    if (cashRegisterStatus === undefined) {
-      return '';
-    }
-
-    if (cashRegisterStatus === 'available') {
-      return 'Por favor, selecciona la caja que vas a utilizar en el día';
-    }
-
-    if (cashRegisterStatus === 'opening') {
-      return countingBase
-        ? 'Cuenta o verifica la base inicial para finalizar la apertura de caja'
-        : 'Completa los datos para abrir la caja';
-    }
-
-    return '¡Bienvenido/a!';
-  });
 }

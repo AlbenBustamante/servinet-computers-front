@@ -1,1 +1,16 @@
-<p>entry-time works!</p>
+<app-header-title
+  hTitle="Apertura de caja"
+  hDescription="Ingresa tu hora de llegada"
+/>
+<section class="w-2/3 m-auto">
+  <app-spinner *ngIf="loading(); else content" />
+  <ng-template #content>
+    <h3 class="text-2xl text-gray-700 text-center font-medium mb-3">
+      ¿A qué hora llegaste?
+    </h3>
+    <app-initial-working-form
+      (setInitialWorking)="setWorkingHours($event)"
+      (onReturn)="onReturn()"
+    />
+  </ng-template>
+</section>

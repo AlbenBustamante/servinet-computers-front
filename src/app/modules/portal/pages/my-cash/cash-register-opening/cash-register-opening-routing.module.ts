@@ -8,7 +8,7 @@ const routes: Routes = [
     component: CashRegisterOpeningComponent,
     children: [
       {
-        path: 'hora-ingreso',
+        path: 'hora-entrada',
         loadChildren: () => import('./entry-time/entry-time.module'),
       },
       {
