@@ -46,8 +46,13 @@ export interface ICashRegisterDetailReportsDto {
   discrepancy: number;
 }
 
+export interface IMyCashRegistersReports {
+  cashRegisterDetailsReports: ICashRegisterDetailReportsDto[];
+  finalReport: ICashRegisterDetailReportsDto;
+}
+
 export interface IAlreadyExistsCashRegisterDetailDto {
   alreadyExists: boolean;
-  myCashRegisters: ICashRegisterDetailRes[];
+  myCashRegisters: IMyCashRegistersReports;
   availableCashRegisters: ICashRegisterRes[];
 }

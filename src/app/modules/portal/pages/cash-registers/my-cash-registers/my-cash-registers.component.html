@@ -1,0 +1,52 @@
+<app-header-title
+  hTitle="Mis Cajas"
+  hDescription="Visualiza las cajas que haz usado en el día y sus reportes"
+/>
+<section class="flex items-center justify-around">
+  <h3 class="text-gray-800 text-xl font-medium">Reportes</h3>
+  <form>
+    <label for="selectCashRegister" class="sr-only">Selecciona una caja</label>
+    <select
+      id="selectCashRegister"
+      class="input"
+      (change)="handleSelectedCashRegister($event)"
+    >
+      <option disabled selected>Selecciona una caja</option>
+      <option
+        [value]="i"
+        *ngFor="
+          let report of myCashRegisters()?.cashRegisterDetailsReports;
+          index as i
+        "
+      >
+        Caja {{ report.cashRegisterDetail.cashRegisterNumeral }}
+      </option>
+      <option value="all">Todas</option>
+    </select>
+  </form>
+</section>
+<div class="divider my-5"></div>
+<section class="grid grid-cols-3 gap-11" *ngIf="selectedCashRegister()">
+  <div class="card flex flex-col gap-3">
+    <h3 class="text-lg text-gray-700 font-medium">Saldo en caja</h3>
+    <p class="text-2xl text-gray-700 text-right font-medium">
+      {{ selectedCashRegister()?.balance | currency : "symbol" : "$" : "0.00" }}
+    </p>
+  </div>
+  <div class="card flex flex-col gap-3">
+    <h3 class="text-lg text-gray-700 font-medium">Depósitos</h3>
+    <p class="text-2xl text-green-700 text-right font-medium">
+      {{
+        selectedCashRegister()?.deposits | currency : "symbol" : "$" : "0.00"
+      }}
+    </p>
+  </div>
+  <div class="card flex flex-col gap-3">
+    <h3 class="text-lg text-gray-700 font-medium">Retiros</h3>
+    <p class="text-2xl text-red-700 text-right font-medium">
+      {{
+        selectedCashRegister()?.withdrawals | currency : "symbol" : "$" : "0.00"
+      }}
+    </p>
+  </div>
+</section>

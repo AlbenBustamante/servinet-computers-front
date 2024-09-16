@@ -3,6 +3,7 @@ import { IBase } from '@models/base.model';
 import {
   ICashRegisterDetailRes,
   ICashRegisterRes,
+  IMyCashRegistersReports,
 } from '@models/cash-register.model';
 
 @Injectable({
@@ -27,7 +28,9 @@ export class MyCashService {
   >(undefined);
 
   readonly cashRegisters = signal<ICashRegisterRes[]>([]);
-  readonly myCashRegisters = signal<ICashRegisterDetailRes[]>([]);
+  readonly myCashRegisters = signal<IMyCashRegistersReports | undefined>(
+    undefined
+  );
 
   constructor() {}
 
@@ -82,6 +85,7 @@ export class MyCashService {
 
   setSelectedCashRegister(cashRegister: ICashRegisterRes) {
     this._selectedCashRegister.set(cashRegister);
+
     localStorage.setItem(
       this.selectedCashRegisterStorage,
       JSON.stringify(cashRegister)

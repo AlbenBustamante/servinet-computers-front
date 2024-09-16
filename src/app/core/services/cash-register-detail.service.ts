@@ -25,7 +25,7 @@ export class CashRegisterDetailService {
   register(req: ICashRegisterDetailReq) {
     req.userId = this.tokenService.getInfo().id;
 
-    return this.http.post<ICashRegisterDetailRes>(this.url, req, {
+    return this.http.post<ICashRegisterDetailReportsDto>(this.url, req, {
       context: checkToken(),
     });
   }
