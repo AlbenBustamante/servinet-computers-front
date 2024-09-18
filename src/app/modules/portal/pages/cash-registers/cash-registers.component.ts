@@ -42,6 +42,8 @@ export class CashRegistersComponent {
   }
 
   ngOnInit() {
+    console.log({ res: this.cashRegisterStatus() });
+
     if (this.cashRegisterStatus()) {
       return;
     }

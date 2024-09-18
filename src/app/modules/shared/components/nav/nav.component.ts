@@ -15,13 +15,13 @@ export class NavComponent {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly tokenService: TokenService,
+    // private readonly tokenService: TokenService,
     private readonly router: Router
   ) {}
 
   logout() {
-    // this.authService.logout().subscribe();
-    this.tokenService.remove();
+    this.authService.logout();
+    // this.tokenService.remove();
     this.router.navigateByUrl('/login');
   }
 }

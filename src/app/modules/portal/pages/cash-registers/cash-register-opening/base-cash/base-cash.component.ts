@@ -47,8 +47,6 @@ export class BaseCashComponent {
       next: (myCashRegistersReports) => {
         this.myCashRegisters.set(myCashRegistersReports);
 
-        console.log({ res: this.myCashRegisters() });
-
         this.cashRegisterStatus.set('open');
         this.loading.set(false);
       },

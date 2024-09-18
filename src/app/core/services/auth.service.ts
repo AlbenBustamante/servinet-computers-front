@@ -6,6 +6,7 @@ import { checkToken } from '@interceptors/token.interceptor';
 import { IAuthRequest, IAuthResponse } from '@models/auth.model';
 import { IUserReq, IUserRes } from '@models/user.model';
 import { TokenService } from './token.service';
+import { MyCashService } from './my-cash.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,8 @@ export class AuthService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly tokenService: TokenService
+    private readonly tokenService: TokenService,
+    private readonly myCashService: MyCashService
   ) {}
 
   register(req: IUserReq) {
@@ -31,13 +33,17 @@ export class AuthService {
   }
 
   logout() {
+    this.myCashService.myCashRegisters.set(undefined);
+    this.myCashService.cashRegisterStatus.set(undefined);
+    this.loggedIn.set(null);
     localStorage.clear();
+    this.tokenService.remove();
 
-    return this.http
+    /*return this.http
       .post<Boolean>(`${this.authUrl}/sign-out`, null, {
         context: checkToken(),
       })
-      .pipe(tap(() => this.tokenService.remove()));
+      .pipe(tap(() => this.tokenService.remove()));*/
   }
 
   getLoggedIn() {

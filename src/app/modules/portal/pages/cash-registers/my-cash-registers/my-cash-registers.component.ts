@@ -32,5 +32,7 @@ export class MyCashRegistersComponent {
     this.selectedCashRegister.set(
       this.myCashRegisters()?.cashRegisterDetailsReports[index]!
     );
+
+    console.log({ res: this.selectedCashRegister() });
   }
 }
