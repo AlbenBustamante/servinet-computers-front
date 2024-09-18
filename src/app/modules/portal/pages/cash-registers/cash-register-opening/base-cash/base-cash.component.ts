@@ -44,14 +44,10 @@ export class BaseCashComponent {
     };
 
     this.cashRegisterDetailService.register(detailReq).subscribe({
-      next: (cashRegisterDetailReports) => {
-        this.myCashRegisters.update((myCashRegisters) => {
-          myCashRegisters?.cashRegisterDetailsReports.push(
-            cashRegisterDetailReports
-          );
+      next: (myCashRegistersReports) => {
+        this.myCashRegisters.set(myCashRegistersReports);
 
-          return myCashRegisters;
-        });
+        console.log({ res: this.myCashRegisters() });
 
         this.cashRegisterStatus.set('open');
         this.loading.set(false);

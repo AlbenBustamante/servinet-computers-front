@@ -8,6 +8,7 @@ import {
   ICashRegisterDetailReq,
   ICashRegisterDetailRes,
   ICashRegisterReq,
+  IMyCashRegistersReports,
 } from '@models/cash-register.model';
 import { TokenService } from './token.service';
 
@@ -25,7 +26,7 @@ export class CashRegisterDetailService {
   register(req: ICashRegisterDetailReq) {
     req.userId = this.tokenService.getInfo().id;
 
-    return this.http.post<ICashRegisterDetailReportsDto>(this.url, req, {
+    return this.http.post<IMyCashRegistersReports>(this.url, req, {
       context: checkToken(),
     });
   }
