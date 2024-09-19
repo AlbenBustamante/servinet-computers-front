@@ -1,18 +1,49 @@
 <header
-  class="relative -ml-6 w-[calc(100vw-14rem)] px-10 pt-4 pb-16 bg-violet-200 space-y-4"
+  class="relative rounded-b-2xl shadow-sm px-10 pt-5 pb-20 bg-violet-200 space-y-5"
 >
   <div class="flex items-center justify-between">
-    <h3 class="text-gray-800 text-xl font-medium">Reportes</h3>
+    <div class="flex flex-col gap-1">
+      <h3 class="text-gray-800 text-3xl font-medium">
+        Caja
+        {{ selectedCashRegister()?.cashRegisterDetail?.cashRegisterNumeral }}
+      </h3>
+      <div class="text-gray-700 flex items-center gap-7">
+        <p>
+          Entrada:
+          {{
+            selectedCashRegister()?.cashRegisterDetail?.initialWorking ??
+              "--:--"
+          }}
+        </p>
+        <div class="h-5 w-px bg-violet-400"></div>
+        <p>
+          Almuerzo:
+          {{
+            selectedCashRegister()?.cashRegisterDetail?.initialBreak ?? "--:--"
+          }}
+          -
+          {{
+            selectedCashRegister()?.cashRegisterDetail?.finalBreak ?? "--:--"
+          }}
+        </p>
+        <div class="h-5 w-px bg-violet-400"></div>
+        <p>
+          Salida:
+          {{
+            selectedCashRegister()?.cashRegisterDetail?.finalWorking ?? "--:--"
+          }}
+        </p>
+      </div>
+    </div>
     <form>
       <label for="selectCashRegister" class="sr-only"
         >Selecciona una caja</label
       >
       <select
         id="selectCashRegister"
-        class="input shadow"
+        class="input shadow w-36"
         (change)="handleSelectedCashRegister($event)"
       >
-        <option disabled selected>Selecciona una caja</option>
         <option
           [value]="i"
           *ngFor="
@@ -22,31 +53,16 @@
         >
           Caja {{ report.cashRegisterDetail.cashRegisterNumeral }}
         </option>
-        <option value="all">Todas</option>
+        <option
+          value="all"
+          *ngIf="(myCashRegisters()?.cashRegisterDetailsReports)!.length > 1"
+        >
+          Todas
+        </option>
       </select>
     </form>
   </div>
-  <div class="text-gray-700 flex items-center gap-7">
-    <p>
-      Entrada:
-      {{
-        selectedCashRegister()?.cashRegisterDetail?.initialWorking ?? "--:--"
-      }}
-    </p>
-    <div class="h-5 w-px bg-violet-400"></div>
-    <p>
-      Almuerzo:
-      {{ selectedCashRegister()?.cashRegisterDetail?.initialBreak ?? "--:--" }}
-      -
-      {{ selectedCashRegister()?.cashRegisterDetail?.finalBreak ?? "--:--" }}
-    </p>
-    <div class="h-5 w-px bg-violet-400"></div>
-    <p>
-      Salida:
-      {{ selectedCashRegister()?.cashRegisterDetail?.finalWorking ?? "--:--" }}
-    </p>
-  </div>
-  <div class="absolute left-5 right-5 grid grid-cols-3 gap-11">
+  <div class="absolute left-7 right-7 grid grid-cols-3 gap-11">
     <div class="card flex flex-col gap-3">
       <h3 class="text-lg text-gray-700 font-medium">Saldo en caja</h3>
       <p class="text-2xl text-gray-700 text-right font-medium">

@@ -15,6 +15,9 @@ export class MyCashRegistersComponent {
 
   constructor(private readonly myCashService: MyCashService) {
     this.myCashRegisters = this.myCashService.myCashRegisters;
+    this.selectedCashRegister.set(
+      this.myCashRegisters()?.cashRegisterDetailsReports[0]
+    );
   }
 
   handleSelectedCashRegister(event: Event) {
