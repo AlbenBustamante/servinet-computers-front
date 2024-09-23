@@ -26,7 +26,7 @@ export class EntryTimeComponent {
       return;
     }
 
-    this.myCashService.workingHours = `${initialWorking};;;`;
+    this.myCashService.workingHours = initialWorking;
 
     this.cashRegisterStatus.set('counting');
   }

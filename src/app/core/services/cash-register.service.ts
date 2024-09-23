@@ -35,13 +35,7 @@ export class CashRegisterService {
   }
 
   update(id: number, req: ICashRegisterReq) {
-    return this.http.put<ICashRegisterRes>(`${this.url}/${id}`, req, {
-      context: checkToken(),
-    });
-  }
-
-  changeStatus(req: ICashRegisterReq) {
-    return this.http.patch<ICashRegisterRes>(this.url, req, {
+    return this.http.patch<ICashRegisterRes>(`${this.url}/${id}`, req, {
       context: checkToken(),
     });
   }

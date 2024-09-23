@@ -11,6 +11,7 @@ export enum Role {
 
 export enum CashRegisterStatus {
   AVAILABLE = 'AVAILABLE',
+  RESTING = 'RESTING',
   OCCUPIED = 'OCCUPIED',
   DISABLED = 'DISABLED',
 }

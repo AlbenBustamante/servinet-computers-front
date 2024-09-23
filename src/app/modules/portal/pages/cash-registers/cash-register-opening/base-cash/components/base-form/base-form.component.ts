@@ -191,6 +191,10 @@ export class BaseFormComponent {
   }
 
   emitRegister() {
+    if (!this.myCashService.initialBase) {
+      return this.baseForm.markAllAsTouched();
+    }
+
     this.register.emit();
   }
 

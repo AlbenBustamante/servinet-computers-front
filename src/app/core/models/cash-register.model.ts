@@ -13,16 +13,13 @@ export interface ICashRegisterRes extends IResponse, ICashRegisterReq {}
 export interface ICashRegisterDetailReq {
   cashRegisterId: number;
   userId?: number;
-  workingHours: string;
+  workingHours: string[];
   initialBase: IBase;
   finalBase?: IBase;
   baseObservation: string;
 }
 
 export interface ICashRegisterDetailRes extends IResponse {
-  cashRegisterId: number;
-  cashRegisterNumeral: number;
-  cashRegisterDescription: number;
   userId: number;
   initialWorking: string;
   initialBreak: string;
@@ -31,6 +28,7 @@ export interface ICashRegisterDetailRes extends IResponse {
   initialBase: IBase;
   finalBase?: IBase;
   baseObservation: string;
+  cashRegister: ICashRegisterRes;
 }
 
 export interface ICashRegisterDetailReportsDto {

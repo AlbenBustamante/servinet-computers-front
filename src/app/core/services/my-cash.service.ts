@@ -1,7 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { IBase } from '@models/base.model';
 import {
-  ICashRegisterDetailRes,
   ICashRegisterRes,
   IMyCashRegistersReports,
 } from '@models/cash-register.model';

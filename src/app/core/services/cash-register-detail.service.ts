@@ -52,10 +52,20 @@ export class CashRegisterDetailService {
     );
   }
 
-  updateHours(req: ICashRegisterReq) {
-    return this.http.put<ICashRegisterDetailRes>(this.url, req, {
-      context: checkToken(),
-    });
+  startBreak(cashRegisterDetailId: number) {
+    return this.http.patch<ICashRegisterDetailRes>(
+      `${this.url}/${cashRegisterDetailId}/start-break`,
+      undefined,
+      { context: checkToken() }
+    );
+  }
+
+  endBreak(cashRegisterDetailId: number) {
+    return this.http.patch<ICashRegisterDetailRes>(
+      `${this.url}/${cashRegisterDetailId}/end-break`,
+      undefined,
+      { context: checkToken() }
+    );
   }
 
   delete(cashRegisterDetailId: number) {

@@ -36,9 +36,11 @@ export class BaseCashComponent {
   register() {
     this.loading.set(true);
 
+    const workingHours = [this.myCashService.workingHours, '', '', ''];
+
     const detailReq: ICashRegisterDetailReq = {
       cashRegisterId: this.selectedCashRegister()!.id,
-      workingHours: this.myCashService.workingHours,
+      workingHours: workingHours,
       initialBase: this.myCashService.initialBase!,
       baseObservation: this.myCashService.observation,
     };
@@ -46,7 +48,7 @@ export class BaseCashComponent {
     this.cashRegisterDetailService.register(detailReq).subscribe({
       next: (myCashRegistersReports) => {
         this.myCashRegisters.set(myCashRegistersReports);
-
+        this.myCashService.clear();
         this.cashRegisterStatus.set('open');
         this.loading.set(false);
       },
@@ -61,9 +63,5 @@ export class BaseCashComponent {
     this.myCashService.removeInitialBase();
     this.myCashService.removeObservation();
     this.cashRegisterStatus.set('entry-time');
-  }
-
-  ngOnDestroy() {
-    this.myCashService.clear();
   }
 }
