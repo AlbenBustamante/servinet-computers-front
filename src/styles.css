@@ -27,10 +27,6 @@ body {
   @apply text-gray-700 font-medium;
 }
 
-.cash_amount_input {
-  @apply px-3 py-1 focus:outline-none text-right border-l-2 border-r-2 border-gray-300;
-}
-
 .input::-webkit-outer-spin-button,
 .input::-webkit-inner-spin-button {
   -webkit-appearance: none;

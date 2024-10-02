@@ -20,15 +20,15 @@ export class MyCashRegistersComponent {
     const cashRegisterDetail = this.selectedCashRegister()?.cashRegisterDetail!;
 
     if (
-      cashRegisterDetail.initialBreak !== '--:--' &&
-      cashRegisterDetail.finalBreak === '--:--'
+      cashRegisterDetail.initialBreak !== null &&
+      cashRegisterDetail.finalBreak === null
     ) {
       return 'Retomar jornada';
     }
 
     if (
-      cashRegisterDetail.initialBreak === '--:--' &&
-      cashRegisterDetail.finalBreak === '--:--'
+      cashRegisterDetail.initialBreak === null &&
+      cashRegisterDetail.finalBreak === null
     ) {
       return 'Tomar descanso';
     }
@@ -41,6 +41,7 @@ export class MyCashRegistersComponent {
     private readonly cashRegisterDetailService: CashRegisterDetailService
   ) {
     this.myCashRegisters = this.myCashService.myCashRegisters;
+
     this.selectedCashRegister.set(
       this.myCashRegisters()?.cashRegisterDetailsReports[0]
     );
@@ -131,5 +132,13 @@ export class MyCashRegistersComponent {
         this.breakLoading.set(false);
       },
     });
+  }
+
+  close() {
+    this.myCashService.closing = true;
+    this.myCashService.myClosingCashRegister.set(
+      this.selectedCashRegister()?.cashRegisterDetail
+    );
+    this.myCashService.cashRegisterStatus.set('final-base');
   }
 }

@@ -7,10 +7,10 @@ import {
   ICashRegisterDetailReportsDto,
   ICashRegisterDetailReq,
   ICashRegisterDetailRes,
-  ICashRegisterReq,
   IMyCashRegistersReports,
 } from '@models/cash-register.model';
 import { TokenService } from './token.service';
+import { IBase } from '@models/base.model';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +64,14 @@ export class CashRegisterDetailService {
     return this.http.patch<ICashRegisterDetailRes>(
       `${this.url}/${cashRegisterDetailId}/end-break`,
       undefined,
+      { context: checkToken() }
+    );
+  }
+
+  close(cashRegisterDetailId: number, base: IBase) {
+    return this.http.patch<ICashRegisterDetailReportsDto>(
+      `${this.url}/${cashRegisterDetailId}/close`,
+      base,
       { context: checkToken() }
     );
   }

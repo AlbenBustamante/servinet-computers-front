@@ -1,26 +1,21 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { IBase } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { CashRegisterService } from '@services/cash-register.service';
 import { MyCashService } from '@services/my-cash.service';
 
 @Component({
-  selector: 'app-base-form',
-  templateUrl: './base-form.component.html',
-  styleUrls: ['./base-form.component.css'],
+  selector: 'app-base-calculator',
+  templateUrl: './base-calculator.component.html',
+  styleUrls: ['./base-calculator.component.css'],
 })
-export class BaseFormComponent {
-  @Input({ required: true }) cashRegisterId!: number;
+export class BaseCalculatorComponent {
+  @Input({ required: true }) cashRegisterId: number | undefined;
   @Output() setBase = new EventEmitter<IBase>();
-  @Output() setObservation = new EventEmitter<string>();
-  @Output() register = new EventEmitter();
-  @Output() onReturn = new EventEmitter();
 
   readonly cashBase;
   readonly baseForm: FormGroup;
-  readonly faReturn = faArrowLeft;
   readonly loading = signal<boolean>(false);
   readonly billetAmount = signal<string>('0');
   readonly billetTotal = signal<string>('0');
@@ -28,7 +23,6 @@ export class BaseFormComponent {
   readonly coinTotal = signal<string>('0');
   readonly totalAmount = signal<string>('0');
   readonly total = signal<string>('0');
-  readonly showSideBar = signal<boolean>(false);
 
   constructor(
     private readonly fb: FormBuilder,
@@ -83,6 +77,10 @@ export class BaseFormComponent {
   }
 
   ngOnInit() {
+    if (!this.cashRegisterId) {
+      return;
+    }
+
     this.loading.set(true);
 
     this.cashRegisterService.getLastBase(this.cashRegisterId).subscribe({
@@ -112,15 +110,6 @@ export class BaseFormComponent {
         this.loading.set(false);
       },
     });
-  }
-
-  handleShowSideBar() {
-    this.showSideBar.update((prevValue) => !prevValue);
-  }
-
-  emitObservation(observation: string) {
-    this.showSideBar.set(false);
-    this.setObservation.emit(observation);
   }
 
   private calculateBillet() {
@@ -188,17 +177,5 @@ export class BaseFormComponent {
     };
 
     this.setBase.emit(base);
-  }
-
-  emitRegister() {
-    if (!this.myCashService.initialBase) {
-      return this.baseForm.markAllAsTouched();
-    }
-
-    this.register.emit();
-  }
-
-  emitReturn() {
-    this.onReturn.emit();
   }
 }

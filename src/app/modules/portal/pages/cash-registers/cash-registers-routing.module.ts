@@ -10,17 +10,24 @@ const routes: Routes = [
       {
         path: 'mis-cajas',
         loadChildren: () =>
-          import('./my-cash-registers/my-cash-registers.module'),
+          import('./pages/my-cash-registers/my-cash-registers.module'),
       },
       {
         path: 'seleccion',
         loadChildren: () =>
-          import('./available-cash-registers/available-cash-registers.module'),
+          import(
+            './pages/available-cash-registers/available-cash-registers.module'
+          ),
       },
       {
         path: 'apertura',
         loadChildren: () =>
-          import('./cash-register-opening/cash-register-opening.module'),
+          import('./pages/cash-register-opening/cash-register-opening.module'),
+      },
+      {
+        path: 'cierre',
+        loadChildren: () =>
+          import('./pages/cash-register-closing/cash-register-closing.module'),
       },
     ],
   },

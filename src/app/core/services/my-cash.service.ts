@@ -1,6 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { IBase } from '@models/base.model';
 import {
+  ICashRegisterDetailReportsDto,
+  ICashRegisterDetailRes,
   ICashRegisterRes,
   IMyCashRegistersReports,
 } from '@models/cash-register.model';
@@ -9,44 +11,60 @@ import {
   providedIn: 'root',
 })
 export class MyCashService {
-  private _workingHours = '';
+  private _initialWorking = '';
   private _observation = '';
   private _initialBase: IBase | undefined = undefined;
+  private _closing = false;
 
   private readonly _selectedCashRegister = signal<ICashRegisterRes | undefined>(
     undefined
   );
 
-  private readonly workingHoursStorage = 'wH';
+  private readonly initialWorkingStorage = 'iW';
   private readonly observationStorage = 'ob';
-  private readonly initialBaseStorage = 'ib';
+  private readonly initialBaseStorage = 'iB';
   private readonly selectedCashRegisterStorage = 'sCR';
+  private readonly closingStorage = 'cs';
+  private readonly finalBaseStorage = 'fB';
 
   readonly cashRegisterStatus = signal<
-    'open' | 'selecting' | 'entry-time' | 'counting' | undefined
+    | 'open'
+    | 'selecting'
+    | 'entry-time'
+    | 'counting'
+    | 'final-base'
+    | 'final-report'
+    | undefined
   >(undefined);
 
   readonly cashRegisters = signal<ICashRegisterRes[]>([]);
   readonly myCashRegisters = signal<IMyCashRegistersReports | undefined>(
     undefined
   );
+  readonly myClosingCashRegister = signal<ICashRegisterDetailRes | undefined>(
+    undefined
+  );
+  readonly myClosedCashRegisterReports = signal<
+    ICashRegisterDetailReportsDto | undefined
+  >(undefined);
 
   constructor() {}
 
-  set workingHours(workingHours: string) {
-    this._workingHours = workingHours;
-    localStorage.setItem(this.workingHoursStorage, workingHours);
+  set initialWorking(initialWorking: string) {
+    this._initialWorking = initialWorking;
+    localStorage.setItem(this.initialWorkingStorage, this._initialWorking);
   }
 
-  get workingHours() {
-    this._workingHours = localStorage.getItem(this.workingHoursStorage) ?? '';
+  get initialWorking() {
+    this._initialWorking =
+      localStorage.getItem(this.initialWorkingStorage) ?? '';
 
-    return this._workingHours;
+    return this._initialWorking;
   }
 
-  removeWorkingHours() {
-    this._workingHours = '';
-    localStorage.removeItem(this.workingHoursStorage);
+  removeInitialWorking() {
+    this._initialWorking = '';
+    localStorage.removeItem(this.initialWorkingStorage);
   }
 
   set observation(observation: string) {
@@ -108,10 +126,26 @@ export class MyCashService {
     localStorage.removeItem(this.selectedCashRegisterStorage);
   }
 
+  set closing(closing: boolean) {
+    this._closing = closing;
+    localStorage.setItem(this.closingStorage, String(this._closing));
+  }
+
+  get closing() {
+    this._closing = Boolean(localStorage.getItem(this.closingStorage)) ?? false;
+    return this._closing;
+  }
+
+  removeClosing() {
+    this._closing = false;
+    localStorage.removeItem(this.closingStorage);
+  }
+
   clear() {
-    this.removeWorkingHours();
+    this.removeInitialWorking();
     this.removeObservation();
     this.removeInitialBase();
     this.removeSelectedCashRegister();
+    this.removeClosing();
   }
 }

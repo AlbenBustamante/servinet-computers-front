@@ -22,11 +22,11 @@ export class EntryTimeComponent {
   }
 
   setWorkingHours(initialWorking: string) {
-    if (initialWorking === '') {
+    if (!initialWorking) {
       return;
     }
 
-    this.myCashService.workingHours = initialWorking;
+    this.myCashService.initialWorking = initialWorking;
 
     this.cashRegisterStatus.set('counting');
   }
@@ -38,7 +38,7 @@ export class EntryTimeComponent {
       next: (cashRegisters) => {
         this.cashRegisters.set(cashRegisters);
 
-        this.myCashService.removeWorkingHours();
+        this.myCashService.removeInitialWorking();
         this.myCashService.removeSelectedCashRegister();
         this.cashRegisterStatus.set('selecting');
 

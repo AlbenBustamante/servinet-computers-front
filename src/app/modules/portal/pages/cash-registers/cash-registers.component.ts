@@ -14,6 +14,8 @@ export class CashRegistersComponent {
     selecting: './seleccion',
     'entry-time': './apertura/hora-entrada',
     counting: './apertura/base',
+    'final-base': './cierre/base-final',
+    'final-report': './cierre/reporte-final',
   };
 
   private readonly cashRegisterStatus;
@@ -42,8 +44,6 @@ export class CashRegistersComponent {
   }
 
   ngOnInit() {
-    console.log({ res: this.cashRegisterStatus() });
-
     if (this.cashRegisterStatus()) {
       return;
     }
@@ -52,8 +52,12 @@ export class CashRegistersComponent {
       return this.cashRegisterStatus.set('counting');
     }
 
-    if (this.myCashService.workingHours) {
+    if (this.myCashService.initialWorking) {
       return this.cashRegisterStatus.set('entry-time');
+    }
+
+    if (this.myCashService.closing) {
+      return this.cashRegisterStatus.set('final-base');
     }
 
     this.loading.set(true);

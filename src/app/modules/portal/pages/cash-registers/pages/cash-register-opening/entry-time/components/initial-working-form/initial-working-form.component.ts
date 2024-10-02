@@ -18,11 +18,10 @@ export class InitialWorkingFormComponent {
     private readonly fb: FormBuilder,
     private readonly myCashService: MyCashService
   ) {
+    const initialWorking = this.myCashService.initialWorking;
+
     this.initialWorkingForm = this.fb.group({
-      initialWorking: [
-        this.myCashService.workingHours.split(';')[0],
-        Validators.required,
-      ],
+      initialWorking: [initialWorking ?? '', Validators.required],
     });
   }
 
@@ -30,7 +29,7 @@ export class InitialWorkingFormComponent {
     if (this.initialWorkingForm.invalid) {
       this.initialWorkingForm.markAllAsTouched();
 
-      return this.setInitialWorking.emit('');
+      return this.setInitialWorking.emit(undefined);
     }
 
     this.setInitialWorking.emit(this.initialWorkingForm.value.initialWorking);

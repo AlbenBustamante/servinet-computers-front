@@ -1,14 +1,12 @@
-<app-spinner *ngIf="loading()" />
 <form
   class="w-full px-5 flex flex-col items-center justify-center gap-5"
   [formGroup]="baseForm"
   (ngSubmit)="emitBase()"
-  *ngIf="!loading()"
 >
   <div class="flex flex-wrap items-start gap-12">
     <section class="card max-w-md">
       <header class="mb-5">
-        <h3 class="text-center text-gray-700 text-xl font-medium">Billete</h3>
+        <h3 class="text-center text-gray-700 text-2xl font-medium">Billete</h3>
       </header>
       <div
         class="grid grid-cols-3 items-center gap-5 text-center text-gray-700 font-medium px-5 border-b-2 border-gray-300"
@@ -21,26 +19,27 @@
         class="grid grid-cols-3 items-center gap-5 px-5 text-right border-b-2 border-gray-300"
         *ngFor="let cash of cashBase().slice(0, 6)"
       >
-        <label [for]="cash.title" class="font-normal peer">{{
+        <label [for]="cash.title" class="text-gray-700 font-medium">{{
           cash.value | currency : "Symbol" : "$" : "0.00"
         }}</label>
         <input
           type="text"
           [id]="cash.title"
           placeholder="0"
-          class="cash_amount_input"
+          class="cash-amount-input"
           [formControlName]="cash.title"
+          [disabled]="loading()"
         />
-        <span class="text-gray-800">{{
+        <span class="text-gray-700">{{
           cash.total | currency : "Symbol" : "$" : "0.00"
         }}</span>
       </div>
       <div class="grid grid-cols-3 items-center gap-5 text-right px-5">
-        <label for="total" class="">Total</label>
+        <label for="total" class="text-gray-700 font-medium">Total</label>
         <input
           type="text"
           id="total"
-          class="cash_amount_input"
+          class="cash-amount-input font-medium"
           [value]="billetAmount()"
           disabled
         />
@@ -51,7 +50,7 @@
     </section>
     <section class="card max-w-md">
       <header class="mb-5">
-        <h3 class="text-center text-gray-700 text-xl font-medium">Moneda</h3>
+        <h3 class="text-center text-gray-700 text-2xl font-medium">Moneda</h3>
       </header>
       <div
         class="grid grid-cols-3 items-center gap-5 text-center text-gray-700 font-medium px-5 border-b-2 border-gray-300"
@@ -64,26 +63,27 @@
         class="grid grid-cols-3 items-center gap-5 px-5 text-right border-b-2 border-gray-300"
         *ngFor="let cash of cashBase().slice(6, 11)"
       >
-        <label [for]="cash.title" class="font-normal peer">{{
+        <label [for]="cash.title" class="text-gray-700 font-medium">{{
           cash.value | currency : "Symbol" : "$" : "0.00"
         }}</label>
         <input
           type="text"
           [id]="cash.title"
           placeholder="0"
-          class="cash_amount_input"
+          class="cash-amount-input"
           [formControlName]="cash.title"
+          [disabled]="loading()"
         />
-        <span class="text-gray-800">{{
+        <span class="text-gray-700">{{
           cash.total | currency : "Symbol" : "$" : "0.00"
         }}</span>
       </div>
       <div class="grid grid-cols-3 items-center gap-5 text-right px-5">
-        <label for="total" class="">Total</label>
+        <label for="total" class="text-gray-700 font-medium">Total</label>
         <input
           type="text"
           id="total"
-          class="cash_amount_input"
+          class="cash-amount-input font-medium"
           [value]="coinAmount()"
           disabled
         />
@@ -94,31 +94,4 @@
     </section>
   </div>
   <input type="submit" value="Calcular" class="sr-only" />
-  <div class="w-full grid grid-cols-6 gap-5">
-    <app-icon-button
-      type="button"
-      color="neutral"
-      [icon]="faReturn"
-      class="col-span-1"
-      (click)="emitReturn()"
-      >Regresar</app-icon-button
-    >
-    <app-button
-      type="button"
-      color="neutral"
-      (click)="handleShowSideBar()"
-      class="col-span-2"
-      >Añadir observación</app-button
-    >
-    <app-button type="button" (click)="emitRegister()" class="col-span-3"
-      >Registrar base</app-button
-    >
-  </div>
 </form>
-<aside
-  class="fixed w-72 top-16 right-0 bottom-0 bg-white drop-shadow-xl py-5 ease-in duration-200"
-  [ngClass]="{ 'translate-x-full': !showSideBar() }"
->
-  <h4 class="text-xl text-gray-800 font-medium px-5 mb-3">Observación</h4>
-  <app-base-observation-form (setObservation)="emitObservation($event)" />
-</aside>

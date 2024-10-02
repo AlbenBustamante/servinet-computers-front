@@ -1,3 +1,4 @@
+<ng-template #noTime>--:-- --</ng-template>
 <header
   class="relative rounded-b-2xl shadow-sm px-10 pt-5 pb-20 bg-violet-200 space-y-5"
 >
@@ -10,28 +11,55 @@
       <div class="text-gray-700 flex items-center gap-7">
         <p>
           Entrada:
-          {{
-            selectedCashRegister()?.cashRegisterDetail?.initialWorking ??
-              "--:--"
-          }}
+          <span
+            *ngIf="
+              selectedCashRegister()?.cashRegisterDetail?.initialWorking;
+              else noTime
+            "
+            >{{
+              selectedCashRegister()?.cashRegisterDetail?.initialWorking
+                | date : "hh:mm a"
+            }}</span
+          >
         </p>
         <div class="h-5 w-px bg-violet-400"></div>
         <p>
           Almuerzo:
-          {{
-            selectedCashRegister()?.cashRegisterDetail?.initialBreak ?? "--:--"
-          }}
+          <span
+            *ngIf="
+              selectedCashRegister()?.cashRegisterDetail?.initialBreak;
+              else noTime
+            "
+            >{{
+              selectedCashRegister()?.cashRegisterDetail?.initialBreak
+                | date : "hh:mm a"
+            }}</span
+          >
           -
-          {{
-            selectedCashRegister()?.cashRegisterDetail?.finalBreak ?? "--:--"
-          }}
+          <span
+            *ngIf="
+              selectedCashRegister()?.cashRegisterDetail?.finalBreak;
+              else noTime
+            "
+            >{{
+              selectedCashRegister()?.cashRegisterDetail?.finalBreak
+                | date : "hh:mm a"
+            }}</span
+          >
         </p>
         <div class="h-5 w-px bg-violet-400"></div>
         <p>
           Salida:
-          {{
-            selectedCashRegister()?.cashRegisterDetail?.finalWorking ?? "--:--"
-          }}
+          <span
+            *ngIf="
+              selectedCashRegister()?.cashRegisterDetail?.finalWorking;
+              else noTime
+            "
+            >{{
+              selectedCashRegister()?.cashRegisterDetail?.finalWorking
+                | date : "hh:mm a"
+            }}</span
+          >
         </p>
       </div>
     </div>
@@ -100,5 +128,5 @@
     *ngIf="selectedCashRegisterBreakTitle() !== ''"
     >{{ selectedCashRegisterBreakTitle() }}</app-button
   >
-  <app-button type="button">Cerrar caja</app-button>
+  <app-button type="button" (click)="close()">Cerrar caja</app-button>
 </section>

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import {
   faChevronDown,
-  faComputer,
+  faLaptop,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '@services/auth.service';
@@ -14,7 +14,7 @@ import { AuthService } from '@services/auth.service';
 export class HeaderComponent {
   private readonly authService = inject(AuthService);
   readonly loggedIn = this.authService.loggedIn;
-  readonly faComputer = faComputer;
+  readonly faComputer = faLaptop;
   readonly faAccount = faUser;
   readonly faExpand = faChevronDown;
 }

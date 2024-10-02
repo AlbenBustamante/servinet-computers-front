@@ -36,11 +36,11 @@ export class BaseCashComponent {
   register() {
     this.loading.set(true);
 
-    const workingHours = [this.myCashService.workingHours, '', '', ''];
+    const initialWorking = this.myCashService.initialWorking;
 
     const detailReq: ICashRegisterDetailReq = {
       cashRegisterId: this.selectedCashRegister()!.id,
-      workingHours: workingHours,
+      initialWorking,
       initialBase: this.myCashService.initialBase!,
       baseObservation: this.myCashService.observation,
     };
@@ -48,8 +48,8 @@ export class BaseCashComponent {
     this.cashRegisterDetailService.register(detailReq).subscribe({
       next: (myCashRegistersReports) => {
         this.myCashRegisters.set(myCashRegistersReports);
-        this.myCashService.clear();
         this.cashRegisterStatus.set('open');
+        this.myCashService.clear();
         this.loading.set(false);
       },
       error: (err) => {
