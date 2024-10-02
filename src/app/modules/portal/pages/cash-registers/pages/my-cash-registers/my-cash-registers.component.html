@@ -8,10 +8,11 @@
         Caja
         {{ selectedCashRegister()?.cashRegisterDetail?.cashRegister?.numeral }}
       </h3>
-      <div class="text-gray-700 flex items-center gap-7">
+      <div class="text-gray-600 flex items-center gap-7">
         <p>
           Entrada:
           <span
+            class="text-gray-700"
             *ngIf="
               selectedCashRegister()?.cashRegisterDetail?.initialWorking;
               else noTime
@@ -26,6 +27,7 @@
         <p>
           Almuerzo:
           <span
+            class="text-gray-700"
             *ngIf="
               selectedCashRegister()?.cashRegisterDetail?.initialBreak;
               else noTime
@@ -37,6 +39,7 @@
           >
           -
           <span
+            class="text-gray-700"
             *ngIf="
               selectedCashRegister()?.cashRegisterDetail?.finalBreak;
               else noTime
@@ -51,6 +54,7 @@
         <p>
           Salida:
           <span
+            class="text-gray-700"
             *ngIf="
               selectedCashRegister()?.cashRegisterDetail?.finalWorking;
               else noTime
@@ -128,5 +132,7 @@
     *ngIf="selectedCashRegisterBreakTitle() !== ''"
     >{{ selectedCashRegisterBreakTitle() }}</app-button
   >
-  <app-button type="button" (click)="close()">Cerrar caja</app-button>
+  <app-button *ngIf="showCloseButton()" type="button" (click)="close()"
+    >Cerrar caja</app-button
+  >
 </section>

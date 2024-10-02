@@ -60,6 +60,10 @@ export class CashRegistersComponent {
       return this.cashRegisterStatus.set('final-base');
     }
 
+    if (this.myCashService.getClosedReports()) {
+      return this.cashRegisterStatus.set('final-report');
+    }
+
     this.loading.set(true);
 
     this.cashRegisterDetailService.alreadyExists().subscribe({

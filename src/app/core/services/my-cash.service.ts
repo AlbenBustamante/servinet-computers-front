@@ -25,7 +25,7 @@ export class MyCashService {
   private readonly initialBaseStorage = 'iB';
   private readonly selectedCashRegisterStorage = 'sCR';
   private readonly closingStorage = 'cs';
-  private readonly finalBaseStorage = 'fB';
+  private readonly closedReportsStorage = 'cR';
 
   readonly cashRegisterStatus = signal<
     | 'open'
@@ -141,11 +141,26 @@ export class MyCashService {
     localStorage.removeItem(this.closingStorage);
   }
 
+  setClosedReports(reports: ICashRegisterDetailReportsDto) {
+    this.removeClosing();
+    this.myClosedCashRegisterReports.set(reports);
+    localStorage.setItem(this.closedReportsStorage, '1');
+  }
+
+  getClosedReports() {
+    return !!localStorage.getItem(this.closedReportsStorage);
+  }
+
+  removeClosedReports() {
+    localStorage.removeItem(this.closedReportsStorage);
+  }
+
   clear() {
     this.removeInitialWorking();
     this.removeObservation();
     this.removeInitialBase();
     this.removeSelectedCashRegister();
     this.removeClosing();
+    this.removeClosedReports();
   }
 }

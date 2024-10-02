@@ -36,6 +36,8 @@ export class MyCashRegistersComponent {
     return '';
   });
 
+  readonly showCloseButton = signal<boolean>(true);
+
   constructor(
     private readonly myCashService: MyCashService,
     private readonly cashRegisterDetailService: CashRegisterDetailService
@@ -44,6 +46,10 @@ export class MyCashRegistersComponent {
 
     this.selectedCashRegister.set(
       this.myCashRegisters()?.cashRegisterDetailsReports[0]
+    );
+
+    this.showCloseButton.set(
+      this.selectedCashRegister()?.cashRegisterDetail.finalWorking === null
     );
   }
 

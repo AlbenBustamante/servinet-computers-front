@@ -99,9 +99,11 @@ export class BaseCalculatorComponent {
             hundred: base.hundred,
             fifty: base.fifty,
           });
-        }
 
-        this.calculate();
+          this.emitBase();
+        } else {
+          this.calculate();
+        }
 
         this.loading.set(false);
       },

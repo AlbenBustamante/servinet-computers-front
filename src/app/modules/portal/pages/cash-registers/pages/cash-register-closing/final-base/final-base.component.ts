@@ -38,9 +38,8 @@ export class FinalBaseComponent {
       .close(cashRegisterDetailId, this.finalBase()!)
       .subscribe({
         next: (reports) => {
-          this.myCashService.myClosedCashRegisterReports.set(reports);
+          this.myCashService.setClosedReports(reports);
           this.myCashService.cashRegisterStatus.set('final-report');
-          console.log({ reports });
           this.loading.set(false);
         },
         error: (err) => {
