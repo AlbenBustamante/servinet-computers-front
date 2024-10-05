@@ -28,7 +28,6 @@
           placeholder="0"
           class="cash-amount-input"
           [formControlName]="cash.title"
-          [disabled]="loading()"
         />
         <span class="text-gray-700">{{
           cash.total | currency : "Symbol" : "$" : "0.00"
@@ -72,7 +71,6 @@
           placeholder="0"
           class="cash-amount-input"
           [formControlName]="cash.title"
-          [disabled]="loading()"
         />
         <span class="text-gray-700">{{
           cash.total | currency : "Symbol" : "$" : "0.00"

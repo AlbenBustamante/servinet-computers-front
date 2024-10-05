@@ -81,7 +81,7 @@ export class BaseCalculatorComponent {
       return;
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     this.cashRegisterService.getLastBase(this.cashRegisterId).subscribe({
       next: (base) => {
@@ -105,11 +105,11 @@ export class BaseCalculatorComponent {
           this.calculate();
         }
 
-        this.loading.set(false);
+        this.setLoading(false);
       },
       error: (err) => {
         console.log(err);
-        this.loading.set(false);
+        this.setLoading(false);
       },
     });
   }
@@ -179,5 +179,11 @@ export class BaseCalculatorComponent {
     };
 
     this.setBase.emit(base);
+  }
+
+  private setLoading(loading: boolean) {
+    this.loading.set(loading);
+
+    loading ? this.baseForm.disable() : this.baseForm.enable();
   }
 }
