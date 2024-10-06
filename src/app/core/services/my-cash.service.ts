@@ -20,12 +20,13 @@ export class MyCashService {
     undefined
   );
 
-  private readonly initialWorkingStorage = 'iW';
-  private readonly observationStorage = 'ob';
-  private readonly initialBaseStorage = 'iB';
-  private readonly selectedCashRegisterStorage = 'sCR';
-  private readonly closingStorage = 'cs';
-  private readonly closedReportsStorage = 'cR';
+  private readonly INITIAL_WORKING = 'iW';
+  private readonly OBSERVATION = 'ob';
+  private readonly INITIAL_BASE = 'iB';
+  private readonly SELECTED_CASH_REGISTER = 'sCR';
+  private readonly CLOSING = 'cs';
+  private readonly CLOSED_REPORTS = 'cR';
+  private readonly EXPIRATION_TIME = 'eT';
 
   readonly cashRegisterStatus = signal<
     | 'open'
@@ -52,44 +53,43 @@ export class MyCashService {
 
   set initialWorking(initialWorking: string) {
     this._initialWorking = initialWorking;
-    localStorage.setItem(this.initialWorkingStorage, this._initialWorking);
+    localStorage.setItem(this.INITIAL_WORKING, this._initialWorking);
   }
 
   get initialWorking() {
-    this._initialWorking =
-      localStorage.getItem(this.initialWorkingStorage) ?? '';
+    this._initialWorking = localStorage.getItem(this.INITIAL_WORKING) ?? '';
 
     return this._initialWorking;
   }
 
   removeInitialWorking() {
     this._initialWorking = '';
-    localStorage.removeItem(this.initialWorkingStorage);
+    localStorage.removeItem(this.INITIAL_WORKING);
   }
 
   set observation(observation: string) {
     this._observation = observation;
-    localStorage.setItem(this.observationStorage, observation);
+    localStorage.setItem(this.OBSERVATION, observation);
   }
 
   get observation() {
-    this._observation = localStorage.getItem(this.observationStorage) ?? '';
+    this._observation = localStorage.getItem(this.OBSERVATION) ?? '';
 
     return this._observation;
   }
 
   removeObservation() {
     this._observation = '';
-    localStorage.removeItem(this.observationStorage);
+    localStorage.removeItem(this.OBSERVATION);
   }
 
   set initialBase(initialBase: IBase) {
     this._initialBase = initialBase;
-    localStorage.setItem(this.initialBaseStorage, JSON.stringify(initialBase));
+    localStorage.setItem(this.INITIAL_BASE, JSON.stringify(initialBase));
   }
 
   get initialBase(): IBase | undefined {
-    const base = localStorage.getItem(this.initialBaseStorage);
+    const base = localStorage.getItem(this.INITIAL_BASE);
     this._initialBase = base ? JSON.parse(base) : undefined;
 
     return this._initialBase;
@@ -97,21 +97,21 @@ export class MyCashService {
 
   removeInitialBase() {
     this._initialBase = undefined;
-    localStorage.removeItem(this.initialBaseStorage);
+    localStorage.removeItem(this.INITIAL_BASE);
   }
 
   setSelectedCashRegister(cashRegister: ICashRegisterRes) {
     this._selectedCashRegister.set(cashRegister);
 
     localStorage.setItem(
-      this.selectedCashRegisterStorage,
+      this.SELECTED_CASH_REGISTER,
       JSON.stringify(cashRegister)
     );
   }
 
   getSelectedCashRegister() {
     const selectedCashRegister = localStorage.getItem(
-      this.selectedCashRegisterStorage
+      this.SELECTED_CASH_REGISTER
     );
 
     this._selectedCashRegister.set(
@@ -123,36 +123,64 @@ export class MyCashService {
 
   removeSelectedCashRegister() {
     this._selectedCashRegister.set(undefined);
-    localStorage.removeItem(this.selectedCashRegisterStorage);
+    localStorage.removeItem(this.SELECTED_CASH_REGISTER);
   }
 
   set closing(closing: boolean) {
     this._closing = closing;
-    localStorage.setItem(this.closingStorage, String(this._closing));
+    localStorage.setItem(this.CLOSING, String(this._closing));
   }
 
   get closing() {
-    this._closing = Boolean(localStorage.getItem(this.closingStorage)) ?? false;
+    this._closing = Boolean(localStorage.getItem(this.CLOSING)) ?? false;
     return this._closing;
   }
 
   removeClosing() {
     this._closing = false;
-    localStorage.removeItem(this.closingStorage);
+    localStorage.removeItem(this.CLOSING);
   }
 
   setClosedReports(reports: ICashRegisterDetailReportsDto) {
     this.removeClosing();
     this.myClosedCashRegisterReports.set(reports);
-    localStorage.setItem(this.closedReportsStorage, '1');
+    localStorage.setItem(this.CLOSED_REPORTS, '1');
   }
 
   getClosedReports() {
-    return !!localStorage.getItem(this.closedReportsStorage);
+    return !!localStorage.getItem(this.CLOSED_REPORTS);
   }
 
   removeClosedReports() {
-    localStorage.removeItem(this.closedReportsStorage);
+    localStorage.removeItem(this.CLOSED_REPORTS);
+  }
+
+  initTime() {
+    const minutes = 1;
+    const expirationTime = minutes * 60 * 1000;
+
+    const time = Date.now() + expirationTime;
+
+    localStorage.setItem(this.EXPIRATION_TIME, time.toString());
+  }
+
+  isExpired() {
+    const expirationStorage = localStorage.getItem(this.EXPIRATION_TIME);
+
+    if (!expirationStorage) {
+      return false;
+    }
+
+    const expirationTime = +expirationStorage;
+    const isExpired = Date.now() > expirationTime;
+
+    console.log('Expiration Time', expirationTime, 'Expired', isExpired);
+
+    return isExpired;
+  }
+
+  removeExpirationTime() {
+    localStorage.removeItem(this.EXPIRATION_TIME);
   }
 
   clear() {
@@ -162,5 +190,6 @@ export class MyCashService {
     this.removeSelectedCashRegister();
     this.removeClosing();
     this.removeClosedReports();
+    this.removeExpirationTime();
   }
 }

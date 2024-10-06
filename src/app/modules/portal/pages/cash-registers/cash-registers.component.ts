@@ -1,6 +1,7 @@
 import { Component, effect, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
+import { CashRegisterService } from '@services/cash-register.service';
 import { MyCashService } from '@services/my-cash.service';
 
 @Component({
@@ -26,6 +27,7 @@ export class CashRegistersComponent {
 
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService,
+    private readonly cashRegisterService: CashRegisterService,
     private readonly myCashService: MyCashService,
     private readonly router: Router,
     private readonly route: ActivatedRoute
@@ -48,6 +50,44 @@ export class CashRegistersComponent {
       return;
     }
 
+    const expired = this.myCashService.isExpired();
+
+    if (!expired) {
+      return this.redirect();
+    }
+
+    if (expired) {
+      this.alreadyExists();
+    }
+  }
+
+  private alreadyExists() {
+    this.loading.set(true);
+
+    this.myCashService.clear();
+
+    this.cashRegisterDetailService.alreadyExists().subscribe({
+      next: (res) => {
+        if (res.alreadyExists) {
+          this.myCashService.removeExpirationTime();
+          this.cashRegisterStatus.set('open');
+          this.myCashRegisters.set(res.myCashRegisters);
+        } else {
+          this.myCashService.initTime();
+          this.cashRegisterStatus.set('selecting');
+          this.cashRegisters.set(res.availableCashRegisters);
+        }
+
+        this.loading.set(false);
+      },
+      error: (error) => {
+        this.loading.set(false);
+        console.log(error);
+      },
+    });
+  }
+
+  private redirect() {
     if (this.myCashService.observation || this.myCashService.initialBase) {
       return this.cashRegisterStatus.set('counting');
     }
@@ -66,21 +106,15 @@ export class CashRegistersComponent {
 
     this.loading.set(true);
 
-    this.cashRegisterDetailService.alreadyExists().subscribe({
-      next: (res) => {
-        if (res.alreadyExists) {
-          this.cashRegisterStatus.set('open');
-          this.myCashRegisters.set(res.myCashRegisters);
-        } else {
-          this.cashRegisterStatus.set('selecting');
-          this.cashRegisters.set(res.availableCashRegisters);
-        }
-
+    this.cashRegisterService.getAll().subscribe({
+      next: (cashRegisters) => {
+        this.cashRegisters.set(cashRegisters);
+        this.cashRegisterStatus.set('selecting');
         this.loading.set(false);
       },
-      error: (error) => {
+      error: (err) => {
+        console.log(err);
         this.loading.set(false);
-        console.log(error);
       },
     });
   }
