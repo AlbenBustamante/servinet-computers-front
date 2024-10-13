@@ -1,0 +1,25 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="control">
+    <label for="description">Descripción</label>
+    <input
+      type="text"
+      id="description"
+      class="input"
+      formControlName="description"
+    />
+  </div>
+  <div class="control">
+    <label for="value">Valor</label>
+    <input type="number" id="value" class="input" formControlName="value" />
+  </div>
+  <div class="control-row flex-row-reverse justify-end w-full">
+    <label for="discount" class="w-full flex items-center gap-1"
+      >Descontar
+      <small class="font-normal text-sm text-gray-700"
+        >(Será descontado de su nómina)</small
+      ></label
+    >
+    <input type="checkbox" id="discount" formControlName="discount" />
+  </div>
+  <app-button type="submit" [loading]="loading()">Registrar Gasto</app-button>
+</form>
