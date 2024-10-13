@@ -48,6 +48,9 @@ export class MyCashService {
   readonly myClosedCashRegisterReports = signal<
     ICashRegisterDetailReportsDto | undefined
   >(undefined);
+  readonly currentCashRegister = signal<
+    ICashRegisterDetailReportsDto | undefined
+  >(undefined);
 
   constructor() {}
 
@@ -156,7 +159,7 @@ export class MyCashService {
   }
 
   initTime() {
-    const minutes = 1;
+    const minutes = 60;
     const expirationTime = minutes * 60 * 1000;
 
     const time = Date.now() + expirationTime;

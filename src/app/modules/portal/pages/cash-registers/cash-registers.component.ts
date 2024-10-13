@@ -52,13 +52,7 @@ export class CashRegistersComponent {
 
     const expired = this.myCashService.isExpired();
 
-    if (!expired) {
-      return this.redirect();
-    }
-
-    if (expired) {
-      this.alreadyExists();
-    }
+    !expired ? this.redirect() : this.alreadyExists();
   }
 
   private alreadyExists() {
@@ -69,7 +63,6 @@ export class CashRegistersComponent {
     this.cashRegisterDetailService.alreadyExists().subscribe({
       next: (res) => {
         if (res.alreadyExists) {
-          this.myCashService.removeExpirationTime();
           this.cashRegisterStatus.set('open');
           this.myCashRegisters.set(res.myCashRegisters);
         } else {
@@ -104,18 +97,6 @@ export class CashRegistersComponent {
       return this.cashRegisterStatus.set('final-report');
     }
 
-    this.loading.set(true);
-
-    this.cashRegisterService.getAll().subscribe({
-      next: (cashRegisters) => {
-        this.cashRegisters.set(cashRegisters);
-        this.cashRegisterStatus.set('selecting');
-        this.loading.set(false);
-      },
-      error: (err) => {
-        console.log(err);
-        this.loading.set(false);
-      },
-    });
+    this.alreadyExists();
   }
 }

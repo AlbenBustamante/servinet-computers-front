@@ -6,7 +6,9 @@
     <div class="flex flex-col gap-1">
       <h3 class="text-gray-700 text-3xl font-medium">
         Caja
-        {{ selectedCashRegister()?.cashRegisterDetail?.cashRegister?.numeral }}
+        {{
+          currentCashRegister()?.cashRegisterDetail?.cashRegister?.numeral ?? ""
+        }}
       </h3>
       <div class="text-gray-600 flex items-center gap-7">
         <p>
@@ -14,11 +16,11 @@
           <span
             class="text-gray-700"
             *ngIf="
-              selectedCashRegister()?.cashRegisterDetail?.initialWorking;
+              currentCashRegister()?.cashRegisterDetail?.initialWorking;
               else noTime
             "
             >{{
-              selectedCashRegister()?.cashRegisterDetail?.initialWorking
+              currentCashRegister()?.cashRegisterDetail?.initialWorking
                 | date : "hh:mm a"
             }}</span
           >
@@ -29,11 +31,11 @@
           <span
             class="text-gray-700"
             *ngIf="
-              selectedCashRegister()?.cashRegisterDetail?.initialBreak;
+              currentCashRegister()?.cashRegisterDetail?.initialBreak;
               else noTime
             "
             >{{
-              selectedCashRegister()?.cashRegisterDetail?.initialBreak
+              currentCashRegister()?.cashRegisterDetail?.initialBreak
                 | date : "hh:mm a"
             }}</span
           >
@@ -41,11 +43,11 @@
           <span
             class="text-gray-700"
             *ngIf="
-              selectedCashRegister()?.cashRegisterDetail?.finalBreak;
+              currentCashRegister()?.cashRegisterDetail?.finalBreak;
               else noTime
             "
             >{{
-              selectedCashRegister()?.cashRegisterDetail?.finalBreak
+              currentCashRegister()?.cashRegisterDetail?.finalBreak
                 | date : "hh:mm a"
             }}</span
           >
@@ -56,11 +58,11 @@
           <span
             class="text-gray-700"
             *ngIf="
-              selectedCashRegister()?.cashRegisterDetail?.finalWorking;
+              currentCashRegister()?.cashRegisterDetail?.finalWorking;
               else noTime
             "
             >{{
-              selectedCashRegister()?.cashRegisterDetail?.finalWorking
+              currentCashRegister()?.cashRegisterDetail?.finalWorking
                 | date : "hh:mm a"
             }}</span
           >
@@ -99,7 +101,7 @@
       <h3 class="text-lg text-gray-700 font-medium">Saldo en caja</h3>
       <p class="text-2xl text-gray-700 text-right font-medium">
         {{
-          selectedCashRegister()?.balance ?? 0
+          currentCashRegister()?.balance ?? 0
             | currency : "symbol" : "$" : "0.00"
         }}
       </p>
@@ -108,7 +110,7 @@
       <h3 class="text-lg text-gray-700 font-medium">Depósitos</h3>
       <p class="text-2xl text-green-700 text-right font-medium">
         {{
-          selectedCashRegister()?.deposits ?? 0
+          currentCashRegister()?.deposits ?? 0
             | currency : "symbol" : "$" : "0.00"
         }}
       </p>
@@ -117,7 +119,7 @@
       <h3 class="text-lg text-gray-700 font-medium">Retiros</h3>
       <p class="text-2xl text-red-700 text-right font-medium">
         {{
-          selectedCashRegister()?.withdrawals ?? 0
+          currentCashRegister()?.withdrawals ?? 0
             | currency : "symbol" : "$" : "0.00"
         }}
       </p>
@@ -129,8 +131,8 @@
     type="button"
     [loading]="breakLoading()"
     (click)="handleTakeBreak()"
-    *ngIf="selectedCashRegisterBreakTitle() !== ''"
-    >{{ selectedCashRegisterBreakTitle() }}</app-button
+    *ngIf="myCurrentCashRegisterBreakTitle() !== ''"
+    >{{ myCurrentCashRegisterBreakTitle() }}</app-button
   >
   <app-button *ngIf="showCloseButton()" type="button" (click)="close()"
     >Cerrar caja</app-button

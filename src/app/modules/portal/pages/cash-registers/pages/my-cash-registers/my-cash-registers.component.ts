@@ -1,5 +1,4 @@
 import { Component, computed, signal } from '@angular/core';
-import { ICashRegisterDetailReportsDto } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 
@@ -11,13 +10,15 @@ import { MyCashService } from '@services/my-cash.service';
 export class MyCashRegistersComponent {
   readonly breakLoading = signal<boolean>(false);
   readonly myCashRegisters;
-  readonly selectedCashRegister = signal<
-    ICashRegisterDetailReportsDto | undefined
-  >(undefined);
-  readonly selectedCashRegisterIndex = signal<number>(0);
+  readonly currentCashRegister;
+  readonly currentCashRegisterIndex = signal<number>(0);
 
-  readonly selectedCashRegisterBreakTitle = computed(() => {
-    const cashRegisterDetail = this.selectedCashRegister()?.cashRegisterDetail!;
+  readonly myCurrentCashRegisterBreakTitle = computed(() => {
+    const cashRegisterDetail = this.currentCashRegister()?.cashRegisterDetail;
+
+    if (!cashRegisterDetail) {
+      return '';
+    }
 
     if (
       cashRegisterDetail.initialBreak !== null &&
@@ -43,13 +44,12 @@ export class MyCashRegistersComponent {
     private readonly cashRegisterDetailService: CashRegisterDetailService
   ) {
     this.myCashRegisters = this.myCashService.myCashRegisters;
-
-    this.selectedCashRegister.set(
-      this.myCashRegisters()?.cashRegisterDetailsReports[0]
+    this.currentCashRegister = this.myCashService.currentCashRegister;
+    this.currentCashRegister.set(
+      this.myCashRegisters()!.cashRegisterDetailsReports[0]
     );
-
     this.showCloseButton.set(
-      this.selectedCashRegister()?.cashRegisterDetail.finalWorking === null
+      this.currentCashRegister()?.cashRegisterDetail.finalWorking === null
     );
   }
 
@@ -58,22 +58,20 @@ export class MyCashRegistersComponent {
     const value = target.value;
 
     if (value === 'all') {
-      return this.selectedCashRegister.set(
-        this.myCashRegisters()?.finalReport!
-      );
+      return this.currentCashRegister.set(this.myCashRegisters()?.finalReport!);
     }
 
     const index = Number(value);
 
-    this.selectedCashRegisterIndex.set(index);
+    this.currentCashRegisterIndex.set(index);
 
-    this.selectedCashRegister.set(
+    this.currentCashRegister.set(
       this.myCashRegisters()?.cashRegisterDetailsReports[index]!
     );
   }
 
   handleTakeBreak() {
-    this.selectedCashRegisterBreakTitle() === 'Tomar descanso'
+    this.myCurrentCashRegisterBreakTitle() === 'Tomar descanso'
       ? this.startBreak()
       : this.endBreak();
   }
@@ -82,11 +80,11 @@ export class MyCashRegistersComponent {
     this.breakLoading.set(true);
 
     const cashRegisterDetailId =
-      this.selectedCashRegister()?.cashRegisterDetail.id;
+      this.currentCashRegister()?.cashRegisterDetail.id;
 
     this.cashRegisterDetailService.startBreak(cashRegisterDetailId!).subscribe({
       next: (cashRegisterDetail) => {
-        this.selectedCashRegister.update((prevValue) => {
+        this.currentCashRegister.update((prevValue) => {
           prevValue!.cashRegisterDetail = cashRegisterDetail;
 
           return prevValue;
@@ -94,7 +92,7 @@ export class MyCashRegistersComponent {
 
         this.myCashRegisters.update((cashRegisters) => {
           cashRegisters!.cashRegisterDetailsReports[
-            this.selectedCashRegisterIndex()
+            this.currentCashRegisterIndex()
           ].cashRegisterDetail;
 
           return cashRegisters;
@@ -113,11 +111,11 @@ export class MyCashRegistersComponent {
     this.breakLoading.set(true);
 
     const cashRegisterDetailId =
-      this.selectedCashRegister()?.cashRegisterDetail.id;
+      this.currentCashRegister()?.cashRegisterDetail.id;
 
     this.cashRegisterDetailService.endBreak(cashRegisterDetailId!).subscribe({
       next: (cashRegisterDetail) => {
-        this.selectedCashRegister.update((prevValue) => {
+        this.currentCashRegister.update((prevValue) => {
           prevValue!.cashRegisterDetail = cashRegisterDetail;
 
           return prevValue;
@@ -125,7 +123,7 @@ export class MyCashRegistersComponent {
 
         this.myCashRegisters.update((cashRegisters) => {
           cashRegisters!.cashRegisterDetailsReports[
-            this.selectedCashRegisterIndex()
+            this.currentCashRegisterIndex()
           ].cashRegisterDetail;
 
           return cashRegisters;
@@ -143,7 +141,7 @@ export class MyCashRegistersComponent {
   close() {
     this.myCashService.closing = true;
     this.myCashService.myClosingCashRegister.set(
-      this.selectedCashRegister()?.cashRegisterDetail
+      this.currentCashRegister()?.cashRegisterDetail
     );
     this.myCashService.cashRegisterStatus.set('final-base');
   }

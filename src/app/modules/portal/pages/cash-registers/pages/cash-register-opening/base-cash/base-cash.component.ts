@@ -36,11 +36,9 @@ export class BaseCashComponent {
   register() {
     this.loading.set(true);
 
-    const initialWorking = this.myCashService.initialWorking;
-
     const detailReq: ICashRegisterDetailReq = {
       cashRegisterId: this.selectedCashRegister()!.id,
-      initialWorking,
+      initialWorking: this.myCashService.initialWorking,
       initialBase: this.myCashService.initialBase!,
       baseObservation: this.myCashService.observation,
     };
@@ -50,6 +48,9 @@ export class BaseCashComponent {
         this.myCashRegisters.set(myCashRegistersReports);
         this.cashRegisterStatus.set('open');
         this.myCashService.clear();
+        this.myCashService.currentCashRegister.set(
+          myCashRegistersReports.cashRegisterDetailsReports[0]
+        );
         this.loading.set(false);
       },
       error: (err) => {

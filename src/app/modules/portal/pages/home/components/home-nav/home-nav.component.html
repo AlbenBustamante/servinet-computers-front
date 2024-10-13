@@ -1,0 +1,14 @@
+<nav
+  class="w-full bg-gray-200 text-gray-700 text-lg font-medium mt-5 py-4 rounded-3xl shadow"
+>
+  <ul class="w-full flex items-center justify-center gap-5">
+    <li *ngFor="let route of routes">
+      <a
+        [routerLink]="route.route"
+        routerLinkActive="bg-gray-300 text-gray-800"
+        class="rounded-lg px-4 py-1.5 hover:bg-gray-300"
+        >{{ route.name }}</a
+      >
+    </li>
+  </ul>
+</nav>

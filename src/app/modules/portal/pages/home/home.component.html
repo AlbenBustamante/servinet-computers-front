@@ -1,5 +1,5 @@
 <section
-  *ngIf="!open(); else home"
+  *ngIf="open() === false; else home"
   class="h-[calc(100vh-4rem)] flex items-center justify-center"
 >
   <div class="">
@@ -13,15 +13,6 @@
   </div>
 </section>
 <ng-template #home>
-  <nav>
-    <ul>
-      <li>
-        <a>Transacciones</a>
-      </li>
-      <li>
-        <a>Gastos</a>
-      </li>
-      <li><a>Transferencias</a></li>
-    </ul>
-  </nav>
+  <app-home-nav />
+  <router-outlet />
 </ng-template>
