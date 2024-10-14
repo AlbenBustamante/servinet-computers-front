@@ -18,15 +18,16 @@ const routes: Routes = [
       },
       {
         path: 'cajas',
-        loadChildren: () => import('./pages/cash-registers/cash-registers.module'),
+        loadChildren: () =>
+          import('./pages/cash-registers/cash-registers.module'),
       },
       {
         path: 'plataformas',
         loadChildren: () => import('./pages/platforms/platforms.module'),
       },
       {
-        path: 'transacciones',
-        loadChildren: () => import('./pages/transactions/transactions.module'),
+        path: 'reportes',
+        loadChildren: () => import('./pages/reports/reports.module'),
       },
     ],
   },

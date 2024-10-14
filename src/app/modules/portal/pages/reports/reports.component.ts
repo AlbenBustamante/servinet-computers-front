@@ -5,14 +5,14 @@ import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 import { lastValueFrom } from 'rxjs';
 
-type SelectedReport = 'platformTransfers';
+type SelectedReport = 'platformTransfers' | 'expenses' | 'discounts';
 
 @Component({
-  selector: 'app-transactions',
-  templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.css'],
+  selector: 'app-reports',
+  templateUrl: './reports.component.html',
+  styleUrls: ['./reports.component.css'],
 })
-export class TransactionsComponent {
+export class ReportsComponent {
   readonly loading = signal<boolean>(false);
   readonly reports = signal<IReportsRes | null>(null);
   readonly selectedReport = signal<SelectedReport | null>(null);

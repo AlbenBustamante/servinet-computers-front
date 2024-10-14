@@ -39,7 +39,7 @@ export interface ICashRegisterDetailReportsDto {
   deposits: number;
   withdrawals: number;
   expenses: number;
-  credits: number;
+  discounts: number;
   balance: number;
   discrepancy: number;
 }

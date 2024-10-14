@@ -16,7 +16,7 @@ export class NavbarComponent {
   private readonly faHome = faHome;
   private readonly faMyCash = faCashRegister;
   private readonly faList = faList;
-  private readonly faTransactions = faChartSimple;
+  private readonly faReports = faChartSimple;
   readonly routes = signal<IRoute[]>([]);
 
   constructor() {
@@ -24,11 +24,7 @@ export class NavbarComponent {
       { title: 'Inicio', icon: this.faHome, route: './home' },
       { title: 'Mis cajas', icon: this.faMyCash, route: './cajas' },
       { title: 'Plataformas', icon: this.faList, route: './plataformas' },
-      {
-        title: 'Transacciones',
-        icon: this.faTransactions,
-        route: './transacciones',
-      },
+      { title: 'Reportes', icon: this.faReports, route: './reportes' },
     ]);
   }
 }

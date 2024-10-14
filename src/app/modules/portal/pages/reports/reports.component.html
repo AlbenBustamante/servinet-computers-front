@@ -10,8 +10,10 @@
       class="input w-full"
       (change)="onChangeReport($event)"
     >
-      <option disabled selected>Tipo de reporte</option>
+      <option disabled selected>Selecciona el tipo de reporte</option>
       <option value="platformTransfers">Transferencias a plataformas</option>
+      <option value="expenses">Gastos de caja</option>
+      <option value="discounts">Descuentos</option>
     </select>
   </form>
   <div class="divider my-5"></div>
@@ -26,6 +28,20 @@
           <th>Comprobantes</th>
           <th class="text-left w-24">Hora</th>
           <th class="actions"></th>
+        </tr>
+        <tr *ngIf="selectedReport() === 'expenses'">
+          <th class="w-20">#</th>
+          <th>Descripción</th>
+          <th>Valor</th>
+          <th>Hora</th>
+          <th>Actualizado</th>
+        </tr>
+        <tr *ngIf="selectedReport() === 'discounts'">
+          <th class="w-20">#</th>
+          <th>Descripción</th>
+          <th>Valor</th>
+          <th>Hora</th>
+          <th>Actualizado</th>
         </tr>
       </thead>
       <tbody *ngIf="selectedReport() === 'platformTransfers'">
@@ -46,6 +62,36 @@
               <fa-icon [icon]="faEdit" class="edit"></fa-icon>
               <fa-icon [icon]="faRemove" class="remove"></fa-icon>
             </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="selectedReport() === 'expenses'">
+        <tr *ngFor="let expense of reports()?.expenses">
+          <td class="text-center">{{ expense.id }}</td>
+          <td>{{ expense.description }}</td>
+          <td class="text-right">
+            {{ expense.value | currency : "symbol" : "$" : "0.00" }}
+          </td>
+          <td class="text-left">
+            {{ expense.createdDate | date : "H:mm:ss" }}
+          </td>
+          <td class="text-left">
+            {{ expense.modifiedDate | date : "H:mm:ss" }}
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="selectedReport() === 'discounts'">
+        <tr *ngFor="let discount of reports()?.discounts">
+          <td class="text-center">{{ discount.id }}</td>
+          <td>{{ discount.description }}</td>
+          <td class="text-right">
+            {{ discount.value | currency : "symbol" : "$" : "0.00" }}
+          </td>
+          <td class="text-left">
+            {{ discount.createdDate | date : "H:mm:ss" }}
+          </td>
+          <td class="text-left">
+            {{ discount.modifiedDate | date : "H:mm:ss" }}
           </td>
         </tr>
       </tbody>

@@ -1,4 +1,5 @@
 import { Role } from './enums';
+import { IExpenseRes } from './expense.model';
 import { IPlatformTransferRes } from './platform.model';
 import { IResponse } from './response.model';
 
@@ -19,4 +20,6 @@ export interface IUserRes extends IResponse {
 
 export interface IReportsRes {
   platformTransfers: IPlatformTransferRes[];
+  expenses: IExpenseRes[];
+  discounts: IExpenseRes[];
 }
