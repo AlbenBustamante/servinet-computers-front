@@ -1,8 +1,11 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Role } from '@models/enums';
 import { IPlatformBalanceReq, IPortalPlatform } from '@models/platform.model';
+import { AuthService } from '@services/auth.service';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { PlatformService } from '@services/platform.service';
+import { TokenService } from '@services/token.service';
 
 @Component({
   selector: 'app-update-platform-balances-form',
@@ -15,11 +18,13 @@ export class UpdatePlatformBalancesFormComponent {
   readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
   readonly editing: WritableSignal<boolean>;
   readonly loading = signal<boolean>(false);
+  readonly canEdit = signal<boolean>(false);
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly platformService: PlatformService,
-    private readonly platformBalanceService: PlatformBalanceService
+    private readonly platformBalanceService: PlatformBalanceService,
+    private readonly tokenService: TokenService
   ) {
     this.portalPlatforms = this.platformService.portalPlatforms;
     this.editing = this.platformService.editing;
@@ -27,6 +32,10 @@ export class UpdatePlatformBalancesFormComponent {
 
     const initialBalance = this.selectedPortalPlatform()?.initialBalance;
     const finalBalance = this.selectedPortalPlatform()?.finalBalance;
+
+    const role = this.tokenService.getInfo().role;
+
+    this.canEdit.set(role !== Role.CASHIER);
 
     this.balancesForm = this.fb.group({
       initialBalance: [
@@ -38,6 +47,8 @@ export class UpdatePlatformBalancesFormComponent {
         Validators.required,
       ],
     });
+
+    this.canEdit() ? this.balancesForm.enable() : this.balancesForm.disable();
   }
 
   onBalancesSubmit() {

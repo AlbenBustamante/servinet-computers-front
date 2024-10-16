@@ -30,6 +30,12 @@
     }}</span>
   </p>
 </div>
-<app-button type="button" color="neutral" (click)="handleEditing()"
-  >Editar Saldos</app-button
+<app-button
+  type="button"
+  color="neutral"
+  (click)="handleEditing()"
+  [disabled]="!canEdit()"
+  *ngIf="canEdit()"
 >
+  Editar Saldos
+</app-button>

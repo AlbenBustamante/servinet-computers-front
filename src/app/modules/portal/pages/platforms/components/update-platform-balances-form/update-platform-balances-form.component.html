@@ -7,6 +7,7 @@
       [readOnly]="loading()"
       class="input"
       formControlName="initialBalance"
+      placeholder="0"
     />
   </div>
   <div class="control">
@@ -17,7 +18,10 @@
       [readOnly]="loading()"
       class="input"
       formControlName="finalBalance"
+      placeholder="0"
     />
   </div>
-  <app-button type="submit" [loading]="loading()">Guardar</app-button>
+  <app-button type="submit" [loading]="loading()" [disabled]="!canEdit()">
+    Guardar
+  </app-button>
 </form>
