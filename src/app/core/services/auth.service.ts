@@ -33,6 +33,7 @@ export class AuthService {
   }
 
   logout() {
+    this.myCashService.currentCashRegister.set(undefined);
     this.myCashService.myCashRegisters.set(undefined);
     this.myCashService.cashRegisterStatus.set(undefined);
     this.loggedIn.set(null);

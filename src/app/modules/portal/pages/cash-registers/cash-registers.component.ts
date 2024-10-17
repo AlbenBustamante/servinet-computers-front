@@ -1,7 +1,6 @@
 import { Component, effect, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
-import { CashRegisterService } from '@services/cash-register.service';
 import { MyCashService } from '@services/my-cash.service';
 
 @Component({
@@ -27,7 +26,6 @@ export class CashRegistersComponent {
 
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService,
-    private readonly cashRegisterService: CashRegisterService,
     private readonly myCashService: MyCashService,
     private readonly router: Router,
     private readonly route: ActivatedRoute
