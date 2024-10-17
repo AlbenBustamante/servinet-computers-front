@@ -126,15 +126,26 @@
     </div>
   </div>
 </header>
-<section class="mt-32 flex items-center justify-center gap-7">
-  <app-button
-    type="button"
-    [loading]="breakLoading()"
-    (click)="handleTakeBreak()"
-    *ngIf="myCurrentCashRegisterBreakTitle() !== ''"
-    >{{ myCurrentCashRegisterBreakTitle() }}</app-button
-  >
-  <app-button *ngIf="showCloseButton()" type="button" (click)="close()"
-    >Cerrar caja</app-button
-  >
+<section class="w-full mt-32 grid grid-cols-5 place-items-center gap-7">
+  <div class="col-span-1">
+    <app-icon-button
+      [icon]="faRefresh"
+      type="button"
+      (click)="refresh()"
+      [loading]="refreshLoading()"
+    />
+  </div>
+  <div class="col-span-3 flex items-center justify-center gap-7">
+    <app-button
+      type="button"
+      [loading]="breakLoading()"
+      (click)="handleTakeBreak()"
+      *ngIf="myCurrentCashRegisterBreakTitle() !== ''"
+      >{{ myCurrentCashRegisterBreakTitle() }}</app-button
+    >
+    <app-button *ngIf="showCloseButton()" type="button" (click)="close()"
+      >Cerrar caja</app-button
+    >
+  </div>
+  <div class="col-span-1"></div>
 </section>

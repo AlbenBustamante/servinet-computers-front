@@ -1,4 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
+import { faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 
@@ -12,6 +13,8 @@ export class MyCashRegistersComponent {
   readonly myCashRegisters;
   readonly currentCashRegister;
   readonly currentCashRegisterIndex = signal<number>(0);
+  readonly faRefresh = faRefresh;
+  readonly refreshLoading = signal<boolean>(false);
 
   readonly myCurrentCashRegisterBreakTitle = computed(() => {
     const cashRegisterDetail = this.currentCashRegister()?.cashRegisterDetail;
@@ -68,6 +71,23 @@ export class MyCashRegistersComponent {
     this.currentCashRegister.set(
       this.myCashRegisters()?.cashRegisterDetailsReports[index]!
     );
+  }
+
+  refresh() {
+    this.refreshLoading.set(true);
+
+    const id = this.currentCashRegister()!.cashRegisterDetail.id;
+
+    this.cashRegisterDetailService.getReports(id).subscribe({
+      next: (reports) => {
+        this.currentCashRegister.set(reports);
+        this.refreshLoading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.refreshLoading.set(false);
+      },
+    });
   }
 
   handleTakeBreak() {
