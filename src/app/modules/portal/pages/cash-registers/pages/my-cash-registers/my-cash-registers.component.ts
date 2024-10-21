@@ -46,6 +46,7 @@ export class MyCashRegistersComponent {
     private readonly myCashService: MyCashService,
     private readonly cashRegisterDetailService: CashRegisterDetailService
   ) {
+    this.myCashService.clear();
     this.myCashRegisters = this.myCashService.myCashRegisters;
     this.currentCashRegister = this.myCashService.currentCashRegister;
     this.currentCashRegister.set(

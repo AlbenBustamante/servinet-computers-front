@@ -9,6 +9,7 @@ import { MyCashService } from '@services/my-cash.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  readonly loading = signal<boolean>(false);
   readonly open = signal<boolean | undefined>(undefined);
 
   constructor(
@@ -18,24 +19,30 @@ export class HomeComponent {
   ) {}
 
   ngOnInit() {
+    this.loading.set(true);
+
     const open = !!this.myCashService.currentCashRegister();
 
     if (open) {
-      return;
+      this.open.set(open);
+      return this.loading.set(false);
     }
 
     this.cashRegisterDetailService.alreadyExists().subscribe({
       next: (alreadyExists) => {
         this.open.set(alreadyExists.alreadyExists);
 
-        if (alreadyExists.alreadyExists) {
+        if (this.open()) {
           this.myCashService.currentCashRegister.set(
             alreadyExists.myCashRegisters.cashRegisterDetailsReports[0]
           );
         }
+
+        this.loading.set(false);
       },
       error: (err) => {
         console.log(err);
+        this.loading.set(false);
       },
     });
   }

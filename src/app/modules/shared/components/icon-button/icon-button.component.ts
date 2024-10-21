@@ -12,4 +12,5 @@ export class IconButtonComponent {
   @Input() color: 'primary' | 'neutral' = 'primary';
   @Input() disabled: boolean = false;
   @Input() loading: boolean = false;
+  @Input() spinner: boolean = false;
 }
