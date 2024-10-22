@@ -4,7 +4,7 @@ import { CashRegisterDetailService } from '@services/cash-register-detail.servic
 import { MyCashService } from '@services/my-cash.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-portal-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
