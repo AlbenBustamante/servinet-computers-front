@@ -3,36 +3,8 @@
   hDescription="Visualiza y actualiza todos tus productos"
 />
 <div class="container">
-  <article
-    class="border-2 border-violet-200 bg-white shadow rounded-lg px-5 py-6"
-  >
-    <header class="flex flex-col-reverse items-center gap-3">
-      <h3 class="font-medium text-gray-700">Plataformas</h3>
-      <fa-icon [icon]="faPlatforms" size="xl" class="text-gray-700" />
-    </header>
-  </article>
-  <article
-    class="border-2 border-violet-200 bg-white shadow rounded-lg px-5 py-6"
-  >
-    <header class="flex flex-col-reverse items-center gap-3">
-      <h3 class="font-medium text-gray-700">Cajas Registradoras</h3>
-      <fa-icon [icon]="faCashRegister" size="xl" class="text-gray-700" />
-    </header>
-  </article>
-  <article
-    class="border-2 border-violet-200 bg-white shadow rounded-lg px-5 py-6"
-  >
-    <header class="flex flex-col-reverse items-center gap-3">
-      <h3 class="font-medium text-gray-700">Cajas Fuertes</h3>
-      <fa-icon [icon]="faCashSafe" size="xl" class="text-gray-700" />
-    </header>
-  </article>
-  <article
-    class="border-2 border-violet-200 bg-white shadow rounded-lg px-5 py-6"
-  >
-    <header class="flex flex-col-reverse items-center gap-3">
-      <h3 class="font-medium text-gray-700">Usuarios</h3>
-      <fa-icon [icon]="faUser" size="xl" class="text-gray-700" />
-    </header>
-  </article>
+  <app-product-card pTitle="Plataformas" [pIcon]="faPlatforms" />
+  <app-product-card pTitle="Cajas Registradoras" [pIcon]="faCashRegister" />
+  <app-product-card pTitle="Cajas Fuertes" [pIcon]="faCashSafe" />
+  <app-product-card pTitle="Usuarios" [pIcon]="faUser" />
 </div>
