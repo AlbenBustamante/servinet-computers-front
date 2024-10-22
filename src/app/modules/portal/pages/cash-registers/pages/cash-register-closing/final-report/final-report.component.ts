@@ -15,6 +15,8 @@ export class FinalReportComponent {
 
   finish() {
     this.myCashService.removeClosedReports();
-    this.myCashService.cashRegisterStatus.set('open'); // temporal
+    this.myCashService.currentCashRegister.set(undefined);
+    this.myCashService.myCashRegisters.set(undefined);
+    this.myCashService.cashRegisterStatus.set('selecting');
   }
 }

@@ -40,7 +40,11 @@ export class MyCashRegistersComponent {
     return '';
   });
 
-  readonly showCloseButton = signal<boolean>(true);
+  readonly showCloseButton = computed(() => {
+    const currentCashRegister = this.currentCashRegister();
+
+    return currentCashRegister?.cashRegisterDetail.finalWorking === null;
+  });
 
   constructor(
     private readonly myCashService: MyCashService,
@@ -51,9 +55,6 @@ export class MyCashRegistersComponent {
     this.currentCashRegister = this.myCashService.currentCashRegister;
     this.currentCashRegister.set(
       this.myCashRegisters()!.cashRegisterDetailsReports[0]
-    );
-    this.showCloseButton.set(
-      this.currentCashRegister()?.cashRegisterDetail.finalWorking === null
     );
   }
 
