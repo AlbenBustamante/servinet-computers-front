@@ -12,7 +12,7 @@ export class MyCashRegistersComponent {
   readonly breakLoading = signal<boolean>(false);
   readonly myCashRegisters;
   readonly currentCashRegister;
-  readonly currentCashRegisterIndex = signal<number>(0);
+  readonly currentCashRegisterIndex;
   readonly faRefresh = faRefresh;
   readonly refreshLoading = signal<boolean>(false);
 
@@ -53,9 +53,14 @@ export class MyCashRegistersComponent {
     this.myCashService.clear();
     this.myCashRegisters = this.myCashService.myCashRegisters;
     this.currentCashRegister = this.myCashService.currentCashRegister;
+
+    const size = this.myCashRegisters()!.cashRegisterDetailsReports.length;
+
     this.currentCashRegister.set(
-      this.myCashRegisters()!.cashRegisterDetailsReports[0]
+      this.myCashRegisters()!.cashRegisterDetailsReports[size - 1]
     );
+
+    this.currentCashRegisterIndex = signal<number>(size - 1);
   }
 
   handleSelectedCashRegister(event: Event) {

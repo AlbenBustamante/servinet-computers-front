@@ -84,6 +84,7 @@
             let report of myCashRegisters()?.cashRegisterDetailsReports;
             index as i
           "
+          [selected]="i === currentCashRegisterIndex()"
         >
           Caja {{ report.cashRegisterDetail.cashRegister.numeral }}
         </option>
