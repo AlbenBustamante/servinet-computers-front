@@ -9,4 +9,5 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 export class ProductCardComponent {
   @Input({ required: true }) pTitle!: string;
   @Input({ required: true }) pIcon!: IconProp;
+  @Input({ required: true }) pRoute!: string;
 }

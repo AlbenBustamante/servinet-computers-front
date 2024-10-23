@@ -9,6 +9,12 @@ import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [NavbarComponent, AdminComponent],
-  imports: [CommonModule, AdminRoutingModule, RouterModule, SharedModule],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    RouterModule,
+    SharedModule,
+    RouterModule,
+  ],
 })
 export default class AdminModule {}

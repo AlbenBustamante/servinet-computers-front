@@ -1,11 +1,5 @@
 import { Component, signal } from '@angular/core';
-import {
-  faCashRegister,
-  faChartLine,
-  faHome,
-  faList,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faHome } from '@fortawesome/free-solid-svg-icons';
 import { IRoute } from '@models/route.model';
 
 @Component({
@@ -16,18 +10,12 @@ import { IRoute } from '@models/route.model';
 export class NavbarComponent {
   private readonly faHome = faHome;
   private readonly faDashboard = faChartLine;
-  private readonly faPlatforms = faList;
-  private readonly faCashRegister = faCashRegister;
-  private readonly faUsers = faUser;
   readonly routes = signal<IRoute[]>([]);
 
   constructor() {
     this.routes.set([
       { title: 'Inicio', icon: this.faHome, route: './home' },
       { title: 'Panel', icon: this.faDashboard, route: './panel' },
-      { title: 'Plataformas', icon: this.faPlatforms, route: './plataformas' },
-      { title: 'Cajas', icon: this.faCashRegister, route: './cajas' },
-      { title: 'Usuarios', icon: this.faUsers, route: './usuarios' },
     ]);
   }
 }
