@@ -1,0 +1,23 @@
+<div class="table">
+  <table class="text-left">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Número de caja</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+        <th>Fecha de creación</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cashRegister of cashRegisters()">
+        <td>{{ cashRegister.id }}</td>
+        <td>{{ cashRegister.numeral }}</td>
+        <td>{{ cashRegister.description }}</td>
+        <td>{{ cashRegister.status | cashRegisterStatus }}</td>
+        <td>{{ cashRegister.createdDate | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
