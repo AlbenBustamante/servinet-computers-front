@@ -63,7 +63,7 @@ body {
 }
 
 .table > table thead tr {
-  @apply bg-gray-50;
+  @apply bg-gray-50 text-left;
 }
 
 .table > table thead tr th {
@@ -75,7 +75,7 @@ body {
 }
 
 .table > table tbody tr {
-  @apply even:bg-gray-50 odd:bg-white hover:bg-gray-100;
+  @apply text-left even:bg-gray-50 odd:bg-white hover:bg-gray-100;
 }
 
 .table > table tbody tr td:not(.table > table tbody tr td.actions) {

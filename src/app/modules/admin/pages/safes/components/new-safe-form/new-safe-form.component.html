@@ -1,0 +1,14 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="control">
+    <label for="numeral">Número de caja</label>
+    <div class="flex items-center gap-7">
+      <input
+        type="number"
+        class="input w-full"
+        id="numeral"
+        formControlName="numeral"
+      />
+      <app-button type="submit">Registrar</app-button>
+    </div>
+  </div>
+</form>

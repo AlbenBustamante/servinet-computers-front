@@ -1,0 +1,26 @@
+<app-spinner *ngIf="loading(); else table" />
+<ng-template #table>
+  <div class="table" *ngIf="safes().length >= 1; else norows">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>#</th>
+          <th>Fecha de creación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let safe of safes()">
+          <td>{{ safe.id }}</td>
+          <td>{{ safe.numeral }}</td>
+          <td>{{ safe.createdDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #norows>
+    <p class="text-center text-gray-800 font-medium">
+      No hay cajas fuertes registradas...
+    </p>
+  </ng-template>
+</ng-template>
