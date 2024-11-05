@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
-
-type SelectedProduct = 'platforms' | 'cash-registers' | 'safes';
+import { Component } from '@angular/core';
+import { DashboardService } from '@services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +7,17 @@ type SelectedProduct = 'platforms' | 'cash-registers' | 'safes';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  readonly selectedProduct = signal<SelectedProduct>('platforms');
+  readonly selectedProduct;
 
-  handleSelectedProduct(selectedProduct: SelectedProduct) {
-    this.selectedProduct.set(selectedProduct);
+  constructor(private readonly dashboardService: DashboardService) {
+    this.selectedProduct = this.dashboardService.selectedProduct;
+  }
+
+  ngOnInit() {
+    this.dashboardService.getDashboard().subscribe({
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

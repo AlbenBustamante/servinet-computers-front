@@ -8,9 +8,10 @@ import { MainStatsComponent } from './components/main-stats/main-stats.component
 import { PlatformsStatsComponent } from './components/platforms-stats/platforms-stats.component';
 import { CashRegistersStatsComponent } from './components/cash-registers-stats/cash-registers-stats.component';
 import { SafesStatsComponent } from './components/safes-stats/safes-stats.component';
+import { SelectProductBarComponent } from './components/select-product-bar/select-product-bar.component';
 
 @NgModule({
-  declarations: [DashboardComponent, MainStatsComponent, PlatformsStatsComponent, CashRegistersStatsComponent, SafesStatsComponent],
+  declarations: [DashboardComponent, MainStatsComponent, PlatformsStatsComponent, CashRegistersStatsComponent, SafesStatsComponent, SelectProductBarComponent],
   imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })
 export default class DashboardModule {}

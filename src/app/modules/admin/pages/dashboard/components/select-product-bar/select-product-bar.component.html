@@ -1,0 +1,31 @@
+<ul
+  class="flex justify-center items-center gap-5 text-gray-700 bg-violet-100 text-lg rounded-t-md"
+>
+  <li
+    class="px-2.5 py-3 cursor-pointer hover:bg-violet-200"
+    [ngClass]="{
+      'font-medium': selectedProduct() === 'platforms'
+    }"
+    (click)="handleSelectedProduct('platforms')"
+  >
+    Plataformas
+  </li>
+  <li
+    class="px-2.5 py-3 cursor-pointer hover:bg-violet-200"
+    [ngClass]="{
+      'font-medium': selectedProduct() === 'cash-registers'
+    }"
+    (click)="handleSelectedProduct('cash-registers')"
+  >
+    Cajas Registradoras
+  </li>
+  <li
+    class="px-2.5 py-3 cursor-pointer hover:bg-violet-200"
+    [ngClass]="{
+      'font-medium': selectedProduct() === 'safes'
+    }"
+    (click)="handleSelectedProduct('safes')"
+  >
+    Cajas Fuertes
+  </li>
+</ul>
