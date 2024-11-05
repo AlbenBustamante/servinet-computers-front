@@ -15,6 +15,7 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.dashboardService.getDashboard().subscribe({
+      next: (_) => {},
       error: (err) => {
         console.log(err);
       },

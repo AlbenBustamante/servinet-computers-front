@@ -10,6 +10,6 @@ export class MainStatsComponent {
   readonly totalBalance = signal<number | undefined>(undefined);
 
   constructor(private readonly dashboardService: DashboardService) {
-    this.totalBalance.set(this.dashboardService.dashboard()?.totalBalance);
+    this.totalBalance.set(this.dashboardService.dashboard()?.totalBalance ?? 0);
   }
 }
