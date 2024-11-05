@@ -1,0 +1,10 @@
+<section class="my-10 w-full flex items-center justify-center">
+  <div class="border-2 border-stone-400 rounded-lg px-3 py-2">
+    <p class="flex flex-col gap-2 text-lg text-gray-700">
+      Saldo total
+      <span class="text-xl text-right">{{
+        totalBalance() | currency : "symbol" : "$" : "0.00"
+      }}</span>
+    </p>
+  </div>
+</section>

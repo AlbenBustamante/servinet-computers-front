@@ -1,10 +1,37 @@
-<section class="mt-10 w-full flex items-center justify-center">
-  <div class="border-2 border-stone-400 rounded-lg px-3 py-2">
-    <p class="flex flex-col gap-2 text-lg text-gray-700">
-      Saldo total
-      <span class="text-xl text-right">{{
-        totalBalance() | currency : "symbol" : "$" : "0.00"
-      }}</span>
-    </p>
-  </div>
+<app-main-stats />
+<ul
+  class="flex justify-center items-center gap-5 text-gray-700 bg-violet-100 text-lg rounded-md"
+>
+  <li
+    class="px-2.5 py-3 cursor-pointer hover:bg-violet-200"
+    [ngClass]="{
+      'font-medium': selectedProduct() === 'platforms'
+    }"
+    (click)="handleSelectedProduct('platforms')"
+  >
+    Plataformas
+  </li>
+  <li
+    class="px-2.5 py-3 cursor-pointer hover:bg-violet-200"
+    [ngClass]="{
+      'font-medium': selectedProduct() === 'cash-registers'
+    }"
+    (click)="handleSelectedProduct('cash-registers')"
+  >
+    Cajas Registradoras
+  </li>
+  <li
+    class="px-2.5 py-3 cursor-pointer hover:bg-violet-200"
+    [ngClass]="{
+      'font-medium': selectedProduct() === 'safes'
+    }"
+    (click)="handleSelectedProduct('safes')"
+  >
+    Cajas Fuertes
+  </li>
+</ul>
+<section class="bg-violet-100 px-5 py-8">
+  <app-platforms-stats *ngIf="selectedProduct() === 'platforms'" />
+  <app-cash-registers-stats *ngIf="selectedProduct() === 'cash-registers'" />
+  <app-safes-stats *ngIf="selectedProduct() === 'safes'" />
 </section>
