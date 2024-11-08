@@ -6,7 +6,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./platforms-modal.component.css'],
 })
 export class PlatformsModalComponent {
-  @ViewChild('platformsModal') platformsModal!: ElementRef<HTMLDialogElement>;
+  @ViewChild('modal') platformsModal!: ElementRef<HTMLDialogElement>;
 
   open() {
     this.platformsModal.nativeElement.showModal();
