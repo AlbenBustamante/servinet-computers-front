@@ -1,6 +1,7 @@
-import { IPlatformBalanceRes } from './platform.model';
+import { IPlatformStatsDto } from './platform.model';
 
 export interface IDashboardResponse {
   totalBalance: number;
-  platformBalances: IPlatformBalanceRes[];
+  platformsStats: IPlatformStatsDto[];
+  platformBalancesTotal: number;
 }

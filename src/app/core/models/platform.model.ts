@@ -39,3 +39,7 @@ export interface IPortalPlatform {
   transfersAmount: number;
   transfersTotal: number;
 }
+
+export interface IPlatformStatsDto extends IPortalPlatform {
+  total: number;
+}

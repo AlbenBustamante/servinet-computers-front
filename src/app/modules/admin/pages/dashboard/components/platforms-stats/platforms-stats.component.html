@@ -1,0 +1,32 @@
+<div class="table">
+  <table>
+    <thead>
+      <tr>
+        <th class="w-20">ID</th>
+        <th>Nombre</th>
+        <th>Saldo Inicial</th>
+        <th>Saldo Final</th>
+        <th>Traslados</th>
+        <th>Total transferido</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let platform of dashboard()?.platformsStats">
+        <td>{{ platform.platformId }}</td>
+        <td>{{ platform.platformName }}</td>
+        <td>
+          {{ platform.initialBalance | currency : "symbol" : "$" : "0.00" }}
+        </td>
+        <td>
+          {{ platform.finalBalance | currency : "symbol" : "$" : "0.00" }}
+        </td>
+        <td>{{ platform.transfersAmount }}</td>
+        <td>
+          {{ platform.transfersTotal | currency : "symbol" : "$" : "0.00" }}
+        </td>
+        <td>{{ platform.total | currency : "symbol" : "$" : "0.00" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

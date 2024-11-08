@@ -1,4 +1,4 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component } from '@angular/core';
 import { DashboardService } from '@services/dashboard.service';
 
 @Component({
@@ -7,15 +7,15 @@ import { DashboardService } from '@services/dashboard.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  readonly totalBalance = signal<number | undefined>(undefined);
+  readonly selectedProduct;
 
-  constructor(private readonly dashboardService: DashboardService) {}
+  constructor(private readonly dashboardService: DashboardService) {
+    this.selectedProduct = this.dashboardService.selectedProduct;
+  }
 
   ngOnInit() {
     this.dashboardService.getDashboard().subscribe({
-      next: (dashboard) => {
-        this.totalBalance.set(dashboard.totalBalance);
-      },
+      next: (_) => {},
       error: (err) => {
         console.log(err);
       },
