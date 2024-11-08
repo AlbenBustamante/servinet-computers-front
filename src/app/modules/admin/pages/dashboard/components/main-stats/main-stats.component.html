@@ -3,7 +3,7 @@
     <p class="flex flex-col gap-2 text-lg text-gray-700">
       Saldo total
       <span class="text-xl text-right">{{
-        totalBalance() | currency : "symbol" : "$" : "0.00"
+        dashboard()?.totalBalance ?? 0 | currency : "symbol" : "$" : "0.00"
       }}</span>
     </p>
   </div>

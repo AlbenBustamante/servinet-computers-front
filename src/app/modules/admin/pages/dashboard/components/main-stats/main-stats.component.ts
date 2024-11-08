@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { DashboardService } from '@services/dashboard.service';
 
 @Component({
@@ -7,9 +7,9 @@ import { DashboardService } from '@services/dashboard.service';
   styleUrls: ['./main-stats.component.css'],
 })
 export class MainStatsComponent {
-  readonly totalBalance = signal<number | undefined>(undefined);
+  readonly dashboard;
 
   constructor(private readonly dashboardService: DashboardService) {
-    this.totalBalance.set(this.dashboardService.dashboard()?.totalBalance ?? 0);
+    this.dashboard = this.dashboardService.dashboard;
   }
 }
