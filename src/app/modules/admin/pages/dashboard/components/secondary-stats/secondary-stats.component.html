@@ -20,17 +20,4 @@
     </article>
   </div>
 </section>
-<dialog
-  #platformsModal
-  class="px-4 py-5 rounded-lg outline-none backdrop:bg-black backdrop:bg-opacity-30 backdrop:backdrop-blur-sm"
->
-  <header class="mb-5 border-b border-gray-400 pb-2">
-    <h2 class="text-center text-gray-800 text-3xl font-medium">Plataformas</h2>
-  </header>
-  <app-platforms-stats />
-  <footer
-    class="flex items-center justify-end mt-7 border-t border-gray-400 pt-5"
-  >
-    <app-button type="button" (click)="closePlatforms()">Cerrar</app-button>
-  </footer>
-</dialog>
+<app-platforms-modal />

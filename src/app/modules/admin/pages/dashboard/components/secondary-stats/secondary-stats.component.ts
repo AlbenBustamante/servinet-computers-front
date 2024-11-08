@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DashboardService } from '@services/dashboard.service';
+import { PlatformsModalComponent } from '../platforms-modal/platforms-modal.component';
 
 @Component({
   selector: 'app-secondary-stats',
@@ -7,7 +8,7 @@ import { DashboardService } from '@services/dashboard.service';
   styleUrls: ['./secondary-stats.component.css'],
 })
 export class SecondaryStatsComponent {
-  @ViewChild('platformsModal') platformsModal!: ElementRef<HTMLDialogElement>;
+  @ViewChild(PlatformsModalComponent) platformsModal!: PlatformsModalComponent;
   readonly dashboard;
 
   constructor(private readonly dashboardService: DashboardService) {
@@ -15,10 +16,6 @@ export class SecondaryStatsComponent {
   }
 
   openPlatforms() {
-    this.platformsModal.nativeElement.showModal();
-  }
-
-  closePlatforms() {
-    this.platformsModal.nativeElement.close();
+    this.platformsModal.open();
   }
 }
