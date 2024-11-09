@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { DashboardService } from '@services/dashboard.service';
 import { PlatformsModalComponent } from '../platforms-modal/platforms-modal.component';
+import { CashRegistersModalComponent } from '../cash-registers-modal/cash-registers-modal.component';
 
 @Component({
   selector: 'app-secondary-stats',
@@ -9,6 +10,8 @@ import { PlatformsModalComponent } from '../platforms-modal/platforms-modal.comp
 })
 export class SecondaryStatsComponent {
   @ViewChild(PlatformsModalComponent) platformsModal!: PlatformsModalComponent;
+  @ViewChild(CashRegistersModalComponent)
+  cashRegistersModal!: CashRegistersModalComponent;
   readonly dashboard;
 
   constructor(private readonly dashboardService: DashboardService) {
@@ -17,5 +20,9 @@ export class SecondaryStatsComponent {
 
   openPlatforms() {
     this.platformsModal.open();
+  }
+
+  openCashRegisters() {
+    this.cashRegistersModal.open();
   }
 }

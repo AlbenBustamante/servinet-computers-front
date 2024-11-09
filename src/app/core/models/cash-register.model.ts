@@ -27,6 +27,8 @@ export interface ICashRegisterDetailRes extends IResponse {
   finalWorking: Date;
   initialBase: IBase;
   finalBase?: IBase;
+  detailInitialBase: number;
+  detailFinalBase: number;
   baseObservation: string;
   cashRegister: ICashRegisterRes;
 }

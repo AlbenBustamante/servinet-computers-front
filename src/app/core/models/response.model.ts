@@ -1,6 +1,8 @@
 export interface IResponse {
   id: number;
   enabled: boolean;
+  createdBy: string;
+  modifiedBy: string;
   createdDate: string;
   modifiedDate: string;
 }
