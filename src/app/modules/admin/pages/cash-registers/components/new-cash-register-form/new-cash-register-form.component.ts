@@ -29,9 +29,9 @@ export class NewCashRegisterFormComponent {
     this.loading.set(true);
 
     this.cashRegister.register(this.form.value).subscribe({
-      next: (res) => {
+      next: (_) => {
+        this.form.reset();
         this.loading.set(false);
-        console.log(res);
       },
       error: (error) => {
         this.loading.set(false);
