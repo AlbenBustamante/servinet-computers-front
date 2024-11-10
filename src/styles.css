@@ -70,6 +70,10 @@ body {
   @apply text-gray-800 text-sm px-5 py-2 uppercase;
 }
 
+.table > table thead tr th.id {
+  @apply text-gray-800 text-sm text-center w-20 px-5 py-2 uppercase;
+}
+
 .table > table thead tr th.actions {
   @apply w-28;
 }
@@ -79,7 +83,11 @@ body {
 }
 
 .table > table tbody tr td:not(.table > table tbody tr td.actions) {
-  @apply text-gray-900 px-5 py-2;
+  @apply text-gray-800 px-5 py-2;
+}
+
+.table > table tbody tr td.id {
+  @apply text-gray-800 text-center w-20 px-5 py-2;
 }
 
 .table > table tbody tr td.actions {

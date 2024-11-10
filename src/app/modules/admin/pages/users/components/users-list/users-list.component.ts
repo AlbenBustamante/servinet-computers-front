@@ -1,5 +1,5 @@
-import { Component, WritableSignal, signal } from '@angular/core';
-import { IUserRes } from '@models/user.model';
+import { Component } from '@angular/core';
+import { faPencil, faRemove } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '@services/user.service';
 
 @Component({
@@ -8,7 +8,9 @@ import { UserService } from '@services/user.service';
   styleUrls: ['./users-list.component.css'],
 })
 export class UsersListComponent {
-  readonly users: WritableSignal<IUserRes[]>;
+  readonly users;
+  readonly faEdit = faPencil;
+  readonly faRemove = faRemove;
 
   constructor(private readonly userService: UserService) {
     this.users = this.userService.users;

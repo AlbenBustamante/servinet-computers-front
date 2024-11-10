@@ -1,48 +1,36 @@
-<div class="overflow-x-auto">
-  <table class="w-full">
+<div class="table">
+  <table>
     <thead>
-      <tr class="bg-gray-50">
-        <th class="text-center text-gray-800 text-sm px-5 py-2 uppercase w-20">
-          #
-        </th>
-        <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase">
-          Nombre y Apellido
-        </th>
-        <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase w-20">
-          Código
-        </th>
-        <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase w-40">
-          Rol
-        </th>
-        <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase w-32">
-          Estado
-        </th>
-        <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase w-48">
-          Fecha de registro
-        </th>
-        <th class="w-24"></th>
+      <tr>
+        <th class="id">ID</th>
+        <th>Nombre y Apellido</th>
+        <th>Código</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Fecha de registro</th>
+        <th class="actions"></th>
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let user of users()">
-        <tr class="even:bg-gray-50 odd:bg-white hover:bg-gray-100">
-          <td class="text-center text-gray-900 px-5 py-2">{{ user.id }}</td>
-          <td class="text-left text-gray-900 px-5 py-2">
-            {{ user.name }} {{ user.lastName }}
-          </td>
-          <td class="text-left text-gray-900 px-5 py-2">{{ user.code }}</td>
-          <td class="text-left text-gray-900 px-5 py-2">
+      <ng-container>
+        <tr *ngFor="let user of users()">
+          <td class="id">{{ user.id }}</td>
+          <td>{{ user.name }} {{ user.lastName }}</td>
+          <td>{{ user.code }}</td>
+          <td>
             {{ user.role | role }}
           </td>
-          <td class="text-left text-gray-900 px-5 py-2">
+          <td>
             {{ user.enabled | enabled }}
           </td>
-          <td class="text-left text-gray-900 px-5 py-2">
+          <td>
             {{ user.createdDate | date }}
           </td>
-          <td class="flex items-center justify-center gap-3">
-            <span class="w-7 h-7 bg-neutral-400 block rounded-md"></span>
-            <span class="w-7 h-7 bg-neutral-400 block rounded-md"></span>
+          <td class="actions">
+            <div>
+              <fa-icon [icon]="faEdit" class="edit" />
+              <fa-icon [icon]="faRemove" class="remove" />
+            </div>
           </td>
         </tr>
       </ng-container>

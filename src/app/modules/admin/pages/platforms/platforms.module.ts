@@ -7,14 +7,20 @@ import { PlatformsComponent } from './platforms.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewPlatformFormComponent } from './components/new-platform-form/new-platform-form.component';
 import { PlatformsListComponent } from './components/platforms-list/platforms-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [PlatformsComponent, NewPlatformFormComponent, PlatformsListComponent],
+  declarations: [
+    PlatformsComponent,
+    NewPlatformFormComponent,
+    PlatformsListComponent,
+  ],
   imports: [
     CommonModule,
     PlatformsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
 })
 export default class PlatformsModule {}

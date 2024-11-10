@@ -4,16 +4,16 @@
     <table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>#</th>
+          <th class="id">ID</th>
+          <th class="w-40 text-center">Número de caja</th>
           <th>Fecha de creación</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let safe of safes()">
-          <td>{{ safe.id }}</td>
-          <td>{{ safe.numeral }}</td>
-          <td>{{ safe.createdDate }}</td>
+          <td class="id">{{ safe.id }}</td>
+          <td class="text-center">{{ safe.numeral }}</td>
+          <td>{{ safe.createdDate | date }}</td>
         </tr>
       </tbody>
     </table>

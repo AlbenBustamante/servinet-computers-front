@@ -4,28 +4,28 @@
 >
   Sin plataformas registradas...
 </p>
-<table class="w-full" *ngIf="platforms().length > 0">
-  <thead>
-    <tr class="bg-gray-50">
-      <th class="text-center text-gray-800 text-sm px-5 py-2 uppercase w-20">
-        #
-      </th>
-      <th class="text-left text-gray-800 text-sm px-5 py-2 uppercase">
-        Nombre
-      </th>
-      <th class="w-24"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let platform of platforms()">
-      <tr class="even:bg-gray-50 odd:bg-white hover:bg-gray-100">
-        <td class="text-center text-gray-900 px-5 py-2">{{ platform.id }}</td>
-        <td class="text-left text-gray-900 px-5 py-2">{{ platform.name }}</td>
-        <td class="flex items-center justify-center gap-3">
-          <span class="w-7 h-7 bg-neutral-400 block rounded-md"></span>
-          <span class="w-7 h-7 bg-neutral-400 block rounded-md"></span>
+<div class="table">
+  <table *ngIf="platforms().length > 0">
+    <thead>
+      <tr>
+        <th class="id">ID</th>
+        <th>Nombre</th>
+        <th>Fecha de creación</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let platform of platforms()">
+        <td class="id">{{ platform.id }}</td>
+        <td>{{ platform.name }}</td>
+        <td>{{ platform.createdDate | date }}</td>
+        <td class="actions">
+          <div>
+            <fa-icon [icon]="faEdit" class="edit" />
+            <fa-icon [icon]="faRemove" class="remove" />
+          </div>
         </td>
       </tr>
-    </ng-container>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

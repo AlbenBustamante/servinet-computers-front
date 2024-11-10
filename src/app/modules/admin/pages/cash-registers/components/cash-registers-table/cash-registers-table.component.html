@@ -1,9 +1,9 @@
 <div class="table">
-  <table class="text-left">
+  <table>
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Número de caja</th>
+        <th class="id">ID</th>
+        <th class="text-center size-fit">Número de caja</th>
         <th>Descripción</th>
         <th>Estado</th>
         <th>Fecha de creación</th>
@@ -12,8 +12,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let cashRegister of cashRegisters()">
-        <td>{{ cashRegister.id }}</td>
-        <td>{{ cashRegister.numeral }}</td>
+        <td class="id">{{ cashRegister.id }}</td>
+        <td class="text-center">{{ cashRegister.numeral }}</td>
         <td>{{ cashRegister.description }}</td>
         <td>{{ cashRegister.status | cashRegisterStatus }}</td>
         <td>{{ cashRegister.createdDate | date }}</td>

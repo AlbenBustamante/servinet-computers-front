@@ -2,32 +2,32 @@
   <table>
     <thead>
       <tr>
-        <th class="w-20">ID</th>
-        <th class="w-20">#</th>
-        <th>Base Inicial</th>
-        <th>Base Final</th>
+        <th class="id">ID</th>
+        <th class="w-20">Caja</th>
+        <th class="text-right">Base Inicial</th>
+        <th class="text-right">Base Final</th>
         <th>Hora Entrada</th>
         <th>Hora Salida</th>
         <th>Cajero</th>
         <th>Estado</th>
-        <th>Fecha de Creación</th>
+        <th>Apertura</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let detail of dashboard()?.cashRegisterDetails">
-        <td>{{ detail.cashRegister.id }}</td>
-        <td>{{ detail.cashRegister.numeral }}</td>
-        <td>
+        <td class="id">{{ detail.cashRegister.id }}</td>
+        <td class="text-center">{{ detail.cashRegister.numeral }}</td>
+        <td class="text-right">
           {{ detail.detailInitialBase | currency : "symbol" : "$" : "0.00" }}
         </td>
-        <td>
+        <td class="text-right">
           {{ detail.detailFinalBase | currency : "symbol" : "$" : "0.00" }}
         </td>
         <td>{{ detail.initialWorking | date : "hh:mm a" }}</td>
         <td>{{ detail.finalWorking | date : "hh:mm a" }}</td>
         <td>{{ detail.createdBy }}</td>
         <td>{{ detail.cashRegister.status | cashRegisterStatus }}</td>
-        <td>{{ detail.createdDate | date : "dd/MM/yyyy hh:mm a" }}</td>
+        <td>{{ detail.createdDate | date : "hh:mm a" }}</td>
       </tr>
     </tbody>
   </table>

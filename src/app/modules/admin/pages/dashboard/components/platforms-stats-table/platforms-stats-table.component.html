@@ -2,30 +2,32 @@
   <table>
     <thead>
       <tr>
-        <th class="w-20">ID</th>
+        <th class="id">ID</th>
         <th>Nombre</th>
-        <th>Saldo Inicial</th>
-        <th>Saldo Final</th>
-        <th>Traslados</th>
-        <th>Total transferido</th>
-        <th>Total</th>
+        <th class="text-right">Saldo Inicial</th>
+        <th class="text-right">Saldo Final</th>
+        <th class="text-center">Traslados</th>
+        <th class="text-right">Total transferido</th>
+        <th class="text-right">Total</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let platform of dashboard()?.platformsStats">
-        <td>{{ platform.platformId }}</td>
+        <td class="id">{{ platform.platformId }}</td>
         <td>{{ platform.platformName }}</td>
-        <td>
+        <td class="text-right">
           {{ platform.initialBalance | currency : "symbol" : "$" : "0.00" }}
         </td>
-        <td>
+        <td class="text-right">
           {{ platform.finalBalance | currency : "symbol" : "$" : "0.00" }}
         </td>
-        <td>{{ platform.transfersAmount }}</td>
-        <td>
+        <td class="text-center">{{ platform.transfersAmount }}</td>
+        <td class="text-right">
           {{ platform.transfersTotal | currency : "symbol" : "$" : "0.00" }}
         </td>
-        <td>{{ platform.total | currency : "symbol" : "$" : "0.00" }}</td>
+        <td class="text-right">
+          {{ platform.total | currency : "symbol" : "$" : "0.00" }}
+        </td>
       </tr>
     </tbody>
   </table>

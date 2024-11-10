@@ -1,4 +1,5 @@
 import { Component, WritableSignal } from '@angular/core';
+import { faPencil, faRemove } from '@fortawesome/free-solid-svg-icons';
 import { IPlatformRes } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 
@@ -9,6 +10,8 @@ import { PlatformService } from '@services/platform.service';
 })
 export class PlatformsListComponent {
   readonly platforms: WritableSignal<IPlatformRes[]>;
+  readonly faEdit = faPencil;
+  readonly faRemove = faRemove;
 
   constructor(private readonly platformService: PlatformService) {
     this.platforms = this.platformService.platforms;
