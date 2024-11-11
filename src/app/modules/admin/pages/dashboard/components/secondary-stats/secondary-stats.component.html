@@ -19,7 +19,7 @@
         }}
       </p>
     </article>
-    <article class="card cursor-pointer hover:scale-105">
+    <article class="card cursor-pointer hover:scale-105" (click)="openSafes()">
       <h3 class="text-lg">Cajas Fuertes</h3>
       <p class="text-right text-2xl">
         {{ dashboard()?.safesTotal ?? 0 | currency : "symbol" : "$" : "0.00" }}
@@ -29,3 +29,4 @@
 </section>
 <app-platforms-modal />
 <app-cash-registers-modal />
+<app-safes-stats-modal />

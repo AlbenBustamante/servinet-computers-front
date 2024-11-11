@@ -6,23 +6,25 @@ import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '@shared/shared.module';
 import { MainStatsComponent } from './components/main-stats/main-stats.component';
 import { PlatformsStatsTableComponent } from './components/platforms-stats-table/platforms-stats-table.component';
-import { SafesStatsComponent } from './components/safes-stats/safes-stats.component';
+import { SafesStatsTableComponent } from './components/safes-stats-table/safes-stats-table.component';
 import { SecondaryStatsComponent } from './components/secondary-stats/secondary-stats.component';
 import { PlatformsModalComponent } from './components/platforms-modal/platforms-modal.component';
 import { CashRegistersStatsTableComponent } from './components/cash-registers-stats-table/cash-registers-stats-table.component';
 import { CashRegistersModalComponent } from './components/cash-registers-modal/cash-registers-modal.component';
 import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
+import { SafesStatsModalComponent } from './components/safes-stats-modal/safes-stats-modal.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     MainStatsComponent,
     PlatformsStatsTableComponent,
-    SafesStatsComponent,
+    SafesStatsTableComponent,
     SecondaryStatsComponent,
     PlatformsModalComponent,
     CashRegistersStatsTableComponent,
     CashRegistersModalComponent,
+    SafesStatsModalComponent,
   ],
   imports: [
     CommonModule,

@@ -3,14 +3,14 @@ import { IResponse } from './response.model';
 
 export interface ISafeReq {
   numeral: number;
+  initialBase?: IBase;
+  finalBase?: IBase;
 }
 
-export interface ISafeRes extends IResponse, ISafeReq {}
-
-export interface ISafeBaseReq {
-  base: IBase;
-}
-
-export interface ISafeBaseRes extends IResponse, ISafeBaseReq {
-  safeId: number;
+export interface ISafeRes extends IResponse {
+  numeral: number;
+  initialBase: number;
+  finalBase: number;
+  detailInitialBase: IBase;
+  detailFinalBase: IBase;
 }
