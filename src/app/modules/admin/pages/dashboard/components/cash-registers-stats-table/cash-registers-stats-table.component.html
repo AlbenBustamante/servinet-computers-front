@@ -18,10 +18,10 @@
         <td class="id">{{ detail.cashRegister.id }}</td>
         <td class="text-center">{{ detail.cashRegister.numeral }}</td>
         <td class="text-right">
-          {{ detail.detailInitialBase | currency : "symbol" : "$" : "0.00" }}
+          {{ detail.initialBase | currency : "symbol" : "$" : "0.00" }}
         </td>
         <td class="text-right">
-          {{ detail.detailFinalBase | currency : "symbol" : "$" : "0.00" }}
+          {{ detail.finalBase | currency : "symbol" : "$" : "0.00" }}
         </td>
         <td>{{ detail.initialWorking | date : "hh:mm a" }}</td>
         <td>{{ detail.finalWorking | date : "hh:mm a" }}</td>
