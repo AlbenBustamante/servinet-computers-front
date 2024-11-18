@@ -30,6 +30,11 @@ const routes: Routes = [
         path: 'usuarios',
         loadChildren: () => import('./pages/users/users.module'),
       },
+      {
+        path: 'administracion',
+        loadChildren: () =>
+          import('./pages/administration/administration.module'),
+      },
     ],
   },
 ];
