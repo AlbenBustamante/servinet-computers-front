@@ -1,1 +1,34 @@
-<p>administration works!</p>
+<app-header-title
+  hTitle="Administración"
+  hDescription="Evalúa tus productos y siéntete libre de ajustar o añadir más registros"
+/>
+<div class="grid grid-cols-[14rem_minmax(28rem,_1fr)] gap-6 w-full">
+  <section class="card">
+    <header class="mb-3">
+      <h2 class="text-xl text-gray-700 font-medium">Productos</h2>
+    </header>
+    <nav>
+      <ul class="flex flex-col gap-2">
+        <li>
+          <a
+            class="text-gray-800 text-lg flex items-center px-3 py-1.5 rounded-lg hover:bg-violet-100"
+            routerLink="cajas-fuertes"
+            routerLinkActive="bg-violet-200 text-gray-900"
+            >Cajas Fuertes</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-gray-800 text-lg flex items-center px-3 py-1.5 rounded-lg hover:bg-violet-100"
+            routerLink="cajas-registradoras"
+            routerLinkActive="bg-violet-200 text-gray-900"
+            >Cajas Registradoras</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </section>
+  <section class="card">
+    <router-outlet />
+  </section>
+</div>
