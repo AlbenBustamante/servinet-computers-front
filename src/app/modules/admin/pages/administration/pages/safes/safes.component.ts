@@ -1,4 +1,8 @@
 import { Component, signal } from '@angular/core';
+import {
+  faEllipsis,
+  faEllipsisVertical,
+} from '@fortawesome/free-solid-svg-icons';
 import { ISafeDetailRes } from '@models/safe.model';
 import { SafeService } from '@services/safe.service';
 
@@ -10,6 +14,8 @@ import { SafeService } from '@services/safe.service';
 export class SafesComponent {
   readonly loading = signal<boolean>(false);
   readonly safeDetails = signal<ISafeDetailRes[]>([]);
+  readonly faOptions = faEllipsis;
+  readonly showDropdown = signal<boolean[]>([]);
 
   constructor(private readonly safeService: SafeService) {}
 
@@ -18,6 +24,10 @@ export class SafesComponent {
 
     this.safeService.loadDetails().subscribe({
       next: (safeDetails) => {
+        safeDetails.forEach((_) => {
+          this.showDropdown().push(false);
+        });
+
         this.safeDetails.set(safeDetails);
         this.loading.set(false);
       },
@@ -26,5 +36,17 @@ export class SafesComponent {
         this.loading.set(false);
       },
     });
+  }
+
+  toggleShowDropdown(index: number) {
+    this.showDropdown.update((prevValue) => {
+      prevValue.forEach((value) => {
+        value = false;
+      });
+
+      return prevValue;
+    });
+
+    this.showDropdown()[index] = !this.showDropdown()[index];
   }
 }
