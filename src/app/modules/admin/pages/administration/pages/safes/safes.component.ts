@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ISafeDetailRes } from '@models/safe.model';
 import { SafeService } from '@services/safe.service';
+import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 
 @Component({
   selector: 'app-admin-safes',
@@ -9,10 +10,13 @@ import { SafeService } from '@services/safe.service';
   styleUrls: ['./safes.component.css'],
 })
 export class SafesComponent {
+  @ViewChild(UpdateBaseModalComponent)
+  updateBaseModal!: UpdateBaseModalComponent;
   readonly loading = signal<boolean>(false);
   readonly safeDetails = signal<ISafeDetailRes[]>([]);
   readonly faOptions = faEllipsis;
   readonly showDropdown = signal<boolean[]>([]);
+  readonly selectedSafeDetail = signal<ISafeDetailRes | undefined>(undefined);
 
   constructor(private readonly safeService: SafeService) {}
 
@@ -41,5 +45,11 @@ export class SafesComponent {
 
       return newValues;
     });
+
+    this.selectedSafeDetail.set(this.safeDetails()[index]);
+  }
+
+  openUpdateBaseModal() {
+    this.updateBaseModal.open();
   }
 }

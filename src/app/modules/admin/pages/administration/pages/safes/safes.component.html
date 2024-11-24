@@ -22,7 +22,8 @@
             <li>
               <a
                 class="flex items-center px-4 py-1.5 cursor-pointer text-gray-700 hover:bg-gray-100"
-                >Ajustar saldo</a
+                (click)="openUpdateBaseModal()"
+                >Ajustar base</a
               >
             </li>
             <li>
@@ -43,3 +44,4 @@
     </article>
   </li>
 </ul>
+<app-update-base-modal [safeDetail]="selectedSafeDetail()" />
