@@ -18,3 +18,14 @@ export interface ISafeDetailRes extends IResponse {
   calculatedBase: number;
   safe: ISafeRes;
 }
+
+export interface ISafeBaseReq {
+  safeDetailId: number;
+  base: IBase;
+}
+
+export interface ISafeBaseRes extends IResponse {
+  safeDetailId: number;
+  base: number;
+  detailBase: IBase;
+}
