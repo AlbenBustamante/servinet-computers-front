@@ -1,8 +1,5 @@
 import { Component, signal } from '@angular/core';
-import {
-  faEllipsis,
-  faEllipsisVertical,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ISafeDetailRes } from '@models/safe.model';
 import { SafeService } from '@services/safe.service';
 
@@ -39,14 +36,10 @@ export class SafesComponent {
   }
 
   toggleShowDropdown(index: number) {
-    this.showDropdown.update((prevValue) => {
-      prevValue.forEach((value) => {
-        value = false;
-      });
+    this.showDropdown.update((values) => {
+      const newValues = values.map((value, i) => (value ? false : index === i));
 
-      return prevValue;
+      return newValues;
     });
-
-    this.showDropdown()[index] = !this.showDropdown()[index];
   }
 }

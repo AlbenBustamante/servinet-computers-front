@@ -3,12 +3,12 @@
 </header-->
 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5">
   <li *ngFor="let detail of safeDetails(); index as i">
-    <article class="card relative z-10">
+    <article class="card">
       <header class="mb-2 flex items-center justify-between gap-2">
         <h4 class="text-2xl text-violet-700 font-medium">
           Caja {{ detail.safe.numeral }}
         </h4>
-        <div class="relative inline-block">
+        <div class="relative z-10 inline-block">
           <fa-icon
             [icon]="faOptions"
             size="xl"
@@ -16,7 +16,7 @@
             (click)="toggleShowDropdown(i)"
           />
           <ul
-            class="absolute z-20 bg-white drop-shadow right-0 rounded-lg py-2 min-w-40 flex flex-col gap-3"
+            class="absolute z-50 bg-white drop-shadow right-0 rounded-lg py-2 min-w-40 flex flex-col gap-0.5"
             [ngClass]="{ hidden: !showDropdown()[i] }"
           >
             <li>
