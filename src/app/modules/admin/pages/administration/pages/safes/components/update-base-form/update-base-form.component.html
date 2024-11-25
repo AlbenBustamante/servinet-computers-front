@@ -1,11 +1,17 @@
-<form class="flex items-start gap-5">
+<form class="flex items-start gap-5" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form">
     <div class="control-row" *ngFor="let base of base().slice(0, 6)">
       <label [for]="base.title" class="w-20 text-right">{{
         base.value | currency : "symbol" : "$" : "0.00"
       }}</label>
       <div class="relative">
-        <input type="number" [id]="base.title" class="input max-w-44" />
+        <input
+          type="number"
+          [id]="base.title"
+          class="input max-w-44"
+          [formControlName]="base.title"
+          placeholder="0"
+        />
         <div
           class="absolute z-10 right-px top-px h-[calc(100%_-_2px)] w-32 rounded-e-lg px-4 py-2 bg-violet-200"
         >
@@ -22,7 +28,13 @@
         base.value | currency : "symbol" : "$" : "0.00"
       }}</label>
       <div class="relative">
-        <input type="number" [id]="base.title" class="input max-w-44" />
+        <input
+          type="number"
+          [id]="base.title"
+          class="input max-w-44"
+          [formControlName]="base.title"
+          placeholder="0"
+        />
         <div
           class="absolute z-10 right-px top-px h-[calc(100%_-_2px)] w-32 rounded-e-lg px-4 py-2 bg-violet-200"
         >

@@ -7,7 +7,7 @@
       Ajuste de Base - Caja {{ safeDetail?.safe?.numeral ?? 0 }}
     </h2>
   </header>
-  <app-update-base-form />
+  <app-update-base-form [safeDetail]="safeDetail" />
   <footer
     class="flex items-center justify-end mt-7 border-t border-gray-400 pt-5"
   >
