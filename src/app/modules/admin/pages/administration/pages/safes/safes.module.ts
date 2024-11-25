@@ -6,9 +6,10 @@ import { SafesComponent } from './safes.component';
 import { SharedModule } from '@shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
+import { UpdateBaseFormComponent } from './components/update-base-form/update-base-form.component';
 
 @NgModule({
-  declarations: [SafesComponent, UpdateBaseModalComponent],
+  declarations: [SafesComponent, UpdateBaseModalComponent, UpdateBaseFormComponent],
   imports: [CommonModule, SafesRoutingModule, SharedModule, FontAwesomeModule],
 })
 export default class SafesModule {}
