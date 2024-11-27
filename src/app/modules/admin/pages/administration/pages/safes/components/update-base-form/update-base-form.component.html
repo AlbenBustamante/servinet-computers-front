@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="form">
-    <div class="control-row" *ngFor="let base of base().slice(0, 6)">
+    <div class="control-row" *ngFor="let base of base().slice(6, 11)">
       <label [for]="base.title" class="w-20 text-right">{{
         base.value | currency : "symbol" : "$" : "0.00"
       }}</label>

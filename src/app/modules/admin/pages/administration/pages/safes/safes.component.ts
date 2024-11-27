@@ -3,6 +3,7 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ISafeDetailRes } from '@models/safe.model';
 import { SafeService } from '@services/safe.service';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
+import { UpdateSafeBaseService } from '@services/update-safe-base.service';
 
 @Component({
   selector: 'app-admin-safes',
@@ -18,7 +19,10 @@ export class SafesComponent {
   readonly showDropdown = signal<boolean[]>([]);
   readonly selectedSafeDetail = signal<ISafeDetailRes | undefined>(undefined);
 
-  constructor(private readonly safeService: SafeService) {}
+  constructor(
+    private readonly safeService: SafeService,
+    private readonly updateSafeBaseService: UpdateSafeBaseService
+  ) {}
 
   ngOnInit() {
     this.loading.set(true);
@@ -47,6 +51,7 @@ export class SafesComponent {
     });
 
     this.selectedSafeDetail.set(this.safeDetails()[index]);
+    this.updateSafeBaseService.setSelectedSafe(this.selectedSafeDetail()!);
   }
 
   openUpdateBaseModal() {
