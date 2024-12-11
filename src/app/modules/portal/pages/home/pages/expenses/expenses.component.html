@@ -1,4 +1,10 @@
-<section class="card max-w-lg mx-auto">
-  <h2 class="font-medium text-2xl text-gray-700 mb-3">Nuevo Gasto</h2>
-  <app-new-expense-form />
-</section>
+<div class="grid grid-cols-3 gap-7 w-full">
+  <section class="card col-span-1">
+    <h2 class="font-medium text-2xl text-gray-700 mb-3">Nuevo Gasto</h2>
+    <app-new-expense-form />
+  </section>
+  <section class="card col-span-2">
+    <h2 class="font-medium text-2xl text-gray-700 mb-3">Lista de Gastos</h2>
+    <app-expenses-table />
+  </section>
+</div>

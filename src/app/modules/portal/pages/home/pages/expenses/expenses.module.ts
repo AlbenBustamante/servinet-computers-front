@@ -6,9 +6,10 @@ import { ExpensesComponent } from './expenses.component';
 import { NewExpenseFormComponent } from './components/new-expense-form/new-expense-form.component';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExpensesTableComponent } from './components/expenses-table/expenses-table.component';
 
 @NgModule({
-  declarations: [ExpensesComponent, NewExpenseFormComponent],
+  declarations: [ExpensesComponent, NewExpenseFormComponent, ExpensesTableComponent],
   imports: [
     CommonModule,
     ExpensesRoutingModule,
