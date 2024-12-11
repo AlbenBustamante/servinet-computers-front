@@ -47,9 +47,12 @@ export class CashRegisterDetailService {
   }
 
   getExpenses(cashRegisterDetailId: number) {
-    return this.http.get<IExpenseRes[]>(`${this.url}/expenses`, {
-      context: checkToken(),
-    });
+    return this.http.get<IExpenseRes[]>(
+      `${this.url}/${cashRegisterDetailId}/expenses`,
+      {
+        context: checkToken(),
+      }
+    );
   }
 
   alreadyExists() {

@@ -6,7 +6,7 @@
         <th>Nota</th>
         <th>Valor</th>
         <th>Descuenta</th>
-        <th>Hora</th>
+        <th>Fecha y Hora</th>
       </tr>
     </thead>
     <tbody>
@@ -14,8 +14,10 @@
         <td>{{ expense.id }}</td>
         <td>{{ expense.description }}</td>
         <td>{{ expense.value | currency : "symbol" : "$" : "0.00" }}</td>
-        <td>{{ expense.discount ? "Aplica" : "-" }}</td>
-        <td>{{ expense.createdDate | date : "HH:mm" }}</td>
+        <td>
+          {{ expense.discount ? "Aplica" : "-" }}
+        </td>
+        <td>{{ expense.createdDate | date : "dd/MM/yyyy, hh:mm a" }}</td>
       </tr>
     </tbody>
   </table>
