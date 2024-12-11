@@ -11,6 +11,7 @@ import {
 } from '@models/cash-register.model';
 import { TokenService } from './token.service';
 import { IBase } from '@models/base.model';
+import { IExpenseRes } from '@models/expense.model';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,12 @@ export class CashRegisterDetailService {
       `${this.url}/${cashRegisterDetailId}/reports`,
       { context: checkToken() }
     );
+  }
+
+  getExpenses(cashRegisterDetailId: number) {
+    return this.http.get<IExpenseRes[]>(`${this.url}/expenses`, {
+      context: checkToken(),
+    });
   }
 
   alreadyExists() {
