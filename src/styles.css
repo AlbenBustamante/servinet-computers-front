@@ -113,3 +113,7 @@ body {
 .home-container {
   @apply grid grid-cols-3 gap-7 w-full;
 }
+
+.home-subtitle {
+  @apply font-medium text-2xl text-gray-700 mb-3;
+}

@@ -5,13 +5,14 @@ import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsComponent } from './transactions.component';
 import { NewTransactionFormComponent } from './components/new-transaction-form/new-transaction-form.component';
 import { TransactionsTableComponent } from './components/transactions-table/transactions-table.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
     TransactionsComponent,
     NewTransactionFormComponent,
-    TransactionsTableComponent
+    TransactionsTableComponent,
   ],
-  imports: [CommonModule, TransactionsRoutingModule],
+  imports: [CommonModule, TransactionsRoutingModule, SharedModule],
 })
 export default class TransactionsModule {}
