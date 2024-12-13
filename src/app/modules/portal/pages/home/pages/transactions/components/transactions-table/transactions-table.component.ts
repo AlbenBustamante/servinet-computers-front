@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 import { MyTransactionsService } from '@services/my-transactions.service';
-import { TransactionService } from '@services/transaction.service';
 
 @Component({
   selector: 'app-transactions-table',

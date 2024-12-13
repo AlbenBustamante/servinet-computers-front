@@ -4,6 +4,7 @@ import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
   ITransactionDetailReq,
+  ITransactionDetailRes,
   ITransactionRes,
 } from '@models/transaction.model';
 
@@ -16,7 +17,7 @@ export class TransactionService {
   constructor(private readonly http: HttpClient) {}
 
   register(req: ITransactionDetailReq) {
-    return this.http.post<ITransactionDetailReq>(this.url, req, {
+    return this.http.post<ITransactionDetailRes>(this.url, req, {
       context: checkToken(),
     });
   }
