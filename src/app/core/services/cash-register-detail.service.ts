@@ -12,6 +12,7 @@ import {
 import { TokenService } from './token.service';
 import { IBase } from '@models/base.model';
 import { IExpenseRes } from '@models/expense.model';
+import { ITransactionDetailRes } from '@models/transaction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,17 +42,22 @@ export class CashRegisterDetailService {
 
   getReports(cashRegisterDetailId: number) {
     return this.http.get<ICashRegisterDetailReportsDto>(
-      `${this.url}/${cashRegisterDetailId}/reports`,
+      this.urlIdPath(cashRegisterDetailId, 'reports'),
       { context: checkToken() }
     );
   }
 
   getExpenses(cashRegisterDetailId: number) {
     return this.http.get<IExpenseRes[]>(
-      `${this.url}/${cashRegisterDetailId}/expenses`,
-      {
-        context: checkToken(),
-      }
+      this.urlIdPath(cashRegisterDetailId, 'expenses'),
+      { context: checkToken() }
+    );
+  }
+
+  getTransactions(cashRegisterDetailId: number) {
+    return this.http.get<ITransactionDetailRes>(
+      this.urlIdPath(cashRegisterDetailId, 'transactions'),
+      { context: checkToken() }
     );
   }
 
@@ -64,7 +70,7 @@ export class CashRegisterDetailService {
 
   startBreak(cashRegisterDetailId: number) {
     return this.http.patch<ICashRegisterDetailRes>(
-      `${this.url}/${cashRegisterDetailId}/start-break`,
+      this.urlIdPath(cashRegisterDetailId, 'start-break'),
       undefined,
       { context: checkToken() }
     );
@@ -72,7 +78,7 @@ export class CashRegisterDetailService {
 
   endBreak(cashRegisterDetailId: number) {
     return this.http.patch<ICashRegisterDetailRes>(
-      `${this.url}/${cashRegisterDetailId}/end-break`,
+      this.urlIdPath(cashRegisterDetailId, 'end-break'),
       undefined,
       { context: checkToken() }
     );
@@ -80,7 +86,7 @@ export class CashRegisterDetailService {
 
   close(cashRegisterDetailId: number, base: IBase) {
     return this.http.patch<ICashRegisterDetailReportsDto>(
-      `${this.url}/${cashRegisterDetailId}/close`,
+      this.urlIdPath(cashRegisterDetailId, 'close'),
       base,
       { context: checkToken() }
     );
@@ -91,4 +97,7 @@ export class CashRegisterDetailService {
       context: checkToken(),
     });
   }
+
+  private urlIdPath = (cashRegisterDetailId: number, path: string): string =>
+    `${this.url}/${cashRegisterDetailId}/${path}`;
 }
