@@ -20,7 +20,7 @@ export interface ITransactionDetailReq {
 
 export interface ITransactionDetailRes extends IResponse {
   cashRegisterDetailId: number;
-  transactionId: number;
+  description: string;
   value: number;
   commission: number;
   type: TransactionDetailType;

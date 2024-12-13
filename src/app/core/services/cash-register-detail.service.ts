@@ -55,7 +55,7 @@ export class CashRegisterDetailService {
   }
 
   getTransactions(cashRegisterDetailId: number) {
-    return this.http.get<ITransactionDetailRes>(
+    return this.http.get<ITransactionDetailRes[]>(
       this.urlIdPath(cashRegisterDetailId, 'transactions'),
       { context: checkToken() }
     );
