@@ -12,14 +12,17 @@ import { TransactionService } from '@services/transaction.service';
 export class TransactionsComponent {
   readonly loading;
   readonly transactions;
+  readonly descriptions;
 
   constructor(
-    private readonly myTransactionsService: MyHomeService,
+    private readonly myHomeService: MyHomeService,
     private readonly myCashService: MyCashService,
-    private readonly cashRegisterDetailService: CashRegisterDetailService
+    private readonly cashRegisterDetailService: CashRegisterDetailService,
+    private readonly transactionService: TransactionService
   ) {
-    this.transactions = this.myTransactionsService.transactions;
-    this.loading = this.myTransactionsService.loading;
+    this.transactions = this.myHomeService.transactions;
+    this.loading = this.myHomeService.loading;
+    this.descriptions = this.myHomeService.descriptions;
   }
 
   ngOnInit() {
@@ -33,7 +36,16 @@ export class TransactionsComponent {
       .subscribe({
         next: (transactions) => {
           this.transactions.set(transactions);
-          this.loading.set(false);
+          this.transactionService.getAllDescriptions().subscribe({
+            next: (descriptions) => {
+              this.descriptions.set(descriptions);
+              this.loading.set(false);
+            },
+            error: (err) => {
+              console.log(err);
+              this.loading.set(false);
+            },
+          });
         },
         error: (err) => {
           console.log(err);

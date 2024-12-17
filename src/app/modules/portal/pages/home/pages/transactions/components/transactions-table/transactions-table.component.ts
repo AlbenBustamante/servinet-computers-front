@@ -1,6 +1,4 @@
-import { Component, signal } from '@angular/core';
-import { CashRegisterDetailService } from '@services/cash-register-detail.service';
-import { MyCashService } from '@services/my-cash.service';
+import { Component } from '@angular/core';
 import { MyHomeService } from '@services/my-home.service';
 
 @Component({

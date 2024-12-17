@@ -22,8 +22,8 @@ export class TransactionService {
     });
   }
 
-  getAll() {
-    return this.http.get<ITransactionRes[]>(this.url, {
+  getAllDescriptions() {
+    return this.http.get<string[]>(this.url, {
       context: checkToken(),
     });
   }
