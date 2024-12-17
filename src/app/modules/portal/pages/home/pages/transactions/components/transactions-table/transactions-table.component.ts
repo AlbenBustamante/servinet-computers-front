@@ -10,8 +10,8 @@ export class TransactionsTableComponent {
   readonly loading;
   readonly transactions;
 
-  constructor(private readonly myTransactionsService: MyHomeService) {
-    this.transactions = this.myTransactionsService.transactions;
-    this.loading = this.myTransactionsService.loading;
+  constructor(private readonly myHomeService: MyHomeService) {
+    this.transactions = this.myHomeService.transactions;
+    this.loading = this.myHomeService.loading;
   }
 }

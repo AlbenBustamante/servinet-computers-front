@@ -13,17 +13,19 @@ import { TransactionService } from '@services/transaction.service';
 })
 export class NewTransactionFormComponent {
   readonly loading = signal<boolean>(false);
+  readonly descriptions;
   readonly transactions;
   readonly currentCashRegister;
   readonly form: FormGroup;
 
   constructor(
     private readonly myCashService: MyCashService,
-    private readonly myTransactionsService: MyHomeService,
+    private readonly myHomeService: MyHomeService,
     private readonly transactionService: TransactionService,
     private readonly fb: FormBuilder
   ) {
-    this.transactions = this.myTransactionsService.transactions;
+    this.descriptions = this.myHomeService.descriptions;
+    this.transactions = this.myHomeService.transactions;
     this.currentCashRegister = this.myCashService.currentCashRegister;
 
     this.form = this.fb.group({
