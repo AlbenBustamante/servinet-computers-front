@@ -5,7 +5,8 @@ import { ITransactionDetailRes } from '@models/transaction.model';
 @Injectable({
   providedIn: 'root',
 })
-export class MyTransactionsService {
+export class MyHomeService {
+  readonly loading = signal<boolean>(false);
   readonly expenses = signal<IExpenseRes[]>([]);
   readonly transactions = signal<ITransactionDetailRes[]>([]);
 

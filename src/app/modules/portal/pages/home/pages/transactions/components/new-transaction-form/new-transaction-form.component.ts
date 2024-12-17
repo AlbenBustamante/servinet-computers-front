@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransactionDetailType } from '@models/enums';
 import { ITransactionDetailReq } from '@models/transaction.model';
 import { MyCashService } from '@services/my-cash.service';
-import { MyTransactionsService } from '@services/my-transactions.service';
+import { MyHomeService } from '@services/my-home.service';
 import { TransactionService } from '@services/transaction.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class NewTransactionFormComponent {
 
   constructor(
     private readonly myCashService: MyCashService,
-    private readonly myTransactionsService: MyTransactionsService,
+    private readonly myTransactionsService: MyHomeService,
     private readonly transactionService: TransactionService,
     private readonly fb: FormBuilder
   ) {

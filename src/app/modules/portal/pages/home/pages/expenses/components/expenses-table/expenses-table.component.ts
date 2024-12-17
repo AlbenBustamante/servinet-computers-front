@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
-import { MyTransactionsService } from '@services/my-transactions.service';
+import { MyHomeService } from '@services/my-home.service';
 
 @Component({
   selector: 'app-expenses-table',
@@ -15,7 +15,7 @@ export class ExpensesTableComponent {
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService,
     private readonly myCashService: MyCashService,
-    private readonly myTransactionsService: MyTransactionsService
+    private readonly myTransactionsService: MyHomeService
   ) {
     this.expenses = this.myTransactionsService.expenses;
   }

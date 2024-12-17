@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IExpenseReq } from '@models/expense.model';
 import { ExpenseService } from '@services/expense.service';
 import { MyCashService } from '@services/my-cash.service';
-import { MyTransactionsService } from '@services/my-transactions.service';
+import { MyHomeService } from '@services/my-home.service';
 
 @Component({
   selector: 'app-new-expense-form',
@@ -18,7 +18,7 @@ export class NewExpenseFormComponent {
     private readonly fb: FormBuilder,
     private readonly myCashService: MyCashService,
     private readonly expenseService: ExpenseService,
-    private readonly myTransactionsService: MyTransactionsService
+    private readonly myTransactionsService: MyHomeService
   ) {
     this.form = this.fb.group({
       description: ['', Validators.required],
