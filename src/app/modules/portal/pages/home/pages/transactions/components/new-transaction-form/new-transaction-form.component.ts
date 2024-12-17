@@ -13,8 +13,8 @@ import { TransactionService } from '@services/transaction.service';
 })
 export class NewTransactionFormComponent {
   readonly loading = signal<boolean>(false);
-  readonly descriptions;
   readonly transactions;
+  readonly details;
   readonly currentCashRegister;
   readonly form: FormGroup;
 
@@ -24,8 +24,8 @@ export class NewTransactionFormComponent {
     private readonly transactionService: TransactionService,
     private readonly fb: FormBuilder
   ) {
-    this.descriptions = this.myHomeService.descriptions;
     this.transactions = this.myHomeService.transactions;
+    this.details = this.myHomeService.details;
     this.currentCashRegister = this.myCashService.currentCashRegister;
 
     this.form = this.fb.group({
@@ -51,7 +51,7 @@ export class NewTransactionFormComponent {
 
     this.transactionService.register(detail).subscribe({
       next: (transaction) => {
-        this.transactions.update((prevValue) => [...prevValue, transaction]);
+        this.details.update((prevValue) => [...prevValue, transaction]);
         this.form.reset();
         this.loading.set(false);
       },

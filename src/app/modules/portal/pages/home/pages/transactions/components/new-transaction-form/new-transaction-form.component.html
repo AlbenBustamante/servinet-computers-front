@@ -11,10 +11,10 @@
       class="absolute top-20 w-full px-2 py-2 bg-white rounded-xl drop-shadow flex flex-col"
     >
       <li
-        *ngFor="let description of descriptions()"
+        *ngFor="let transaction of transactions()"
         class="text-gray-700 text-lg px-2 py-0.5 rounded cursor-pointer hover:bg-violet-500 hover:text-white"
       >
-        {{ description }}
+        {{ transaction.description }}
       </li>
     </ul>
   </div>

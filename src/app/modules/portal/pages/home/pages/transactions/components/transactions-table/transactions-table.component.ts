@@ -8,10 +8,10 @@ import { MyHomeService } from '@services/my-home.service';
 })
 export class TransactionsTableComponent {
   readonly loading;
-  readonly transactions;
+  readonly details;
 
   constructor(private readonly myHomeService: MyHomeService) {
-    this.transactions = this.myHomeService.transactions;
+    this.details = this.myHomeService.details;
     this.loading = this.myHomeService.loading;
   }
 }
