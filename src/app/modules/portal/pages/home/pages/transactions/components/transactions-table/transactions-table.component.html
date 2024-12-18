@@ -7,7 +7,7 @@
         <th>Tipo</th>
         <th>Valor</th>
         <th>Adicional</th>
-        <th>Fecha y Hora</th>
+        <th>Hora</th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
         <td class="text-right">
           {{ transaction.commission | currency : "symbol" : "$" : "0.00" }}
         </td>
-        <td>{{ transaction.date | date : "dd/MM/yyyy, hh:mm a" }}</td>
+        <td>{{ transaction.date | date : "hh:mm a" }}</td>
       </tr>
     </tbody>
   </table>

@@ -14,6 +14,7 @@
       <option value="platformTransfers">Transferencias a plataformas</option>
       <option value="expenses">Gastos de caja</option>
       <option value="discounts">Descuentos</option>
+      <option value="transactions">Transacciones</option>
     </select>
   </form>
   <div class="divider my-5"></div>
@@ -42,6 +43,14 @@
           <th>Valor</th>
           <th>Hora</th>
           <th>Actualizado</th>
+        </tr>
+        <tr *ngIf="selectedReport() === 'transactions'">
+          <th class="id">ID</th>
+          <th>Nota</th>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Adicional</th>
+          <th>Fecha y Hora</th>
         </tr>
       </thead>
       <tbody *ngIf="selectedReport() === 'platformTransfers'">
@@ -93,6 +102,20 @@
           <td class="text-left">
             {{ discount.modifiedDate | date : "H:mm:ss" }}
           </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="selectedReport() === 'transactions'">
+        <tr *ngFor="let transaction of reports()?.transactions">
+          <td class="id">{{ transaction.id }}</td>
+          <td>{{ transaction.description }}</td>
+          <td>{{ transaction.type | transactionDetailType }}</td>
+          <td class="text-right">
+            {{ transaction.value | currency : "symbol" : "$" : "0.00" }}
+          </td>
+          <td class="text-right">
+            {{ transaction.commission | currency : "symbol" : "$" : "0.00" }}
+          </td>
+          <td>{{ transaction.createdDate | date : "dd/MM/yyyy, hh:mm a" }}</td>
         </tr>
       </tbody>
     </table>

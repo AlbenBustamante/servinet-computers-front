@@ -6,6 +6,7 @@ import { SharedModule } from '@shared/shared.module';
 import { ReportsRoutingModule } from './reports-routing.module';
 import { ReportsComponent } from './reports.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TransactionDetailTypePipe } from 'app/core/pipes/transaction-detail-type.pipe';
 
 @NgModule({
   declarations: [ReportsComponent],
@@ -15,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SharedModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    TransactionDetailTypePipe,
   ],
 })
 export default class ReportsModule {}

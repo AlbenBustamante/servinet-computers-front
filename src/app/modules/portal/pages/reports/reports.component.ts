@@ -5,7 +5,11 @@ import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 import { lastValueFrom } from 'rxjs';
 
-type SelectedReport = 'platformTransfers' | 'expenses' | 'discounts';
+type SelectedReport =
+  | 'platformTransfers'
+  | 'expenses'
+  | 'discounts'
+  | 'transactions';
 
 @Component({
   selector: 'app-reports',
