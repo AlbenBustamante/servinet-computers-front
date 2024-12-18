@@ -6,6 +6,7 @@
         <th>Nota</th>
         <th>Tipo</th>
         <th>Valor</th>
+        <th>Adicional</th>
         <th>Fecha y Hora</th>
       </tr>
     </thead>
@@ -13,8 +14,13 @@
       <tr *ngFor="let transaction of details()">
         <td class="id">{{ transaction.id }}</td>
         <td>{{ transaction.description }}</td>
-        <td>{{ transaction.type }}</td>
-        <td>{{ transaction.value | currency : "symbol" : "$" : "0.00" }}</td>
+        <td>{{ transaction.type | transactionDetailType }}</td>
+        <td class="text-right">
+          {{ transaction.value | currency : "symbol" : "$" : "0.00" }}
+        </td>
+        <td class="text-right">
+          {{ transaction.commission | currency : "symbol" : "$" : "0.00" }}
+        </td>
         <td>{{ transaction.date | date : "dd/MM/yyyy, hh:mm a" }}</td>
       </tr>
     </tbody>

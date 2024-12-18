@@ -53,6 +53,7 @@ export class NewTransactionFormComponent {
       next: (transaction) => {
         this.details.update((prevValue) => [...prevValue, transaction]);
         this.form.reset();
+        this.form.setValue({ type: TransactionDetailType.DEPOSIT });
         this.loading.set(false);
       },
       error: (err) => {
