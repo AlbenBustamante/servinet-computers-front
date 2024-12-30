@@ -30,7 +30,7 @@ export class BaseCalculatorComponent {
     private readonly myCashService: MyCashService,
     private readonly cashRegisterService: CashRegisterService
   ) {
-    this.cashBase = signal(this.baseService.cashBase);
+    this.cashBase = this.baseService.cashBase;
 
     const base = this.myCashService.initialBase;
 

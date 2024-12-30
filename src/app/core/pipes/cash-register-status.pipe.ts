@@ -15,10 +15,6 @@ export class CashRegisterStatusPipe implements PipeTransform {
       return 'Ocupada';
     }
 
-    if (value === CashRegisterStatus.RESTING) {
-      return 'Descansando';
-    }
-
     if (value === CashRegisterStatus.DISABLED) {
       return 'Deshabilitado';
     }
