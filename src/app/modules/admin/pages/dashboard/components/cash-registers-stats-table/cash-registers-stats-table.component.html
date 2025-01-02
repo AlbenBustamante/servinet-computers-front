@@ -9,13 +9,14 @@
         <th>Hora Entrada</th>
         <th>Hora Salida</th>
         <th>Cajero</th>
-        <th>Estado</th>
+        <th>Estado Jornada</th>
+        <th>Estado Caja</th>
         <th>Apertura</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let detail of dashboard()?.cashRegisterDetails">
-        <td class="id">{{ detail.cashRegister.id }}</td>
+        <td class="id">{{ detail.id }}</td>
         <td class="text-center">{{ detail.cashRegister.numeral }}</td>
         <td class="text-right">
           {{ detail.initialBase | currency : "symbol" : "$" : "0.00" }}
@@ -26,6 +27,7 @@
         <td>{{ detail.initialWorking | date : "hh:mm a" }}</td>
         <td>{{ detail.finalWorking | date : "hh:mm a" }}</td>
         <td>{{ detail.createdBy }}</td>
+        <td>{{ detail.status | cashRegisterDetailStatus }}</td>
         <td>{{ detail.cashRegister.status | cashRegisterStatus }}</td>
         <td>{{ detail.createdDate | date : "hh:mm a" }}</td>
       </tr>

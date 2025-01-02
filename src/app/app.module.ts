@@ -9,12 +9,11 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import locale from '@angular/common/locales/es-CO';
 import { registerLocaleData } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CashRegisterDetailStatusPipe } from './core/pipes/cash-register-detail-status.pipe';
 
 registerLocaleData(locale);
 
 @NgModule({
-  declarations: [AppComponent, CashRegisterDetailStatusPipe],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
