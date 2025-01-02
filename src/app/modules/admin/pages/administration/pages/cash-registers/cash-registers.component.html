@@ -1,3 +1,10 @@
-<header class="mb-3">
-  <h3 class="text-xl text-gray-700 font-medium">Cajas Registradoras</h3>
-</header>
+<ul class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5">
+  <li *ngFor="let detail of cashRegisterDetails(); index as i">
+    <app-adm-item-card
+      [options]="options"
+      [finalBalance]="detail.finalBase ?? 0"
+      (setSelectedItem)="setSelectedCashRegisterDetail(i)"
+      >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card
+    >
+  </li>
+</ul>
