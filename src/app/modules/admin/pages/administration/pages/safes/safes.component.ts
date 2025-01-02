@@ -1,9 +1,9 @@
 import { Component, signal, ViewChild } from '@angular/core';
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ISafeDetailRes } from '@models/safe.model';
 import { SafeService } from '@services/safe.service';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 import { UpdateSafeBaseService } from '@services/update-safe-base.service';
+import { AdmItemCardOption } from '../../components/adm-item-card/adm-item-card.component';
 
 @Component({
   selector: 'app-admin-safes',
@@ -15,9 +15,17 @@ export class SafesComponent {
   updateBaseModal!: UpdateBaseModalComponent;
   readonly loading = signal<boolean>(false);
   readonly safeDetails = signal<ISafeDetailRes[]>([]);
-  readonly faOptions = faEllipsis;
-  readonly showDropdown = signal<boolean[]>([]);
   readonly selectedSafeDetail = signal<ISafeDetailRes | undefined>(undefined);
+
+  readonly options: AdmItemCardOption[] = [
+    {
+      title: 'Ajustar base',
+      fn: () => {
+        this.openUpdateBaseModal();
+      },
+    },
+    { title: 'Ver historial', fn: () => {} },
+  ];
 
   constructor(
     private readonly safeService: SafeService,
@@ -29,10 +37,6 @@ export class SafesComponent {
 
     this.safeService.loadDetails().subscribe({
       next: (safeDetails) => {
-        safeDetails.forEach((_) => {
-          this.showDropdown().push(false);
-        });
-
         this.safeDetails.set(safeDetails);
         this.loading.set(false);
       },
@@ -43,13 +47,7 @@ export class SafesComponent {
     });
   }
 
-  toggleShowDropdown(index: number) {
-    this.showDropdown.update((values) => {
-      const newValues = values.map((value, i) => (value ? false : index === i));
-
-      return newValues;
-    });
-
+  setSelectedSafeDetail(index: number) {
     this.selectedSafeDetail.set(this.safeDetails()[index]);
     this.updateSafeBaseService.setSelectedSafe(this.selectedSafeDetail()!);
   }
