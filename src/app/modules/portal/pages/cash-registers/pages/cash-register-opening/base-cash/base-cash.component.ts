@@ -1,7 +1,6 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { IBase } from '@models/base.model';
 import { ICashRegisterDetailReq } from '@models/cash-register.model';
-import { BaseCalculatorComponent } from '@portal/pages/cash-registers/components/base-calculator/base-calculator.component';
 import { BaseService } from '@services/base.service';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
@@ -12,7 +11,6 @@ import { MyCashService } from '@services/my-cash.service';
   styleUrls: ['./base-cash.component.css'],
 })
 export class BaseCashComponent {
-  @ViewChild(BaseCalculatorComponent) calculator!: BaseCalculatorComponent;
   private readonly myCashRegisters;
   private readonly cashRegisterStatus;
 
@@ -38,7 +36,6 @@ export class BaseCashComponent {
   }
 
   register() {
-    this.calculator.emitBase();
     this.loading.set(true);
 
     const detailReq: ICashRegisterDetailReq = {
@@ -55,7 +52,7 @@ export class BaseCashComponent {
           myCashRegistersReports.cashRegisterDetailsReports[0]
         );
         this.baseService.cashBase.set(this.baseService.defaultBase);
-        this.myCashService.clear();
+        // this.myCashService.clear();
         this.loading.set(false);
         this.cashRegisterStatus.set('open');
       },

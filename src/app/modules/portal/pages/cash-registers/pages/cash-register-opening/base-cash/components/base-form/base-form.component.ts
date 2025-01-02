@@ -1,6 +1,14 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { IBase } from '@models/base.model';
+import { BaseCalculatorComponent } from '@portal/pages/cash-registers/components/base-calculator/base-calculator.component';
 
 @Component({
   selector: 'app-base-form',
@@ -8,6 +16,7 @@ import { IBase } from '@models/base.model';
   styleUrls: ['./base-form.component.css'],
 })
 export class BaseFormComponent {
+  @ViewChild(BaseCalculatorComponent) calculator!: BaseCalculatorComponent;
   @Input({ required: true }) cashRegisterId!: number;
   @Output() setBase = new EventEmitter<IBase>();
   @Output() setObservation = new EventEmitter<string>();
@@ -31,6 +40,7 @@ export class BaseFormComponent {
   }
 
   emitRegister() {
+    this.calculator.emitBase();
     this.register.emit();
   }
 
