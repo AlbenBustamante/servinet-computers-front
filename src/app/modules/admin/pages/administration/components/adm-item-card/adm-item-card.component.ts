@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
-export interface AdmItemCardOption {
+interface AdmItemCardOption {
   title: string;
   fn: () => void;
 }
+
+export type AdmItemCardOptions = AdmItemCardOption[];
 
 @Component({
   selector: 'app-adm-item-card',
@@ -12,7 +14,7 @@ export interface AdmItemCardOption {
   styleUrls: ['./adm-item-card.component.css'],
 })
 export class AdmItemCardComponent {
-  @Input({ required: true }) options!: AdmItemCardOption[];
+  @Input({ required: true }) options!: AdmItemCardOptions;
   @Input({ required: true }) finalBalance!: number;
   @Output() setSelectedItem = new EventEmitter<void>();
   readonly showDropdown = signal<boolean>(false);

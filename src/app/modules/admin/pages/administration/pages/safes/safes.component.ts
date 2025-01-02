@@ -3,7 +3,7 @@ import { ISafeDetailRes } from '@models/safe.model';
 import { SafeService } from '@services/safe.service';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 import { UpdateSafeBaseService } from '@services/update-safe-base.service';
-import { AdmItemCardOption } from '../../components/adm-item-card/adm-item-card.component';
+import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
 
 @Component({
   selector: 'app-admin-safes',
@@ -17,12 +17,10 @@ export class SafesComponent {
   readonly safeDetails = signal<ISafeDetailRes[]>([]);
   readonly selectedSafeDetail = signal<ISafeDetailRes | undefined>(undefined);
 
-  readonly options: AdmItemCardOption[] = [
+  readonly options: AdmItemCardOptions = [
     {
       title: 'Ajustar base',
-      fn: () => {
-        this.openUpdateBaseModal();
-      },
+      fn: () => this.openUpdateBaseModal(),
     },
     { title: 'Ver historial', fn: () => {} },
   ];
