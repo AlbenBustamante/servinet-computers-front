@@ -33,6 +33,12 @@ export class CashRegisterDetailService {
     });
   }
 
+  getAllOfToday() {
+    return this.http.get<ICashRegisterDetailRes[]>(this.url, {
+      context: checkToken(),
+    });
+  }
+
   getById(cashRegisterDetailId: number) {
     return this.http.get<ICashRegisterDetailRes>(
       `${this.url}/${cashRegisterDetailId}`,

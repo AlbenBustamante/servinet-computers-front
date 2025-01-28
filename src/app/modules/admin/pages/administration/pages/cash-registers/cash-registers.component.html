@@ -1,3 +1,44 @@
-<header class="mb-3">
-  <h3 class="text-xl text-gray-700 font-medium">Cajas Registradoras</h3>
-</header>
+<!--header class="mb-3">
+  <h3 class="text-xl text-gray-700 font-medium">Cajas Fuertes</h3>
+</header-->
+<ul class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5">
+  <li *ngFor="let detail of cashRegisterDetails(); index as i">
+    <article class="card">
+      <header class="mb-2 flex items-center justify-between gap-2">
+        <h4 class="text-2xl text-violet-700 font-medium">
+          Caja {{ detail.cashRegister.numeral }}
+        </h4>
+        <div class="relative z-10">
+          <fa-icon
+            [icon]="faOptions"
+            size="xl"
+            class="text-gray-700 cursor-pointer px-0.5 rounded-full hover:bg-gray-50"
+            (click)="toggleShowDropdown(i)"
+          />
+          <ul
+            class="absolute z-20 bg-white drop-shadow right-0 rounded-lg py-2 min-w-40 flex flex-col gap-0.5"
+            [ngClass]="showDropdown()[i] ? 'block' : 'hidden'"
+          >
+            <li>
+              <a
+                class="flex items-center px-4 py-1.5 cursor-pointer text-gray-700 hover:bg-gray-100"
+                (click)="openUpdateBaseModal()"
+                >Ajustar base</a
+              >
+            </li>
+            <li>
+              <a
+                class="flex items-center px-4 py-1.5 cursor-pointer text-gray-700 hover:bg-gray-100"
+                >Ver historial</a
+              >
+            </li>
+          </ul>
+        </div>
+      </header>
+      <p class="text-right text-xl text-gray-700 font-medium cursor-default">
+        {{ detail.finalBase | currency : "symbol" : "$" : "0.00" }}
+      </p>
+    </article>
+  </li>
+</ul>
+<!--app-update-base-modal [safeDetail]="selectedSafeDetail()" -->
