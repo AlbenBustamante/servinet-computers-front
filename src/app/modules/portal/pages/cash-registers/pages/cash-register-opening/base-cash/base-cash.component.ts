@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { IBase } from '@models/base.model';
 import { ICashRegisterDetailReq } from '@models/cash-register.model';
+import { BaseService } from '@services/base.service';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 
@@ -18,6 +19,7 @@ export class BaseCashComponent {
 
   constructor(
     private readonly myCashService: MyCashService,
+    private readonly baseService: BaseService,
     private readonly cashRegisterDetailService: CashRegisterDetailService
   ) {
     this.myCashRegisters = this.myCashService.myCashRegisters;
@@ -49,6 +51,8 @@ export class BaseCashComponent {
         this.myCashService.currentCashRegister.set(
           myCashRegistersReports.cashRegisterDetailsReports[0]
         );
+        this.baseService.cashBase.set(this.baseService.defaultBase);
+        // this.myCashService.clear();
         this.loading.set(false);
         this.cashRegisterStatus.set('open');
       },

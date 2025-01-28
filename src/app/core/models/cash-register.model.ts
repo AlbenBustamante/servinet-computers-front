@@ -1,5 +1,5 @@
 import { IBase } from './base.model';
-import { CashRegisterStatus } from './enums';
+import { CashRegisterDetailStatus, CashRegisterStatus } from './enums';
 import { IResponse } from './response.model';
 
 export interface ICashRegisterReq {
@@ -30,6 +30,7 @@ export interface ICashRegisterDetailRes extends IResponse {
   initialBase: number;
   finalBase?: number;
   baseObservation: string;
+  status: CashRegisterDetailStatus;
   cashRegister: ICashRegisterRes;
 }
 

@@ -20,7 +20,7 @@ export class UpdateBaseFormComponent {
     private readonly updateSafeBaseService: UpdateSafeBaseService,
     private readonly safeService: SafeService
   ) {
-    this.base = signal(this.baseService.cashBase);
+    this.base = this.baseService.cashBase;
 
     this.safeDetail = this.updateSafeBaseService.selectedSafe;
     this.form = this.updateSafeBaseService.form;

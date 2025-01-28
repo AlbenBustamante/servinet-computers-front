@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BaseService {
-  readonly cashBase = [
+  readonly defaultBase = [
     { title: 'hundredThousand', value: 100000, total: '0' },
     { title: 'fiftyThousand', value: 50000, total: '0' },
     { title: 'twentyThousand', value: 20000, total: '0' },
@@ -17,6 +17,8 @@ export class BaseService {
     { title: 'hundred', value: 100, total: '0' },
     { title: 'fifty', value: 50, total: '0' },
   ];
+
+  readonly cashBase = signal(this.defaultBase);
 
   constructor() {}
 }

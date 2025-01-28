@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 import { UpdateBaseFormComponent } from './components/update-base-form/update-base-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import AdmItemCardComponent from '../../administration.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    AdmItemCardComponent,
   ],
 })
 export default class SafesModule {}

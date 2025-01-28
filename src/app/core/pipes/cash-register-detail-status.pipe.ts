@@ -1,0 +1,24 @@
+import { Pipe, PipeTransform } from '@angular/core';
+import { CashRegisterDetailStatus } from '@models/enums';
+
+@Pipe({
+  name: 'cashRegisterDetailStatus',
+  standalone: true,
+})
+export class CashRegisterDetailStatusPipe implements PipeTransform {
+  transform(value: CashRegisterDetailStatus): string {
+    if (value === CashRegisterDetailStatus.WORKING) {
+      return 'Trabajando';
+    }
+
+    if (value === CashRegisterDetailStatus.RESTING) {
+      return 'Descansando';
+    }
+
+    if (value === CashRegisterDetailStatus.CLOSED) {
+      return 'Cerrada';
+    }
+
+    return '';
+  }
+}

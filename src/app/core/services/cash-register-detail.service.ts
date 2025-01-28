@@ -34,7 +34,7 @@ export class CashRegisterDetailService {
   }
 
   getAllOfToday() {
-    return this.http.get<ICashRegisterDetailRes[]>(this.url, {
+    return this.http.get<ICashRegisterDetailRes[]>(`${this.url}/today`, {
       context: checkToken(),
     });
   }

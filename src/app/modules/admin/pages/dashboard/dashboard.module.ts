@@ -13,6 +13,7 @@ import { CashRegistersStatsTableComponent } from './components/cash-registers-st
 import { CashRegistersModalComponent } from './components/cash-registers-modal/cash-registers-modal.component';
 import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
 import { SafesStatsModalComponent } from './components/safes-stats-modal/safes-stats-modal.component';
+import { CashRegisterDetailStatusPipe } from 'app/core/pipes/cash-register-detail-status.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SafesStatsModalComponent } from './components/safes-stats-modal/safes-s
     DashboardRoutingModule,
     SharedModule,
     CashRegisterStatusPipe,
+    CashRegisterDetailStatusPipe,
   ],
 })
 export default class DashboardModule {}

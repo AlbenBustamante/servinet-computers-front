@@ -11,9 +11,14 @@ export enum Role {
 
 export enum CashRegisterStatus {
   AVAILABLE = 'AVAILABLE',
-  RESTING = 'RESTING',
   OCCUPIED = 'OCCUPIED',
   DISABLED = 'DISABLED',
+}
+
+export enum CashRegisterDetailStatus {
+  WORKING = 'WORKING',
+  RESTING = 'RESTING',
+  CLOSED = 'CLOSED',
 }
 
 export enum TransactionType {

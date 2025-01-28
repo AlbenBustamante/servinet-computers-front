@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ICashRegisterDetailRes } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
+import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
 
 @Component({
   selector: 'app-admin-cash-registers',
@@ -17,12 +18,15 @@ export class CashRegistersComponent {
     ICashRegisterDetailRes | undefined
   >(undefined);
 
+  readonly options: AdmItemCardOptions = [];
+
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService
   ) {}
 
   ngOnInit() {
     this.loading.set(true);
+
     this.cashRegisterDetailService.getAllOfToday().subscribe({
       next: (cashRegisterDetails) => {
         this.cashRegisterDetails.set(cashRegisterDetails);
@@ -51,4 +55,5 @@ export class CashRegistersComponent {
   openUpdateBaseModal() {
     // this.updateBaseModal.open();
   }
+  setSelectedCashRegisterDetail(index: number) {}
 }
