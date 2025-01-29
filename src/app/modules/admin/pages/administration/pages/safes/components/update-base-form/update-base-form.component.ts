@@ -1,8 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { BaseService } from '@services/base.service';
-import { SafeService } from '@services/safe.service';
+import { SafeDetailService } from '@services/safe-detail.service';
 import { UpdateSafeBaseService } from '@services/update-safe-base.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class UpdateBaseFormComponent {
   constructor(
     private readonly baseService: BaseService,
     private readonly updateSafeBaseService: UpdateSafeBaseService,
-    private readonly safeService: SafeService
+    private readonly safeDetailService: SafeDetailService
   ) {
     this.base = this.baseService.cashBase;
 
@@ -34,7 +34,7 @@ export class UpdateBaseFormComponent {
     const safeDetailId = this.safeDetail()!.id;
     const base = this.form.value as IBase;
 
-    this.safeService.updateBase({ safeDetailId, base }).subscribe({
+    this.safeDetailService.updateBase(safeDetailId, base).subscribe({
       next: (safeDetail) => {
         this.safeDetail.set(safeDetail);
         console.log(safeDetail);

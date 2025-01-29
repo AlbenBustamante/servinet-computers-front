@@ -1,9 +1,9 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { ISafeDetailRes } from '@models/safe.model';
-import { SafeService } from '@services/safe.service';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 import { UpdateSafeBaseService } from '@services/update-safe-base.service';
 import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
+import { SafeDetailService } from '@services/safe-detail.service';
 
 @Component({
   selector: 'app-admin-safes',
@@ -26,14 +26,14 @@ export class SafesComponent {
   ];
 
   constructor(
-    private readonly safeService: SafeService,
+    private readonly safeDetailService: SafeDetailService,
     private readonly updateSafeBaseService: UpdateSafeBaseService
   ) {}
 
   ngOnInit() {
     this.loading.set(true);
 
-    this.safeService.loadDetails().subscribe({
+    this.safeDetailService.loadDetails().subscribe({
       next: (safeDetails) => {
         this.safeDetails.set(safeDetails);
         this.loading.set(false);

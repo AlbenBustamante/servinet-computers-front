@@ -5,7 +5,6 @@ import { checkToken } from '@interceptors/token.interceptor';
 import { IReportsRes, IUserReq, IUserRes } from '@models/user.model';
 import { TokenService } from './token.service';
 import { tap } from 'rxjs';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +15,7 @@ export class UserService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly tokenService: TokenService,
-    private readonly authService: AuthService
+    private readonly tokenService: TokenService
   ) {}
 
   getAll() {
@@ -27,9 +25,7 @@ export class UserService {
   }
 
   getReports() {
-    const code = this.authService.loggedIn()?.code;
-
-    return this.http.get<IReportsRes>(`${this.url}/${code}/reports`, {
+    return this.http.get<IReportsRes>(`${this.url}/reports`, {
       context: checkToken(),
     });
   }
