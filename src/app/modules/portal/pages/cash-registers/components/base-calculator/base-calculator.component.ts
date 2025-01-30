@@ -77,6 +77,9 @@ export class BaseCalculatorComponent {
   }
 
   ngOnInit() {
+    console.log({ base: this.baseService.defaultBase() });
+    this.baseService.cashBase.set(this.baseService.defaultBase());
+
     if (!this.cashRegisterId) {
       return;
     }

@@ -51,7 +51,7 @@ export class BaseCashComponent {
         this.myCashService.currentCashRegister.set(
           myCashRegistersReports.cashRegisterDetailsReports[0]
         );
-        this.baseService.cashBase.set(this.baseService.defaultBase);
+        this.baseService.cashBase.set(this.baseService.defaultBase());
         // this.myCashService.clear();
         this.loading.set(false);
         this.cashRegisterStatus.set('open');
