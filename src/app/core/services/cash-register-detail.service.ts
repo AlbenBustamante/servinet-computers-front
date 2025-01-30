@@ -75,7 +75,7 @@ export class CashRegisterDetailService {
   }
 
   startBreak(cashRegisterDetailId: number) {
-    return this.http.patch<ICashRegisterDetailRes>(
+    return this.http.put<ICashRegisterDetailRes>(
       this.urlIdPath(cashRegisterDetailId, 'start-break'),
       undefined,
       { context: checkToken() }
@@ -83,7 +83,7 @@ export class CashRegisterDetailService {
   }
 
   endBreak(cashRegisterDetailId: number) {
-    return this.http.patch<ICashRegisterDetailRes>(
+    return this.http.put<ICashRegisterDetailRes>(
       this.urlIdPath(cashRegisterDetailId, 'end-break'),
       undefined,
       { context: checkToken() }
@@ -91,7 +91,7 @@ export class CashRegisterDetailService {
   }
 
   close(cashRegisterDetailId: number, base: IBase) {
-    return this.http.patch<ICashRegisterDetailReportsDto>(
+    return this.http.put<ICashRegisterDetailReportsDto>(
       this.urlIdPath(cashRegisterDetailId, 'close'),
       base,
       { context: checkToken() }

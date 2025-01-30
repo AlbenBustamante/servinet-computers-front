@@ -87,17 +87,17 @@ export class BaseCalculatorComponent {
       next: (base) => {
         if (base !== null) {
           this.baseForm.setValue({
-            hundredThousand: base.hundredThousand,
-            fiftyThousand: base.fiftyThousand,
-            twentyThousand: base.twentyThousand,
-            tenThousand: base.tenThousand,
-            fiveThousand: base.fiveThousand,
-            twoThousand: base.twoThousand,
-            thousand: base.thousand,
-            fiveHundred: base.fiveHundred,
-            twoHundred: base.twoHundred,
-            hundred: base.hundred,
-            fifty: base.fifty,
+            hundredThousand: this.initialValue(base.hundredThousand),
+            fiftyThousand: this.initialValue(base.fiftyThousand),
+            twentyThousand: this.initialValue(base.twentyThousand),
+            tenThousand: this.initialValue(base.tenThousand),
+            fiveThousand: this.initialValue(base.fiveThousand),
+            twoThousand: this.initialValue(base.twoThousand),
+            thousand: this.initialValue(base.thousand),
+            fiveHundred: this.initialValue(base.fiveHundred),
+            twoHundred: this.initialValue(base.twoHundred),
+            hundred: this.initialValue(base.hundred),
+            fifty: this.initialValue(base.fifty),
           });
 
           this.emitBase();
@@ -113,6 +113,8 @@ export class BaseCalculatorComponent {
       },
     });
   }
+
+  private initialValue = (value: number) => (value === 0 ? '' : value);
 
   private calculateBillet() {
     let billetAmount = 0;

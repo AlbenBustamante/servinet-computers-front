@@ -93,7 +93,7 @@ export class MyCashService {
 
   get initialBase(): IBase | undefined {
     const base = localStorage.getItem(this.INITIAL_BASE);
-    this._initialBase = base ? JSON.parse(base) : undefined;
+    this._initialBase = base !== null ? JSON.parse(base) : undefined;
 
     return this._initialBase;
   }

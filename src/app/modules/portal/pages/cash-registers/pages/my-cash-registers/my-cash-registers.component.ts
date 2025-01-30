@@ -61,6 +61,8 @@ export class MyCashRegistersComponent {
     );
 
     this.currentCashRegisterIndex = signal<number>(size - 1);
+
+    console.log({ r: this.currentCashRegister() });
   }
 
   handleSelectedCashRegister(event: Event) {
