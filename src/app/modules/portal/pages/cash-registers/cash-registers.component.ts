@@ -87,7 +87,7 @@ export class CashRegistersComponent {
       return this.cashRegisterStatus.set('entry-time');
     }
 
-    if (this.myCashService.closing) {
+    if (this.myCashService.closingCashRegister > 0) {
       return this.cashRegisterStatus.set('final-base');
     }
 

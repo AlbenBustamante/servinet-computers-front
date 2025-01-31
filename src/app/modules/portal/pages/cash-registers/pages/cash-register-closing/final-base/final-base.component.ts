@@ -24,15 +24,14 @@ export class FinalBaseComponent {
   }
 
   onReturn() {
-    this.myCashService.removeClosing();
+    this.myCashService.removeClosingCashRegister();
     this.myCashService.cashRegisterStatus.set('open');
   }
 
   close() {
     this.loading.set(true);
 
-    const cashRegisterDetailId =
-      this.myCashService.myClosingCashRegister()?.id!;
+    const cashRegisterDetailId = this.myCashService.closingCashRegister;
 
     this.cashRegisterDetailService
       .close(cashRegisterDetailId, this.finalBase()!)

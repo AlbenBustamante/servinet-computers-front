@@ -14,7 +14,6 @@ export class MyCashService {
   private _initialWorking = '';
   private _observation = '';
   private _initialBase: IBase | undefined = undefined;
-  private _closing = false;
 
   private readonly _selectedCashRegister = signal<ICashRegisterRes | undefined>(
     undefined
@@ -40,9 +39,6 @@ export class MyCashService {
 
   readonly cashRegisters = signal<ICashRegisterRes[]>([]);
   readonly myCashRegisters = signal<IMyCashRegistersReports | undefined>(
-    undefined
-  );
-  readonly myClosingCashRegister = signal<ICashRegisterDetailRes | undefined>(
     undefined
   );
   readonly myClosedCashRegisterReports = signal<
@@ -129,23 +125,20 @@ export class MyCashService {
     localStorage.removeItem(this.SELECTED_CASH_REGISTER);
   }
 
-  set closing(closing: boolean) {
-    this._closing = closing;
-    localStorage.setItem(this.CLOSING, String(this._closing));
+  set closingCashRegister(id: number) {
+    localStorage.setItem(this.CLOSING, `${id}`);
   }
 
-  get closing() {
-    this._closing = Boolean(localStorage.getItem(this.CLOSING)) ?? false;
-    return this._closing;
+  get closingCashRegister() {
+    return Number(localStorage.getItem(this.CLOSING) ?? 0);
   }
 
-  removeClosing() {
-    this._closing = false;
+  removeClosingCashRegister() {
     localStorage.removeItem(this.CLOSING);
   }
 
   setClosedReports(reports: ICashRegisterDetailReportsDto) {
-    this.removeClosing();
+    this.removeClosingCashRegister();
     this.myClosedCashRegisterReports.set(reports);
     localStorage.setItem(this.CLOSED_REPORTS, '1');
   }
@@ -191,7 +184,7 @@ export class MyCashService {
     this.removeObservation();
     this.removeInitialBase();
     this.removeSelectedCashRegister();
-    this.removeClosing();
+    this.removeClosingCashRegister();
     this.removeClosedReports();
     this.removeExpirationTime();
   }

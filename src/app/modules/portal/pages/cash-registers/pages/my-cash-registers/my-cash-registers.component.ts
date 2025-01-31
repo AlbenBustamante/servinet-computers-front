@@ -166,10 +166,8 @@ export class MyCashRegistersComponent {
   }
 
   close() {
-    this.myCashService.closing = true;
-    this.myCashService.myClosingCashRegister.set(
-      this.currentCashRegister()?.cashRegisterDetail
-    );
+    this.myCashService.closingCashRegister =
+      this.currentCashRegister()?.cashRegisterDetail.id!;
     this.myCashService.cashRegisterStatus.set('final-base');
   }
 }
