@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IBase } from '@models/base.model';
+import { IBase, IBaseDetail } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { CashRegisterService } from '@services/cash-register.service';
 import { MyCashService } from '@services/my-cash.service';
@@ -17,12 +17,9 @@ export class BaseCalculatorComponent {
   readonly cashBase;
   readonly baseForm: FormGroup;
   readonly loading = signal<boolean>(false);
-  readonly billetAmount = signal<string>('0');
-  readonly billetTotal = signal<string>('0');
-  readonly coinAmount = signal<string>('0');
-  readonly coinTotal = signal<string>('0');
-  readonly totalAmount = signal<string>('0');
-  readonly total = signal<string>('0');
+  readonly billet = signal<IBaseDetail | undefined>(undefined);
+  readonly coin = signal<IBaseDetail | undefined>(undefined);
+  readonly total = signal<IBaseDetail | undefined>(undefined);
 
   constructor(
     private readonly fb: FormBuilder,
@@ -118,51 +115,12 @@ export class BaseCalculatorComponent {
 
   private initialValue = (value: number) => (value === 0 ? '' : value);
 
-  private calculateBillet() {
-    let billetAmount = 0;
-    let billetTotal = 0;
-
-    for (let i = 0; i < 6; i++) {
-      const amount = Number(this.baseForm.get(this.cashBase()[i].title)?.value);
-      const result = amount * this.cashBase()[i].value;
-
-      this.cashBase()[i].total = `${result}`;
-
-      billetAmount += amount;
-      billetTotal += result;
-    }
-
-    this.billetAmount.set(`${billetAmount}`);
-    this.billetTotal.set(`${billetTotal}`);
-  }
-
-  private calculateCoin() {
-    let coinAmount = 0;
-    let coinTotal = 0;
-
-    for (let i = 6; i < this.cashBase().length; i++) {
-      const amount = Number(this.baseForm.get(this.cashBase()[i].title)?.value);
-      const result = amount * this.cashBase()[i].value;
-
-      this.cashBase()[i].total = `${result}`;
-
-      coinAmount += amount;
-      coinTotal += result;
-    }
-
-    this.coinAmount.set(`${coinAmount}`);
-    this.coinTotal.set(`${coinTotal}`);
-  }
-
   private calculate() {
-    this.calculateBillet();
-    this.calculateCoin();
+    const { billet, coin, total } = this.baseService.calculate(this.baseForm);
 
-    const totalAmount = Number(this.billetAmount()) + Number(this.coinAmount());
-    const total = Number(this.billetTotal()) + Number(this.coinTotal());
-
-    this.totalAmount.set(`${totalAmount}`);
-    this.total.set(`${total}`);
+    this.billet.set(billet);
+    this.coin.set(coin);
+    this.total.set(total);
   }
 
   emitBase() {

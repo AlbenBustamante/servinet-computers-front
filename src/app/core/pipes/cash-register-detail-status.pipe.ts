@@ -12,11 +12,11 @@ export class CashRegisterDetailStatusPipe implements PipeTransform {
     }
 
     if (value === CashRegisterDetailStatus.RESTING) {
-      return 'Descansando';
+      return 'En descanso';
     }
 
     if (value === CashRegisterDetailStatus.CLOSED) {
-      return 'Cerrada';
+      return 'Terminada';
     }
 
     return '';

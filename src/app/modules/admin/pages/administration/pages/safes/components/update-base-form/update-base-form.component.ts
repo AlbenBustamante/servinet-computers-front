@@ -21,6 +21,7 @@ export class UpdateBaseFormComponent {
     private readonly safeDetailService: SafeDetailService
   ) {
     this.base = this.baseService.cashBase;
+    this.base.set(this.baseService.defaultBase());
 
     this.safeDetail = this.updateSafeBaseService.selectedSafe;
     this.form = this.updateSafeBaseService.form;

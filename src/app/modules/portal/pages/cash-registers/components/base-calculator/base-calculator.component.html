@@ -39,11 +39,11 @@
           type="text"
           id="total"
           class="cash-amount-input font-medium"
-          [value]="billetAmount()"
+          [value]="billet()?.amount ?? 0"
           disabled
         />
         <span class="text-gray-800 font-medium">{{
-          billetTotal() | currency : "Symbol" : "$" : "0.00"
+          billet()?.total ?? 0 | currency : "Symbol" : "$" : "0.00"
         }}</span>
       </div>
     </section>
@@ -82,11 +82,11 @@
           type="text"
           id="total"
           class="cash-amount-input font-medium"
-          [value]="coinAmount()"
+          [value]="coin()?.amount ?? 0"
           disabled
         />
         <span class="text-gray-800 font-medium">{{
-          coinTotal() | currency : "Symbol" : "$" : "0.00"
+          coin()?.total ?? 0 | currency : "Symbol" : "$" : "0.00"
         }}</span>
       </div>
     </section>

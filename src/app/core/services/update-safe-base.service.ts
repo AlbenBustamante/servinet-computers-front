@@ -26,18 +26,20 @@ export class UpdateSafeBaseService {
   }
 
   setSelectedSafe(safeDetail: ISafeDetailRes) {
+    const base = safeDetail.detailFinalBase;
+
     this.form.setValue({
-      hundredThousand: safeDetail.detailFinalBase.hundredThousand,
-      fiftyThousand: safeDetail.detailFinalBase.fiftyThousand,
-      twentyThousand: safeDetail.detailFinalBase.twentyThousand,
-      tenThousand: safeDetail.detailFinalBase.tenThousand,
-      fiveThousand: safeDetail.detailFinalBase.fiveThousand,
-      twoThousand: safeDetail.detailFinalBase.twoThousand,
-      thousand: safeDetail.detailFinalBase.thousand,
-      fiveHundred: safeDetail.detailFinalBase.fiveHundred,
-      twoHundred: safeDetail.detailFinalBase.twoHundred,
-      hundred: safeDetail.detailFinalBase.hundred,
-      fifty: safeDetail.detailFinalBase.fifty,
+      hundredThousand: base.hundredThousand,
+      fiftyThousand: base.fiftyThousand,
+      twentyThousand: base.twentyThousand,
+      tenThousand: base.tenThousand,
+      fiveThousand: base.fiveThousand,
+      twoThousand: base.twoThousand,
+      thousand: base.thousand,
+      fiveHundred: base.fiveHundred,
+      twoHundred: base.twoHundred,
+      hundred: base.hundred,
+      fifty: base.fifty,
     });
 
     this.selectedSafe.set(safeDetail);
