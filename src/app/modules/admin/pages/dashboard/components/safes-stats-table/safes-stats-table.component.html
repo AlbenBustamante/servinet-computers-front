@@ -10,15 +10,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let safe of dashboard()?.safes">
-        <td class="id">{{ safe.id }}</td>
-        <td class="text-center">{{ safe.numeral }}</td>
+      <tr *ngFor="let detail of dashboard()?.safeDetails">
+        <td class="id">{{ detail.id }}</td>
+        <td class="text-center">{{ detail.safe.numeral }}</td>
         <td class="text-center">0</td>
         <td class="text-right">
-          {{ 0 | currency : "symbol" : "$" : "0.00" }}
+          {{ detail.initialBase | currency : "symbol" : "$" : "0.00" }}
         </td>
         <td class="text-right">
-          {{ 0 | currency : "symbol" : "$" : "0.00" }}
+          {{ detail.finalBase | currency : "symbol" : "$" : "0.00" }}
         </td>
       </tr>
     </tbody>
