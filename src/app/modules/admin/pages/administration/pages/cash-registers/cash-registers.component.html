@@ -2,7 +2,9 @@
   <li *ngFor="let detail of cashRegisterDetails(); index as i">
     <app-adm-item-card
       [options]="options"
-      [finalBalance]="detail.finalBase ?? 0"
+      [finalBalance]="
+        detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
+      "
       (setSelectedItem)="setSelectedCashRegisterDetail(i)"
       >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card
     >
