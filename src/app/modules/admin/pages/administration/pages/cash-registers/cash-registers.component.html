@@ -1,6 +1,7 @@
 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5">
   <li *ngFor="let detail of cashRegisterDetails(); index as i">
     <app-adm-item-card
+      [showDropdown]="false"
       [options]="options"
       [finalBalance]="
         detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase

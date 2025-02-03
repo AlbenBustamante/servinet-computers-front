@@ -4,9 +4,11 @@
 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5">
   <li *ngFor="let detail of safeDetails(); index as i">
     <app-adm-item-card
+      [showDropdown]="showDropdown() === i"
       [options]="options"
       [finalBalance]="detail.finalBase"
       (setSelectedItem)="setSelectedSafeDetail(i)"
+      class="dropdown"
       >Caja {{ detail.safe.numeral }}</app-adm-item-card
     >
   </li>

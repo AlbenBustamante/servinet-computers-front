@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, HostListener, signal, ViewChild } from '@angular/core';
 import { ISafeDetailRes } from '@models/safe.model';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 import { UpdateSafeBaseService } from '@services/update-safe-base.service';
@@ -16,6 +16,7 @@ export class SafesComponent {
   readonly loading = signal<boolean>(false);
   readonly safeDetails = signal<ISafeDetailRes[]>([]);
   readonly selectedSafeDetail = signal<ISafeDetailRes | undefined>(undefined);
+  readonly showDropdown = signal<number | undefined>(undefined);
 
   readonly options: AdmItemCardOptions = [
     {
@@ -46,11 +47,21 @@ export class SafesComponent {
   }
 
   setSelectedSafeDetail(index: number) {
+    this.showDropdown.set(this.showDropdown() === index ? undefined : index);
     this.selectedSafeDetail.set(this.safeDetails()[index]);
     this.updateSafeBaseService.setSelectedSafe(this.selectedSafeDetail()!);
   }
 
   openUpdateBaseModal() {
     this.updateBaseModal.open();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (!target.closest('.dropdown')) {
+      this.showDropdown.set(undefined);
+    }
   }
 }
