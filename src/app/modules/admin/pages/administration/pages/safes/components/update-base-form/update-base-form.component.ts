@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { SafeDetailService } from '@services/safe-detail.service';
-import { UpdateSafeBaseService } from '@services/update-safe-base.service';
+import { SafeBaseService } from '@services/safe-base.service';
 
 @Component({
   selector: 'app-update-base-form',
@@ -11,20 +11,22 @@ import { UpdateSafeBaseService } from '@services/update-safe-base.service';
   styleUrls: ['./update-base-form.component.css'],
 })
 export class UpdateBaseFormComponent {
-  readonly safeDetail;
+  readonly safeDetails;
+  readonly selectedSafeDetail;
   readonly base;
   readonly form: FormGroup;
 
   constructor(
     private readonly baseService: BaseService,
-    private readonly updateSafeBaseService: UpdateSafeBaseService,
+    private readonly safeBaseService: SafeBaseService,
     private readonly safeDetailService: SafeDetailService
   ) {
+    this.form = this.safeBaseService.form;
     this.base = this.baseService.cashBase;
-    this.base.set(this.baseService.defaultBase());
+    this.selectedSafeDetail = this.safeBaseService.selectedSafe;
+    this.safeDetails = this.safeBaseService.safeDetails;
 
-    this.safeDetail = this.updateSafeBaseService.selectedSafe;
-    this.form = this.updateSafeBaseService.form;
+    this.base.set(this.baseService.defaultBase());
   }
 
   onSubmit() {
@@ -32,14 +34,24 @@ export class UpdateBaseFormComponent {
       return this.form.markAllAsTouched();
     }
 
-    const safeDetailId = this.safeDetail()!.id;
+    const safeDetailId = this.selectedSafeDetail()!.id;
     const base = this.form.value as IBase;
 
     this.safeDetailService.updateBase(safeDetailId, base).subscribe({
       next: (safeDetail) => {
         this.baseService.calculate(this.form, true);
-        this.safeDetail.set(safeDetail);
-        console.log(safeDetail);
+        this.selectedSafeDetail.set(safeDetail);
+
+        const index = this.safeDetails().findIndex(
+          (detail) => detail.id === safeDetail.id
+        );
+
+        if (index >= 0) {
+          this.safeDetails.update((prevValue) => {
+            prevValue[index] = safeDetail;
+            return prevValue;
+          });
+        }
       },
       error: (err) => {
         console.log(err);

@@ -6,8 +6,9 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UpdateSafeBaseService {
+export class SafeBaseService {
   readonly form: FormGroup;
+  readonly safeDetails = signal<ISafeDetailRes[]>([]);
   readonly selectedSafe = signal<ISafeDetailRes | undefined>(undefined);
 
   constructor(
