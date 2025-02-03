@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IBaseDetail, ICalculatorBase } from '@models/base.model';
+import { IBase, IBaseDetail, ICalculatorBase } from '@models/base.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +24,14 @@ export class BaseService {
 
   readonly cashBase = signal(this.defaultBase());
 
-  calculate(baseForm: FormGroup): ICalculatorBase {
-    const billet = this.calculateByRange(0, 6, baseForm);
-    const coin = this.calculateByRange(6, this.cashBase().length, baseForm);
+  calculate(baseForm: FormGroup, safe: boolean = false): ICalculatorBase {
+    const billet = this.calculateByRange(0, 6, baseForm, safe);
+    const coin = this.calculateByRange(
+      6,
+      this.cashBase().length,
+      baseForm,
+      safe
+    );
 
     const resAmount = billet.amount + coin.amount;
     const resTotal = billet.total + coin.total;
@@ -38,14 +43,15 @@ export class BaseService {
   private calculateByRange(
     startValue: number,
     endValue: number,
-    baseForm: FormGroup
+    baseForm: FormGroup,
+    safe: boolean
   ): IBaseDetail {
     let amount = 0;
     let total = 0;
 
     for (let i = startValue; i < endValue; i++) {
       const resAmount = Number(baseForm.get(this.cashBase()[i].title)?.value);
-      const resTotal = resAmount * this.cashBase()[i].value;
+      const resTotal = resAmount * this.cashBase()[i].value * (safe ? 100 : 1);
 
       this.cashBase()[i].total = resTotal;
 
@@ -55,6 +61,24 @@ export class BaseService {
 
     return { amount, total };
   }
+
+  updateForm(baseForm: FormGroup, base: IBase) {
+    baseForm.setValue({
+      hundredThousand: this.initialValue(base.hundredThousand),
+      fiftyThousand: this.initialValue(base.fiftyThousand),
+      twentyThousand: this.initialValue(base.twentyThousand),
+      tenThousand: this.initialValue(base.tenThousand),
+      fiveThousand: this.initialValue(base.fiveThousand),
+      twoThousand: this.initialValue(base.twoThousand),
+      thousand: this.initialValue(base.thousand),
+      fiveHundred: this.initialValue(base.fiveHundred),
+      twoHundred: this.initialValue(base.twoHundred),
+      hundred: this.initialValue(base.hundred),
+      fifty: this.initialValue(base.fifty),
+    });
+  }
+
+  private initialValue = (value: number) => (value === 0 ? '' : value);
 
   // static empty: IBase = {
   //   hundredThousand: 0,

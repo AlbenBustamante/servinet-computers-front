@@ -37,6 +37,7 @@ export class UpdateBaseFormComponent {
 
     this.safeDetailService.updateBase(safeDetailId, base).subscribe({
       next: (safeDetail) => {
+        this.baseService.calculate(this.form, true);
         this.safeDetail.set(safeDetail);
         console.log(safeDetail);
       },

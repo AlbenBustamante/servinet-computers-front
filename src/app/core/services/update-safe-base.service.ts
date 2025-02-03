@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ISafeDetailRes } from '@models/safe.model';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,10 @@ export class UpdateSafeBaseService {
   readonly form: FormGroup;
   readonly selectedSafe = signal<ISafeDetailRes | undefined>(undefined);
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly baseService: BaseService
+  ) {
     this.form = this.fb.group({
       hundredThousand: ['', Validators.min(0)],
       fiftyThousand: ['', Validators.min(0)],
@@ -27,21 +31,8 @@ export class UpdateSafeBaseService {
 
   setSelectedSafe(safeDetail: ISafeDetailRes) {
     const base = safeDetail.detailFinalBase;
-
-    this.form.setValue({
-      hundredThousand: base.hundredThousand,
-      fiftyThousand: base.fiftyThousand,
-      twentyThousand: base.twentyThousand,
-      tenThousand: base.tenThousand,
-      fiveThousand: base.fiveThousand,
-      twoThousand: base.twoThousand,
-      thousand: base.thousand,
-      fiveHundred: base.fiveHundred,
-      twoHundred: base.twoHundred,
-      hundred: base.hundred,
-      fifty: base.fifty,
-    });
-
+    this.baseService.updateForm(this.form, base);
+    this.baseService.calculate(this.form, true);
     this.selectedSafe.set(safeDetail);
   }
 }

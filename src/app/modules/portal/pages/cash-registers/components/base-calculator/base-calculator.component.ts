@@ -85,19 +85,7 @@ export class BaseCalculatorComponent {
     this.cashRegisterService.getLastBase(this.cashRegisterId).subscribe({
       next: (base) => {
         if (base !== null) {
-          this.baseForm.setValue({
-            hundredThousand: this.initialValue(base.hundredThousand),
-            fiftyThousand: this.initialValue(base.fiftyThousand),
-            twentyThousand: this.initialValue(base.twentyThousand),
-            tenThousand: this.initialValue(base.tenThousand),
-            fiveThousand: this.initialValue(base.fiveThousand),
-            twoThousand: this.initialValue(base.twoThousand),
-            thousand: this.initialValue(base.thousand),
-            fiveHundred: this.initialValue(base.fiveHundred),
-            twoHundred: this.initialValue(base.twoHundred),
-            hundred: this.initialValue(base.hundred),
-            fifty: this.initialValue(base.fifty),
-          });
+          this.baseService.updateForm(this.baseForm, base);
 
           this.emitBase();
         } else {
@@ -112,8 +100,6 @@ export class BaseCalculatorComponent {
       },
     });
   }
-
-  private initialValue = (value: number) => (value === 0 ? '' : value);
 
   private calculate() {
     const { billet, coin, total } = this.baseService.calculate(this.baseForm);
