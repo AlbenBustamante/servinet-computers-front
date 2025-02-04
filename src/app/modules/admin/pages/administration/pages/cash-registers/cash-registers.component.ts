@@ -72,7 +72,9 @@ export class CashRegistersComponent {
       ? pendingCashRegisters[index]
       : currentCashRegisters[index];
     this.selectedCashRegisterDetail.set(selectedItem);
-    this.selectedCashRegisterDetailIndex.set(index);
+    this.selectedCashRegisterDetailIndex.set(
+      index === this.selectedCashRegisterDetailIndex() ? undefined : index
+    );
   }
 
   @HostListener('document:click', ['$event'])
