@@ -1,12 +1,33 @@
 <ul class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5">
-  <li *ngFor="let detail of cashRegisterDetails(); index as i">
+  <li
+    *ngFor="
+      let detail of cashRegisterDetails()?.currentCashRegisters;
+      index as i
+    "
+  >
     <app-adm-item-card
-      [showDropdown]="false"
+      [showDropdown]="selectedCashRegisterDetailIndex() === i"
       [options]="options"
       [finalBalance]="
         detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
       "
-      (setSelectedItem)="setSelectedCashRegisterDetail(i)"
+      (setSelectedItem)="setSelectedCashRegisterDetail(i, false)"
+      >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card
+    >
+  </li>
+  <li
+    *ngFor="
+      let detail of cashRegisterDetails()?.pendingCashRegisters;
+      index as i
+    "
+  >
+    <app-adm-item-card
+      [showDropdown]="selectedCashRegisterDetailIndex() === i"
+      [options]="options"
+      [finalBalance]="
+        detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
+      "
+      (setSelectedItem)="setSelectedCashRegisterDetail(i, true)"
       >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card
     >
   </li>

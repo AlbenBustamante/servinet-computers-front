@@ -57,3 +57,8 @@ export interface IAlreadyExistsCashRegisterDetailDto {
   myCashRegisters: IMyCashRegistersReports;
   availableCashRegisters: ICashRegisterRes[];
 }
+
+export interface IAdmCashRegistersDto {
+  currentCashRegisters: ICashRegisterDetailRes[]
+  pendingCashRegisters: ICashRegisterDetailRes[]
+}

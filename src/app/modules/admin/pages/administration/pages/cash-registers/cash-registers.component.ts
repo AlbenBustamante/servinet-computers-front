@@ -1,6 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
-import { ICashRegisterDetailRes } from '@models/cash-register.model';
+import {
+  IAdmCashRegistersDto,
+  ICashRegisterDetailRes,
+} from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
 
@@ -10,15 +13,21 @@ import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card
   styleUrls: ['./cash-registers.component.css'],
 })
 export class CashRegistersComponent {
-  readonly cashRegisterDetails = signal<ICashRegisterDetailRes[]>([]);
+  readonly cashRegisterDetails = signal<IAdmCashRegistersDto | undefined>(
+    undefined
+  );
   readonly loading = signal<boolean>(false);
   readonly showDropdown = signal<boolean[]>([]);
   readonly faOptions = faEllipsis;
+  readonly selectedCashRegisterDetailIndex = signal<number | undefined>(
+    undefined
+  );
   readonly selectedCashRegisterDetail = signal<
     ICashRegisterDetailRes | undefined
   >(undefined);
-
-  readonly options: AdmItemCardOptions = [];
+  readonly options: AdmItemCardOptions = [
+    { title: 'Cerrar caja', fn: this.openUpdateBaseModal },
+  ];
 
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService
@@ -46,14 +55,32 @@ export class CashRegistersComponent {
       return newValues;
     });
 
-    this.selectedCashRegisterDetail.set(this.cashRegisterDetails()[index]);
+    //this.selectedCashRegisterDetail.set(this.cashRegisterDetails()[index]);
     // this.updateSafeBaseService.setSelectedSafe(
     // this.selectedCashRegisterDetail()!
     // );
   }
 
   openUpdateBaseModal() {
-    // this.updateBaseModal.open();
+    console.log('close');
   }
-  setSelectedCashRegisterDetail(index: number) {}
+
+  setSelectedCashRegisterDetail(index: number, pending: boolean) {
+    const { currentCashRegisters, pendingCashRegisters } =
+      this.cashRegisterDetails()!;
+    const selectedItem = pending
+      ? pendingCashRegisters[index]
+      : currentCashRegisters[index];
+    this.selectedCashRegisterDetail.set(selectedItem);
+    this.selectedCashRegisterDetailIndex.set(index);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (!target.closest('.dropdown')) {
+      this.selectedCashRegisterDetailIndex.set(undefined);
+    }
+  }
 }

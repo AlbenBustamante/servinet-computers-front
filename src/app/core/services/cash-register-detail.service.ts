@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
+  IAdmCashRegistersDto,
   IAlreadyExistsCashRegisterDetailDto,
   ICashRegisterDetailReportsDto,
   ICashRegisterDetailReq,
@@ -34,7 +35,7 @@ export class CashRegisterDetailService {
   }
 
   getAllOfToday() {
-    return this.http.get<ICashRegisterDetailRes[]>(`${this.url}/today`, {
+    return this.http.get<IAdmCashRegistersDto>(`${this.url}/today`, {
       context: checkToken(),
     });
   }
