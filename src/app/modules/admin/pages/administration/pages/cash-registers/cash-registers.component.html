@@ -11,6 +11,7 @@
       [finalBalance]="
         detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
       "
+      [status]="detail.cashRegister.status"
       (setSelectedItem)="setSelectedCashRegisterDetail(i, false)"
       class="dropdown"
       >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card
@@ -28,6 +29,7 @@
       [finalBalance]="
         detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
       "
+      [pending]="true"
       (setSelectedItem)="setSelectedCashRegisterDetail(i, true)"
       class="pending-dropdown"
       >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card

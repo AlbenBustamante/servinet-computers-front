@@ -25,9 +25,19 @@
     </div>
   </header>
   <p
-    class="text-right text-xl text-gray-700 font-medium cursor-default"
+    class="flex items-center justify-between text-xl text-gray-700 font-medium cursor-default"
     [ngClass]="{ 'text-red-700': finalBalance < 0 }"
   >
+    <span
+      *ngIf="status !== undefined"
+      class="text-2xl"
+      [ngClass]="{
+        'text-green-700': status === 'AVAILABLE',
+        'text-yellow-500': status === 'OCCUPIED'
+      }"
+      >{{ status | cashRegisterStatus }}</span
+    >
+    <span *ngIf="pending" class="text-2xl text-red-500">Por cerrar</span>
     {{ finalBalance | currency : "symbol" : "$" : "0.00" }}
   </p>
 </article>
