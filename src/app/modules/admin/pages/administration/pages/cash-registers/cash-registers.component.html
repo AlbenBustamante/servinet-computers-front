@@ -6,12 +6,13 @@
     "
   >
     <app-adm-item-card
-      [showDropdown]="selectedCashRegisterDetailIndex() === i"
+      [showDropdown]="currentIndex() === i"
       [options]="options"
       [finalBalance]="
         detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
       "
       (setSelectedItem)="setSelectedCashRegisterDetail(i, false)"
+      class="dropdown"
       >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card
     >
   </li>
@@ -22,12 +23,13 @@
     "
   >
     <app-adm-item-card
-      [showDropdown]="selectedCashRegisterDetailIndex() === i"
+      [showDropdown]="pendingIndex() === i"
       [options]="options"
       [finalBalance]="
         detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
       "
       (setSelectedItem)="setSelectedCashRegisterDetail(i, true)"
+      class="pending-dropdown"
       >Caja {{ detail.cashRegister.numeral }}</app-adm-item-card
     >
   </li>

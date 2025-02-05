@@ -19,9 +19,8 @@ export class CashRegistersComponent {
   readonly loading = signal<boolean>(false);
   readonly showDropdown = signal<boolean[]>([]);
   readonly faOptions = faEllipsis;
-  readonly selectedCashRegisterDetailIndex = signal<number | undefined>(
-    undefined
-  );
+  readonly currentIndex = signal<number | undefined>(undefined);
+  readonly pendingIndex = signal<number | undefined>(undefined);
   readonly selectedCashRegisterDetail = signal<
     ICashRegisterDetailRes | undefined
   >(undefined);
@@ -72,9 +71,14 @@ export class CashRegistersComponent {
       ? pendingCashRegisters[index]
       : currentCashRegisters[index];
     this.selectedCashRegisterDetail.set(selectedItem);
-    this.selectedCashRegisterDetailIndex.set(
-      index === this.selectedCashRegisterDetailIndex() ? undefined : index
-    );
+
+    if (pending) {
+      this.pendingIndex.set(index === this.pendingIndex() ? undefined : index);
+      this.currentIndex.set(undefined);
+    } else {
+      this.currentIndex.set(index === this.currentIndex() ? undefined : index);
+      this.pendingIndex.set(undefined);
+    }
   }
 
   @HostListener('document:click', ['$event'])
@@ -82,7 +86,11 @@ export class CashRegistersComponent {
     const target = event.target as HTMLElement;
 
     if (!target.closest('.dropdown')) {
-      this.selectedCashRegisterDetailIndex.set(undefined);
+      this.currentIndex.set(undefined);
+    }
+
+    if (!target.closest('.pending-dropdown')) {
+      this.pendingIndex.set(undefined);
     }
   }
 }
