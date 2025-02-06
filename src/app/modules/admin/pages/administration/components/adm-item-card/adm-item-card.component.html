@@ -25,8 +25,12 @@
     </div>
   </header>
   <p
-    class="flex items-center justify-between text-xl text-gray-700 font-medium cursor-default"
-    [ngClass]="{ 'text-red-700': finalBalance < 0 }"
+    class="text-xl text-gray-700 font-medium cursor-default"
+    [ngClass]="{
+      'text-red-700': finalBalance < 0,
+      'flex items-center justify-between': pending || status !== undefined,
+      'text-right': !pending || status === undefined
+    }"
   >
     <span
       *ngIf="status !== undefined"
@@ -37,7 +41,7 @@
       }"
       >{{ status | cashRegisterStatus }}</span
     >
-    <span *ngIf="pending" class="text-2xl text-red-500">Por cerrar</span>
+    <span *ngIf="pending" class="text-2xl text-red-600">Por cerrar</span>
     {{ finalBalance | currency : "symbol" : "$" : "0.00" }}
   </p>
 </article>

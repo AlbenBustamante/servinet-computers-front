@@ -8,17 +8,24 @@ import { RouterModule } from '@angular/router';
 import { AdmItemCardComponent } from './components/adm-item-card/adm-item-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
+import { AdmBaseCalculatorComponent } from './components/adm-base-calculator/adm-base-calculator.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AdministrationComponent, AdmItemCardComponent],
+  declarations: [
+    AdministrationComponent,
+    AdmItemCardComponent,
+    AdmBaseCalculatorComponent,
+  ],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
     SharedModule,
     RouterModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     CashRegisterStatusPipe,
   ],
-  exports: [AdmItemCardComponent],
+  exports: [AdmItemCardComponent, AdmBaseCalculatorComponent],
 })
 export default class AdministrationModule {}
