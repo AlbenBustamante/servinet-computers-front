@@ -1,4 +1,4 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, signal, ViewChild } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import {
   IAdmCashRegistersDto,
@@ -6,6 +6,7 @@ import {
 } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
+import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-register-base-modal/update-cash-register-base-modal.component';
 
 @Component({
   selector: 'app-admin-cash-registers',
@@ -13,6 +14,8 @@ import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card
   styleUrls: ['./cash-registers.component.css'],
 })
 export class CashRegistersComponent {
+  @ViewChild(UpdateCashRegisterBaseModalComponent)
+  updateBaseModal!: UpdateCashRegisterBaseModalComponent;
   readonly cashRegisterDetails = signal<IAdmCashRegistersDto | undefined>(
     undefined
   );
@@ -61,7 +64,7 @@ export class CashRegistersComponent {
   }
 
   openUpdateBaseModal() {
-    console.log('close');
+    this.updateBaseModal.open();
   }
 
   setSelectedCashRegisterDetail(index: number, pending: boolean) {

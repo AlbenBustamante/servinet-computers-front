@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { IBase } from '@models/base.model';
+import { ICloseCashRegisterDetailDto } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 
@@ -32,9 +33,12 @@ export class FinalBaseComponent {
     this.loading.set(true);
 
     const cashRegisterDetailId = this.myCashService.closingCashRegister;
+    const closeCashRegisterDetail: ICloseCashRegisterDetailDto = {
+      base: this.finalBase()!,
+    };
 
     this.cashRegisterDetailService
-      .close(cashRegisterDetailId, this.finalBase()!)
+      .close(cashRegisterDetailId, closeCashRegisterDetail)
       .subscribe({
         next: (reports) => {
           this.myCashService.setClosedReports(reports);

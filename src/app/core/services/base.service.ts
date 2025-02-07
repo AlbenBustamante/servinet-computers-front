@@ -1,11 +1,29 @@
 import { Injectable, signal } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBase, IBaseDetail, ICalculatorBase } from '@models/base.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BaseService {
+  constructor(private readonly fb: FormBuilder) {}
+
+  defaultForm() {
+    return this.fb.group({
+      hundredThousand: ['', Validators.min(0)],
+      fiftyThousand: ['', Validators.min(0)],
+      twentyThousand: ['', Validators.min(0)],
+      tenThousand: ['', Validators.min(0)],
+      fiveThousand: ['', Validators.min(0)],
+      twoThousand: ['', Validators.min(0)],
+      thousand: ['', Validators.min(0)],
+      fiveHundred: ['', Validators.min(0)],
+      twoHundred: ['', Validators.min(0)],
+      hundred: ['', Validators.min(0)],
+      fifty: ['', Validators.min(0)],
+    });
+  }
+
   defaultBase() {
     return [
       { title: 'hundredThousand', value: 100000, total: 0 },
@@ -93,6 +111,4 @@ export class BaseService {
   //   hundred: 0,
   //   fifty: 0,
   // };
-
-  constructor() {}
 }

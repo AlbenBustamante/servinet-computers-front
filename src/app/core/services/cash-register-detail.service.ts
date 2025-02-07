@@ -8,6 +8,7 @@ import {
   ICashRegisterDetailReportsDto,
   ICashRegisterDetailReq,
   ICashRegisterDetailRes,
+  ICloseCashRegisterDetailDto,
   IMyCashRegistersReports,
 } from '@models/cash-register.model';
 import { TokenService } from './token.service';
@@ -91,10 +92,13 @@ export class CashRegisterDetailService {
     );
   }
 
-  close(cashRegisterDetailId: number, base: IBase) {
+  close(
+    cashRegisterDetailId: number,
+    closeCashRegisterDetailDto: ICloseCashRegisterDetailDto
+  ) {
     return this.http.put<ICashRegisterDetailReportsDto>(
       this.urlIdPath(cashRegisterDetailId, 'close'),
-      base,
+      closeCashRegisterDetailDto,
       { context: checkToken() }
     );
   }
