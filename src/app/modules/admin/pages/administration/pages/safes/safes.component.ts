@@ -1,5 +1,4 @@
 import { Component, HostListener, signal, ViewChild } from '@angular/core';
-import { ISafeDetailRes } from '@models/safe.model';
 import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 import { SafeBaseService } from '@services/safe-base.service';
 import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';

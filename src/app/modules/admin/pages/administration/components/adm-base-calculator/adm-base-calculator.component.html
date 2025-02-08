@@ -1,4 +1,8 @@
-<form class="flex items-start gap-5" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form
+  class="flex items-center gap-5"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
   <div class="form">
     <div class="control-row" *ngFor="let base of base.slice(0, 6)">
       <label [for]="base.title" class="w-20 text-right">{{
@@ -34,6 +38,7 @@
           class="input max-w-48"
           [formControlName]="base.title"
           placeholder="0"
+          autocomplete="off"
         />
         <div
           class="absolute z-10 right-px top-px h-[calc(100%_-_2px)] w-32 rounded-e-lg px-4 py-2 bg-violet-200"
@@ -49,14 +54,19 @@
       <div class="relative">
         <input
           type="number"
-          class="input max-w-48"
+          class="input max-w-48 font-medium"
           [value]="baseDetail?.amount ?? 0"
           disabled
         />
         <div
-          class="absolute z-10 right-px top-px h-[calc(100%_-_2px)] w-32 rounded-e-lg px-4 py-2 bg-violet-200"
+          class="absolute z-10 right-px top-px h-[calc(100%_-_2px)] w-32 rounded-e-lg px-4 py-2"
+          [ngClass]="
+            baseDetail !== undefined && baseDetail.total > 0
+              ? 'bg-green-200'
+              : 'bg-red-200'
+          "
         >
-          <p class="text-gray-700 text-right">
+          <p class="text-gray-700 text-right font-medium">
             {{ baseDetail?.total ?? 0 | currency : "symbol" : "$" : "0.00" }}
           </p>
         </div>
