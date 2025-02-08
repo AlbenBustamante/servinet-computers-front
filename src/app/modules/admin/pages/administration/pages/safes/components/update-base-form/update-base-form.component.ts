@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IBase } from '@models/base.model';
+import { IBase, IBaseDetail } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { SafeDetailService } from '@services/safe-detail.service';
 import { SafeBaseService } from '@services/safe-base.service';
@@ -11,6 +11,7 @@ import { SafeBaseService } from '@services/safe-base.service';
   styleUrls: ['./update-base-form.component.css'],
 })
 export class UpdateBaseFormComponent {
+  readonly baseDetail = signal<IBaseDetail | undefined>(undefined);
   readonly safeDetails;
   readonly selectedSafeDetail;
   readonly base;
@@ -39,7 +40,8 @@ export class UpdateBaseFormComponent {
 
     this.safeDetailService.updateBase(safeDetailId, base).subscribe({
       next: (safeDetail) => {
-        this.baseService.calculate(this.form, true);
+        const { total } = this.baseService.calculate(this.form, true);
+        this.baseDetail.set(total);
         this.selectedSafeDetail.set(safeDetail);
 
         const index = this.safeDetails().findIndex(

@@ -1,0 +1,14 @@
+<form class="w-full" [formGroup]="form">
+  <div class="grid grid-cols-3">
+    <label for="time" class="font-medium text-lg text-center self-center"
+      >Hora de salida</label
+    >
+    <input
+      type="time"
+      id="time"
+      class="input col-span-2"
+      formControlName="time"
+    />
+  </div>
+  <input type="submit" value="submit" class="hidden" />
+</form>

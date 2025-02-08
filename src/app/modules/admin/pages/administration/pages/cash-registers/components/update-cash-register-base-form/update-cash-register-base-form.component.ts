@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IBase } from '@models/base.model';
+import { IBaseDetail } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { CashRegisterBaseService } from '@services/cash-register-base.service';
 
@@ -10,7 +10,7 @@ import { CashRegisterBaseService } from '@services/cash-register-base.service';
   styleUrls: ['./update-cash-register-base-form.component.css'],
 })
 export class UpdateCashRegisterBaseFormComponent {
-  @Output() setBase = new EventEmitter<IBase>();
+  readonly baseDetail = signal<IBaseDetail | undefined>(undefined);
   readonly base;
   readonly form: FormGroup;
 
@@ -29,8 +29,7 @@ export class UpdateCashRegisterBaseFormComponent {
       return this.form.markAllAsTouched();
     }
 
-    const base = this.form.value as IBase;
-    this.baseService.calculate(this.form);
-    this.setBase.emit(base);
+    const { total } = this.baseService.calculate(this.form);
+    this.baseDetail.set(total);
   }
 }

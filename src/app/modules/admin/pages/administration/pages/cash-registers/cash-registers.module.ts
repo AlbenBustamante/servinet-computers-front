@@ -8,12 +8,15 @@ import AdmItemCardComponent from '../../administration.module';
 import { UpdateCashRegisterBaseFormComponent } from './components/update-cash-register-base-form/update-cash-register-base-form.component';
 import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-register-base-modal/update-cash-register-base-modal.component';
 import { SharedModule } from '@shared/shared.module';
+import { FinalWorkingHourFormComponent } from './components/final-working-hour-form/final-working-hour-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     CashRegistersComponent,
     UpdateCashRegisterBaseFormComponent,
     UpdateCashRegisterBaseModalComponent,
+    FinalWorkingHourFormComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,7 @@ import { SharedModule } from '@shared/shared.module';
     FontAwesomeModule,
     AdmItemCardComponent,
     SharedModule,
+    ReactiveFormsModule,
   ],
 })
 export default class CashRegistersModule {}

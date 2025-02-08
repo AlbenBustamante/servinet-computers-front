@@ -10,17 +10,17 @@ export class BaseService {
 
   defaultForm() {
     return this.fb.group({
-      hundredThousand: ['', Validators.min(0)],
-      fiftyThousand: ['', Validators.min(0)],
-      twentyThousand: ['', Validators.min(0)],
-      tenThousand: ['', Validators.min(0)],
-      fiveThousand: ['', Validators.min(0)],
-      twoThousand: ['', Validators.min(0)],
-      thousand: ['', Validators.min(0)],
-      fiveHundred: ['', Validators.min(0)],
-      twoHundred: ['', Validators.min(0)],
-      hundred: ['', Validators.min(0)],
-      fifty: ['', Validators.min(0)],
+      hundredThousand: ['', [Validators.required, Validators.min(0)]],
+      fiftyThousand: ['', [Validators.required, Validators.min(0)]],
+      twentyThousand: ['', [Validators.required, Validators.min(0)]],
+      tenThousand: ['', [Validators.required, Validators.min(0)]],
+      fiveThousand: ['', [Validators.required, Validators.min(0)]],
+      twoThousand: ['', [Validators.required, Validators.min(0)]],
+      thousand: ['', [Validators.required, Validators.min(0)]],
+      fiveHundred: ['', [Validators.required, Validators.min(0)]],
+      twoHundred: ['', [Validators.required, Validators.min(0)]],
+      hundred: ['', [Validators.required, Validators.min(0)]],
+      fifty: ['', [Validators.required, Validators.min(0)]],
     });
   }
 

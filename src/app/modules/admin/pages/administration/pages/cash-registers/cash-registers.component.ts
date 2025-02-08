@@ -3,10 +3,14 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import {
   IAdmCashRegistersDto,
   ICashRegisterDetailRes,
+  ICloseCashRegisterDetailDto,
 } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
 import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-register-base-modal/update-cash-register-base-modal.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CashRegisterBaseService } from '@services/cash-register-base.service';
+import { IBase } from '@models/base.model';
 
 @Component({
   selector: 'app-admin-cash-registers',
@@ -16,6 +20,7 @@ import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-r
 export class CashRegistersComponent {
   @ViewChild(UpdateCashRegisterBaseModalComponent)
   updateBaseModal!: UpdateCashRegisterBaseModalComponent;
+  readonly timeForm: FormGroup;
   readonly cashRegisterDetails = signal<IAdmCashRegistersDto | undefined>(
     undefined
   );
@@ -28,12 +33,18 @@ export class CashRegistersComponent {
     ICashRegisterDetailRes | undefined
   >(undefined);
   readonly options: AdmItemCardOptions = [
-    { title: 'Cerrar caja', fn: this.openUpdateBaseModal },
+    { title: 'Cerrar caja', fn: () => this.openUpdateBaseModal() },
   ];
 
   constructor(
-    private readonly cashRegisterDetailService: CashRegisterDetailService
-  ) {}
+    private readonly cashRegisterBaseService: CashRegisterBaseService,
+    private readonly cashRegisterDetailService: CashRegisterDetailService,
+    private readonly fb: FormBuilder
+  ) {
+    this.timeForm = this.fb.group({
+      time: ['20:00', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.loading.set(true);
@@ -56,11 +67,6 @@ export class CashRegistersComponent {
 
       return newValues;
     });
-
-    //this.selectedCashRegisterDetail.set(this.cashRegisterDetails()[index]);
-    // this.updateSafeBaseService.setSelectedSafe(
-    // this.selectedCashRegisterDetail()!
-    // );
   }
 
   openUpdateBaseModal() {
@@ -70,9 +76,11 @@ export class CashRegistersComponent {
   setSelectedCashRegisterDetail(index: number, pending: boolean) {
     const { currentCashRegisters, pendingCashRegisters } =
       this.cashRegisterDetails()!;
+
     const selectedItem = pending
       ? pendingCashRegisters[index]
       : currentCashRegisters[index];
+
     this.selectedCashRegisterDetail.set(selectedItem);
 
     if (pending) {
@@ -82,6 +90,30 @@ export class CashRegistersComponent {
       this.currentIndex.set(index === this.currentIndex() ? undefined : index);
       this.pendingIndex.set(undefined);
     }
+  }
+
+  closeCashRegisterDetail() {
+    if (this.timeForm.invalid) {
+      return this.timeForm.markAllAsTouched();
+    }
+
+    const form = this.cashRegisterBaseService.form;
+
+    if (form.invalid) {
+      return form.markAllAsTouched();
+    }
+
+    const id = this.selectedCashRegisterDetail()?.id!;
+
+    const closeCashRegisterDetail: ICloseCashRegisterDetailDto = {
+      base: form.value as unknown as IBase,
+      time: this.timeForm.value,
+    };
+
+    // this.cashRegisterDetailService.close(id, closeCashRegisterDetail).subscribe()
+    console.log({ id, closeCashRegisterDetail });
+
+    this.updateBaseModal.close();
   }
 
   @HostListener('document:click', ['$event'])

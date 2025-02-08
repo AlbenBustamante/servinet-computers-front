@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { IBaseDetail } from '@models/base.model';
 
 @Component({
   selector: 'app-adm-base-calculator',
@@ -14,6 +15,7 @@ export class AdmBaseCalculatorComponent {
     value: number;
     total: number;
   }[];
+  @Input({ required: true }) baseDetail!: IBaseDetail | undefined;
 
   constructor() {}
 

@@ -1,4 +1,12 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ICashRegisterDetailRes } from '@models/cash-register.model';
 
 @Component({
@@ -8,9 +16,15 @@ import { ICashRegisterDetailRes } from '@models/cash-register.model';
 })
 export class UpdateCashRegisterBaseModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
+  @Output() onSubmit = new EventEmitter();
+  @Input({ required: true }) timeForm!: FormGroup;
   @Input({ required: true }) cashRegisterDetail!:
     | ICashRegisterDetailRes
     | undefined;
+
+  submit() {
+    this.onSubmit.emit();
+  }
 
   open() {
     this.modal.nativeElement.showModal();

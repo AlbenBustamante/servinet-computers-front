@@ -44,6 +44,24 @@
         </div>
       </div>
     </div>
+    <div class="control-row">
+      <label class="w-20 text-right"> Total </label>
+      <div class="relative">
+        <input
+          type="number"
+          class="input max-w-48"
+          [value]="baseDetail?.amount ?? 0"
+          disabled
+        />
+        <div
+          class="absolute z-10 right-px top-px h-[calc(100%_-_2px)] w-32 rounded-e-lg px-4 py-2 bg-violet-200"
+        >
+          <p class="text-gray-700 text-right">
+            {{ baseDetail?.total ?? 0 | currency : "symbol" : "$" : "0.00" }}
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
   <input type="submit" value="send" class="sr-only" />
 </form>

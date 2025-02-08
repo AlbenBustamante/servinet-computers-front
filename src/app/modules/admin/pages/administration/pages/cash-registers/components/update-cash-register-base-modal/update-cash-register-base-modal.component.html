@@ -7,10 +7,15 @@
       Cierre de Caja {{ cashRegisterDetail?.cashRegister?.numeral ?? 0 }}
     </h2>
   </header>
+  <app-final-working-hour-form [form]="timeForm" />
+  <div class="divider my-5"></div>
   <app-update-cash-register-base-form />
   <footer
-    class="flex items-center justify-end mt-7 border-t border-gray-400 pt-5"
+    class="flex items-center justify-between mt-7 border-t border-gray-400 pt-5"
   >
-    <app-button type="button" (click)="close()">Cerrar</app-button>
+    <app-button type="button" (click)="close()" color="neutral"
+      >Cancelar</app-button
+    >
+    <app-button type="button" (click)="submit()">Guardar</app-button>
   </footer>
 </dialog>

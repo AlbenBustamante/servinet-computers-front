@@ -38,4 +38,6 @@
 </ul>
 <app-update-cash-register-base-modal
   [cashRegisterDetail]="selectedCashRegisterDetail()"
+  [timeForm]="timeForm"
+  (onSubmit)="closeCashRegisterDetail()"
 />
