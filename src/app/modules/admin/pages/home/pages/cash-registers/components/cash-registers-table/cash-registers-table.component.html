@@ -11,7 +11,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cashRegister of cashRegisters()">
+      <tr
+        *ngFor="let cashRegister of cashRegisters()"
+        class="cursor-pointer"
+        (click)="goToMovements(cashRegister.id)"
+      >
         <td class="id">{{ cashRegister.id }}</td>
         <td class="text-center">{{ cashRegister.numeral }}</td>
         <td>{{ cashRegister.description }}</td>

@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { ICashRegisterRes } from '@models/cash-register.model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CashRegisterService } from '@services/cash-register.service';
 
 @Component({
@@ -11,7 +11,11 @@ export class CashRegistersTableComponent {
   readonly loading = signal<boolean>(false);
   readonly cashRegisters;
 
-  constructor(private readonly cashRegisterService: CashRegisterService) {
+  constructor(
+    private readonly cashRegisterService: CashRegisterService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     this.cashRegisters = this.cashRegisterService.cashRegisters;
   }
 
@@ -27,5 +31,9 @@ export class CashRegistersTableComponent {
         this.loading.set(false);
       },
     });
+  }
+
+  goToMovements(id: number) {
+    this.router.navigate([id, 'movimientos'], { relativeTo: this.route });
   }
 }
