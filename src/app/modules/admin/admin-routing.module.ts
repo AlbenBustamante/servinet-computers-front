@@ -14,23 +14,6 @@ const routes: Routes = [
         loadChildren: () => import('./pages/dashboard/dashboard.module'),
       },
       {
-        path: 'plataformas',
-        loadChildren: () => import('./pages/platforms/platforms.module'),
-      },
-      {
-        path: 'cajas-registradoras',
-        loadChildren: () =>
-          import('./pages/cash-registers/cash-registers.module'),
-      },
-      {
-        path: 'cajas-fuertes',
-        loadChildren: () => import('./pages/safes/safes.module'),
-      },
-      {
-        path: 'usuarios',
-        loadChildren: () => import('./pages/users/users.module'),
-      },
-      {
         path: 'administracion',
         loadChildren: () =>
           import('./pages/administration/administration.module'),
