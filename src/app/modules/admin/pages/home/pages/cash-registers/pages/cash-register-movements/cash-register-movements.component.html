@@ -1,21 +1,23 @@
-<app-header-title
-  [hTitle]="title()"
-  hDescription="Podrás ver un listado de todos los movimientos realizados a través de la caja registradora"
-/>
-<ng-template #spinner> <app-spinner /> </ng-template>
-<section class="w-full" *ngIf="!loading(); else spinner">
-  <header class="mb-3">
-    <h3 class="text-2xl text-gray-700 font-medium">Listado de movimientos</h3>
-  </header>
-  <div class="card">
-    <app-cash-register-movements-list
-      [cashRegisterDetails]="cashRegisterDetails()"
-      *ngIf="cashRegisterDetails().length > 0; else noDetails"
-    />
-    <ng-template #noDetails>
-      <p class="text-center text-3xl text-gray-700 font-medium py-32">
-        Parece que no hay movimientos...
-      </p>
-    </ng-template>
-  </div>
-</section>
+<app-spinner *ngIf="loading(); else page" />
+<ng-template #page>
+  <app-header-title
+    [hTitle]="title()"
+    hDescription="Podrás ver un listado de todos los movimientos realizados a través de la caja registradora"
+  />
+  <section class="w-full">
+    <header class="mb-3">
+      <h3 class="text-2xl text-gray-700 font-medium">Listado de movimientos</h3>
+    </header>
+    <div class="card">
+      <app-cash-register-movements-list
+        [cashRegisterDetails]="cashRegisterDetails()"
+        *ngIf="cashRegisterDetails().length > 0; else noDetails"
+      />
+      <ng-template #noDetails>
+        <p class="text-center text-3xl text-gray-700 font-medium py-32">
+          Parece que no hay movimientos...
+        </p>
+      </ng-template>
+    </div>
+  </section>
+</ng-template>
