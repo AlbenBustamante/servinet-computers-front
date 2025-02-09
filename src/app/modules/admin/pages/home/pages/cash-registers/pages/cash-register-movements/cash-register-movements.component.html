@@ -1,4 +1,4 @@
-<app-spinner *ngIf="loading(); else page" />
+<app-loading *ngIf="loading(); else page" />
 <ng-template #page>
   <app-header-title
     [hTitle]="title()"

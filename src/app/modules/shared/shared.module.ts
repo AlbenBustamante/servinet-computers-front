@@ -8,6 +8,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
     ButtonComponent,
     SpinnerComponent,
     IconButtonComponent,
+    LoadingComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
@@ -26,6 +28,7 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
     ButtonComponent,
     IconButtonComponent,
     SpinnerComponent,
+    LoadingComponent,
   ],
 })
 export class SharedModule {}
