@@ -1,0 +1,27 @@
+<header
+  class="bg-white border-4 border-dashed border-violet-200 px-9 py-7 rounded-3xl"
+>
+  <h2
+    class="text-2xl text-gray-600 font-medium uppercase flex items-center justify-between mb-3"
+  >
+    Caja Registradora N°
+    {{ reports?.cashRegisterDetail?.cashRegister?.numeral ?? 0 }}
+    <span>{{
+      reports?.cashRegisterDetail?.createdDate | date : "dd/MM/yyyy"
+    }}</span>
+  </h2>
+  <div class="flex items-center justify-between">
+    <app-stat-card
+      stat="Depósitos"
+      [value]="reports?.deposits ?? 0"
+      color="green"
+    />
+    <app-stat-card
+      stat="Retiros"
+      [value]="reports?.withdrawals ?? 0"
+      color="red"
+    />
+    <app-stat-card stat="Extras" [value]="0" color="green" />
+    <app-stat-card stat="Saldo en Caja" [value]="reports?.balance ?? 0" />
+  </div>
+</header>

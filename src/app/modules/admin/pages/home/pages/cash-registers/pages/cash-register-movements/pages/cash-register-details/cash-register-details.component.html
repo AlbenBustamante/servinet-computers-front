@@ -1,7 +1,5 @@
 <app-loading *ngIf="loading(); else page" />
 <ng-template #page>
-  <pre>
-     {{ text() }}
-    </pre
-  >
+  <div class="pt-6"></div>
+  <app-header-stats [reports]="reports()?.reports" />
 </ng-template>

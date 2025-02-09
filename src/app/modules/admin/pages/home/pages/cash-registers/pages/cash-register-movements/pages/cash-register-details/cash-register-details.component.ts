@@ -13,7 +13,6 @@ export class CashRegisterDetailsComponent {
   readonly reports = signal<IDetailedCashRegisterReportsDto | undefined>(
     undefined
   );
-  text = signal('');
 
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService
@@ -25,7 +24,6 @@ export class CashRegisterDetailsComponent {
     this.cashRegisterDetailService.getDetailedReports(this.id).subscribe({
       next: (reports) => {
         this.reports.set(reports);
-        this.text.set(JSON.stringify(this.reports(), null, 2));
         this.loading.set(false);
       },
       error: (err) => {
