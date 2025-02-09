@@ -4,6 +4,7 @@ import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { IBase } from '@models/base.model';
 import {
+  ICashRegisterDetailRes,
   ICashRegisterReq,
   ICashRegisterRes,
 } from '@models/cash-register.model';
@@ -45,6 +46,13 @@ export class CashRegisterService {
     return this.http.get<IBase>(`${this.url}/${cashRegisterId}/lastBase`, {
       context: checkToken(),
     });
+  }
+
+  getMovements(cashRegisterId: number) {
+    return this.http.get<ICashRegisterDetailRes[]>(
+      `${this.url}/${cashRegisterId}/movements`,
+      { context: checkToken() }
+    );
   }
 
   update(id: number, req: ICashRegisterReq) {

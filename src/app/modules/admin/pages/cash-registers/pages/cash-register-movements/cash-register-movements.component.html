@@ -1,0 +1,27 @@
+<app-header-title
+  [hTitle]="title()"
+  hDescription="Podrás ver un listado de todos los movimientos realizados a través de la caja registradora"
+/>
+<section class="w-full">
+  <header class="mb-3">
+    <h3 class="text-2xl text-gray-700 font-medium">Listado de movimientos</h3>
+  </header>
+  <div class="card">
+    <ul class="flex flex-col gap-5">
+      <li
+        *ngFor="let detail of cashRegisterDetails()"
+        class="bg-violet-50 px-6 py-3 rounded-xl"
+      >
+        <a
+          class="flex items-center justify-between text-xl text-gray-700 hover:text-violet-800 hover:underline"
+        >
+          <span class="font-medium">ID {{ detail.id }}</span>
+          <span>{{ detail.initialWorking | date : "hh:mm" }}</span>
+          <span>{{ detail.createdBy }}</span>
+          <span>{{ detail.status | cashRegisterDetailStatus }}</span>
+          <span>{{ detail.createdDate | date : "dd/MM/yyyy" }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
