@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
+import { IDetailedCashRegisterReportsDto } from '@models/cash-register.model';
+import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 
 @Component({
   selector: 'app-cash-register-details',
@@ -7,10 +9,29 @@ import { Component, Input } from '@angular/core';
 })
 export class CashRegisterDetailsComponent {
   @Input() id!: number;
+  readonly loading = signal<boolean>(false);
+  readonly reports = signal<IDetailedCashRegisterReportsDto | undefined>(
+    undefined
+  );
+  text = signal('');
 
-  constructor() {}
+  constructor(
+    private readonly cashRegisterDetailService: CashRegisterDetailService
+  ) {}
 
   ngOnInit() {
-    console.log(this.id);
+    this.loading.set(true);
+
+    this.cashRegisterDetailService.getDetailedReports(this.id).subscribe({
+      next: (reports) => {
+        this.reports.set(reports);
+        this.text.set(JSON.stringify(this.reports(), null, 2));
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
   }
 }

@@ -1,1 +1,7 @@
-<p>cash-register-details works!</p>
+<app-loading *ngIf="loading(); else page" />
+<ng-template #page>
+  <pre>
+     {{ text() }}
+    </pre
+  >
+</ng-template>

@@ -1,6 +1,8 @@
 import { IBase } from './base.model';
 import { CashRegisterDetailStatus, CashRegisterStatus } from './enums';
+import { IExpenseRes } from './expense.model';
 import { IResponse } from './response.model';
+import { ITransactionDetailRes } from './transaction.model';
 
 export interface ICashRegisterReq {
   numeral: number;
@@ -45,6 +47,16 @@ export interface ICashRegisterDetailReportsDto {
   discounts: number;
   balance: number;
   discrepancy: number;
+}
+
+interface IDetailedCashRegisterTransactionsDto {
+  transactions: ITransactionDetailRes[];
+  expenses: IExpenseRes[];
+}
+
+export interface IDetailedCashRegisterReportsDto {
+  reports: ICashRegisterDetailReportsDto;
+  transactions: IDetailedCashRegisterTransactionsDto;
 }
 
 export interface IMyCashRegistersReports {
