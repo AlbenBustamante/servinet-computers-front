@@ -14,6 +14,7 @@
       >
         <a
           class="flex items-center justify-between text-xl text-gray-700 hover:text-violet-800 hover:underline"
+          [routerLink]="['./', detail.id]"
         >
           <span class="font-medium">ID {{ detail.id }}</span>
           <span>{{ detail.initialWorking | date : "hh:mm" }}</span>

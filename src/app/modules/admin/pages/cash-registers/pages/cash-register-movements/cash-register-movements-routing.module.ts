@@ -4,6 +4,11 @@ import { CashRegisterMovementsComponent } from './cash-register-movements.compon
 
 const routes: Routes = [
   { path: '', component: CashRegisterMovementsComponent },
+  {
+    path: ':id',
+    loadChildren: () =>
+      import('./pages/cash-register-details/cash-register-details.module'),
+  },
 ];
 
 @NgModule({
