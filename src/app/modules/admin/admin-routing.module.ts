@@ -7,7 +7,8 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      { path: '', loadChildren: () => import('./pages/home/home.module') },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', loadChildren: () => import('./pages/home/home.module') },
       {
         path: 'panel',
         loadChildren: () => import('./pages/dashboard/dashboard.module'),

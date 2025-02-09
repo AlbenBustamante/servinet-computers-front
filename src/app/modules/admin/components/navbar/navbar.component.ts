@@ -19,7 +19,7 @@ export class NavbarComponent {
 
   constructor() {
     this.routes.set([
-      { title: 'Inicio', icon: this.faHome, route: './' },
+      { title: 'Inicio', icon: this.faHome, route: './home' },
       { title: 'Panel', icon: this.faDashboard, route: './panel' },
       {
         title: 'Administración',
