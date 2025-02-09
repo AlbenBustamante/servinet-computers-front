@@ -1,0 +1,5 @@
+<ul class="flex flex-col gap-7">
+  <ng-container *ngFor="let detail of cashRegisterDetails">
+    <app-cash-register-movement [cashRegisterDetail]="detail" />
+  </ng-container>
+</ul>

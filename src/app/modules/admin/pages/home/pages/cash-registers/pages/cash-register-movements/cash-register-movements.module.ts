@@ -6,9 +6,11 @@ import { CashRegisterMovementsComponent } from './cash-register-movements.compon
 import { SharedModule } from '@shared/shared.module';
 import { CashRegisterDetailStatusPipe } from 'app/core/pipes/cash-register-detail-status.pipe';
 import { RouterModule } from '@angular/router';
+import { CashRegisterMovementComponent } from './components/cash-register-movement/cash-register-movement.component';
+import { CashRegisterMovementsListComponent } from './components/cash-register-movements-list/cash-register-movements-list.component';
 
 @NgModule({
-  declarations: [CashRegisterMovementsComponent],
+  declarations: [CashRegisterMovementsComponent, CashRegisterMovementComponent, CashRegisterMovementsListComponent],
   imports: [
     CommonModule,
     CashRegisterMovementsRoutingModule,
