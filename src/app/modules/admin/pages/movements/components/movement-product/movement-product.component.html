@@ -1,0 +1,10 @@
+<li
+  class="px-5 py-2.5 border border-violet-200 rounded-xl flex items-center gap-3 text-gray-700 text-lg cursor-pointer hover:bg-violet-200"
+  [ngClass]="{
+    'bg-violet-200 text-gray-800': selectedProduct() === product.title
+  }"
+  (click)="setSelectedProduct(product.title)"
+>
+  <fa-icon [icon]="product.icon" />
+  <span>{{ product.title }}</span>
+</li>

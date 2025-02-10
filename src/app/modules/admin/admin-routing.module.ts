@@ -18,6 +18,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/administration/administration.module'),
       },
+      {
+        path: 'movimientos',
+        loadChildren: () => import('./pages/movements/movements.module'),
+      },
     ],
   },
 ];

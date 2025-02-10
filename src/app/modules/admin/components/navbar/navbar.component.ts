@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import {
+  faBoxArchive,
   faChartLine,
   faHome,
   faScrewdriverWrench,
@@ -15,6 +16,7 @@ export class NavbarComponent {
   private readonly faHome = faHome;
   private readonly faDashboard = faChartLine;
   private readonly faAdministration = faScrewdriverWrench;
+  private readonly faMovimientos = faBoxArchive;
   readonly routes = signal<IRoute[]>([]);
 
   constructor() {
@@ -25,6 +27,11 @@ export class NavbarComponent {
         title: 'Administración',
         icon: this.faAdministration,
         route: './administracion',
+      },
+      {
+        title: 'Movimientos',
+        icon: this.faMovimientos,
+        route: './movimientos',
       },
     ]);
   }

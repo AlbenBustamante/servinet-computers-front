@@ -1,0 +1,19 @@
+<app-loading *ngIf="loading(); else page" />
+<ng-template #page>
+  <app-header-title
+    hTitle="Movimientos"
+    hDescription="Aquí podrás ver detalladamente todos los movimientos de todos tus productos disponibles y generar reportes en formato PDF"
+  />
+  <div class="flex items-start justify-around">
+    <app-rounded-section headline="Productos">
+      <app-movement-products-list [products]="products()" />
+    </app-rounded-section>
+    <app-rounded-section headline="Listado de registros">
+      <app-movement-product-registries-list
+        [cashRegisters]="cashRegisters()"
+        [safes]="safes()"
+        [selectedProduct]="selectedProduct()"
+      />
+    </app-rounded-section>
+  </div>
+</ng-template>
