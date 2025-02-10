@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CashRegisterService } from '@services/cash-register.service';
 
 @Component({
@@ -13,8 +13,7 @@ export class CashRegistersTableComponent {
 
   constructor(
     private readonly cashRegisterService: CashRegisterService,
-    private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly router: Router
   ) {
     this.cashRegisters = this.cashRegisterService.cashRegisters;
   }
@@ -34,6 +33,6 @@ export class CashRegistersTableComponent {
   }
 
   goToMovements(id: number) {
-    this.router.navigate([id, 'movimientos'], { relativeTo: this.route });
+    this.router.navigateByUrl(`admin/movimientos/caja-registradora/${id}`);
   }
 }
