@@ -11,6 +11,7 @@ import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-r
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CashRegisterBaseService } from '@services/cash-register-base.service';
 import { IBase } from '@models/base.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-cash-registers',
@@ -39,7 +40,8 @@ export class CashRegistersComponent {
   constructor(
     private readonly cashRegisterBaseService: CashRegisterBaseService,
     private readonly cashRegisterDetailService: CashRegisterDetailService,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly router: Router
   ) {
     this.timeForm = this.fb.group({
       time: ['20:00', Validators.required],
@@ -103,17 +105,32 @@ export class CashRegistersComponent {
       return form.markAllAsTouched();
     }
 
+    this.loading.set(true);
+
     const id = this.selectedCashRegisterDetail()?.id!;
 
     const closeCashRegisterDetail: ICloseCashRegisterDetailDto = {
       base: form.value as unknown as IBase,
-      time: this.timeForm.value,
+      time: this.timeForm.value.time,
     };
 
-    // this.cashRegisterDetailService.close(id, closeCashRegisterDetail).subscribe()
-    console.log({ id, closeCashRegisterDetail });
-
-    this.updateBaseModal.close();
+    this.cashRegisterDetailService
+      .close(id, closeCashRegisterDetail)
+      .subscribe({
+        next: (_) => {
+          const route = 'admin/movimientos/caja-registradora';
+          const detail = this.selectedCashRegisterDetail()!;
+          this.updateBaseModal.close();
+          this.router.navigateByUrl(
+            `${route}/${detail.cashRegister.id}/reportes/${detail.id}`
+          );
+          this.loading.set(false);
+        },
+        error: (err) => {
+          console.log(err);
+          this.loading.set(false);
+        },
+      });
   }
 
   @HostListener('document:click', ['$event'])
