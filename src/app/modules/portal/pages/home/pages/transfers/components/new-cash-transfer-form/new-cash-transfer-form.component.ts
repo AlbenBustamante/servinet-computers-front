@@ -4,11 +4,11 @@ import { TransfersService } from '@services/transfers.service';
 type SelectedType = 'CASH_REGISTER' | 'SAFE';
 
 @Component({
-  selector: 'app-new-transfer-form',
-  templateUrl: './new-transfer-form.component.html',
-  styleUrls: ['./new-transfer-form.component.css'],
+  selector: 'app-new-cash-transfer-form',
+  templateUrl: './new-cash-transfer-form.component.html',
+  styleUrls: ['./new-cash-transfer-form.component.css'],
 })
-export class NewTransferFormComponent {
+export class NewCashTransferFormComponent {
   readonly selectedType = signal<SelectedType>('CASH_REGISTER');
   readonly availableTransfers;
 
