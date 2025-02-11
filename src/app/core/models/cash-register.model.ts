@@ -3,6 +3,7 @@ import { CashRegisterDetailStatus, CashRegisterStatus } from './enums';
 import { IExpenseRes } from './expense.model';
 import { IResponse } from './response.model';
 import { ITransactionDetailRes } from './transaction.model';
+import { IUserRes } from './user.model';
 
 export interface ICashRegisterReq {
   numeral: number;
@@ -34,6 +35,7 @@ export interface ICashRegisterDetailRes extends IResponse {
   baseObservation: string;
   status: CashRegisterDetailStatus;
   cashRegister: ICashRegisterRes;
+  user: IUserRes;
 }
 
 export interface ICashRegisterDetailReportsDto {

@@ -111,7 +111,7 @@ body {
 }
 
 .home-container {
-  @apply grid grid-cols-3 gap-7 w-full;
+  @apply grid grid-cols-[25rem_minmax(33rem,_1fr)] gap-6 w-full;
 }
 
 .home-subtitle {
