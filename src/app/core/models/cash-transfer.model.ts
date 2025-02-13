@@ -1,7 +1,18 @@
+import { IBase } from './base.model';
 import { ICashRegisterDetailRes } from './cash-register.model';
 import { CashBoxType } from './enums';
 import { IResponse } from './response.model';
 import { ISafeDetailRes } from './safe.model';
+
+export interface ICreateCashTransferDto {
+  value: number;
+  senderId: number;
+  receiverId: number;
+  senderType: CashBoxType;
+  receiverType: CashBoxType;
+  safeDetailId: number;
+  safeBase: IBase;
+}
 
 export interface ICashTransferDto extends IResponse {
   value: number;

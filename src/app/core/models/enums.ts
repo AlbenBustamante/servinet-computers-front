@@ -33,6 +33,6 @@ export enum TransactionDetailType {
 }
 
 export enum CashBoxType {
-  CASH_REGISTER = 'CASH_TRANSFER',
+  CASH_REGISTER = 'CASH_REGISTER',
   SAFE = 'SAFE',
 }
