@@ -6,9 +6,10 @@ import { TransfersComponent } from './transfers.component';
 import { NewCashTransferFormComponent } from './components/new-cash-transfer-form/new-cash-transfer-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
+import { CashTransfersTableComponent } from './components/cash-transfers-table/cash-transfers-table.component';
 
 @NgModule({
-  declarations: [TransfersComponent, NewCashTransferFormComponent],
+  declarations: [TransfersComponent, NewCashTransferFormComponent, CashTransfersTableComponent],
   imports: [
     CommonModule,
     TransfersRoutingModule,
