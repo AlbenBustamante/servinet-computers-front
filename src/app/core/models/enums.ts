@@ -31,3 +31,8 @@ export enum TransactionDetailType {
   DEPOSIT = 'DEPOSIT',
   WITHDRAWAL = 'WITHDRAWAL',
 }
+
+export enum CashBoxType {
+  CASH_REGISTER = 'CASH_TRANSFER',
+  SAFE = 'SAFE',
+}

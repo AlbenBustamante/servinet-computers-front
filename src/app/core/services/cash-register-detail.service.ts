@@ -16,6 +16,7 @@ import { TokenService } from './token.service';
 import { IBase } from '@models/base.model';
 import { IExpenseRes } from '@models/expense.model';
 import { ITransactionDetailRes } from '@models/transaction.model';
+import { ICashTransferDto } from '@models/cash-transfer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -73,6 +74,13 @@ export class CashRegisterDetailService {
   getTransactions(cashRegisterDetailId: number) {
     return this.http.get<ITransactionDetailRes[]>(
       this.urlIdPath(cashRegisterDetailId, 'transactions'),
+      { context: checkToken() }
+    );
+  }
+
+  getCashTransfers(cashRegisterDetailId: number) {
+    return this.http.get<ICashTransferDto[]>(
+      this.urlIdPath(cashRegisterDetailId, 'cash-transfers'),
       { context: checkToken() }
     );
   }
