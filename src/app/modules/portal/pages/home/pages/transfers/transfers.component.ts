@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { ICreateCashTransferDto } from '@models/cash-transfer.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { CashTransferService } from '@services/cash-transfer.service';
 import { MyCashService } from '@services/my-cash.service';
@@ -39,9 +38,5 @@ export class TransfersComponent {
       this.cashTransfers.set(cashTransfers);
       this.loading.set(false);
     });
-  }
-
-  onSubmit(createCashTransferDto: ICreateCashTransferDto) {
-    console.log(createCashTransferDto);
   }
 }

@@ -16,7 +16,7 @@
           }}{{ transfer.value | currency : "symbol" : "$" : "0.00" }}
         </td>
         <td>{{ transfer.received ? transfer.sender : transfer.receiver }}</td>
-        <td>{{ transfer.createdDate | date : "hh:mm" }}</td>
+        <td>{{ transfer.createdDate | date : "hh:mm aa" }}</td>
       </tr>
     </tbody>
   </table>

@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { ICreateCashTransferDto } from '@models/cash-transfer.model';
 import { CashBoxType } from '@models/enums';
 import { BaseService } from '@services/base.service';
 import { CashTransferService } from '@services/cash-transfer.service';
-import { TokenService } from '@services/token.service';
+import { MyCashService } from '@services/my-cash.service';
 import { TransfersService } from '@services/transfers.service';
 
 @Component({
@@ -14,21 +14,25 @@ import { TransfersService } from '@services/transfers.service';
   styleUrls: ['./new-cash-transfer-form.component.css'],
 })
 export class NewCashTransferFormComponent {
-  @Output() onSubmit = new EventEmitter<ICreateCashTransferDto>();
+  readonly loading = signal<boolean>(false);
   readonly receive = signal<boolean>(true);
   readonly selectedType = signal<CashBoxType>(CashBoxType.CASH_REGISTER);
   readonly availableAmount = signal<boolean>(true);
   readonly availableTransfers;
+  readonly cashTransfers;
   readonly form;
-  readonly loggedInId;
+  readonly currentCashRegister;
 
   constructor(
-    private readonly tokenService: TokenService,
+    private readonly baseService: BaseService,
+    private readonly cashTransferService: CashTransferService,
+    private readonly myCashService: MyCashService,
     private readonly transfersService: TransfersService,
     private readonly fb: FormBuilder
   ) {
     this.availableTransfers = this.transfersService.availableTransfers;
-    this.loggedInId = this.tokenService.getInfo().id;
+    this.cashTransfers = this.transfersService.cashTransfers;
+    this.currentCashRegister = this.myCashService.currentCashRegister;
 
     this.form = this.fb.group({
       receive: ['true', Validators.required],
@@ -50,18 +54,39 @@ export class NewCashTransferFormComponent {
     this.receive.set(value === 'true');
   }
 
-  emitSubmit() {
+  onSubmit() {
     if (this.form.invalid) {
       return this.form.markAllAsTouched();
     }
 
+    this.setLoading(true);
+
     const createCashTransferDto = this.buildData();
 
     if (!this.availableAmount()) {
-      return console.log('not available amount');
+      console.error('amount not available');
+      return this.setLoading(false);
     }
 
-    this.onSubmit.emit(createCashTransferDto);
+    this.cashTransferService.register(createCashTransferDto).subscribe({
+      next: (cashTransfer) => {
+        this.cashTransfers.update((prevValue) => [...prevValue, cashTransfer]);
+        this.resetForm();
+        this.setLoading(false);
+      },
+      error: (err) => {
+        console.error(err);
+        this.setLoading(false);
+      },
+    });
+  }
+
+  private resetForm() {
+    this.form.reset();
+    this.form.get('receive')?.setValue('true');
+    this.form.get('cashBoxType')?.setValue(CashBoxType.CASH_REGISTER);
+    this.form.get('cashier')?.setValue(0);
+    this.form.get('safeValue')?.setValue('');
   }
 
   private buildData(): ICreateCashTransferDto {
@@ -70,33 +95,33 @@ export class NewCashTransferFormComponent {
     let receiverId = 0;
     let senderId = 0;
     let value = 0;
-    let safeDetailId = 0;
-    let safeBase = BaseService.empty;
+    let safeDetailId: number | undefined = undefined;
+    let safeBase: IBase | undefined = undefined;
 
     const safes = this.availableTransfers()!.safes;
+    const currentCashRegisterDetailId =
+      this.currentCashRegister()?.cashRegisterDetail.id!;
 
     if (this.receive()) {
       receiverType = CashBoxType.CASH_REGISTER;
-      receiverId = this.loggedInId;
+      receiverId = currentCashRegisterDetailId;
       senderType = this.form.get('cashBoxType')?.value!;
       senderId = Number(this.form.get('cashier')?.value!);
-      safeDetailId = senderType === CashBoxType.SAFE ? senderId : 0;
+      safeDetailId = senderType === CashBoxType.SAFE ? senderId : undefined;
     } else {
       senderType = CashBoxType.CASH_REGISTER;
-      senderId = this.loggedInId;
+      senderId = currentCashRegisterDetailId;
       receiverType = this.form.get('cashBoxType')?.value!;
       receiverId = Number(this.form.get('cashier')?.value!);
-      safeDetailId = receiverType === CashBoxType.SAFE ? receiverId : 0;
+      safeDetailId = receiverType === CashBoxType.SAFE ? receiverId : undefined;
     }
-
-    let property: keyof IBase;
 
     if (receiverType === CashBoxType.SAFE || senderType === CashBoxType.SAFE) {
       const safeIndex = safes.findIndex((safe) => safe.id === safeDetailId);
 
       if (safeIndex > -1) {
         safeBase = safes[safeIndex].detailFinalBase;
-        property = this.form.get('safeValue')?.value! as keyof IBase;
+        const property = this.form.get('safeValue')?.value! as keyof IBase;
 
         if (this.receive()) {
           this.availableAmount.set(safeBase[property] >= 1);
@@ -105,6 +130,11 @@ export class NewCashTransferFormComponent {
           this.availableAmount.set(true);
           safeBase[property] += 1;
         }
+
+        const base = this.baseService.defaultBase();
+
+        const valueFound = base.find((b) => b.title === property)!;
+        value = valueFound.value * 100;
       }
     } else {
       value = this.form.get('value')?.value!;
@@ -118,6 +148,12 @@ export class NewCashTransferFormComponent {
       value,
       safeDetailId,
       safeBase,
+      currentCashRegisterDetailId,
     };
+  }
+
+  private setLoading(loading: boolean) {
+    this.loading.set(loading);
+    loading ? this.form.disable() : this.form.enable();
   }
 }

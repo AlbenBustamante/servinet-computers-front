@@ -98,17 +98,17 @@ export class BaseService {
 
   private initialValue = (value: number) => (value === 0 ? '' : value);
 
-  static empty: IBase = {
-    hundredThousand: 0,
-    fiftyThousand: 0,
-    twentyThousand: 0,
-    tenThousand: 0,
-    fiveThousand: 0,
-    twoThousand: 0,
-    thousand: 0,
-    fiveHundred: 0,
-    twoHundred: 0,
-    hundred: 0,
-    fifty: 0,
-  };
+  // static empty: IBase = {
+  //   hundredThousand: 0,
+  //   fiftyThousand: 0,
+  //   twentyThousand: 0,
+  //   tenThousand: 0,
+  //   fiveThousand: 0,
+  //   twoThousand: 0,
+  //   thousand: 0,
+  //   fiveHundred: 0,
+  //   twoHundred: 0,
+  //   hundred: 0,
+  //   fifty: 0,
+  // };
 }

@@ -10,8 +10,9 @@ export interface ICreateCashTransferDto {
   receiverId: number;
   senderType: CashBoxType;
   receiverType: CashBoxType;
-  safeDetailId: number;
-  safeBase: IBase;
+  safeDetailId: number | undefined;
+  safeBase: IBase | undefined;
+  currentCashRegisterDetailId: number;
 }
 
 export interface ICashTransferDto extends IResponse {
