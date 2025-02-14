@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TransfersService } from '@services/transfers.service';
+import { MyHomeService } from '@services/my-home.service';
 
 @Component({
   selector: 'app-cash-transfers-table',
@@ -9,7 +9,7 @@ import { TransfersService } from '@services/transfers.service';
 export class CashTransfersTableComponent {
   readonly cashTransfers;
 
-  constructor(private readonly transfersService: TransfersService) {
-    this.cashTransfers = this.transfersService.cashTransfers;
+  constructor(private readonly myHomeService: MyHomeService) {
+    this.cashTransfers = this.myHomeService.cashTransfers;
   }
 }

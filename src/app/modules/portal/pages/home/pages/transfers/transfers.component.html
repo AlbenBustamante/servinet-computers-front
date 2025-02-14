@@ -3,8 +3,11 @@
     <h2 class="home-subtitle">Nueva Transferencia</h2>
     <app-new-cash-transfer-form />
   </section>
-  <section class="card">
-    <h2 class="home-subtitle">Mis Transferencias</h2>
-    <app-cash-transfers-table />
+  <section class="card flex items-center justify-center">
+    <ng-template #spinner><app-spinner /></ng-template>
+    <div class="w-full h-full" *ngIf="!loading(); else spinner">
+      <h2 class="home-subtitle">Mis Transferencias</h2>
+      <app-cash-transfers-table />
+    </div>
   </section>
 </div>

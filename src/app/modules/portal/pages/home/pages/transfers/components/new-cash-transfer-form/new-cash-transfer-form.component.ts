@@ -6,7 +6,7 @@ import { CashBoxType } from '@models/enums';
 import { BaseService } from '@services/base.service';
 import { CashTransferService } from '@services/cash-transfer.service';
 import { MyCashService } from '@services/my-cash.service';
-import { TransfersService } from '@services/transfers.service';
+import { MyHomeService } from '@services/my-home.service';
 
 @Component({
   selector: 'app-new-cash-transfer-form',
@@ -27,11 +27,11 @@ export class NewCashTransferFormComponent {
     private readonly baseService: BaseService,
     private readonly cashTransferService: CashTransferService,
     private readonly myCashService: MyCashService,
-    private readonly transfersService: TransfersService,
+    private readonly myHomeService: MyHomeService,
     private readonly fb: FormBuilder
   ) {
-    this.availableTransfers = this.transfersService.availableTransfers;
-    this.cashTransfers = this.transfersService.cashTransfers;
+    this.availableTransfers = this.myHomeService.availableTransfers;
+    this.cashTransfers = this.myHomeService.cashTransfers;
     this.currentCashRegister = this.myCashService.currentCashRegister;
 
     this.form = this.fb.group({

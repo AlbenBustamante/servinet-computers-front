@@ -1,6 +1,4 @@
-import { Component, signal } from '@angular/core';
-import { CashRegisterDetailService } from '@services/cash-register-detail.service';
-import { MyCashService } from '@services/my-cash.service';
+import { Component } from '@angular/core';
 import { MyHomeService } from '@services/my-home.service';
 
 @Component({
@@ -9,33 +7,9 @@ import { MyHomeService } from '@services/my-home.service';
   styleUrls: ['./expenses-table.component.css'],
 })
 export class ExpensesTableComponent {
-  readonly loading = signal<boolean>(false);
   readonly expenses;
 
-  constructor(
-    private readonly cashRegisterDetailService: CashRegisterDetailService,
-    private readonly myCashService: MyCashService,
-    private readonly myTransactionsService: MyHomeService
-  ) {
-    this.expenses = this.myTransactionsService.expenses;
-  }
-
-  ngOnInit() {
-    this.loading.set(true);
-
-    this.cashRegisterDetailService
-      .getExpenses(
-        this.myCashService.currentCashRegister()!.cashRegisterDetail.id
-      )
-      .subscribe({
-        next: (expenses) => {
-          this.expenses.set(expenses);
-          this.loading.set(false);
-        },
-        error: (err) => {
-          console.log(err);
-          this.loading.set(false);
-        },
-      });
+  constructor(private readonly myHomeService: MyHomeService) {
+    this.expenses = this.myHomeService.expenses;
   }
 }

@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { CashTransferService } from '@services/cash-transfer.service';
 import { MyCashService } from '@services/my-cash.service';
-import { TransfersService } from '@services/transfers.service';
+import { MyHomeService } from '@services/my-home.service';
 import { zip } from 'rxjs';
 
 @Component({
@@ -11,18 +11,19 @@ import { zip } from 'rxjs';
   styleUrls: ['./transfers.component.css'],
 })
 export class TransfersComponent {
-  readonly loading = signal<boolean>(false);
+  readonly loading;
   readonly availableTransfers;
   readonly cashTransfers;
 
   constructor(
     private readonly cashTransferService: CashTransferService,
     private readonly cashRegisterDetailService: CashRegisterDetailService,
-    private readonly transfersService: TransfersService,
+    private readonly myHomeService: MyHomeService,
     private readonly myCashService: MyCashService
   ) {
-    this.availableTransfers = this.transfersService.availableTransfers;
-    this.cashTransfers = this.transfersService.cashTransfers;
+    this.loading = this.myHomeService.loading;
+    this.availableTransfers = this.myHomeService.availableTransfers;
+    this.cashTransfers = this.myHomeService.cashTransfers;
   }
 
   ngOnInit() {
