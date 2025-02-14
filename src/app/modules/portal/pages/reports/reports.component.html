@@ -1,128 +1,23 @@
-<app-header-title
-  hTitle="Reportes"
-  hDescription="Checa todos los movimientos que realizaste durante el día"
-></app-header-title>
-<section>
-  <form class="w-full px-12">
-    <label for="reportType" class="sr-only">Tipo de reporte</label>
-    <select
-      id="reportType"
-      class="input w-full"
-      (change)="onChangeReport($event)"
-    >
-      <option disabled selected>Selecciona el tipo de reporte</option>
-      <option value="platformTransfers">Transferencias a plataformas</option>
-      <option value="expenses">Gastos de caja</option>
-      <option value="discounts">Descuentos</option>
-      <option value="transactions">Transacciones</option>
-    </select>
-  </form>
+<app-loading *ngIf="loading(); else page" />
+<ng-template #page
+  ><app-header-title
+    hTitle="Reportes"
+    hDescription="Checa todos los movimientos que realizaste durante el día"
+  />
+  <app-change-type-form (onChangeReport)="onChangeReport($event)" />
   <div class="divider my-5"></div>
-  <app-spinner *ngIf="loading()"></app-spinner>
-  <div class="table card" *ngIf="!loading()">
-    <table *ngIf="selectedReport(); else selectReport">
-      <thead>
-        <tr *ngIf="selectedReport() === 'platformTransfers'">
-          <th class="w-20">#</th>
-          <th class="text-left">Plataforma</th>
-          <th class="text-right">Valor</th>
-          <th>Comprobantes</th>
-          <th class="text-left w-24">Hora</th>
-          <th class="actions"></th>
-        </tr>
-        <tr *ngIf="selectedReport() === 'expenses'">
-          <th class="w-20">#</th>
-          <th>Descripción</th>
-          <th>Valor</th>
-          <th>Hora</th>
-          <th>Actualizado</th>
-        </tr>
-        <tr *ngIf="selectedReport() === 'discounts'">
-          <th class="w-20">#</th>
-          <th>Descripción</th>
-          <th>Valor</th>
-          <th>Hora</th>
-          <th>Actualizado</th>
-        </tr>
-        <tr *ngIf="selectedReport() === 'transactions'">
-          <th class="id">ID</th>
-          <th>Nota</th>
-          <th>Tipo</th>
-          <th>Valor</th>
-          <th>Adicional</th>
-          <th>Fecha y Hora</th>
-        </tr>
-      </thead>
-      <tbody *ngIf="selectedReport() === 'platformTransfers'">
-        <tr *ngFor="let platformTransfer of reports()?.platformTransfers">
-          <td class="text-center">{{ platformTransfer.id }}</td>
-          <td>{{ platformTransfer.platformName }}</td>
-          <td class="text-right">
-            {{ platformTransfer.value | currency : "symbol" : "$" : "0.00" }}
-          </td>
-          <td class="text-center">
-            {{ platformTransfer.voucherUrls?.length ?? "Sin archivos" }}
-          </td>
-          <td class="text-left">
-            {{ platformTransfer.createdDate | date : "H:mm:ss" }}
-          </td>
-          <td class="actions">
-            <div>
-              <fa-icon [icon]="faEdit" class="edit"></fa-icon>
-              <fa-icon [icon]="faRemove" class="remove"></fa-icon>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <tbody *ngIf="selectedReport() === 'expenses'">
-        <tr *ngFor="let expense of reports()?.expenses">
-          <td class="text-center">{{ expense.id }}</td>
-          <td>{{ expense.description }}</td>
-          <td class="text-right">
-            {{ expense.value | currency : "symbol" : "$" : "0.00" }}
-          </td>
-          <td class="text-left">
-            {{ expense.createdDate | date : "H:mm:ss" }}
-          </td>
-          <td class="text-left">
-            {{ expense.modifiedDate | date : "H:mm:ss" }}
-          </td>
-        </tr>
-      </tbody>
-      <tbody *ngIf="selectedReport() === 'discounts'">
-        <tr *ngFor="let discount of reports()?.discounts">
-          <td class="text-center">{{ discount.id }}</td>
-          <td>{{ discount.description }}</td>
-          <td class="text-right">
-            {{ discount.value | currency : "symbol" : "$" : "0.00" }}
-          </td>
-          <td class="text-left">
-            {{ discount.createdDate | date : "H:mm:ss" }}
-          </td>
-          <td class="text-left">
-            {{ discount.modifiedDate | date : "H:mm:ss" }}
-          </td>
-        </tr>
-      </tbody>
-      <tbody *ngIf="selectedReport() === 'transactions'">
-        <tr *ngFor="let transaction of reports()?.transactions">
-          <td class="id">{{ transaction.id }}</td>
-          <td>{{ transaction.description }}</td>
-          <td>{{ transaction.type | transactionDetailType }}</td>
-          <td class="text-right">
-            {{ transaction.value | currency : "symbol" : "$" : "0.00" }}
-          </td>
-          <td class="text-right">
-            {{ transaction.commission | currency : "symbol" : "$" : "0.00" }}
-          </td>
-          <td>{{ transaction.createdDate | date : "dd/MM/yyyy, hh:mm a" }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <ng-template #selectReport>
-      <h3 class="text-center text-xl text-gray-700 font-medium">
-        Selecciona el tipo de reporte
-      </h3>
+  <section class="card">
+    <h3
+      class="text-center text-xl text-gray-700 font-medium"
+      *ngIf="!selectedReport(); else table"
+    >
+      Selecciona el tipo de reporte
+    </h3>
+    <ng-template #table>
+      <app-reports-tables
+        [reports]="reports()"
+        [selectedReport]="selectedReport()"
+      />
     </ng-template>
-  </div>
-</section>
+  </section>
+</ng-template>

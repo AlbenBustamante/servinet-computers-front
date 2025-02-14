@@ -1,0 +1,14 @@
+<form class="w-full px-12">
+  <label for="reportType" class="sr-only">Tipo de reporte</label>
+  <select
+    id="reportType"
+    class="input w-full"
+    (change)="emitChangeReport($event)"
+  >
+    <option disabled selected>Selecciona el tipo de reporte</option>
+    <option value="platformTransfers">Transferencias a plataformas</option>
+    <option value="expenses">Gastos de caja</option>
+    <option value="discounts">Descuentos</option>
+    <option value="transactions">Transacciones</option>
+  </select>
+</form>

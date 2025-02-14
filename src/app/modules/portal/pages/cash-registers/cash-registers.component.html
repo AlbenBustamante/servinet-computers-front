@@ -1,4 +1,4 @@
-<app-spinner *ngIf="loading(); else body" />
+<app-loading *ngIf="loading(); else body" />
 <ng-template #body>
   <router-outlet />
 </ng-template>

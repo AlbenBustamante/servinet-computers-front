@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { faPencil, faRemove } from '@fortawesome/free-solid-svg-icons';
 import { IReportsRes } from '@models/user.model';
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 import { lastValueFrom } from 'rxjs';
 
-type SelectedReport =
+export type SelectedReport =
   | 'platformTransfers'
   | 'expenses'
   | 'discounts'
@@ -18,10 +17,8 @@ type SelectedReport =
 })
 export class ReportsComponent {
   readonly loading = signal<boolean>(false);
-  readonly reports = signal<IReportsRes | null>(null);
-  readonly selectedReport = signal<SelectedReport | null>(null);
-  readonly faEdit = faPencil;
-  readonly faRemove = faRemove;
+  readonly reports = signal<IReportsRes | undefined>(undefined);
+  readonly selectedReport = signal<SelectedReport | undefined>(undefined);
 
   constructor(
     private readonly userService: UserService,
@@ -46,10 +43,7 @@ export class ReportsComponent {
     this.loading.set(false);
   }
 
-  onChangeReport(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    const value = target.value as SelectedReport;
-
-    this.selectedReport.set(value);
+  onChangeReport(selectedReport: SelectedReport) {
+    this.selectedReport.set(selectedReport);
   }
 }

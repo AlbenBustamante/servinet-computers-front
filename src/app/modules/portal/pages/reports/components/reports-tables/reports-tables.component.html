@@ -1,0 +1,16 @@
+<app-platform-transfers-table
+  [platformTransfers]="reports!.platformTransfers"
+  *ngIf="selectedReport === 'platformTransfers'"
+/>
+<app-expenses-table
+  [expenses]="reports!.expenses"
+  *ngIf="selectedReport === 'expenses'"
+/>
+<app-discounts-table
+  [discounts]="reports!.discounts"
+  *ngIf="selectedReport === 'discounts'"
+/>
+<app-transactions-table
+  [transactions]="reports!.transactions"
+  *ngIf="selectedReport === 'transactions'"
+/>

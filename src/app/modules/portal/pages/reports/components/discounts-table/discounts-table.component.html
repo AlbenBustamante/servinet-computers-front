@@ -1,0 +1,28 @@
+<div class="table">
+  <table>
+    <thead>
+      <tr>
+        <th class="id">ID</th>
+        <th>Descripción</th>
+        <th>Valor</th>
+        <th>Hora</th>
+        <th>Actualizado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let discount of discounts">
+        <td class="id">{{ discount.id }}</td>
+        <td>{{ discount.description }}</td>
+        <td class="text-right">
+          {{ discount.value | currency : "symbol" : "$" : "0.00" }}
+        </td>
+        <td class="text-left">
+          {{ discount.createdDate | date : "H:mm:ss" }}
+        </td>
+        <td class="text-left">
+          {{ discount.modifiedDate | date : "H:mm:ss" }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
