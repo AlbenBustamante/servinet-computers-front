@@ -4,6 +4,9 @@ import { ISafeDetailRes } from './safe.model';
 
 export interface IDashboardResponse {
   totalBalance: number;
+  transactionsAmount: number;
+  earnings: number;
+  expenses: number;
   platformBalancesTotal: number;
   cashRegistersTotal: number;
   safesTotal: number;

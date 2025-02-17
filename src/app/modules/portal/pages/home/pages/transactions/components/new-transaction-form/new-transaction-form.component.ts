@@ -44,9 +44,21 @@ export class NewTransactionFormComponent {
 
     this.loading.set(true);
 
+    const time = this.form.get('date')?.value ?? null;
+    let date: Date | null = null;
+
+    if (time) {
+      const [hours, minutes] = time.split(':');
+      date = new Date();
+      date.setUTCHours(hours);
+      date.setUTCMinutes(minutes);
+      date.setUTCSeconds(0);
+    }
+
     const detail: ITransactionDetailReq = {
       ...this.form.value,
       cashRegisterDetailId: this.currentCashRegister()!.cashRegisterDetail.id,
+      date,
     };
 
     this.transactionService.register(detail).subscribe({

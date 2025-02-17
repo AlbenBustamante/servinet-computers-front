@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderStatCardComponent {
   @Input({ required: true }) stat!: string;
-  @Input({ required: true }) value!: number;
+  @Input({ required: true }) value!: number | undefined;
   @Input({ required: true }) color!: string;
 
   get mapColor() {
