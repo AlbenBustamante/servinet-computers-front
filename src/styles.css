@@ -43,7 +43,7 @@ body {
 }
 
 .card {
-  @apply px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg;
+  @apply px-7 py-5 bg-white rounded-xl drop-shadow;
 }
 
 .divider {

@@ -1,0 +1,10 @@
+<article
+  class="border-2 border-violet-200 bg-violet-50 rounded-2xl py-4 w-48 hover:border-violet-300 cursor-default"
+>
+  <h2 class="text-lg text-gray-700 text-center uppercase font-medium">
+    {{ stat }}
+  </h2>
+  <p class="text-3xl text-center font-bold" [ngClass]="mapColor">
+    {{ value | currency : "symbol" : "$" : "0.00" }}
+  </p>
+</article>

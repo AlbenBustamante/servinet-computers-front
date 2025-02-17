@@ -1,15 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { DashboardService } from '@services/dashboard.service';
-import { PlatformsModalComponent } from '../platforms-modal/platforms-modal.component';
-import { CashRegistersModalComponent } from '../cash-registers-modal/cash-registers-modal.component';
-import { SafesStatsModalComponent } from '../safes-stats-modal/safes-stats-modal.component';
+import { PlatformsModalComponent } from '@admin/pages/dashboard/components/platforms-modal/platforms-modal.component';
+import { CashRegistersModalComponent } from '@admin/pages/dashboard/components/cash-registers-modal/cash-registers-modal.component';
+import { SafesStatsModalComponent } from '@admin/pages/dashboard/components/safes-stats-modal/safes-stats-modal.component';
 
 @Component({
-  selector: 'app-secondary-stats',
-  templateUrl: './secondary-stats.component.html',
-  styleUrls: ['./secondary-stats.component.css'],
+  selector: 'app-cash-box-stats',
+  templateUrl: './cash-box-stats.component.html',
+  styleUrls: ['./cash-box-stats.component.css'],
 })
-export class SecondaryStatsComponent {
+export class CashBoxStatsComponent {
   @ViewChild(PlatformsModalComponent) platformsModal!: PlatformsModalComponent;
   @ViewChild(CashRegistersModalComponent)
   cashRegistersModal!: CashRegistersModalComponent;

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { DashboardService } from '@services/dashboard.service';
 
 @Component({
-  selector: 'app-main-stats',
-  templateUrl: './main-stats.component.html',
-  styleUrls: ['./main-stats.component.css'],
+  selector: 'app-header-stats',
+  templateUrl: './header-stats.component.html',
+  styleUrls: ['./header-stats.component.css'],
 })
-export class MainStatsComponent {
+export class HeaderStatsComponent {
   readonly dashboard;
 
   constructor(private readonly dashboardService: DashboardService) {
