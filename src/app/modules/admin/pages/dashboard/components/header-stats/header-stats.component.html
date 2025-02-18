@@ -1,9 +1,18 @@
 <header
   class="relative pt-9 pb-10 px-12 w-full border-t-0 border-b-2 border-x-2 border-violet-100 bg-violet-100 rounded-bl-3xl rounded-br-3xl"
 >
-  <h2 class="uppercase text-3xl font-medium text-gray-700 mb-5">
-    Panel de Estadísticas
-  </h2>
+  <div class="flex items-center justify-between mb-5 w-full">
+    <h2 class="uppercase text-3xl font-medium text-gray-700">
+      Panel de Estadísticas
+    </h2>
+    <input
+      type="date"
+      id="date"
+      class="input"
+      [(ngModel)]="date"
+      (ngModelChange)="setDate()"
+    />
+  </div>
   <div class="flex items-center justify-between gap-7">
     <app-header-stat-card
       stat="Saldo Total"
@@ -24,6 +33,7 @@
       stat="Transacciones"
       [value]="dashboard()?.transactionsAmount"
       color="violet"
+      [format]="false"
     />
   </div>
 </header>

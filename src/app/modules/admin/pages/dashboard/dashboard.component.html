@@ -1,3 +1,6 @@
-<app-header-stats />
-<div class="my-10"></div>
-<app-cash-box-stats />
+<app-loading *ngIf="loading(); else page" />
+<ng-template #page>
+  <app-header-stats />
+  <div class="my-10"></div>
+  <app-cash-box-stats />
+</ng-template>

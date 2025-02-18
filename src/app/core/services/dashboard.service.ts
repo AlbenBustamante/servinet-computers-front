@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -12,14 +12,22 @@ export type SelectedProduct = 'platforms' | 'cash-registers' | 'safes';
 })
 export class DashboardService {
   private readonly url = `${environment.apiUrl}/dashboard`;
+  readonly loading = signal<boolean>(false);
   readonly dashboard = signal<IDashboardResponse | undefined>(undefined);
   readonly selectedProduct = signal<SelectedProduct>('platforms');
 
   constructor(private readonly http: HttpClient) {}
 
-  getDashboard() {
+  getDashboard(date: string | undefined) {
+    let params = new HttpParams();
+
+    if (date) {
+      params = params.append('date', date);
+    }
+
     return this.http
       .get<IDashboardResponse>(this.url, {
+        params: params,
         context: checkToken(),
       })
       .pipe(tap((dashboard) => this.dashboard.set(dashboard)));

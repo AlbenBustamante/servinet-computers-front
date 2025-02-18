@@ -9,6 +9,7 @@ export class HeaderStatCardComponent {
   @Input({ required: true }) stat!: string;
   @Input({ required: true }) value!: number | undefined;
   @Input({ required: true }) color!: string;
+  @Input() format: boolean = true;
 
   get mapColor() {
     return `text-${this.color}-700`;

@@ -16,6 +16,7 @@ import { SafesStatsModalComponent } from './components/safes-stats-modal/safes-s
 import { CashRegisterDetailStatusPipe } from 'app/core/pipes/cash-register-detail-status.pipe';
 import { HeaderStatCardComponent } from './components/header-stat-card/header-stat-card.component';
 import { CashBoxStatCardComponent } from './components/cash-box-stat-card/cash-box-stat-card.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CashBoxStatCardComponent } from './components/cash-box-stat-card/cash-b
     SharedModule,
     CashRegisterStatusPipe,
     CashRegisterDetailStatusPipe,
+    FormsModule,
   ],
 })
 export default class DashboardModule {}

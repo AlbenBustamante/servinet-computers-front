@@ -8,16 +8,23 @@ import { DashboardService } from '@services/dashboard.service';
 })
 export class DashboardComponent {
   readonly selectedProduct;
+  readonly loading;
 
   constructor(private readonly dashboardService: DashboardService) {
     this.selectedProduct = this.dashboardService.selectedProduct;
+    this.loading = this.dashboardService.loading;
   }
 
   ngOnInit() {
-    this.dashboardService.getDashboard().subscribe({
-      next: (_) => {},
+    this.loading.set(true);
+
+    this.dashboardService.getDashboard(undefined).subscribe({
+      next: (_) => {
+        this.loading.set(false);
+      },
       error: (err) => {
         console.log(err);
+        this.loading.set(false);
       },
     });
   }
