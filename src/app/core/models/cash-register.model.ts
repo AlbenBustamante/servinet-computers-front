@@ -47,6 +47,7 @@ export interface ICashRegisterDetailReportsDto {
   withdrawals: number;
   expenses: number;
   discounts: number;
+  earnings: number;
   balance: number;
   discrepancy: number;
 }

@@ -21,7 +21,7 @@
       [value]="reports?.withdrawals ?? 0"
       color="red"
     />
-    <app-stat-card stat="Extras" [value]="0" color="green" />
+    <app-stat-card stat="Extras" [value]="reports?.earnings" color="green" />
     <app-stat-card stat="Saldo en Caja" [value]="reports?.balance ?? 0" />
   </div>
 </header>

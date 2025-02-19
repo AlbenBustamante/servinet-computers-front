@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class StatCardComponent {
   @Input({ required: true }) stat!: string;
-  @Input({ required: true }) value!: number;
+  @Input({ required: true }) value!: number | undefined;
   @Input() color: 'green' | 'red' | 'gray' = 'gray';
 }
