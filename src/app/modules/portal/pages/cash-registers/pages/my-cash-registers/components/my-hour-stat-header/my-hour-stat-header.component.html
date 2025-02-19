@@ -1,0 +1,8 @@
+<ng-template #noTime>--:-- --</ng-template>
+<p class="inline">
+  {{ headline ?? "" }}{{ headline ? ":" : "" }}
+  <span class="text-gray-700" *ngIf="time; else noTime">{{
+    time | date : "hh:mm a"
+  }}</span>
+  <ng-content></ng-content>
+</p>

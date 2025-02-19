@@ -63,10 +63,7 @@ export class MyCashRegistersComponent {
     this.currentCashRegisterIndex = signal<number>(size - 1);
   }
 
-  handleSelectedCashRegister(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    const value = target.value;
-
+  handleSelectedCashRegister(value: string | number) {
     if (value === 'all') {
       return this.currentCashRegister.set(this.myCashRegisters()?.finalReport!);
     }
