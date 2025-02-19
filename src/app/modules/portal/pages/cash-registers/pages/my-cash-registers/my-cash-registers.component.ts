@@ -1,5 +1,4 @@
 import { Component, computed, signal } from '@angular/core';
-import { faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 
@@ -13,7 +12,6 @@ export class MyCashRegistersComponent {
   readonly myCashRegisters;
   readonly currentCashRegister;
   readonly currentCashRegisterIndex;
-  readonly faRefresh = faRefresh;
   readonly refreshLoading = signal<boolean>(false);
 
   readonly myCurrentCashRegisterBreakTitle = computed(() => {

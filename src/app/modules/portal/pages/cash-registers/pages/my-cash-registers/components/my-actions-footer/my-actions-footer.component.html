@@ -1,0 +1,23 @@
+<section class="w-full mt-32 grid grid-cols-5 place-items-center gap-7">
+  <div class="col-span-1">
+    <app-icon-button
+      [icon]="faRefresh"
+      type="button"
+      (click)="emitRefresh()"
+      [spinner]="refreshLoading"
+    />
+  </div>
+  <div class="col-span-3 flex items-center justify-center gap-7">
+    <app-button
+      type="button"
+      [loading]="breakLoading"
+      (click)="emitHandleTakeBreak()"
+      *ngIf="myCurrentCashRegisterBreakTitle !== ''"
+      >{{ myCurrentCashRegisterBreakTitle }}</app-button
+    >
+    <app-button *ngIf="showCloseButton" type="button" (click)="emitClose()"
+      >Cerrar caja</app-button
+    >
+  </div>
+  <div class="col-span-1"></div>
+</section>
