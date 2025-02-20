@@ -1,0 +1,22 @@
+<dialog
+  #modal
+  class="px-4 py-5 rounded-lg outline-none backdrop:bg-black backdrop:bg-opacity-30 backdrop:backdrop-blur-sm"
+>
+  <header class="mb-5 border-b border-gray-400 pb-2">
+    <h2 class="text-center text-gray-800 text-3xl font-medium">
+      Caja Registradora N° 1
+    </h2>
+  </header>
+  <ul class="flex items-center justify-center gap-1">
+    <ng-container *ngFor="let item of types; index as i">
+      <li class="item" (click)="setSelectedType(item.type)">
+        {{ item.title }}
+      </li>
+      <div class="h-8 w-px bg-violet-100" *ngIf="i < types.length - 1"></div>
+    </ng-container>
+  </ul>
+  <app-detailed-transactions-table *ngIf="selectedType() === 'TRANSACTIONS'" />
+  <app-detailed-expenses-table *ngIf="selectedType() === 'EXPENSES'" />
+  <app-detailed-discounts-table *ngIf="selectedType() === 'DISCOUNTS'" />
+  <app-detailed-transfers-table *ngIf="selectedType() === 'TRANSFERS'" />
+</dialog>

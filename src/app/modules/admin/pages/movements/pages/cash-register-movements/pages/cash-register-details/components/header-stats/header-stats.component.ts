@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICashRegisterDetailReportsDto } from '@models/cash-register.model';
 
 @Component({
@@ -7,7 +7,12 @@ import { ICashRegisterDetailReportsDto } from '@models/cash-register.model';
   styleUrls: ['./header-stats.component.css'],
 })
 export class HeaderStatsComponent {
+  @Output() open = new EventEmitter();
   @Input({ required: true }) reports!:
     | ICashRegisterDetailReportsDto
     | undefined;
+
+  emitOpen() {
+    this.open.emit();
+  }
 }

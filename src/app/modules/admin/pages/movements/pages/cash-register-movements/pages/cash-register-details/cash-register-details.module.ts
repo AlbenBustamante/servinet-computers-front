@@ -6,9 +6,14 @@ import { CashRegisterDetailsComponent } from './cash-register-details.component'
 import { SharedModule } from '@shared/shared.module';
 import { StatCardComponent } from './components/stat-card/stat-card.component';
 import { HeaderStatsComponent } from './components/header-stats/header-stats.component';
+import { CashRegisterDetailsModalComponent } from './components/cash-register-details-modal/cash-register-details-modal.component';
+import { DetailedTransactionsTableComponent } from './components/detailed-transactions-table/detailed-transactions-table.component';
+import { DetailedExpensesTableComponent } from './components/detailed-expenses-table/detailed-expenses-table.component';
+import { DetailedDiscountsTableComponent } from './components/detailed-discounts-table/detailed-discounts-table.component';
+import { DetailedTransfersTableComponent } from './components/detailed-transfers-table/detailed-transfers-table.component';
 
 @NgModule({
-  declarations: [CashRegisterDetailsComponent, StatCardComponent, HeaderStatsComponent],
+  declarations: [CashRegisterDetailsComponent, StatCardComponent, HeaderStatsComponent, CashRegisterDetailsModalComponent, DetailedTransactionsTableComponent, DetailedExpensesTableComponent, DetailedDiscountsTableComponent, DetailedTransfersTableComponent],
   imports: [CommonModule, CashRegisterDetailsRoutingModule, SharedModule],
 })
 export default class CashRegisterDetailsModule {}

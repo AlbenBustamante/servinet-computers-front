@@ -1,5 +1,7 @@
 <app-loading *ngIf="loading(); else page" />
 <ng-template #page>
   <div class="pt-6"></div>
-  <app-header-stats [reports]="reports()?.reports" />
+  <app-header-stats [reports]="reports()?.reports" (open)="openModal()" />
+  <div class="divider mt-7 mb-5"></div>
 </ng-template>
+<app-cash-register-details-modal />

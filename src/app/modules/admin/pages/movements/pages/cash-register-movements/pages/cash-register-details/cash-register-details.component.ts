@@ -1,6 +1,7 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input, signal, ViewChild } from '@angular/core';
 import { IDetailedCashRegisterReportsDto } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
+import { CashRegisterDetailsModalComponent } from './components/cash-register-details-modal/cash-register-details-modal.component';
 
 @Component({
   selector: 'app-cash-register-details',
@@ -8,6 +9,8 @@ import { CashRegisterDetailService } from '@services/cash-register-detail.servic
   styleUrls: ['./cash-register-details.component.css'],
 })
 export class CashRegisterDetailsComponent {
+  @ViewChild(CashRegisterDetailsModalComponent)
+  modal!: CashRegisterDetailsModalComponent;
   @Input() id!: number;
   readonly loading = signal<boolean>(false);
   readonly reports = signal<IDetailedCashRegisterReportsDto | undefined>(
@@ -31,5 +34,9 @@ export class CashRegisterDetailsComponent {
         this.loading.set(false);
       },
     });
+  }
+
+  openModal() {
+    this.modal.open();
   }
 }
