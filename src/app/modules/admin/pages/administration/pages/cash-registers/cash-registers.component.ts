@@ -33,7 +33,9 @@ export class CashRegistersComponent {
   readonly selectedCashRegisterDetail = signal<
     ICashRegisterDetailRes | undefined
   >(undefined);
-  readonly options: AdmItemCardOptions = [
+  readonly options: AdmItemCardOptions = [];
+  readonly pendingOptions: AdmItemCardOptions = [
+    ...this.options,
     { title: 'Cerrar caja', fn: () => this.openUpdateBaseModal() },
   ];
 

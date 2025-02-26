@@ -25,7 +25,7 @@
   >
     <app-adm-item-card
       [showDropdown]="pendingIndex() === i"
-      [options]="options"
+      [options]="pendingOptions"
       [finalBalance]="
         detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
       "

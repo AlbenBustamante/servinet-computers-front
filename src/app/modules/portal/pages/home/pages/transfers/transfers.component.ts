@@ -31,13 +31,21 @@ export class TransfersComponent {
 
     const { cashRegisterDetail } = this.myCashService.currentCashRegister()!;
 
-    zip(
+    const calls = zip(
       this.cashTransferService.getAvailableTransfers(),
       this.cashRegisterDetailService.getCashTransfers(cashRegisterDetail.id)
-    ).subscribe(([availableTransfers, cashTransfers]) => {
-      this.availableTransfers.set(availableTransfers);
-      this.cashTransfers.set(cashTransfers);
-      this.loading.set(false);
+    );
+
+    calls.subscribe({
+      next: ([availableTransfers, cashTransfers]) => {
+        this.availableTransfers.set(availableTransfers);
+        this.cashTransfers.set(cashTransfers);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
     });
   }
 }
