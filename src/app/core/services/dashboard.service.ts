@@ -30,6 +30,11 @@ export class DashboardService {
         params: params,
         context: checkToken(),
       })
-      .pipe(tap((dashboard) => this.dashboard.set(dashboard)));
+      .pipe(
+        tap((dashboard) => {
+          console.log({ dashboard });
+          this.dashboard.set(dashboard);
+        })
+      );
   }
 }

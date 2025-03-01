@@ -7,7 +7,6 @@ import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AdmItemCardComponent } from './components/adm-item-card/adm-item-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
 import { AdmBaseCalculatorComponent } from './components/adm-base-calculator/adm-base-calculator.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -24,7 +23,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    CashRegisterStatusPipe,
   ],
   exports: [AdmItemCardComponent, AdmBaseCalculatorComponent],
 })

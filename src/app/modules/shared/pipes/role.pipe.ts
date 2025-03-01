@@ -3,7 +3,6 @@ import { Role } from '@models/enums';
 
 @Pipe({
   name: 'role',
-  standalone: true,
 })
 export class RolePipe implements PipeTransform {
   transform(role: Role): string {

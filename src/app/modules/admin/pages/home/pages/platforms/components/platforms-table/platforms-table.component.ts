@@ -1,18 +1,18 @@
 import { DatePipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { SafeService } from '@services/safe.service';
+import { PlatformService } from '@services/platform.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
 @Component({
-  selector: 'app-safes-table',
-  templateUrl: './safes-table.component.html',
-  styleUrls: ['./safes-table.component.css'],
+  selector: 'app-platforms-table',
+  templateUrl: './platforms-table.component.html',
+  styleUrls: ['./platforms-table.component.css'],
 })
-export class SafesTableComponent {
+export class PlatformsTableComponent {
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
-      { key: 'numeral', title: 'Numeral', align: 'center' },
+      { key: 'name', title: 'Nombre' },
       {
         key: 'createdDate',
         title: 'Fecha de creación',
@@ -20,9 +20,9 @@ export class SafesTableComponent {
         pipeArgs: 'shortDateTime',
       },
     ],
-    body: this.safeService.safes,
-    noDataMessage: 'Sin cajas fuertes registradas...',
+    body: this.platformService.platforms,
+    noDataMessage: 'Sin plataformas registradas...',
   };
 
-  constructor(private readonly safeService: SafeService) {}
+  constructor(private readonly platformService: PlatformService) {}
 }

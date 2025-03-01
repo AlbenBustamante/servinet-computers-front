@@ -1,6 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CashRegisterService } from '@services/cash-register.service';
+import { ITable } from '@shared/components/custom-table/custom-table.component';
+import { CashRegisterStatusPipe } from '@shared/pipes/cash-register-status.pipe';
 
 @Component({
   selector: 'app-cash-registers-table',
@@ -8,8 +11,24 @@ import { CashRegisterService } from '@services/cash-register.service';
   styleUrls: ['./cash-registers-table.component.css'],
 })
 export class CashRegistersTableComponent {
-  readonly loading = signal<boolean>(false);
   readonly cashRegisters;
+  readonly table: ITable = {
+    header: [
+      { key: 'id', title: 'ID', align: 'center' },
+      { key: 'numeral', title: 'Numeral', align: 'center' },
+      { key: 'description', title: 'Nota' },
+      { key: 'status', title: 'Estado', pipe: new CashRegisterStatusPipe() },
+      {
+        key: 'createdDate',
+        title: 'Fecha de creación',
+        pipe: new DatePipe('es-CO'),
+        pipeArgs: 'shortDateTime',
+      },
+    ],
+    body: this.cashRegisterService.cashRegisters,
+    onClick: (index) => this.goToMovements(index),
+    noDataMessage: 'Sin cajas registradoras...',
+  };
 
   constructor(
     private readonly cashRegisterService: CashRegisterService,
@@ -18,21 +37,8 @@ export class CashRegistersTableComponent {
     this.cashRegisters = this.cashRegisterService.cashRegisters;
   }
 
-  ngOnInit() {
-    this.loading.set(true);
-
-    this.cashRegisterService.getAll().subscribe({
-      next: (_) => {
-        this.loading.set(false);
-      },
-      error: (err) => {
-        console.log(err);
-        this.loading.set(false);
-      },
-    });
-  }
-
-  goToMovements(id: number) {
+  private goToMovements(index: number) {
+    const { id } = this.cashRegisters()[index];
     this.router.navigateByUrl(`admin/movimientos/caja-registradora/${id}`);
   }
 }

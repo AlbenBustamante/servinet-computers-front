@@ -1,0 +1,48 @@
+<ng-template #noData>
+  <p class="text-center text-gray-700 text-xl py-6">
+    {{ table.noDataMessage }}
+  </p>
+</ng-template>
+<div class="overflow-x-auto" *ngIf="data().length > 0; else noData">
+  <table class="w-full">
+    <thead>
+      <tr class="bg-gray-50">
+        <th
+          scope="col"
+          *ngFor="let header of table.header"
+          class="text-gray-800 text-sm px-5 py-2 uppercase"
+          [ngClass]="{
+            'text-left': !header.align,
+            'text-center': header.align === 'center',
+            'text-right': header.align === 'right'
+          }"
+        >
+          {{ header.title }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let row of data(); index as i"
+        class="even:bg-gray-50 odd:bg-white hover:bg-gray-100"
+        [ngClass]="{ 'cursor-pointer': table.onClick }"
+        (click)="table.onClick ? table.onClick(i) : undefined"
+      >
+        <td
+          *ngFor="let header of table.header"
+          class="text-gray-800 px-5 py-2"
+          [ngClass]="{
+            'text-left': !header.align,
+            'text-center': header.align === 'center',
+            'text-right': header.align === 'right'
+          }"
+        >
+          {{
+            getNestedValue(row, header.key)
+              | dynamic : header.pipe : header.pipeArgs ?? "default"
+          }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

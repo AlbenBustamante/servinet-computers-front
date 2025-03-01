@@ -55,7 +55,7 @@ body {
 }
 
 .table {
-  @apply overflow-x-auto w-full;
+  @apply overflow-x-scroll w-full;
 }
 
 .table > table {

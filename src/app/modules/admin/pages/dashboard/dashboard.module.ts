@@ -11,9 +11,7 @@ import { CashBoxStatsComponent } from './components/cash-box-stats/cash-box-stat
 import { PlatformsModalComponent } from './components/platforms-modal/platforms-modal.component';
 import { CashRegistersStatsTableComponent } from './components/cash-registers-stats-table/cash-registers-stats-table.component';
 import { CashRegistersModalComponent } from './components/cash-registers-modal/cash-registers-modal.component';
-import { CashRegisterStatusPipe } from 'app/core/pipes/cash-register-status.pipe';
 import { SafesStatsModalComponent } from './components/safes-stats-modal/safes-stats-modal.component';
-import { CashRegisterDetailStatusPipe } from 'app/core/pipes/cash-register-detail-status.pipe';
 import { HeaderStatCardComponent } from './components/header-stat-card/header-stat-card.component';
 import { CashBoxStatCardComponent } from './components/cash-box-stat-card/cash-box-stat-card.component';
 import { FormsModule } from '@angular/forms';
@@ -32,13 +30,6 @@ import { FormsModule } from '@angular/forms';
     HeaderStatCardComponent,
     CashBoxStatCardComponent,
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule,
-    CashRegisterStatusPipe,
-    CashRegisterDetailStatusPipe,
-    FormsModule,
-  ],
+  imports: [CommonModule, DashboardRoutingModule, SharedModule, FormsModule],
 })
 export default class DashboardModule {}

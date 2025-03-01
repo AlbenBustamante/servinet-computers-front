@@ -7,7 +7,6 @@ import { NewTransactionFormComponent } from './components/new-transaction-form/n
 import { TransactionsTableComponent } from './components/transactions-table/transactions-table.component';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TransactionDetailTypePipe } from 'app/core/pipes/transaction-detail-type.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { TransactionDetailTypePipe } from 'app/core/pipes/transaction-detail-typ
     TransactionsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    TransactionDetailTypePipe,
   ],
 })
 export default class TransactionsModule {}

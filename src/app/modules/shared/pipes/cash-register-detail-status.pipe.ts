@@ -3,7 +3,6 @@ import { CashRegisterDetailStatus } from '@models/enums';
 
 @Pipe({
   name: 'cashRegisterDetailStatus',
-  standalone: true,
 })
 export class CashRegisterDetailStatusPipe implements PipeTransform {
   transform(value: CashRegisterDetailStatus): string {
