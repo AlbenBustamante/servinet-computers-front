@@ -11,7 +11,6 @@ import { CashRegisterStatusPipe } from '@shared/pipes/cash-register-status.pipe'
   styleUrls: ['./cash-registers-table.component.css'],
 })
 export class CashRegistersTableComponent {
-  readonly cashRegisters;
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
@@ -26,19 +25,17 @@ export class CashRegistersTableComponent {
       },
     ],
     body: this.cashRegisterService.cashRegisters,
-    onClick: (index) => this.goToMovements(index),
     noDataMessage: 'Sin cajas registradoras...',
+    onClick: (index) => this.goToMovements(index),
   };
 
   constructor(
     private readonly cashRegisterService: CashRegisterService,
     private readonly router: Router
-  ) {
-    this.cashRegisters = this.cashRegisterService.cashRegisters;
-  }
+  ) {}
 
   private goToMovements(index: number) {
-    const { id } = this.cashRegisters()[index];
+    const { id } = this.table.body()![index];
     this.router.navigateByUrl(`admin/movimientos/caja-registradora/${id}`);
   }
 }

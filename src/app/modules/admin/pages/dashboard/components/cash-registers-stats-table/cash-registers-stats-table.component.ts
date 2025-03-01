@@ -1,5 +1,6 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, computed } from '@angular/core';
+import { Router } from '@angular/router';
 import { DashboardService } from '@services/dashboard.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 import { CashRegisterDetailStatusPipe } from '@shared/pipes/cash-register-detail-status.pipe';
@@ -61,7 +62,18 @@ export class CashRegistersStatsTableComponent {
       () => this.dashboardService.dashboard()?.cashRegisterDetails
     ),
     noDataMessage: 'Vaya, parece que no se encontraron las jornadas',
+    onClick: (index) => this.goToMovements(index),
   };
 
-  constructor(private readonly dashboardService: DashboardService) {}
+  constructor(
+    private readonly dashboardService: DashboardService,
+    private readonly router: Router
+  ) {}
+
+  private goToMovements(index: number) {
+    const { id, cashRegister } = this.table.body()![index];
+    const cashRegisterId = cashRegister.id;
+    const route = `admin/movimientos/caja-registradora/${cashRegisterId}/reportes/${id}`;
+    this.router.navigateByUrl(route);
+  }
 }
