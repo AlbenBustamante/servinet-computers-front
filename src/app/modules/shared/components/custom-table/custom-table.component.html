@@ -38,8 +38,10 @@
           }"
         >
           {{
-            getNestedValue(row, header.key)
-              | dynamic : header.pipe : header.pipeArgs ?? "default"
+            getNestedValue(row, header.key, {
+              defaultValue: "--",
+              prefixSign: header.prefixSign
+            }) | dynamic : header.pipe : header.pipeArgs ?? "default"
           }}
         </td>
       </tr>

@@ -13,6 +13,7 @@ export interface ITable {
     align?: 'center' | 'right';
     pipe?: PipeTransform;
     pipeArgs?: string;
+    prefixSign?: boolean;
   }[];
   body: Signal<any[] | undefined>;
   onClick?: (index: number) => void;
@@ -33,9 +34,24 @@ export class CustomTableComponent {
 
   data = computed(() => this.table.body() ?? []);
 
-  getNestedValue(obj: any, property: string, defaultValue: string = '--') {
-    return (
-      property.split('.').reduce((acc, key) => acc?.[key], obj) ?? defaultValue
-    );
+  getNestedValue(
+    obj: any,
+    property: string,
+    options: { defaultValue: string; prefixSign?: boolean }
+  ) {
+    if (property === 'senderOrReceiver') {
+      return obj.received ? obj.sender : obj.receiver;
+    }
+
+    const value =
+      property.split('.').reduce((acc, key) => acc?.[key], obj) ??
+      options.defaultValue;
+
+    if (options.prefixSign) {
+      const sign = obj.received ? '+' : '-';
+      return `${sign}${value}`;
+    }
+
+    return value;
   }
 }

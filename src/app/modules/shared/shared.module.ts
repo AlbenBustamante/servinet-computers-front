@@ -16,6 +16,7 @@ import { CashRegisterStatusPipe } from './pipes/cash-register-status.pipe';
 import { EnabledPipe } from './pipes/enabled.pipe';
 import { RolePipe } from './pipes/role.pipe';
 import { TransactionDetailTypePipe } from './pipes/transaction-detail-type.pipe';
+import { DiscountPipe } from './pipes/discount.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TransactionDetailTypePipe } from './pipes/transaction-detail-type.pipe'
     EnabledPipe,
     RolePipe,
     TransactionDetailTypePipe,
+    DiscountPipe,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
@@ -44,13 +46,8 @@ import { TransactionDetailTypePipe } from './pipes/transaction-detail-type.pipe'
     SpinnerComponent,
     LoadingComponent,
     CustomTableComponent,
-    CustomTableComponent,
-    DynamicPipe,
-    CashRegisterDetailStatusPipe,
     CashRegisterStatusPipe,
-    EnabledPipe,
-    RolePipe,
-    TransactionDetailTypePipe,
+    CashRegisterDetailStatusPipe,
   ],
 })
 export class SharedModule {}
