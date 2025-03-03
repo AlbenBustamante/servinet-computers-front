@@ -17,7 +17,7 @@
     </ng-container>
   </ul>
   <div class="divider my-4"></div>
-  <div>
+  <div class="max-h-[28rem] overflow-y-auto">
     <app-detailed-transactions-table
       *ngIf="selectedType() === 'TRANSACTIONS'"
       [transactions]="reports()?.transactions?.transactions"
@@ -26,8 +26,14 @@
       *ngIf="selectedType() === 'EXPENSES'"
       [expenses]="reports()?.transactions?.expenses"
     />
-    <app-detailed-discounts-table *ngIf="selectedType() === 'DISCOUNTS'" />
-    <app-detailed-transfers-table *ngIf="selectedType() === 'TRANSFERS'" />
+    <app-detailed-discounts-table
+      *ngIf="selectedType() === 'DISCOUNTS'"
+      [discounts]="reports()?.transactions?.discounts"
+    />
+    <app-detailed-transfers-table
+      *ngIf="selectedType() === 'TRANSFERS'"
+      [transfers]="reports()?.transactions?.transfers"
+    />
   </div>
   <footer
     class="flex items-center justify-end mt-7 border-t border-gray-400 pt-5"
