@@ -52,7 +52,7 @@ export interface ICashRegisterDetailReportsDto {
   discrepancy: number;
 }
 
-interface IDetailedCashRegisterTransactionsDto {
+export interface IDetailedCashRegisterTransactionsDto {
   transactions: ITransactionDetailRes[];
   expenses: IExpenseRes[];
 }

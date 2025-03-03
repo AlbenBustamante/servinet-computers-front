@@ -4,4 +4,4 @@
   <app-header-stats [reports]="reports()?.reports" (open)="openModal()" />
   <div class="divider mt-7 mb-5"></div>
 </ng-template>
-<app-cash-register-details-modal />
+<app-cash-register-details-modal [reports]="reports" />

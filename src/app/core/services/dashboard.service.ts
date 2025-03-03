@@ -32,7 +32,6 @@ export class DashboardService {
       })
       .pipe(
         tap((dashboard) => {
-          console.log({ dashboard });
           this.dashboard.set(dashboard);
         })
       );

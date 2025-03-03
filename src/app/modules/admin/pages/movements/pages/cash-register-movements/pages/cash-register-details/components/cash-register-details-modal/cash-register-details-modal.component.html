@@ -2,9 +2,10 @@
   #modal
   class="px-4 py-5 rounded-lg outline-none backdrop:bg-black backdrop:bg-opacity-30 backdrop:backdrop-blur-sm"
 >
-  <header class="mb-5 border-b border-gray-400 pb-2">
+  <header class="mb-4 border-b border-gray-400 pb-3">
     <h2 class="text-center text-gray-800 text-3xl font-medium">
-      Caja Registradora N° 1
+      Caja Registradora N°
+      {{ reports()?.reports?.cashRegisterDetail?.cashRegister?.numeral ?? 0 }}
     </h2>
   </header>
   <ul class="flex items-center justify-center gap-1">
@@ -15,8 +16,22 @@
       <div class="h-8 w-px bg-violet-100" *ngIf="i < types.length - 1"></div>
     </ng-container>
   </ul>
-  <app-detailed-transactions-table *ngIf="selectedType() === 'TRANSACTIONS'" />
-  <app-detailed-expenses-table *ngIf="selectedType() === 'EXPENSES'" />
-  <app-detailed-discounts-table *ngIf="selectedType() === 'DISCOUNTS'" />
-  <app-detailed-transfers-table *ngIf="selectedType() === 'TRANSFERS'" />
+  <div class="divider my-4"></div>
+  <div>
+    <app-detailed-transactions-table
+      *ngIf="selectedType() === 'TRANSACTIONS'"
+      [transactions]="reports()?.transactions?.transactions"
+    />
+    <app-detailed-expenses-table
+      *ngIf="selectedType() === 'EXPENSES'"
+      [expenses]="reports()?.transactions?.expenses"
+    />
+    <app-detailed-discounts-table *ngIf="selectedType() === 'DISCOUNTS'" />
+    <app-detailed-transfers-table *ngIf="selectedType() === 'TRANSFERS'" />
+  </div>
+  <footer
+    class="flex items-center justify-end mt-7 border-t border-gray-400 pt-5"
+  >
+    <app-button type="button" (click)="close()">Cerrar</app-button>
+  </footer>
 </dialog>

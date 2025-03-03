@@ -1,4 +1,12 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  Signal,
+  signal,
+  ViewChild,
+} from '@angular/core';
+import { IDetailedCashRegisterReportsDto } from '@models/cash-register.model';
 
 type SelectedType = 'TRANSACTIONS' | 'EXPENSES' | 'DISCOUNTS' | 'TRANSFERS';
 
@@ -9,6 +17,9 @@ type SelectedType = 'TRANSACTIONS' | 'EXPENSES' | 'DISCOUNTS' | 'TRANSFERS';
 })
 export class CashRegisterDetailsModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
+  @Input({ required: true }) reports!: Signal<
+    IDetailedCashRegisterReportsDto | undefined
+  >;
   readonly selectedType = signal<SelectedType>('TRANSACTIONS');
   readonly types: { title: string; type: SelectedType }[] = [
     { title: 'Transacciones', type: 'TRANSACTIONS' },

@@ -11,7 +11,7 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
 export class PlatformsStatsTableComponent {
   readonly table: ITable = {
     header: [
-      { key: 'id', title: 'ID', align: 'center' },
+      { key: 'platformId', title: 'ID', align: 'center' },
       { key: 'platformName', title: 'Nombre' },
       {
         key: 'initialBalance',
