@@ -87,6 +87,8 @@ export class NewCashTransferFormComponent {
     this.form.get('cashBoxType')?.setValue(CashBoxType.CASH_REGISTER);
     this.form.get('cashier')?.setValue(0);
     this.form.get('safeValue')?.setValue('');
+    this.receive.set(true);
+    this.selectedType.set(CashBoxType.CASH_REGISTER);
   }
 
   private buildData(): ICreateCashTransferDto {

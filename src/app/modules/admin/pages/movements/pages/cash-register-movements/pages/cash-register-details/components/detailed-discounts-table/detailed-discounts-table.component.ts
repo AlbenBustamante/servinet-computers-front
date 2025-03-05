@@ -1,3 +1,4 @@
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, computed, Input } from '@angular/core';
 import { IExpenseRes } from '@models/expense.model';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
@@ -11,7 +12,22 @@ export class DetailedDiscountsTableComponent {
   @Input({ required: true }) discounts!: IExpenseRes[] | undefined;
 
   readonly table: ITable = {
-    header: [],
+    header: [
+      { key: 'id', title: 'ID', align: 'center' },
+      { key: 'description', title: 'Nota' },
+      {
+        key: 'value',
+        title: 'Valor',
+        align: 'right',
+        pipe: new CurrencyPipe('es-CO'),
+      },
+      {
+        key: 'createdDate',
+        title: 'Hora',
+        pipe: new DatePipe('es-CO'),
+        pipeArgs: 'shortTime',
+      },
+    ],
     body: computed(() => this.discounts),
     noDataMessage: 'Parece que aún no tiene gastos a descontar',
   };

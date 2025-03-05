@@ -1,7 +1,10 @@
 <dialog
   #modal
-  class="px-4 py-5 rounded-lg outline-none backdrop:bg-black backdrop:bg-opacity-30 backdrop:backdrop-blur-sm"
+  class="z-40 w-[calc(100vw_-_15%)] max-h-fit px-4 py-5 rounded-lg outline-none backdrop:bg-black backdrop:bg-opacity-30 backdrop:backdrop-blur-sm"
 >
+  <div class="absolute -right-2 -top-2 z-50">
+    <app-icon-button type="button" [icon]="faClose" />
+  </div>
   <header class="mb-4 border-b border-gray-400 pb-3">
     <h2 class="text-center text-gray-800 text-3xl font-medium">
       Caja Registradora N°
@@ -17,7 +20,7 @@
     </ng-container>
   </ul>
   <div class="divider my-4"></div>
-  <div class="max-h-[28rem] overflow-y-auto">
+  <div class="max-h-80 overflow-y-auto">
     <app-detailed-transactions-table
       *ngIf="selectedType() === 'TRANSACTIONS'"
       [transactions]="reports()?.transactions?.transactions"
@@ -35,9 +38,4 @@
       [transfers]="reports()?.transactions?.transfers"
     />
   </div>
-  <footer
-    class="flex items-center justify-end mt-7 border-t border-gray-400 pt-5"
-  >
-    <app-button type="button" (click)="close()">Cerrar</app-button>
-  </footer>
 </dialog>

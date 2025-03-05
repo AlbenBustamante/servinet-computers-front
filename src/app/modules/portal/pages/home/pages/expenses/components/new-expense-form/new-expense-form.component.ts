@@ -12,6 +12,7 @@ import { MyHomeService } from '@services/my-home.service';
 })
 export class NewExpenseFormComponent {
   readonly loading = signal<boolean>(false);
+  readonly discount = signal<boolean>(false);
   readonly form: FormGroup;
 
   constructor(
@@ -48,7 +49,7 @@ export class NewExpenseFormComponent {
           ...prevValue,
           expense,
         ]);
-        this.form.reset();
+        this.resetForm();
         this.setLoading(false);
       },
       error: (err) => {
@@ -56,6 +57,16 @@ export class NewExpenseFormComponent {
         this.setLoading(false);
       },
     });
+  }
+
+  handleDiscount() {
+    this.discount.update((prevValue) => !prevValue);
+  }
+
+  private resetForm() {
+    this.form.reset();
+    this.form.get('discount')?.setValue(false);
+    this.discount.set(false);
   }
 
   private setLoading(loading: boolean) {

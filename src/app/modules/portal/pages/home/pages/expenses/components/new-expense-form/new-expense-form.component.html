@@ -12,14 +12,24 @@
     <label for="value">Valor</label>
     <input type="number" id="value" class="input" formControlName="value" />
   </div>
-  <div class="control-row flex-row-reverse justify-end w-full">
-    <label for="discount" class="w-full flex items-center gap-1"
-      >Descontar
-      <small class="font-normal text-sm text-gray-700"
-        >(Será descontado de su nómina)</small
-      ></label
+  <div class="flex flex-col gap-1">
+    <div class="control-row flex-row-reverse justify-end w-full">
+      <label for="discount" class="w-full flex items-center gap-1"
+        >Descontar</label
+      >
+      <input
+        type="checkbox"
+        id="discount"
+        formControlName="discount"
+        (click)="handleDiscount()"
+      />
+    </div>
+    <small
+      class="text-center font-medium text-sm text-red-700"
+      [ngClass]="discount() ? 'block' : 'hidden'"
     >
-    <input type="checkbox" id="discount" formControlName="discount" />
+      (Será descontado de su nómina)
+    </small>
   </div>
   <app-button type="submit" [loading]="loading()">Registrar Gasto</app-button>
 </form>

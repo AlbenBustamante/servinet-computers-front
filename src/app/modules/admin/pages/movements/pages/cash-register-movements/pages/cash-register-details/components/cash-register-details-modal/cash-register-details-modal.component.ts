@@ -6,6 +6,7 @@ import {
   signal,
   ViewChild,
 } from '@angular/core';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { IDetailedCashRegisterReportsDto } from '@models/cash-register.model';
 
 type SelectedType = 'TRANSACTIONS' | 'EXPENSES' | 'DISCOUNTS' | 'TRANSFERS';
@@ -27,6 +28,7 @@ export class CashRegisterDetailsModalComponent {
     { title: 'Descuentos', type: 'DISCOUNTS' },
     { title: 'Transferencias', type: 'TRANSFERS' },
   ];
+  readonly faClose = faClose;
 
   setSelectedType(type: SelectedType) {
     this.selectedType.set(type);
