@@ -21,7 +21,6 @@ export class DetailedTransfersTableComponent {
         pipe: new CurrencyPipe('es-CO'),
         prefixSign: true,
       },
-      { key: 'senderOrReceiver', title: 'Servicio' },
       {
         key: 'createdDate',
         title: 'Hora',
