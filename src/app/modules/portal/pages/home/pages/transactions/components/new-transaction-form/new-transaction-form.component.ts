@@ -4,7 +4,7 @@ import { TransactionDetailType } from '@models/enums';
 import { ITransactionDetailReq } from '@models/transaction.model';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
-import { TransactionService } from '@services/transaction.service';
+import { TransactionDetailService } from '@services/transaction-detail.service';
 
 @Component({
   selector: 'app-new-transaction-form',
@@ -21,7 +21,7 @@ export class NewTransactionFormComponent {
   constructor(
     private readonly myCashService: MyCashService,
     private readonly myHomeService: MyHomeService,
-    private readonly transactionService: TransactionService,
+    private readonly transactionDetailService: TransactionDetailService,
     private readonly fb: FormBuilder
   ) {
     this.transactions = this.myHomeService.transactions;
@@ -61,7 +61,7 @@ export class NewTransactionFormComponent {
       date,
     };
 
-    this.transactionService.register(detail).subscribe({
+    this.transactionDetailService.register(detail).subscribe({
       next: (transaction) => {
         this.details.update((prevValue) => [...prevValue, transaction]);
         this.form.reset();

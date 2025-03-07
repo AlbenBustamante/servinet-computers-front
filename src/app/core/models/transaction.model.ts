@@ -26,3 +26,11 @@ export interface ITransactionDetailRes extends IResponse {
   type: TransactionDetailType;
   date: Date;
 }
+
+export interface IUpdateTransactionDetailDto {
+  description: string;
+  value: number;
+  commission: number;
+  type: TransactionDetailType;
+  date: Date;
+}
