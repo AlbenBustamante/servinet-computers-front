@@ -13,14 +13,17 @@
         [time]="details?.initialWorking"
         tooltip="Hora de Entrada"
       />
+      <hr class="h-10 w-0.5 bg-gray-200" />
       <app-hour-stat
         [time]="details?.initialBreak"
         tooltip="Entrada de Almuerzo"
       />
+      <hr class="h-10 w-0.5 bg-gray-200" />
       <app-hour-stat
         [time]="details?.finalBreak"
         tooltip="Salida de Almuerzo"
       />
+      <hr class="h-10 w-0.5 bg-gray-200" />
       <app-hour-stat [time]="details?.finalWorking" tooltip="Hora de Salida" />
     </div>
     {{ reports?.transactionsAmount ?? 0 }}
