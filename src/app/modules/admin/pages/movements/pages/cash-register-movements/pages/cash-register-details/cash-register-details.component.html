@@ -3,5 +3,7 @@
   <div class="pt-6"></div>
   <app-header-stats [reports]="reports" (open)="openModal()" />
   <app-cashier-hour-stats [cashier]="cashier" [details]="details" />
+  <hr class="divider mt-2.5 mb-5" />
+  <app-cashier-some-stats [reports]="reports" />
 </ng-template>
 <app-cash-register-details-modal [reports]="detailedReports" />
