@@ -2,7 +2,7 @@
 <ng-template #page>
   <div class="pt-6"></div>
   <app-header-stats [reports]="reports" (open)="openModal()" />
-  <article class="mt-10">
+  <section class="mt-10">
     <header class="border-y-4 border-violet-200 py-3">
       <h3 class="text-gray-700 text-4xl text-center font-medium">
         {{ cashier }}
@@ -26,7 +26,6 @@
       <hr class="h-10 w-0.5 bg-gray-200" />
       <app-hour-stat [time]="details?.finalWorking" tooltip="Hora de Salida" />
     </div>
-    {{ reports?.transactionsAmount ?? 0 }}
-  </article>
+  </section>
 </ng-template>
 <app-cash-register-details-modal [reports]="detailedReports" />
