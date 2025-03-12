@@ -13,9 +13,9 @@ export class CashRegisterDetailsComponent {
   modal!: CashRegisterDetailsModalComponent;
   @Input() id!: number;
   readonly loading = signal<boolean>(false);
-  readonly reports = signal<IDetailedCashRegisterReportsDto | undefined>(
-    undefined
-  );
+  readonly detailedReports = signal<
+    IDetailedCashRegisterReportsDto | undefined
+  >(undefined);
 
   constructor(
     private readonly cashRegisterDetailService: CashRegisterDetailService
@@ -26,7 +26,7 @@ export class CashRegisterDetailsComponent {
 
     this.cashRegisterDetailService.getDetailedReports(this.id).subscribe({
       next: (reports) => {
-        this.reports.set(reports);
+        this.detailedReports.set(reports);
         this.loading.set(false);
       },
       error: (err) => {
@@ -38,5 +38,18 @@ export class CashRegisterDetailsComponent {
 
   openModal() {
     this.modal.open();
+  }
+
+  get reports() {
+    return this.detailedReports()?.reports;
+  }
+
+  get cashier() {
+    const user = this.reports?.cashRegisterDetail.user;
+    return user ? `${user.name} ${user.lastName}` : '';
+  }
+
+  get details() {
+    return this.detailedReports()?.reports.cashRegisterDetail;
   }
 }
