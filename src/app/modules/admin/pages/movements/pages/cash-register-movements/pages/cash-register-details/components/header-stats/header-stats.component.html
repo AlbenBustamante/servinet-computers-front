@@ -8,7 +8,7 @@
     Caja Registradora N°
     {{ reports?.cashRegisterDetail?.cashRegister?.numeral ?? 0 }}
     <span>{{
-      reports?.cashRegisterDetail?.createdDate | date : "dd/MM/yyyy"
+      reports?.cashRegisterDetail?.createdDate | date : "dd/MM/yyyy hh:mm a"
     }}</span>
   </h2>
   <div class="flex items-center justify-between">
