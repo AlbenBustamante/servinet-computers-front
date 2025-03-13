@@ -3,30 +3,14 @@
     <h2 class="text-2xl text-gray-700 font-medium">Estadísticas</h2>
   </header>
   <hr class="divider mt-1.5 mb-2" />
-  <ul class="flex flex-col gap-1.5">
-    <li class="flex items-center justify-between text-gray-700 text-lg">
-      Transacciones
-      <span class="text-violet-700 font-medium">{{
-        reports?.transactionsAmount ?? 0
-      }}</span>
-    </li>
-    <li class="flex items-center justify-between text-gray-700 text-lg">
-      Base Inicial
-      <span class="text-violet-700 font-medium">{{
-        reports?.initialBase ?? 0 | currency : "symbol" : "$" : "0.00"
-      }}</span>
-    </li>
-    <li class="flex items-center justify-between text-gray-700 text-lg">
-      Base Final
-      <span class="text-violet-700 font-medium">{{
-        reports?.finalBase ?? 0 | currency : "symbol" : "$" : "0.00"
-      }}</span>
-    </li>
-    <li class="flex items-center justify-between text-gray-700 text-lg">
-      Descuentos
-      <span class="text-violet-700 font-medium">{{
-        reports?.discounts ?? 0 | currency : "symbol" : "$" : "0.00"
-      }}</span>
-    </li>
+  <ul class="flex flex-col gap-0.5 -mx-2">
+    <app-some-stat
+      stat="Transacciones"
+      [value]="reports?.transactionsAmount"
+      [format]="false"
+    />
+    <app-some-stat stat="Base Inicial" [value]="reports?.initialBase" />
+    <app-some-stat stat="Base Final" [value]="reports?.finalBase" />
+    <app-some-stat stat="Descuentos" [value]="reports?.discounts" />
   </ul>
 </article>

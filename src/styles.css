@@ -54,62 +54,6 @@ body {
   @apply h-0.5 w-full bg-neutral-300;
 }
 
-.table {
-  @apply overflow-x-scroll w-full;
-}
-
-.table > table {
-  @apply w-full;
-}
-
-.table > table thead tr {
-  @apply bg-gray-50 text-left;
-}
-
-.table > table thead tr th {
-  @apply text-gray-800 text-sm px-5 py-2 uppercase;
-}
-
-.table > table thead tr th.id {
-  @apply text-gray-800 text-sm text-center w-20 px-5 py-2 uppercase;
-}
-
-.table > table thead tr th.actions {
-  @apply w-28;
-}
-
-.table > table tbody tr {
-  @apply text-left even:bg-gray-50 odd:bg-white hover:bg-gray-100;
-}
-
-.table > table tbody tr td:not(.table > table tbody tr td.actions) {
-  @apply text-gray-800 px-5 py-2;
-}
-
-.table > table tbody tr td.id {
-  @apply text-gray-800 text-center w-20 px-5 py-2;
-}
-
-.table > table tbody tr td.actions {
-  @apply px-5 py-2;
-}
-
-.table > table tbody tr td.actions > div {
-  @apply flex items-center justify-center gap-5 text-xl;
-}
-
-.table > table tbody tr td.actions > div * {
-  @apply cursor-pointer;
-}
-
-.table > table tbody tr td.actions > div .edit {
-  @apply text-yellow-500 hover:text-yellow-600;
-}
-
-.table > table tbody tr td.actions > div .remove {
-  @apply text-red-500 hover:text-red-600;
-}
-
 .home-container {
   @apply grid grid-cols-[20rem_minmax(33rem,_1fr)] gap-6 w-full;
 }
