@@ -16,9 +16,10 @@ import { CashierHourStatsComponent } from './components/cashier-hour-stats/cashi
 import { CashierSomeStatsComponent } from './components/cashier-some-stats/cashier-some-stats.component';
 import { CashierObservationsComponent } from './components/cashier-observations/cashier-observations.component';
 import { SomeStatComponent } from './components/some-stat/some-stat.component';
+import { CashierDiscrepancyComponent } from './components/cashier-discrepancy/cashier-discrepancy.component';
 
 @NgModule({
-  declarations: [CashRegisterDetailsComponent, StatCardComponent, HeaderStatsComponent, CashRegisterDetailsModalComponent, DetailedTransactionsTableComponent, DetailedExpensesTableComponent, DetailedDiscountsTableComponent, DetailedTransfersTableComponent, HourStatComponent, CashierHourStatsComponent, CashierSomeStatsComponent, CashierObservationsComponent, SomeStatComponent],
+  declarations: [CashRegisterDetailsComponent, StatCardComponent, HeaderStatsComponent, CashRegisterDetailsModalComponent, DetailedTransactionsTableComponent, DetailedExpensesTableComponent, DetailedDiscountsTableComponent, DetailedTransfersTableComponent, HourStatComponent, CashierHourStatsComponent, CashierSomeStatsComponent, CashierObservationsComponent, SomeStatComponent, CashierDiscrepancyComponent],
   imports: [CommonModule, CashRegisterDetailsRoutingModule, SharedModule],
 })
 export default class CashRegisterDetailsModule {}
