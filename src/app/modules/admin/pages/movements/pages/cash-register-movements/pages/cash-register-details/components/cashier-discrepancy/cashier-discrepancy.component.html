@@ -5,7 +5,9 @@
   <hr class="divider mt-1.5 mb-2" />
   <p
     class="text-right text-3xl font-bold"
-    [ngClass]="discrepancy ?? 0 > 0 ? 'text-green-700' : 'text-red-700'"
+    [ngClass]="
+      discrepancy && discrepancy >= 0 ? 'text-green-700' : 'text-red-700'
+    "
   >
     {{ discrepancy ?? 0 | currency : "symbol" : "$" : "0.00" }}
   </p>
