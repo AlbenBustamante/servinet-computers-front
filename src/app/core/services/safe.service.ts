@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { ISafeMovementDto, ISafeReq, ISafeRes } from '@models/safe.model';
+import { ISafeDetailRes, ISafeReq, ISafeRes } from '@models/safe.model';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -28,10 +28,9 @@ export class SafeService {
       .pipe(tap((safes) => this.safes.set(safes)));
   }
 
-  getMovements(safeId: number) {
-    return this.http.get<ISafeMovementDto[]>(
-      `${this.url}/${safeId}/movements`,
-      { context: checkToken() }
-    );
+  getDetails(safeId: number) {
+    return this.http.get<ISafeDetailRes[]>(`${this.url}/${safeId}/details`, {
+      context: checkToken(),
+    });
   }
 }
