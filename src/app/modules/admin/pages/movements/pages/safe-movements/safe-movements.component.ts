@@ -1,8 +1,9 @@
-import { Component, effect, Input, signal, ViewChild } from '@angular/core';
-import { ISafeDetailRes, ISafeMovementDto } from '@models/safe.model';
+import { Component, Input, signal, ViewChild } from '@angular/core';
+import { ISafeDetailRes } from '@models/safe.model';
 import { SafeDetailService } from '@services/safe-detail.service';
 import { SafeService } from '@services/safe.service';
 import { SafeMovementsModalComponent } from './components/safe-movements-modal/safe-movements-modal.component';
+import { SafeMovementService } from '@services/safe-movement.service';
 
 @Component({
   selector: 'app-safe-movements',
@@ -16,16 +17,14 @@ export class SafeMovementsComponent {
   readonly details = signal<ISafeDetailRes[]>([]);
   readonly title = signal<string>('');
   readonly modalLoading = signal<boolean>(false);
-  readonly selectedMovement = signal<ISafeMovementDto | undefined>(undefined);
+  readonly selectedMovement;
 
   constructor(
     private readonly safeService: SafeService,
-    private readonly safeDetailService: SafeDetailService
+    private readonly safeDetailService: SafeDetailService,
+    private readonly safeMovementService: SafeMovementService
   ) {
-    effect(() => {
-      const loading = this.modalLoading();
-      console.log({ loading });
-    });
+    this.selectedMovement = this.safeMovementService.safeMovement;
   }
 
   ngOnInit() {

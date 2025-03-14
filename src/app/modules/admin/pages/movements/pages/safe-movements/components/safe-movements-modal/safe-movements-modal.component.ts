@@ -1,5 +1,4 @@
-import { Component, ElementRef, Input, Signal, ViewChild } from '@angular/core';
-import { ISafeMovementDto } from '@models/safe.model';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-safe-movements-modal',
@@ -8,7 +7,6 @@ import { ISafeMovementDto } from '@models/safe.model';
 })
 export class SafeMovementsModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
-  @Input({ required: true }) movement!: Signal<ISafeMovementDto | undefined>;
 
   open() {
     this.modal.nativeElement.showModal();
