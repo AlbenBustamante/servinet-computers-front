@@ -1,5 +1,6 @@
 import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { CashRegisterDetailMovementService } from '@services/cash-register-detail-movement.service';
 
 type SelectedType = 'TRANSACTIONS' | 'EXPENSES' | 'DISCOUNTS' | 'TRANSFERS';
 
@@ -10,6 +11,7 @@ type SelectedType = 'TRANSACTIONS' | 'EXPENSES' | 'DISCOUNTS' | 'TRANSFERS';
 })
 export class CashRegisterDetailsModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
+  private readonly movement;
   readonly selectedType = signal<SelectedType>('TRANSACTIONS');
   readonly types: { title: string; type: SelectedType }[] = [
     { title: 'Transacciones', type: 'TRANSACTIONS' },
@@ -18,6 +20,12 @@ export class CashRegisterDetailsModalComponent {
     { title: 'Transferencias', type: 'TRANSFERS' },
   ];
   readonly faClose = faClose;
+
+  constructor(
+    private readonly cashRegisterDetailMovementService: CashRegisterDetailMovementService
+  ) {
+    this.movement = this.cashRegisterDetailMovementService.movement;
+  }
 
   setSelectedType(type: SelectedType) {
     this.selectedType.set(type);
@@ -29,5 +37,11 @@ export class CashRegisterDetailsModalComponent {
 
   close() {
     this.modal.nativeElement.close();
+  }
+
+  get numeral() {
+    return (
+      this.movement()?.reports.cashRegisterDetail.cashRegister.numeral ?? 0
+    );
   }
 }

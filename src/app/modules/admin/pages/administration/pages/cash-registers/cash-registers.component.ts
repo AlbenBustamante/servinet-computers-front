@@ -1,4 +1,10 @@
-import { Component, HostListener, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  computed,
+  HostListener,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import {
   IAdmCashRegistersDto,
@@ -38,6 +44,13 @@ export class CashRegistersComponent {
     ...this.options,
     { title: 'Cerrar caja', fn: () => this.openUpdateBaseModal() },
   ];
+  readonly length = computed(() => {
+    const details = this.cashRegisterDetails();
+    const current = details?.currentCashRegisters.length ?? 0;
+    const pending = details?.pendingCashRegisters.length ?? 0;
+
+    return current + pending;
+  });
 
   constructor(
     private readonly cashRegisterBaseService: CashRegisterBaseService,

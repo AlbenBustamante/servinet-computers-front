@@ -1,4 +1,12 @@
-<ul class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5">
+<ng-template #noDetails>
+  <p class="text-center text-2xl text-gray-700 py-24">
+    No se encontraron jornadas activas o cajas pendientes por cerrar
+  </p>
+</ng-template>
+<ul
+  class="grid grid-cols-[repeat(auto-fit,_minmax(16rem,_1fr))] gap-5"
+  *ngIf="length() > 0; else noDetails"
+>
   <li
     *ngFor="
       let detail of cashRegisterDetails()?.currentCashRegisters;
