@@ -1,0 +1,14 @@
+<article class="card w-full max-w-sm">
+  <header>
+    <h2 class="text-2xl text-gray-700 font-medium">Descuadre</h2>
+  </header>
+  <hr class="divider mt-1.5 mb-2" />
+  <p
+    class="text-right text-3xl font-bold"
+    [ngClass]="
+      discrepancy && discrepancy >= 0 ? 'text-green-700' : 'text-red-700'
+    "
+  >
+    {{ discrepancy ?? 0 | currency : "symbol" : "$" : "0.00" }}
+  </p>
+</article>

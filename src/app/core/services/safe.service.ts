@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { ISafeReq, ISafeRes } from '@models/safe.model';
+import { ISafeDetailRes, ISafeReq, ISafeRes } from '@models/safe.model';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -26,5 +26,11 @@ export class SafeService {
     return this.http
       .get<ISafeRes[]>(this.url, { context: checkToken() })
       .pipe(tap((safes) => this.safes.set(safes)));
+  }
+
+  getDetails(safeId: number) {
+    return this.http.get<ISafeDetailRes[]>(`${this.url}/${safeId}/details`, {
+      context: checkToken(),
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, computed, Input } from '@angular/core';
-import { ICashTransferDto } from '@models/cash-transfer.model';
+import { Component, computed } from '@angular/core';
+import { CashRegisterDetailMovementService } from '@services/cash-register-detail-movement.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
 @Component({
@@ -9,26 +9,37 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
   styleUrls: ['./detailed-transfers-table.component.css'],
 })
 export class DetailedTransfersTableComponent {
-  @Input({ required: true }) transfers!: ICashTransferDto[] | undefined;
+  readonly transfers;
+  readonly table: ITable;
 
-  readonly table: ITable = {
-    header: [
-      { key: 'id', title: 'ID', align: 'center' },
-      {
-        key: 'value',
-        title: 'Valor',
-        align: 'right',
-        pipe: new CurrencyPipe('es-CO'),
-        prefixSign: true,
-      },
-      {
-        key: 'createdDate',
-        title: 'Hora',
-        pipe: new DatePipe('es-CO'),
-        pipeArgs: 'shortTime',
-      },
-    ],
-    body: computed(() => this.transfers),
-    noDataMessage: 'Parece que aún no tiene transferencias',
-  };
+  constructor(
+    private readonly cashRegisterDetailMovementService: CashRegisterDetailMovementService
+  ) {
+    this.transfers = computed(
+      () =>
+        this.cashRegisterDetailMovementService.movement()?.transactions
+          .transfers
+    );
+
+    this.table = {
+      header: [
+        { key: 'id', title: 'ID', align: 'center' },
+        {
+          key: 'value',
+          title: 'Valor',
+          align: 'right',
+          pipe: new CurrencyPipe('es-CO'),
+          prefixSign: true,
+        },
+        {
+          key: 'createdDate',
+          title: 'Hora',
+          pipe: new DatePipe('es-CO'),
+          pipeArgs: 'shortTime',
+        },
+      ],
+      body: this.transfers,
+      noDataMessage: 'Parece que aún no tiene transferencias',
+    };
+  }
 }

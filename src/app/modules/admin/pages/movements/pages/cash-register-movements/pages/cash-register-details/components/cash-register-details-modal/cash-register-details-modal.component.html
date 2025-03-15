@@ -5,7 +5,7 @@
   <header class="mb-4 border-b border-gray-400 pb-4 grid grid-cols-3">
     <h2 class="text-center text-gray-800 text-3xl font-medium col-start-2">
       Caja Registradora N°
-      {{ reports()?.reports?.cashRegisterDetail?.cashRegister?.numeral ?? 0 }}
+      {{ 0 }}
     </h2>
     <button
       type="button"
@@ -33,19 +33,9 @@
   <div class="h-[70%] overflow-y-auto">
     <app-detailed-transactions-table
       *ngIf="selectedType() === 'TRANSACTIONS'"
-      [transactions]="reports()?.transactions?.transactions"
     />
-    <app-detailed-expenses-table
-      *ngIf="selectedType() === 'EXPENSES'"
-      [expenses]="reports()?.transactions?.expenses"
-    />
-    <app-detailed-discounts-table
-      *ngIf="selectedType() === 'DISCOUNTS'"
-      [discounts]="reports()?.transactions?.discounts"
-    />
-    <app-detailed-transfers-table
-      *ngIf="selectedType() === 'TRANSFERS'"
-      [transfers]="reports()?.transactions?.transfers"
-    />
+    <app-detailed-expenses-table *ngIf="selectedType() === 'EXPENSES'" />
+    <app-detailed-discounts-table *ngIf="selectedType() === 'DISCOUNTS'" />
+    <app-detailed-transfers-table *ngIf="selectedType() === 'TRANSFERS'" />
   </div>
 </dialog>
