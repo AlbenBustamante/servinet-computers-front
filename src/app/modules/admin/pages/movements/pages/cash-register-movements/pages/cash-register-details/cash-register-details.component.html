@@ -1,7 +1,7 @@
 <app-loading *ngIf="loading(); else page" />
 <ng-template #page>
   <div class="pt-6"></div>
-  <app-header-stats [reports]="reports" (open)="openModal()" />
+  <app-header-stats (open)="openModal()" />
   <app-cashier-hour-stats [cashier]="cashier" [details]="details" />
   <hr class="divider mt-2.5 mb-5" />
   <div class="flex items-start justify-between gap-3 w-full">
@@ -13,4 +13,4 @@
     />
   </div>
 </ng-template>
-<app-cash-register-details-modal [reports]="detailedReports" />
+<app-cash-register-details-modal />

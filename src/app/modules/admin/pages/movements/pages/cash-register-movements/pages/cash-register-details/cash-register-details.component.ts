@@ -2,6 +2,7 @@ import { Component, Input, signal, ViewChild } from '@angular/core';
 import { IDetailedCashRegisterReportsDto } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { CashRegisterDetailsModalComponent } from './components/cash-register-details-modal/cash-register-details-modal.component';
+import { CashRegisterDetailMovementService } from '@services/cash-register-detail-movement.service';
 
 @Component({
   selector: 'app-cash-register-details',
@@ -13,20 +14,21 @@ export class CashRegisterDetailsComponent {
   modal!: CashRegisterDetailsModalComponent;
   @Input() id!: number;
   readonly loading = signal<boolean>(false);
-  readonly detailedReports = signal<
-    IDetailedCashRegisterReportsDto | undefined
-  >(undefined);
+  readonly movement;
 
   constructor(
-    private readonly cashRegisterDetailService: CashRegisterDetailService
-  ) {}
+    private readonly cashRegisterDetailService: CashRegisterDetailService,
+    private readonly cashRegisterDetailMovementService: CashRegisterDetailMovementService
+  ) {
+    this.movement = this.cashRegisterDetailMovementService.movement;
+  }
 
   ngOnInit() {
     this.loading.set(true);
 
     this.cashRegisterDetailService.getDetailedReports(this.id).subscribe({
       next: (reports) => {
-        this.detailedReports.set(reports);
+        this.movement.set(reports);
         this.loading.set(false);
       },
       error: (err) => {
@@ -41,7 +43,7 @@ export class CashRegisterDetailsComponent {
   }
 
   get reports() {
-    return this.detailedReports()?.reports;
+    return this.movement()?.reports;
   }
 
   get cashier() {
@@ -50,6 +52,6 @@ export class CashRegisterDetailsComponent {
   }
 
   get details() {
-    return this.detailedReports()?.reports.cashRegisterDetail;
+    return this.movement()?.reports.cashRegisterDetail;
   }
 }

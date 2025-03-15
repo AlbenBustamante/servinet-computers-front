@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICashRegisterDetailReportsDto } from '@models/cash-register.model';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { CashRegisterDetailMovementService } from '@services/cash-register-detail-movement.service';
 
 @Component({
   selector: 'app-header-stats',
@@ -8,11 +8,21 @@ import { ICashRegisterDetailReportsDto } from '@models/cash-register.model';
 })
 export class HeaderStatsComponent {
   @Output() open = new EventEmitter();
-  @Input({ required: true }) reports!:
-    | ICashRegisterDetailReportsDto
-    | undefined;
+  readonly movement;
+
+  constructor(
+    private readonly cashRegisterDetailMovementService: CashRegisterDetailMovementService
+  ) {
+    this.movement = this.cashRegisterDetailMovementService.movement;
+  }
 
   emitOpen() {
     this.open.emit();
+  }
+
+  get numeral() {
+    return (
+      this.movement()?.reports.cashRegisterDetail.cashRegister.numeral ?? 0
+    );
   }
 }
