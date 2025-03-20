@@ -55,7 +55,7 @@ export class CashRegistersStatsTableComponent {
         key: 'createdDate',
         title: 'Apertura',
         pipe: new DatePipe('es-CO'),
-        pipeArgs: 'shortTime',
+        pipeArgs: 'shortDateTime',
       },
     ],
     body: computed(

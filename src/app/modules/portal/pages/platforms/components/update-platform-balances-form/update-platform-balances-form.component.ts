@@ -2,7 +2,6 @@ import { Component, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '@models/enums';
 import { IPlatformBalanceReq, IPortalPlatform } from '@models/platform.model';
-import { AuthService } from '@services/auth.service';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { PlatformService } from '@services/platform.service';
 import { TokenService } from '@services/token.service';
@@ -38,14 +37,8 @@ export class UpdatePlatformBalancesFormComponent {
     this.canEdit.set(role !== Role.CASHIER);
 
     this.balancesForm = this.fb.group({
-      initialBalance: [
-        initialBalance! > 0 ? initialBalance : '',
-        Validators.required,
-      ],
-      finalBalance: [
-        finalBalance! > 0 ? finalBalance : '',
-        Validators.required,
-      ],
+      initialBalance: [initialBalance ?? 0, Validators.required],
+      finalBalance: [finalBalance ?? 0, Validators.required],
     });
 
     this.canEdit() ? this.balancesForm.enable() : this.balancesForm.disable();

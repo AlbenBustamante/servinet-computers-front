@@ -79,6 +79,7 @@ export interface IAlreadyExistsCashRegisterDetailDto {
 export interface IAdmCashRegistersDto {
   currentCashRegisters: ICashRegisterDetailRes[];
   pendingCashRegisters: ICashRegisterDetailRes[];
+  remainingCashRegisters: ICashRegisterDetailRes[];
 }
 
 export interface ICloseCashRegisterDetailDto {

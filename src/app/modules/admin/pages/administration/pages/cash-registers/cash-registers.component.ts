@@ -34,22 +34,27 @@ export class CashRegistersComponent {
   readonly loading = signal<boolean>(false);
   readonly showDropdown = signal<boolean[]>([]);
   readonly faOptions = faEllipsis;
+
   readonly currentIndex = signal<number | undefined>(undefined);
   readonly pendingIndex = signal<number | undefined>(undefined);
+  readonly remainingIndex = signal<number | undefined>(undefined);
+
   readonly selectedCashRegisterDetail = signal<
     ICashRegisterDetailRes | undefined
   >(undefined);
-  readonly options: AdmItemCardOptions = [];
+  readonly options: AdmItemCardOptions = [
+    { title: 'Actualizar base', fn: () => console.log('ACTUALIZAR BASE') },
+  ];
   readonly pendingOptions: AdmItemCardOptions = [
-    ...this.options,
     { title: 'Cerrar caja', fn: () => this.openUpdateBaseModal() },
   ];
   readonly length = computed(() => {
     const details = this.cashRegisterDetails();
     const current = details?.currentCashRegisters.length ?? 0;
     const pending = details?.pendingCashRegisters.length ?? 0;
+    const remaining = details?.remainingCashRegisters.length ?? 0;
 
-    return current + pending;
+    return current + pending + remaining;
   });
 
   constructor(
@@ -78,34 +83,47 @@ export class CashRegistersComponent {
     });
   }
 
-  toggleShowDropdown(index: number) {
-    this.showDropdown.update((values) => {
-      const newValues = values.map((value, i) => (value ? false : index === i));
-
-      return newValues;
-    });
-  }
-
   openUpdateBaseModal() {
     this.updateBaseModal.open();
   }
 
-  setSelectedCashRegisterDetail(index: number, pending: boolean) {
-    const { currentCashRegisters, pendingCashRegisters } =
-      this.cashRegisterDetails()!;
+  setSelectedCashRegisterDetail(
+    index: number,
+    type: 'current' | 'pending' | 'remaining'
+  ) {
+    const {
+      currentCashRegisters,
+      pendingCashRegisters,
+      remainingCashRegisters,
+    } = this.cashRegisterDetails()!;
 
-    const selectedItem = pending
-      ? pendingCashRegisters[index]
-      : currentCashRegisters[index];
-
-    this.selectedCashRegisterDetail.set(selectedItem);
-
-    if (pending) {
-      this.pendingIndex.set(index === this.pendingIndex() ? undefined : index);
-      this.currentIndex.set(undefined);
-    } else {
-      this.currentIndex.set(index === this.currentIndex() ? undefined : index);
-      this.pendingIndex.set(undefined);
+    switch (type) {
+      case 'current':
+        this.selectedCashRegisterDetail.set(currentCashRegisters[index]);
+        this.currentIndex.set(
+          index === this.currentIndex() ? undefined : index
+        );
+        this.pendingIndex.set(undefined);
+        this.remainingIndex.set(undefined);
+        break;
+      case 'pending':
+        this.selectedCashRegisterDetail.set(pendingCashRegisters[index]);
+        this.pendingIndex.set(
+          index === this.pendingIndex() ? undefined : index
+        );
+        this.currentIndex.set(undefined);
+        this.remainingIndex.set(undefined);
+        break;
+      case 'remaining':
+        this.selectedCashRegisterDetail.set(remainingCashRegisters[index]);
+        this.remainingIndex.set(
+          index === this.remainingIndex() ? undefined : index
+        );
+        this.currentIndex.set(undefined);
+        this.pendingIndex.set(undefined);
+        break;
+      default:
+        break;
     }
   }
 
@@ -158,6 +176,10 @@ export class CashRegistersComponent {
 
     if (!target.closest('.pending-dropdown')) {
       this.pendingIndex.set(undefined);
+    }
+
+    if (!target.closest('.remaining-dropdown')) {
+      this.remainingIndex.set(undefined);
     }
   }
 }
