@@ -63,8 +63,8 @@
     </li>
   </ul>
 </ng-container>
-<app-update-cash-register-base-modal
-  [cashRegisterDetail]="selectedCashRegisterDetail()"
+<app-update-cash-register-base-modal (onSubmit)="updateCashRegisterBase()" />
+<app-close-cash-register-base-modal
   [timeForm]="timeForm"
   (onSubmit)="closeCashRegisterDetail()"
 />

@@ -32,4 +32,9 @@ export class UpdateCashRegisterBaseFormComponent {
     const { total } = this.baseService.calculate(this.form);
     this.baseDetail.set(total);
   }
+
+  ngOnDestroy() {
+    this.baseDetail.set(undefined);
+    this.base.set(this.baseService.defaultBase());
+  }
 }

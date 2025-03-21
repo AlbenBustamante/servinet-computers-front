@@ -10,9 +10,16 @@ export class CashRegisterBaseService {
   readonly selectedCashRegister = signal<ICashRegisterDetailRes | undefined>(
     undefined
   );
-  readonly cashRegisterDetails = signal<ICashRegisterDetailRes[]>([]);
+
+  private readonly base;
 
   constructor(private readonly baseService: BaseService) {
     this.form = this.baseService.defaultForm();
+    this.base = this.baseService.cashBase;
+  }
+
+  resetBase() {
+    this.base.set(this.baseService.defaultBase());
+    this.baseService.updateForm(this.form, BaseService.empty);
   }
 }

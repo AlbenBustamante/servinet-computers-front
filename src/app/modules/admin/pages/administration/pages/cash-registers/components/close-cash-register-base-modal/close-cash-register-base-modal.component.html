@@ -4,10 +4,10 @@
 >
   <header class="mb-5 border-b border-gray-400 pb-2">
     <h2 class="text-center text-gray-800 text-3xl font-medium">
-      Actualizar Base de Caja N°
-      {{ cashRegisterDetail()?.cashRegister?.numeral ?? 0 }}
+      Cierre de Caja {{ cashRegisterDetail()?.cashRegister?.numeral ?? 0 }}
     </h2>
   </header>
+  <app-final-working-hour-form [form]="timeForm" />
   <div class="divider my-5"></div>
   <app-update-cash-register-base-form />
   <footer

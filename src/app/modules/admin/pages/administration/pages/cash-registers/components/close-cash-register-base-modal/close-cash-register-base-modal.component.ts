@@ -6,25 +6,24 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { CashRegisterBaseService } from '@services/cash-register-base.service';
 
 @Component({
-  selector: 'app-update-cash-register-base-modal',
-  templateUrl: './update-cash-register-base-modal.component.html',
-  styleUrls: ['./update-cash-register-base-modal.component.css'],
+  selector: 'app-close-cash-register-base-modal',
+  templateUrl: './close-cash-register-base-modal.component.html',
+  styleUrls: ['./close-cash-register-base-modal.component.css'],
 })
-export class UpdateCashRegisterBaseModalComponent {
+export class CloseCashRegisterBaseModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
-  @Output() onSubmit = new EventEmitter<void>();
+  @Output() onSubmit = new EventEmitter();
+  @Input({ required: true }) timeForm!: FormGroup;
   readonly cashRegisterDetail;
-
-  private readonly form;
 
   constructor(
     private readonly cashRegisterBaseService: CashRegisterBaseService
   ) {
     this.cashRegisterDetail = this.cashRegisterBaseService.selectedCashRegister;
-    this.form = this.cashRegisterBaseService.form;
   }
 
   submit() {

@@ -13,11 +13,12 @@ import {
 } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
-import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-register-base-modal/update-cash-register-base-modal.component';
+import { CloseCashRegisterBaseModalComponent } from './components/close-cash-register-base-modal/close-cash-register-base-modal.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CashRegisterBaseService } from '@services/cash-register-base.service';
 import { IBase } from '@models/base.model';
 import { Router } from '@angular/router';
+import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-register-base-modal/update-cash-register-base-modal.component';
 
 @Component({
   selector: 'app-admin-cash-registers',
@@ -25,9 +26,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./cash-registers.component.css'],
 })
 export class CashRegistersComponent {
+  @ViewChild(CloseCashRegisterBaseModalComponent)
+  closeCashRegisterModal!: CloseCashRegisterBaseModalComponent;
   @ViewChild(UpdateCashRegisterBaseModalComponent)
-  updateBaseModal!: UpdateCashRegisterBaseModalComponent;
+  updateCashRegisterModal!: UpdateCashRegisterBaseModalComponent;
+
   readonly timeForm: FormGroup;
+  readonly selectedCashRegisterDetail;
   readonly cashRegisterDetails = signal<IAdmCashRegistersDto | undefined>(
     undefined
   );
@@ -39,14 +44,11 @@ export class CashRegistersComponent {
   readonly pendingIndex = signal<number | undefined>(undefined);
   readonly remainingIndex = signal<number | undefined>(undefined);
 
-  readonly selectedCashRegisterDetail = signal<
-    ICashRegisterDetailRes | undefined
-  >(undefined);
   readonly options: AdmItemCardOptions = [
-    { title: 'Actualizar base', fn: () => console.log('ACTUALIZAR BASE') },
+    { title: 'Actualizar base', fn: () => this.openUpdateCashRegisterModal() },
   ];
   readonly pendingOptions: AdmItemCardOptions = [
-    { title: 'Cerrar caja', fn: () => this.openUpdateBaseModal() },
+    { title: 'Cerrar caja', fn: () => this.openCloseCashRegisterModal() },
   ];
   readonly length = computed(() => {
     const details = this.cashRegisterDetails();
@@ -63,6 +65,9 @@ export class CashRegistersComponent {
     private readonly fb: FormBuilder,
     private readonly router: Router
   ) {
+    this.selectedCashRegisterDetail =
+      this.cashRegisterBaseService.selectedCashRegister;
+
     this.timeForm = this.fb.group({
       time: ['20:00', Validators.required],
     });
@@ -81,10 +86,6 @@ export class CashRegistersComponent {
         this.loading.set(false);
       },
     });
-  }
-
-  openUpdateBaseModal() {
-    this.updateBaseModal.open();
   }
 
   setSelectedCashRegisterDetail(
@@ -127,6 +128,18 @@ export class CashRegistersComponent {
     }
   }
 
+  openUpdateCashRegisterModal() {
+    this.updateCashRegisterModal.open();
+  }
+
+  openCloseCashRegisterModal() {
+    this.closeCashRegisterModal.open();
+  }
+
+  updateCashRegisterBase() {
+    console.log('submit');
+  }
+
   closeCashRegisterDetail() {
     if (this.timeForm.invalid) {
       return this.timeForm.markAllAsTouched();
@@ -153,7 +166,7 @@ export class CashRegistersComponent {
         next: (_) => {
           const route = 'admin/movimientos/caja-registradora';
           const detail = this.selectedCashRegisterDetail()!;
-          this.updateBaseModal.close();
+          this.closeCashRegisterModal.close();
           this.router.navigateByUrl(
             `${route}/${detail.cashRegister.id}/reportes/${detail.id}`
           );
