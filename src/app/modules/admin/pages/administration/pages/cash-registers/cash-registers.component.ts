@@ -8,7 +8,6 @@ import {
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import {
   IAdmCashRegistersDto,
-  ICashRegisterDetailRes,
   ICloseCashRegisterDetailDto,
 } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
@@ -126,6 +125,10 @@ export class CashRegistersComponent {
       default:
         break;
     }
+
+    const { detailFinalBase } = this.selectedCashRegisterDetail()!;
+
+    this.cashRegisterBaseService.calculate(detailFinalBase);
   }
 
   openUpdateCashRegisterModal() {
