@@ -10,7 +10,7 @@ import { CashRegisterBaseService } from '@services/cash-register-base.service';
   styleUrls: ['./update-cash-register-base-form.component.css'],
 })
 export class UpdateCashRegisterBaseFormComponent {
-  readonly baseDetail = signal<IBaseDetail | undefined>(undefined);
+  readonly baseDetail;
   readonly base;
   readonly form: FormGroup;
 
@@ -20,6 +20,7 @@ export class UpdateCashRegisterBaseFormComponent {
   ) {
     this.form = this.cashRegisterBaseService.form;
     this.base = this.baseService.cashBase;
+    this.baseDetail = this.cashRegisterBaseService.baseDetail;
 
     this.base.set(this.baseService.defaultBase());
   }
@@ -34,7 +35,6 @@ export class UpdateCashRegisterBaseFormComponent {
   }
 
   ngOnDestroy() {
-    this.baseDetail.set(undefined);
-    this.base.set(this.baseService.defaultBase());
+    this.cashRegisterBaseService.resetBase();
   }
 }

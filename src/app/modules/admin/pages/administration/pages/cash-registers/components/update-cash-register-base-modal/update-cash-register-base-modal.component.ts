@@ -2,7 +2,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Input,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -18,13 +17,10 @@ export class UpdateCashRegisterBaseModalComponent {
   @Output() onSubmit = new EventEmitter<void>();
   readonly cashRegisterDetail;
 
-  private readonly form;
-
   constructor(
     private readonly cashRegisterBaseService: CashRegisterBaseService
   ) {
     this.cashRegisterDetail = this.cashRegisterBaseService.selectedCashRegister;
-    this.form = this.cashRegisterBaseService.form;
   }
 
   submit() {
