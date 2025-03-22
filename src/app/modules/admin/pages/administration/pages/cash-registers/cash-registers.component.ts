@@ -43,12 +43,23 @@ export class CashRegistersComponent {
   readonly pendingIndex = signal<number | undefined>(undefined);
   readonly remainingIndex = signal<number | undefined>(undefined);
 
-  readonly options: AdmItemCardOptions = [
-    { title: 'Actualizar base', fn: () => this.openUpdateCashRegisterModal() },
+  readonly currentOptions: AdmItemCardOptions = [
+    {
+      title: 'Actualizar Base Inicial',
+      fn: () => this.openUpdateInitialBaseModal(),
+    },
   ];
   readonly pendingOptions: AdmItemCardOptions = [
     { title: 'Cerrar caja', fn: () => this.openCloseCashRegisterModal() },
   ];
+  readonly remainingOptions: AdmItemCardOptions = [
+    ...this.currentOptions,
+    {
+      title: 'Actualizar Base Final',
+      fn: () => this.openUpdateFinalBaseModal(),
+    },
+  ];
+
   readonly length = computed(() => {
     const details = this.cashRegisterDetails();
     const current = details?.currentCashRegisters.length ?? 0;
@@ -75,7 +86,7 @@ export class CashRegistersComponent {
   ngOnInit() {
     this.loading.set(true);
 
-    this.cashRegisterDetailService.getAllOfToday().subscribe({
+    this.cashRegisterDetailService.getAdmCashRegisterDetails().subscribe({
       next: (cashRegisterDetails) => {
         this.cashRegisterDetails.set(cashRegisterDetails);
         this.loading.set(false);
@@ -125,13 +136,17 @@ export class CashRegistersComponent {
       default:
         break;
     }
-
-    const { detailFinalBase } = this.selectedCashRegisterDetail()!;
-
-    this.cashRegisterBaseService.calculate(detailFinalBase);
   }
 
-  openUpdateCashRegisterModal() {
+  openUpdateInitialBaseModal() {
+    const { detailInitialBase } = this.selectedCashRegisterDetail()!;
+    this.cashRegisterBaseService.calculate(detailInitialBase);
+    this.updateCashRegisterModal.open();
+  }
+
+  openUpdateFinalBaseModal() {
+    const { detailFinalBase } = this.selectedCashRegisterDetail()!;
+    this.cashRegisterBaseService.calculate(detailFinalBase);
     this.updateCashRegisterModal.open();
   }
 

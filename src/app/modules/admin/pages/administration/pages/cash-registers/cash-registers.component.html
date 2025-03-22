@@ -17,7 +17,7 @@
     >
       <app-adm-item-card
         [showDropdown]="currentIndex() === i"
-        [options]="options"
+        [options]="currentOptions"
         [finalBalance]="
           detail.finalBase! > 0 ? detail.finalBase! : detail.initialBase
         "
@@ -53,7 +53,7 @@
     >
       <app-adm-item-card
         [showDropdown]="remainingIndex() === i"
-        [options]="options"
+        [options]="remainingOptions"
         [finalBalance]="detail.finalBase ?? 0"
         (setSelectedItem)="setSelectedCashRegisterDetail(i, 'remaining')"
         class="remaining-dropdown"

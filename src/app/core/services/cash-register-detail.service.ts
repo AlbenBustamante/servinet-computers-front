@@ -37,8 +37,8 @@ export class CashRegisterDetailService {
     });
   }
 
-  getAllOfToday() {
-    return this.http.get<IAdmCashRegistersDto>(`${this.url}/today`, {
+  getAdmCashRegisterDetails() {
+    return this.http.get<IAdmCashRegistersDto>(`${this.url}/adm`, {
       context: checkToken(),
     });
   }

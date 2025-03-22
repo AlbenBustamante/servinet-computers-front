@@ -11,7 +11,7 @@
         (click)="toggleShowDropdown()"
       />
       <ul
-        class="absolute z-10 bg-white drop-shadow right-0 rounded-lg py-2 min-w-40 flex flex-col gap-0.5"
+        class="absolute z-10 bg-white drop-shadow right-0 rounded-lg py-2 w-48 flex flex-col gap-0.5"
         [ngClass]="showDropdown ? 'block' : 'hidden'"
       >
         <li *ngFor="let option of options">
