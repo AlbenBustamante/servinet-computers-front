@@ -9,6 +9,7 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import {
   IAdmCashRegistersDto,
   ICloseCashRegisterDetailDto,
+  IUpdateCashRegisterDetailBaseDto,
 } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { AdmItemCardOptions } from '../../components/adm-item-card/adm-item-card.component';
@@ -28,7 +29,7 @@ export class CashRegistersComponent {
   @ViewChild(CloseCashRegisterBaseModalComponent)
   closeCashRegisterModal!: CloseCashRegisterBaseModalComponent;
   @ViewChild(UpdateCashRegisterBaseModalComponent)
-  updateCashRegisterModal!: UpdateCashRegisterBaseModalComponent;
+  updateCashRegisterBaseModal!: UpdateCashRegisterBaseModalComponent;
 
   readonly timeForm: FormGroup;
   readonly selectedCashRegisterDetail;
@@ -37,6 +38,7 @@ export class CashRegistersComponent {
   );
   readonly loading = signal<boolean>(false);
   readonly showDropdown = signal<boolean[]>([]);
+  readonly initial = signal<boolean>(false);
   readonly faOptions = faEllipsis;
 
   readonly currentIndex = signal<number | undefined>(undefined);
@@ -139,15 +141,17 @@ export class CashRegistersComponent {
   }
 
   openUpdateInitialBaseModal() {
+    this.initial.set(true);
     const { detailInitialBase } = this.selectedCashRegisterDetail()!;
     this.cashRegisterBaseService.calculate(detailInitialBase);
-    this.updateCashRegisterModal.open();
+    this.updateCashRegisterBaseModal.open();
   }
 
   openUpdateFinalBaseModal() {
+    this.initial.set(false);
     const { detailFinalBase } = this.selectedCashRegisterDetail()!;
     this.cashRegisterBaseService.calculate(detailFinalBase);
-    this.updateCashRegisterModal.open();
+    this.updateCashRegisterBaseModal.open();
   }
 
   openCloseCashRegisterModal() {
@@ -155,7 +159,58 @@ export class CashRegistersComponent {
   }
 
   updateCashRegisterBase() {
-    console.log('submit');
+    const form = this.cashRegisterBaseService.form;
+
+    if (form.invalid) {
+      return form.markAllAsTouched();
+    }
+
+    const { id } = this.selectedCashRegisterDetail()!;
+
+    const dto: IUpdateCashRegisterDetailBaseDto = {
+      base: form.value as unknown as IBase,
+      initial: this.initial(),
+    };
+
+    this.cashRegisterDetailService.updateBase(id, dto).subscribe({
+      next: (cashRegisterDetail) => {
+        this.cashRegisterDetails.update((prevValue) => {
+          const currentIndex = prevValue?.currentCashRegisters.findIndex(
+            (detail) => detail.id === id
+          );
+
+          if (currentIndex != -1) {
+            prevValue!.currentCashRegisters[currentIndex!] = cashRegisterDetail;
+          } else {
+            const pendingIndex = prevValue?.pendingCashRegisters.findIndex(
+              (detail) => detail.id === id
+            );
+
+            if (pendingIndex != -1) {
+              prevValue!.pendingCashRegisters[pendingIndex!] =
+                cashRegisterDetail;
+            } else {
+              const remainingIndex =
+                prevValue?.remainingCashRegisters.findIndex(
+                  (detail) => detail.id === id
+                );
+
+              if (remainingIndex != -1) {
+                prevValue!.remainingCashRegisters[remainingIndex!] =
+                  cashRegisterDetail;
+              }
+            }
+          }
+
+          return prevValue;
+        });
+
+        this.updateCashRegisterBaseModal.close();
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
   closeCashRegisterDetail() {

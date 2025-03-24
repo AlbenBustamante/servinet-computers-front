@@ -82,6 +82,11 @@ export interface IAdmCashRegistersDto {
   remainingCashRegisters: ICashRegisterDetailRes[];
 }
 
+export interface IUpdateCashRegisterDetailBaseDto {
+  base: IBase;
+  initial: boolean;
+}
+
 export interface ICloseCashRegisterDetailDto {
   time?: Date;
   base: IBase;

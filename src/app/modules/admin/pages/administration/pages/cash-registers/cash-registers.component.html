@@ -63,7 +63,10 @@
     </li>
   </ul>
 </ng-container>
-<app-update-cash-register-base-modal (onSubmit)="updateCashRegisterBase()" />
+<app-update-cash-register-base-modal
+  (onSubmit)="updateCashRegisterBase()"
+  [initial]="initial()"
+/>
 <app-close-cash-register-base-modal
   [timeForm]="timeForm"
   (onSubmit)="closeCashRegisterDetail()"

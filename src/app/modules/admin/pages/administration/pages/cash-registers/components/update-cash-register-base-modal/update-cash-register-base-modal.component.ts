@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -15,6 +16,7 @@ import { CashRegisterBaseService } from '@services/cash-register-base.service';
 export class UpdateCashRegisterBaseModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
   @Output() onSubmit = new EventEmitter<void>();
+  @Input({ required: true }) initial!: boolean;
   readonly cashRegisterDetail;
 
   constructor(

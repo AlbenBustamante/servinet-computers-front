@@ -11,6 +11,7 @@ import {
   ICloseCashRegisterDetailDto,
   IDetailedCashRegisterReportsDto,
   IMyCashRegistersReports,
+  IUpdateCashRegisterDetailBaseDto,
 } from '@models/cash-register.model';
 import { TokenService } from './token.service';
 import { IBase } from '@models/base.model';
@@ -104,6 +105,17 @@ export class CashRegisterDetailService {
     return this.http.put<ICashRegisterDetailRes>(
       this.urlIdPath(cashRegisterDetailId, 'end-break'),
       undefined,
+      { context: checkToken() }
+    );
+  }
+
+  updateBase(
+    cashRegisterDetailId: number,
+    updateCashRegisterDetailBase: IUpdateCashRegisterDetailBaseDto
+  ) {
+    return this.http.put<ICashRegisterDetailRes>(
+      this.urlIdPath(cashRegisterDetailId, 'update-base'),
+      updateCashRegisterDetailBase,
       { context: checkToken() }
     );
   }

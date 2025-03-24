@@ -4,11 +4,10 @@
 >
   <header class="mb-5 border-b border-gray-400 pb-2">
     <h2 class="text-center text-gray-800 text-3xl font-medium">
-      Actualizar Base de Caja N°
+      Base {{ initial ? "Inicial" : "Final" }} de Caja Registradora N°
       {{ cashRegisterDetail()?.cashRegister?.numeral ?? 0 }}
     </h2>
   </header>
-  <div class="divider my-5"></div>
   <app-update-cash-register-base-form />
   <footer
     class="flex items-center justify-between mt-7 border-t border-gray-400 pt-5"
