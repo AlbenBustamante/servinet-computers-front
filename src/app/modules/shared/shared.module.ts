@@ -17,6 +17,7 @@ import { EnabledPipe } from './pipes/enabled.pipe';
 import { RolePipe } from './pipes/role.pipe';
 import { TransactionDetailTypePipe } from './pipes/transaction-detail-type.pipe';
 import { DiscountPipe } from './pipes/discount.pipe';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DiscountPipe } from './pipes/discount.pipe';
     RolePipe,
     TransactionDetailTypePipe,
     DiscountPipe,
+    SidebarComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
@@ -48,6 +50,7 @@ import { DiscountPipe } from './pipes/discount.pipe';
     CustomTableComponent,
     CashRegisterStatusPipe,
     CashRegisterDetailStatusPipe,
+    SidebarComponent,
   ],
 })
 export class SharedModule {}
