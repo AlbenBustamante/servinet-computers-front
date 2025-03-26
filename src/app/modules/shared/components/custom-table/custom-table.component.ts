@@ -5,11 +5,12 @@ import {
   PipeTransform,
   Signal,
 } from '@angular/core';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export interface ITable {
   header: {
-    key: string;
-    title: string;
+    key?: string;
+    title?: string;
     align?: 'center' | 'right';
     pipe?: PipeTransform;
     pipeArgs?: string;
@@ -17,6 +18,8 @@ export interface ITable {
   }[];
   body: Signal<any[] | undefined>;
   onClick?: (index: number) => void;
+  onEdit?: (index: number) => void;
+  onRemove?: (index: number) => void;
   noDataMessage: string;
 }
 
@@ -27,6 +30,8 @@ export interface ITable {
 })
 export class CustomTableComponent {
   @Input({ required: true }) table!: ITable;
+  readonly faEdit = faPencil;
+  readonly faRemove = faTrash;
 
   mapAlign(align: 'center' | 'right') {
     return `text-${align}`;
