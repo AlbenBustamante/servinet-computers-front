@@ -6,6 +6,7 @@ import {
   IPlatformReq,
   IPlatformRes,
   IPortalPlatform,
+  IUpdatePlatformDto,
 } from '@models/platform.model';
 import { tap } from 'rxjs';
 
@@ -52,8 +53,8 @@ export class PlatformService {
       );
   }
 
-  update(platformId: number, req: IPlatformReq) {
-    return this.http.patch<IPlatformRes>(`${this.url}/${platformId}`, req, {
+  update(platformId: number, dto: IUpdatePlatformDto) {
+    return this.http.patch<IPlatformRes>(`${this.url}/${platformId}`, dto, {
       context: checkToken(),
     });
   }

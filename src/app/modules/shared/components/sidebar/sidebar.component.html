@@ -1,11 +1,25 @@
 <aside
-  class="fixed w-72 top-16 right-0 bottom-0 bg-white drop-shadow-xl py-5 ease-in duration-200"
-  [ngClass]="{ 'translate-x-full': !showSideBar }"
+  class="fixed w-80 top-16 right-0 bottom-0 bg-white drop-shadow-xl py-5 px-5 ease-in duration-200 flex flex-col justify-between"
+  [ngClass]="{ 'translate-x-full': !showSideBar() }"
 >
-  <header class="px-5 mb-3">
-    <h4 class="text-xl text-gray-700 font-medium">
-      {{ headline }}
-    </h4>
-  </header>
-  <ng-content></ng-content>
+  <div class="w-full">
+    <header class="mb-3">
+      <h4 class="text-xl text-gray-700 font-medium">
+        {{ headline }}
+      </h4>
+    </header>
+    <ng-content></ng-content>
+  </div>
+  <div class="w-full flex flex-col items-center gap-3">
+    <app-button type="button" class="w-full" (click)="emitOnSubmit()">{{
+      actionName
+    }}</app-button>
+    <app-button
+      type="button"
+      color="neutral"
+      class="w-full"
+      (click)="onCancel()"
+      >Cerrar</app-button
+    >
+  </div>
 </aside>

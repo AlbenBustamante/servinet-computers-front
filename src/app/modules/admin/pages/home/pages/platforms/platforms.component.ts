@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { IPlatformRes } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { PlatformService } from '@services/platform.service';
 })
 export class PlatformsComponent {
   readonly loading = signal<boolean>(true);
+  readonly showSideBar = signal<boolean>(false);
 
   constructor(private readonly platformService: PlatformService) {}
 
@@ -19,5 +21,14 @@ export class PlatformsComponent {
         console.log(error);
       },
     });
+  }
+
+  onEdit(platform: IPlatformRes) {
+    this.showSideBar.set(true);
+    console.log({ platform });
+  }
+
+  onUpdate() {
+    console.log('UPDATE');
   }
 }

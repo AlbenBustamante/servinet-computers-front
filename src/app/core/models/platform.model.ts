@@ -8,6 +8,10 @@ export interface IPlatformRes extends IResponse {
   name: string;
 }
 
+export interface IUpdatePlatformDto {
+  name: string;
+}
+
 export interface IPlatformBalanceReq {
   platformId: number;
   initialBalance: number;

@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  WritableSignal,
+} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,6 +12,16 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
+  @Output() onSubmit = new EventEmitter();
   @Input({ required: true }) headline!: string;
-  @Input({ required: true }) showSideBar!: boolean;
+  @Input({ required: true }) actionName!: string;
+  @Input({ required: true }) showSideBar!: WritableSignal<boolean>;
+
+  emitOnSubmit() {
+    this.onSubmit.emit();
+  }
+
+  onCancel() {
+    this.showSideBar.set(false);
+  }
 }

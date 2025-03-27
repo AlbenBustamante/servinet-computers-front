@@ -21,6 +21,10 @@
     </div>
   </div>
 </section>
-<app-sidebar headline="Registro de usuario" [showSideBar]="showSideBar()">
+<app-sidebar
+  headline="Registro de usuario"
+  [showSideBar]="showSideBar"
+  actionName="Registrar"
+>
   <app-new-user-form (onCancel)="cancelRegister()" />
 </app-sidebar>

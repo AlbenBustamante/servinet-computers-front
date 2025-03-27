@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { IPlatformRes } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
@@ -9,6 +10,8 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
   styleUrls: ['./platforms-table.component.css'],
 })
 export class PlatformsTableComponent {
+  @Output() onEdit = new EventEmitter<IPlatformRes>();
+
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
@@ -29,18 +32,18 @@ export class PlatformsTableComponent {
     ],
     body: this.platformService.platforms,
     noDataMessage: 'Sin plataformas registradas...',
-    onEdit: (index) => this.onEdit(index),
+    onEdit: (index) => this.emitOnEdit(index),
     onRemove: (index) => this.onRemove(index),
   };
 
   constructor(private readonly platformService: PlatformService) {}
 
-  onEdit(index: number) {
+  private emitOnEdit(index: number) {
     const platform = this.platformService.platforms()[index];
-    console.log({ on: 'Edit', json: platform });
+    this.onEdit.emit(platform);
   }
 
-  onRemove(index: number) {
+  private onRemove(index: number) {
     const platform = this.platformService.platforms()[index];
     console.log({ on: 'Remove', json: platform });
   }
