@@ -34,5 +34,6 @@ export class PlatformsComponent {
 
   onUpdate() {
     this.updatePlatformForm.onSubmit();
+    this.showSideBar.set(false);
   }
 }
