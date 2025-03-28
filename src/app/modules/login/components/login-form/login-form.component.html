@@ -7,6 +7,7 @@
       [readOnly]="loading()"
       class="input"
       formControlName="code"
+      autocomplete="username"
     />
   </div>
   <div class="control">
@@ -17,6 +18,7 @@
       [readOnly]="loading()"
       class="input"
       formControlName="password"
+      autocomplete="off"
     />
   </div>
   <app-button type="submit" [loading]="loading()" class="mt-2"

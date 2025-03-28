@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { PlatformService } from '@services/platform.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
@@ -10,6 +10,7 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
 })
 export class PlatformsTableComponent {
   @Output() onEdit = new EventEmitter<void>();
+  readonly removeLoading = signal<boolean>(false);
 
   readonly table: ITable = {
     header: [
@@ -45,7 +46,29 @@ export class PlatformsTableComponent {
   }
 
   private onRemove(index: number) {
-    const platform = this.platformService.platforms()[index];
-    console.log({ on: 'Remove', json: platform });
+    if (this.removeLoading()) {
+      return;
+    }
+
+    this.removeLoading.set(true);
+
+    const platforms = this.platformService.platforms;
+    const { id } = platforms()[index];
+
+    this.platformService.delete(id).subscribe({
+      next: (_) => {
+        platforms.update((prevPlatforms) => {
+          prevPlatforms.splice(index, 1);
+
+          return prevPlatforms;
+        });
+
+        this.removeLoading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.removeLoading.set(false);
+      },
+    });
   }
 }
