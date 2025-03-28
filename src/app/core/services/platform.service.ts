@@ -9,6 +9,7 @@ import {
   IUpdatePlatformDto,
 } from '@models/platform.model';
 import { tap } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,22 @@ import { tap } from 'rxjs';
 export class PlatformService {
   private readonly url: string = `${environment.apiUrl}/platforms`;
   readonly platforms = signal<IPlatformRes[]>([]);
-  readonly editing = signal<boolean>(false);
+  readonly balanceEditing = signal<boolean>(false);
   readonly portalPlatforms = signal<IPortalPlatform[]>([]);
   readonly selectedPortalPlatform = signal<IPortalPlatform | null>(null);
   readonly selectedPortalPlatformIndex = signal<number | null>(null);
+  readonly updatePlatformLoading = signal<boolean>(false);
+  readonly updatePlatformForm: FormGroup;
+  readonly platformToUpdateId = signal<number>(-1);
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly fb: FormBuilder
+  ) {
+    this.updatePlatformForm = this.fb.group({
+      name: ['', Validators.required],
+    });
+  }
 
   register(req: IPlatformReq) {
     return this.http

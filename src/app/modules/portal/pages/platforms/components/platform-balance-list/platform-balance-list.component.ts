@@ -19,7 +19,7 @@ export class PlatformBalanceListComponent {
     private readonly platformService: PlatformService,
     private readonly platformTransferService: PlatformTransferService
   ) {
-    this.editing = this.platformService.editing;
+    this.editing = this.platformService.balanceEditing;
     this.portalPlatforms = this.platformService.portalPlatforms;
     this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
 

@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { IPlatformRes } from '@models/platform.model';
+import { Component, signal, ViewChild } from '@angular/core';
 import { PlatformService } from '@services/platform.service';
+import { UpdatePlatformFormComponent } from './components/update-platform-form/update-platform-form.component';
 
 @Component({
   selector: 'app-admin-platforms',
@@ -8,10 +8,15 @@ import { PlatformService } from '@services/platform.service';
   styleUrls: ['./platforms.component.css'],
 })
 export class PlatformsComponent {
+  @ViewChild(UpdatePlatformFormComponent)
+  updatePlatformForm!: UpdatePlatformFormComponent;
   readonly loading = signal<boolean>(true);
   readonly showSideBar = signal<boolean>(false);
+  readonly updatePlatformLoading;
 
-  constructor(private readonly platformService: PlatformService) {}
+  constructor(private readonly platformService: PlatformService) {
+    this.updatePlatformLoading = this.platformService.updatePlatformLoading;
+  }
 
   ngOnInit() {
     this.platformService.getAll().subscribe({
@@ -23,12 +28,11 @@ export class PlatformsComponent {
     });
   }
 
-  onEdit(platform: IPlatformRes) {
+  onEdit() {
     this.showSideBar.set(true);
-    console.log({ platform });
   }
 
   onUpdate() {
-    console.log('UPDATE');
+    this.updatePlatformForm.onSubmit();
   }
 }

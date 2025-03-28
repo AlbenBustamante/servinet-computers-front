@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { IPlatformRes } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
@@ -10,7 +9,7 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
   styleUrls: ['./platforms-table.component.css'],
 })
 export class PlatformsTableComponent {
-  @Output() onEdit = new EventEmitter<IPlatformRes>();
+  @Output() onEdit = new EventEmitter<void>();
 
   readonly table: ITable = {
     header: [
@@ -39,8 +38,10 @@ export class PlatformsTableComponent {
   constructor(private readonly platformService: PlatformService) {}
 
   private emitOnEdit(index: number) {
-    const platform = this.platformService.platforms()[index];
-    this.onEdit.emit(platform);
+    const { id, name } = this.platformService.platforms()[index];
+    this.platformService.platformToUpdateId.set(id);
+    this.platformService.updatePlatformForm.get('name')?.setValue(name);
+    this.onEdit.emit();
   }
 
   private onRemove(index: number) {

@@ -26,7 +26,7 @@ export class UpdatePlatformBalancesFormComponent {
     private readonly tokenService: TokenService
   ) {
     this.portalPlatforms = this.platformService.portalPlatforms;
-    this.editing = this.platformService.editing;
+    this.editing = this.platformService.balanceEditing;
     this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
 
     const initialBalance = this.selectedPortalPlatform()?.initialBalance;

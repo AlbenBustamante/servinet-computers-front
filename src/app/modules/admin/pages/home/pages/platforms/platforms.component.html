@@ -13,12 +13,13 @@ sus saldos y transferencias"
   </h3>
   <div class="px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg">
     <app-spinner *ngIf="loading()" />
-    <app-platforms-table *ngIf="!loading()" (onEdit)="onEdit($event)" />
+    <app-platforms-table *ngIf="!loading()" (onEdit)="onEdit()" />
   </div>
 </section>
 <app-sidebar
   headline="Actualización de plataforma"
   [showSideBar]="showSideBar"
+  [loading]="updatePlatformLoading()"
   actionName="Actualizar"
   (onSubmit)="onUpdate()"
   ><app-update-platform-form />

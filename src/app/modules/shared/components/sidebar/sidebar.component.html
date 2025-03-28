@@ -11,14 +11,19 @@
     <ng-content></ng-content>
   </div>
   <div class="w-full flex flex-col items-center gap-3">
-    <app-button type="button" class="w-full" (click)="emitOnSubmit()">{{
-      actionName
-    }}</app-button>
+    <app-button
+      type="button"
+      class="w-full"
+      [loading]="loading"
+      (click)="emitOnSubmit()"
+      >{{ actionName }}</app-button
+    >
     <app-button
       type="button"
       color="neutral"
       class="w-full"
       (click)="onCancel()"
+      [disabled]="loading"
       >Cerrar</app-button
     >
   </div>

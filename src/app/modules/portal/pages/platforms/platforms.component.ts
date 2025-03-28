@@ -19,7 +19,7 @@ export class PlatformsComponent implements OnInit {
     private readonly platformService: PlatformService,
     private readonly tokenService: TokenService
   ) {
-    this.editing = this.platformService.editing;
+    this.editing = this.platformService.balanceEditing;
     this.selectedPortalPlatform = this.platformService.selectedPortalPlatform;
 
     const role = this.tokenService.getInfo().role;
