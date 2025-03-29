@@ -1,15 +1,17 @@
 <form class="w-full form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="control">
     <label for="name">Nombre</label>
-    <div class="flex items-center gap-7">
+    <div class="grid grid-cols-[1fr,_14rem] gap-7">
       <input
         type="text"
         id="name"
         [readOnly]="loading()"
         formControlName="name"
-        class="w-full input"
+        class="input"
       />
-      <app-button type="submit" [loading]="loading()">Registrar</app-button>
+      <app-button type="submit" [loading]="loading()"
+        >Registrar plataforma</app-button
+      >
     </div>
   </div>
 </form>

@@ -14,6 +14,11 @@ export interface ICashRegisterReq {
 
 export interface ICashRegisterRes extends IResponse, ICashRegisterReq {}
 
+export interface IUpdateCashRegisterDto {
+  description: string;
+  disabled: boolean;
+}
+
 export interface ICashRegisterDetailReq {
   cashRegisterId: number;
   userId?: number;

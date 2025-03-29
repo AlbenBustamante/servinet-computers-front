@@ -2,13 +2,22 @@
   hTitle="Cajas registradoras"
   hDescription="Administra las cajas registradoras"
 />
-<div class="mt-10 grid grid-cols-3 gap-5">
-  <article class="card col-span-1 min-w-[19rem]">
+<div class="mt-10 grid grid-cols-[21rem_1fr] gap-5">
+  <article class="card">
     <h3 class="text-2xl text-gray-700 font-medium mb-3">Registro de caja</h3>
     <app-new-cash-register-form />
   </article>
-  <article class="card col-span-2">
+  <article class="card">
     <h3 class="text-2xl text-gray-700 font-medium mb-3">Listado de cajas</h3>
-    <app-cash-registers-table />
+    <app-cash-registers-table (onEdit)="showSideBar.set(true)" />
   </article>
 </div>
+<app-sidebar
+  headline="Caja Registradora"
+  actionName="Actualizar"
+  [showSideBar]="showSideBar"
+  mode="update"
+  [loading]="updateCashRegisterLoading()"
+  (onSubmit)="onUpdate()"
+  ><app-update-cash-register-form (onComplete)="showSideBar.set(false)"
+/></app-sidebar>

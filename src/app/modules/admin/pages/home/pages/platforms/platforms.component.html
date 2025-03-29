@@ -17,10 +17,11 @@ sus saldos y transferencias"
   </div>
 </section>
 <app-sidebar
-  headline="Actualización de plataforma"
+  headline="Plataforma"
   [showSideBar]="showSideBar"
   [loading]="updatePlatformLoading()"
   actionName="Actualizar"
+  mode="update"
   (onSubmit)="onUpdate()"
   ><app-update-platform-form (onComplete)="onComplete()" />
 </app-sidebar>

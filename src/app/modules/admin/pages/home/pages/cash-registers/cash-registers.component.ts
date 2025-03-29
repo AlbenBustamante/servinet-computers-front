@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { CashRegisterService } from '@services/cash-register.service';
+import { UpdateCashRegisterFormComponent } from './components/update-cash-register-form/update-cash-register-form.component';
 
 @Component({
   selector: 'app-cash-registers',
@@ -7,9 +8,17 @@ import { CashRegisterService } from '@services/cash-register.service';
   styleUrls: ['./cash-registers.component.css'],
 })
 export class CashRegistersComponent {
-  readonly loading = signal<boolean>(false);
+  @ViewChild(UpdateCashRegisterFormComponent)
+  updateCashRegisterForm!: UpdateCashRegisterFormComponent;
 
-  constructor(private readonly cashRegisterService: CashRegisterService) {}
+  readonly loading = signal<boolean>(false);
+  readonly showSideBar = signal<boolean>(false);
+  readonly updateCashRegisterLoading;
+
+  constructor(private readonly cashRegisterService: CashRegisterService) {
+    this.updateCashRegisterLoading =
+      this.cashRegisterService.updateCashRegisterLoading;
+  }
 
   ngOnInit() {
     this.loading.set(true);
@@ -23,5 +32,9 @@ export class CashRegistersComponent {
         this.loading.set(false);
       },
     });
+  }
+
+  onUpdate() {
+    this.updateCashRegisterForm.emitOnComplete();
   }
 }

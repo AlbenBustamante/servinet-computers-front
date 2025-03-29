@@ -59,4 +59,14 @@ export class CustomTableComponent {
 
     return value;
   }
+
+  onEdit(event: Event, index: number) {
+    event.stopPropagation();
+    this.table.onEdit?.(index);
+  }
+
+  onRemove(event: Event, index: number) {
+    event.stopPropagation();
+    this.table.onRemove?.(index);
+  }
 }

@@ -50,12 +50,12 @@
               <fa-icon
                 [icon]="faEdit"
                 class="text-yellow-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
-                (click)="table.onEdit ? table.onEdit(i) : undefined"
+                (click)="table.onEdit ? onEdit($event, i) : undefined"
               />
               <fa-icon
                 [icon]="faRemove"
                 class="text-red-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
-                (click)="table.onRemove ? table.onRemove(i) : undefined"
+                (click)="table.onRemove ? onRemove($event, i) : undefined"
               />
             </span>
           </ng-template>

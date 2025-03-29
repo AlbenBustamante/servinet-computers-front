@@ -16,6 +16,7 @@ export class SidebarComponent {
   @Input({ required: true }) headline!: string;
   @Input({ required: true }) actionName!: string;
   @Input({ required: true }) showSideBar!: WritableSignal<boolean>;
+  @Input({ required: true }) mode!: 'register' | 'update';
   @Input() loading!: boolean;
 
   emitOnSubmit() {
@@ -24,5 +25,16 @@ export class SidebarComponent {
 
   onCancel() {
     this.showSideBar.set(false);
+  }
+
+  get modeTitle() {
+    switch (this.mode) {
+      case 'register':
+        return 'Registro';
+      case 'update':
+        return 'Actualización';
+      default:
+        return 'Berserk';
+    }
   }
 }
