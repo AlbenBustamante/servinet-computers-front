@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CashRegisterStatus } from '@models/enums';
 import { CashRegisterService } from '@services/cash-register.service';
@@ -13,6 +13,7 @@ import { CashRegisterStatusPipe } from '@shared/pipes/cash-register-status.pipe'
 })
 export class CashRegistersTableComponent {
   @Output() onEdit = new EventEmitter<void>();
+  readonly removeLoading = signal<boolean>(false);
 
   readonly table: ITable = {
     header: [
@@ -65,6 +66,18 @@ export class CashRegistersTableComponent {
   }
 
   private onRemove(index: number) {
-    console.log({ index });
+    if (this.removeLoading()) {
+      return;
+    }
+
+    const { id } = this.cashRegisterService.cashRegisters()[index];
+
+    this.cashRegisterService.delete(id).subscribe({
+      next: () => this.removeLoading.set(true),
+      error: (err) => {
+        console.log(err);
+        this.removeLoading.set(false);
+      },
+    });
   }
 }

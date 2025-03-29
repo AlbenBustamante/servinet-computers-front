@@ -91,18 +91,20 @@ export class CashRegisterService {
   }
 
   delete(id: number) {
-    return this.http.delete<boolean>(`${this.url}/${id}`).pipe(
-      tap((_) =>
-        this.cashRegisters.update((prevValue) => {
-          const index = prevValue.findIndex((cr) => cr.id === id);
+    return this.http
+      .delete<boolean>(`${this.url}/${id}`, { context: checkToken() })
+      .pipe(
+        tap((_) =>
+          this.cashRegisters.update((prevValue) => {
+            const index = prevValue.findIndex((cr) => cr.id === id);
 
-          if (index > -1) {
-            prevValue.splice(index, 1);
-          }
+            if (index > -1) {
+              prevValue.splice(index, 1);
+            }
 
-          return prevValue;
-        })
-      )
-    );
+            return prevValue;
+          })
+        )
+      );
   }
 }
