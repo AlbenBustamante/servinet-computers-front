@@ -22,5 +22,5 @@ sus saldos y transferencias"
   [loading]="updatePlatformLoading()"
   actionName="Actualizar"
   (onSubmit)="onUpdate()"
-  ><app-update-platform-form />
+  ><app-update-platform-form (onComplete)="onComplete()" />
 </app-sidebar>

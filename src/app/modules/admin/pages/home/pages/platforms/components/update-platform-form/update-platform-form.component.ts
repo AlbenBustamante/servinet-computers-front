@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { IUpdatePlatformDto } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 
@@ -8,6 +8,7 @@ import { PlatformService } from '@services/platform.service';
   styleUrls: ['./update-platform-form.component.css'],
 })
 export class UpdatePlatformFormComponent {
+  @Output() onComplete = new EventEmitter<void>();
   readonly loading;
   readonly form;
   readonly platformId;
@@ -47,6 +48,7 @@ export class UpdatePlatformFormComponent {
         console.log(err);
         this.setLoading(false);
       },
+      complete: () => this.onComplete.emit(),
     });
   }
 
