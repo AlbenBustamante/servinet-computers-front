@@ -33,4 +33,24 @@ export class SafeService {
       context: checkToken(),
     });
   }
+
+  delete(safeId: number) {
+    return this.http
+      .delete<void>(`${this.url}/${safeId}`, {
+        context: checkToken(),
+      })
+      .pipe(
+        tap(() =>
+          this.safes.update((prevSafes) => {
+            const index = prevSafes.findIndex((safe) => safe.id === safeId);
+
+            if (index > -1) {
+              prevSafes.splice(index, 1);
+            }
+
+            return prevSafes;
+          })
+        )
+      );
+  }
 }

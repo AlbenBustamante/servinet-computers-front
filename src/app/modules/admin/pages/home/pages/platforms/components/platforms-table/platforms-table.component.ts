@@ -28,7 +28,6 @@ export class PlatformsTableComponent {
         pipe: new DatePipe('es-CO'),
         pipeArgs: 'shortDateTime',
       },
-      {},
     ],
     body: this.platformService.platforms,
     noDataMessage: 'Sin plataformas registradas...',

@@ -9,8 +9,8 @@ import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export interface ITable {
   header: {
-    key?: string;
-    title?: string;
+    key: string;
+    title: string;
     align?: 'center' | 'right';
     pipe?: PipeTransform;
     pipeArgs?: string;

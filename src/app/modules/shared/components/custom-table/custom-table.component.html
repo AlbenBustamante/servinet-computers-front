@@ -39,26 +39,28 @@
             'text-right': header.align === 'right'
           }"
         >
-          <ng-container *ngIf="header.key; else actions">{{
+          {{
             getNestedValue(row, header.key, {
               defaultValue: "--",
               prefixSign: header.prefixSign
             }) | dynamic : header.pipe : header.pipeArgs ?? "default"
-          }}</ng-container>
-          <ng-template #actions>
-            <span class="flex items-center justify-center gap-1">
-              <fa-icon
-                [icon]="faEdit"
-                class="text-yellow-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
-                (click)="table.onEdit ? onEdit($event, i) : undefined"
-              />
-              <fa-icon
-                [icon]="faRemove"
-                class="text-red-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
-                (click)="table.onRemove ? onRemove($event, i) : undefined"
-              />
-            </span>
-          </ng-template>
+          }}
+        </td>
+        <td *ngIf="table.onEdit || table.onRemove">
+          <span class="flex items-center justify-center gap-1">
+            <fa-icon
+              *ngIf="table.onEdit"
+              [icon]="faEdit"
+              class="text-yellow-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
+              (click)="onEdit($event, i)"
+            />
+            <fa-icon
+              *ngIf="table.onRemove"
+              [icon]="faRemove"
+              class="text-red-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
+              (click)="onRemove($event, i)"
+            />
+          </span>
         </td>
       </tr>
     </tbody>

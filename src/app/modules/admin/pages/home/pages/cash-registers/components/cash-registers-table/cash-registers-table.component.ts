@@ -33,7 +33,6 @@ export class CashRegistersTableComponent {
         pipe: new DatePipe('es-CO'),
         pipeArgs: 'shortDateTime',
       },
-      {},
     ],
     body: this.cashRegisterService.cashRegisters,
     noDataMessage: 'Sin cajas registradoras...',
