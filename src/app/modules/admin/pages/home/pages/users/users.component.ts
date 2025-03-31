@@ -7,7 +7,8 @@ import { UserService } from '@services/user.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent {
-  readonly showSideBar = signal<boolean>(false);
+  readonly showSideBarRegister = signal<boolean>(false);
+  readonly showSideBarUpdate = signal<boolean>(false);
   readonly loading = signal<boolean>(false);
 
   constructor(private readonly userService: UserService) {}
@@ -21,10 +22,10 @@ export class UsersComponent {
   }
 
   toggleShowSideBar() {
-    this.showSideBar.update((prevValue) => !prevValue);
+    this.showSideBarRegister.update((prevValue) => !prevValue);
   }
 
   cancelRegister() {
-    this.showSideBar.set(false);
+    this.showSideBarRegister.set(false);
   }
 }

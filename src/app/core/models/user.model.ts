@@ -19,6 +19,11 @@ export interface IUserRes extends IResponse {
   role: Role;
 }
 
+export interface IUpdateUserDto {
+  name: string;
+  lastName: string;
+}
+
 export interface IReportsRes {
   platformTransfers: IPlatformTransferRes[];
   expenses: IExpenseRes[];

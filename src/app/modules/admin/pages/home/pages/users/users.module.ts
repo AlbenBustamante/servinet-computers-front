@@ -9,6 +9,7 @@ import { NewUserFormComponent } from './components/new-user-form/new-user-form.c
 import { FilterByRoleComponent } from './components/filter-by-role/filter-by-role.component';
 import { FilterByEnabledComponent } from './components/filter-by-enabled/filter-by-enabled.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateUserFormComponent } from './components/update-user-form/update-user-form.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NewUserFormComponent,
     FilterByRoleComponent,
     FilterByEnabledComponent,
+    UpdateUserFormComponent,
   ],
   imports: [
     CommonModule,

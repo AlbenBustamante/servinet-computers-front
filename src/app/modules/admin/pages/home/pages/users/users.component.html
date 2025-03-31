@@ -17,15 +17,25 @@
       <div class="divider"></div>
       <app-filter-by-enabled />
       <app-spinner *ngIf="loading()" />
-      <app-users-table *ngIf="!loading()" />
+      <app-users-table
+        *ngIf="!loading()"
+        (onEdit)="showSideBarUpdate.set(true)"
+      />
     </div>
   </div>
 </section>
 <app-sidebar
-  headline="Registro de usuario"
-  [showSideBar]="showSideBar"
+  headline="Nuevo usuario"
+  [showSideBar]="showSideBarRegister"
   actionName="Registrar"
   mode="register"
 >
   <app-new-user-form (onCancel)="cancelRegister()" />
 </app-sidebar>
+<app-sidebar
+  headline="Usuario existente"
+  [showSideBar]="showSideBarUpdate"
+  actionName="Actualizar"
+  mode="update"
+  ><app-update-user-form
+/></app-sidebar>

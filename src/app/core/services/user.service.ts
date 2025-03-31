@@ -2,7 +2,12 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { IReportsRes, IUserReq, IUserRes } from '@models/user.model';
+import {
+  IReportsRes,
+  IUpdateUserDto,
+  IUserReq,
+  IUserRes,
+} from '@models/user.model';
 import { TokenService } from './token.service';
 import { tap } from 'rxjs';
 
@@ -30,10 +35,10 @@ export class UserService {
     });
   }
 
-  update(req: IUserReq) {
+  update(dto: IUpdateUserDto) {
     return this.http.patch<IUserRes>(
       `${this.url}/${this.tokenService.getInfo().id}`,
-      req,
+      dto,
       { context: checkToken() }
     );
   }

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserService } from '@services/user.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 import { EnabledPipe } from '@shared/pipes/enabled.pipe';
@@ -11,6 +11,7 @@ import { RolePipe } from '@shared/pipes/role.pipe';
   styleUrls: ['./users-table.component.css'],
 })
 export class UsersTableComponent {
+  @Output() onEdit = new EventEmitter();
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
@@ -25,10 +26,24 @@ export class UsersTableComponent {
         pipe: new DatePipe('es-CO'),
         pipeArgs: 'shortDateTime',
       },
+      {
+        key: 'modifiedDate',
+        title: 'Fecha de actualización',
+        pipe: new DatePipe('es-CO'),
+        pipeArgs: 'shortDateTime',
+      },
     ],
     body: this.userService.users,
     noDataMessage: 'Sin usuarios registrados...',
+    onEdit: (index) => this.emitOnEdit(index),
+    onRemove: (index) => this.onRemove(index),
   };
 
   constructor(private readonly userService: UserService) {}
+
+  emitOnEdit(index: number) {
+    this.onEdit.emit();
+  }
+
+  onRemove(index: number) {}
 }
