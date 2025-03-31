@@ -10,7 +10,7 @@
     <div class="flex flex-col gap-3">
       <div class="flex items-center justify-between">
         <app-filter-by-role />
-        <app-button type="button" (click)="toggleShowSideBar()"
+        <app-button type="button" (click)="showSideBarRegister.set(true)"
           >Añadir usuario</app-button
         >
       </div>
@@ -30,12 +30,15 @@
   actionName="Registrar"
   mode="register"
 >
-  <app-new-user-form (onCancel)="cancelRegister()" />
+  <app-new-user-form (onCancel)="this.showSideBarRegister.set(false)" />
 </app-sidebar>
 <app-sidebar
   headline="Usuario existente"
   [showSideBar]="showSideBarUpdate"
   actionName="Actualizar"
   mode="update"
-  ><app-update-user-form
-/></app-sidebar>
+  [loading]="userToUpdateLoading()"
+  (onSubmit)="updateUserForm.emitOnComplete()"
+>
+  <app-update-user-form (onComplete)="showSideBarUpdate.set(false)" />
+</app-sidebar>

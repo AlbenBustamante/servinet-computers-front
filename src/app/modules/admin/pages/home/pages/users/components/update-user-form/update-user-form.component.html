@@ -1,1 +1,24 @@
-<p>update-user-form works!</p>
+<form role="form" class="form" [formGroup]="form" (ngSubmit)="emitOnComplete()">
+  <div class="control">
+    <label for="update-name">Nombre</label>
+    <input type="text" id="update-name" class="input" formControlName="name" />
+  </div>
+  <div class="control">
+    <label for="update-lastName">Apellido</label>
+    <input
+      type="text"
+      id="update-lastName"
+      class="input"
+      formControlName="lastName"
+    />
+  </div>
+  <div class="control">
+    <label for="update-role">Rol de usuario</label>
+    <select id="update-role" class="input" formControlName="role">
+      <option value="CASHIER">Cajero</option>
+      <option value="SUPERVISOR">Supervisor</option>
+      <option value="ADMIN">Administrador</option>
+    </select>
+  </div>
+  <input type="submit" value="submit" class="sr-only" />
+</form>

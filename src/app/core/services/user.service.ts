@@ -2,14 +2,9 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import {
-  IReportsRes,
-  IUpdateUserDto,
-  IUserReq,
-  IUserRes,
-} from '@models/user.model';
-import { TokenService } from './token.service';
+import { IReportsRes, IUpdateUserDto, IUserRes } from '@models/user.model';
 import { tap } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +12,20 @@ import { tap } from 'rxjs';
 export class UserService {
   private readonly url: string = `${environment.apiUrl}/users`;
   readonly users = signal<IUserRes[]>([]);
+  readonly updateUserForm: FormGroup;
+  readonly userToUpdateId = signal<number>(-1);
+  readonly userToUpdateLoading = signal<boolean>(false);
 
   constructor(
     private readonly http: HttpClient,
-    private readonly tokenService: TokenService
-  ) {}
+    private readonly fb: FormBuilder
+  ) {
+    this.updateUserForm = this.fb.group({
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
+      role: ['', Validators.required],
+    });
+  }
 
   getAll() {
     return this.http
@@ -35,18 +39,43 @@ export class UserService {
     });
   }
 
-  update(dto: IUpdateUserDto) {
-    return this.http.patch<IUserRes>(
-      `${this.url}/${this.tokenService.getInfo().id}`,
-      dto,
-      { context: checkToken() }
-    );
+  update(userId: number, dto: IUpdateUserDto) {
+    return this.http
+      .patch<IUserRes>(`${this.url}/${userId}`, dto, {
+        context: checkToken(),
+      })
+      .pipe(
+        tap((user) =>
+          this.users.update((prevUsers) => {
+            const index = prevUsers.findIndex((u) => u.id === user.id);
+
+            if (index > -1) {
+              prevUsers[index] = user;
+            }
+
+            return prevUsers;
+          })
+        )
+      );
   }
 
-  delete() {
-    return this.http.delete<Boolean>(
-      `${this.url}/${this.tokenService.getInfo().id}`,
-      { context: checkToken() }
-    );
+  delete(userId: number) {
+    return this.http
+      .delete<Boolean>(`${this.url}/${userId}`, {
+        context: checkToken(),
+      })
+      .pipe(
+        tap((_) =>
+          this.users.update((prevUsers) => {
+            const index = prevUsers.findIndex((u) => u.id === userId);
+
+            if (index > -1) {
+              prevUsers.splice(index, 1);
+            }
+
+            return prevUsers;
+          })
+        )
+      );
   }
 }

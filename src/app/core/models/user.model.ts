@@ -22,6 +22,7 @@ export interface IUserRes extends IResponse {
 export interface IUpdateUserDto {
   name: string;
   lastName: string;
+  role: Role;
 }
 
 export interface IReportsRes {
