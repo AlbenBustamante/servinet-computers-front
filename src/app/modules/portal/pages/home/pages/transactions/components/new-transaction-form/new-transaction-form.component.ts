@@ -5,6 +5,7 @@ import { ITransactionDetailReq } from '@models/transaction.model';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
 import { TransactionDetailService } from '@services/transaction-detail.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-new-transaction-form',
@@ -22,7 +23,8 @@ export class NewTransactionFormComponent {
     private readonly myCashService: MyCashService,
     private readonly myHomeService: MyHomeService,
     private readonly transactionDetailService: TransactionDetailService,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly formLoading: FormLoading
   ) {
     this.transactions = this.myHomeService.transactions;
     this.details = this.myHomeService.details;
@@ -42,7 +44,7 @@ export class NewTransactionFormComponent {
       return this.form.markAllAsTouched();
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     const time = this.form.get('date')?.value ?? null;
     let date: Date | null = null;
@@ -66,12 +68,16 @@ export class NewTransactionFormComponent {
         this.details.update((prevValue) => [...prevValue, transaction]);
         this.form.reset();
         this.form.get('type')?.setValue(TransactionDetailType.DEPOSIT);
-        this.loading.set(false);
+        this.setLoading(false);
       },
       error: (err) => {
         console.log(err);
-        this.loading.set(false);
+        this.setLoading(false);
       },
     });
+  }
+
+  private setLoading(loading: boolean) {
+    this.formLoading.setLoading(this.form, this.loading, loading);
   }
 }

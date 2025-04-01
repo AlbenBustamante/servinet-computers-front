@@ -16,11 +16,11 @@ export class MyHomeService {
   readonly loading = signal<boolean>(false);
   readonly expenses = signal<IExpenseRes[]>([]);
   readonly details = signal<ITransactionDetailRes[]>([]);
+  readonly cashTransfers = signal<ICashTransferDto[]>([]);
   readonly transactions = signal<ITransactionRes[]>([]);
   readonly availableTransfers = signal<IAvailableTransfersDto | undefined>(
     undefined
   );
-  readonly cashTransfers = signal<ICashTransferDto[]>([]);
 
   constructor() {}
 }

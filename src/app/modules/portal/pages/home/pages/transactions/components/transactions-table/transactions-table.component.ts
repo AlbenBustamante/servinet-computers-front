@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MyHomeService } from '@services/my-home.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 import { TransactionDetailTypePipe } from '@shared/pipes/transaction-detail-type.pipe';
@@ -10,6 +10,8 @@ import { TransactionDetailTypePipe } from '@shared/pipes/transaction-detail-type
   styleUrls: ['./transactions-table.component.css'],
 })
 export class TransactionsTableComponent {
+  @Output() onEdit = new EventEmitter<void>();
+
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
@@ -36,7 +38,10 @@ export class TransactionsTableComponent {
     ],
     body: this.myHomeService.details,
     noDataMessage: '¡Ten una buena jornada!',
+    onEdit: (index) => this.emitOnEdit(index),
   };
 
   constructor(private readonly myHomeService: MyHomeService) {}
+
+  emitOnEdit(index: number) {}
 }
