@@ -15,6 +15,7 @@ export class AuthService {
   private readonly authUrl: string = `${environment.apiUrl}/auth`;
   private readonly userUrl: string = `${environment.apiUrl}/users`;
   readonly loggedIn = signal<IUserRes | null>(null);
+  readonly userToRegisterLoading = signal<boolean>(false);
 
   constructor(
     private readonly http: HttpClient,

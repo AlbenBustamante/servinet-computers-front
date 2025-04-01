@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Output,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, EventEmitter, Output, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '@models/enums';
 import { IUserRes } from '@models/user.model';
@@ -17,16 +11,17 @@ import { UserService } from '@services/user.service';
   styleUrls: ['./new-user-form.component.css'],
 })
 export class NewUserFormComponent {
-  @Output() onCancel = new EventEmitter();
+  @Output() onComplete = new EventEmitter<void>();
   readonly form: FormGroup;
   readonly users: WritableSignal<IUserRes[]>;
-  readonly loading = signal<boolean>(false);
+  readonly loading;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly userService: UserService
   ) {
+    this.loading = this.authService.userToRegisterLoading;
     this.users = this.userService.users;
 
     this.form = this.fb.group({
@@ -38,28 +33,31 @@ export class NewUserFormComponent {
     });
   }
 
-  onSubmit() {
+  emitOnComplete() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     this.authService.register(this.form.value).subscribe({
       next: (user) => {
         this.users.update((users) => [...users, user]);
-        this.loading.set(false);
-        this.emitOnCancel();
+        this.form.reset();
+        this.form.patchValue({ role: Role.CASHIER });
+        this.setLoading(false);
       },
       error: (error) => {
-        this.loading.set(false);
         console.log(error);
+        this.setLoading(false);
       },
+      complete: () => this.onComplete.emit(),
     });
   }
 
-  emitOnCancel() {
-    this.form.reset();
-    this.onCancel.emit();
+  private setLoading(loading: boolean) {
+    this.loading.set(loading);
+
+    loading ? this.form.disable() : this.form.enable();
   }
 }
