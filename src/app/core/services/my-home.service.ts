@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   IAvailableTransfersDto,
   ICashTransferDto,
@@ -21,6 +22,9 @@ export class MyHomeService {
   readonly availableTransfers = signal<IAvailableTransfersDto | undefined>(
     undefined
   );
+  readonly updateTransactionDetailForm: FormGroup;
 
-  constructor() {}
+  constructor(private readonly fb: FormBuilder) {
+    this.updateTransactionDetailForm = this.fb.group({});
+  }
 }

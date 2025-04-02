@@ -7,12 +7,14 @@ import { NewTransactionFormComponent } from './components/new-transaction-form/n
 import { TransactionsTableComponent } from './components/transactions-table/transactions-table.component';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateTransactionDetailFormComponent } from './components/update-transaction-detail-form/update-transaction-detail-form.component';
 
 @NgModule({
   declarations: [
     TransactionsComponent,
     NewTransactionFormComponent,
     TransactionsTableComponent,
+    UpdateTransactionDetailFormComponent,
   ],
   imports: [
     CommonModule,

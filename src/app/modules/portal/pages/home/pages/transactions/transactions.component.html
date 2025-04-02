@@ -7,7 +7,15 @@
     <ng-template #spinner><app-spinner /></ng-template>
     <div class="w-full h-full" *ngIf="!loading(); else spinner">
       <h2 class="home-subtitle">Mis Transacciones</h2>
-      <app-transactions-table />
+      <app-transactions-table (onEdit)="showSideBar.set(true)" />
     </div>
   </section>
 </div>
+<app-sidebar
+  headline="Transacción"
+  actionName="Actualizar"
+  mode="update"
+  [showSideBar]="showSideBar"
+>
+  <app-update-transaction-detail-form />
+</app-sidebar>

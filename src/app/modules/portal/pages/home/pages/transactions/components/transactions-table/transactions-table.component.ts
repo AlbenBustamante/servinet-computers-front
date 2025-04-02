@@ -43,5 +43,7 @@ export class TransactionsTableComponent {
 
   constructor(private readonly myHomeService: MyHomeService) {}
 
-  emitOnEdit(index: number) {}
+  emitOnEdit(index: number) {
+    this.onEdit.emit();
+  }
 }
