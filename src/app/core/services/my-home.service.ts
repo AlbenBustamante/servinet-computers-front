@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   IAvailableTransfersDto,
   ICashTransferDto,
@@ -16,11 +17,14 @@ export class MyHomeService {
   readonly loading = signal<boolean>(false);
   readonly expenses = signal<IExpenseRes[]>([]);
   readonly details = signal<ITransactionDetailRes[]>([]);
+  readonly cashTransfers = signal<ICashTransferDto[]>([]);
   readonly transactions = signal<ITransactionRes[]>([]);
   readonly availableTransfers = signal<IAvailableTransfersDto | undefined>(
     undefined
   );
-  readonly cashTransfers = signal<ICashTransferDto[]>([]);
+  readonly updateTransactionDetailForm: FormGroup;
 
-  constructor() {}
+  constructor(private readonly fb: FormBuilder) {
+    this.updateTransactionDetailForm = this.fb.group({});
+  }
 }

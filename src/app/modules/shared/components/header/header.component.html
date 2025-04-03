@@ -2,7 +2,7 @@
   class="w-full h-16 fixed left-0 top-0 right-0 z-40 px-5 bg-violet-800 drop-shadow-xl flex items-center"
 >
   <ul class="flex items-center justify-between w-full text-white">
-    <li class="flex items-center gap-2 px-4 py-2">
+    <li class="invisible lg:visible lg:flex items-center gap-2 px-4 py-2">
       <fa-icon [icon]="faComputer" />
       <h1 class="text-xl font-semibold">Servinet</h1>
     </li>
@@ -12,7 +12,7 @@
         style="text-shadow: 0 0 1px rgb(17, 24, 39)"
       >
         <fa-icon [icon]="faAccount" />
-        <span class="font-medium">
+        <span class="hidden lg:inline font-medium">
           ID {{ loggedIn()?.id }} - {{ loggedIn()?.name }}
           {{ loggedIn()?.lastName }}
         </span>

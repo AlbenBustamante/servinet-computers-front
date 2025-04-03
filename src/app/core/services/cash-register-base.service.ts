@@ -2,7 +2,6 @@ import { Injectable, signal } from '@angular/core';
 import { ICashRegisterDetailRes } from '@models/cash-register.model';
 import { BaseService } from './base.service';
 import { IBase, IBaseDetail } from '@models/base.model';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',

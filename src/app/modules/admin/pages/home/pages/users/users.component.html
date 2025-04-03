@@ -29,8 +29,10 @@
   [showSideBar]="showSideBarRegister"
   actionName="Registrar"
   mode="register"
+  [loading]="userToRegisterLoading()"
+  (onSubmit)="newUserForm.emitOnComplete()"
 >
-  <app-new-user-form (onCancel)="this.showSideBarRegister.set(false)" />
+  <app-new-user-form (onComplete)="this.showSideBarRegister.set(false)" />
 </app-sidebar>
 <app-sidebar
   headline="Usuario existente"

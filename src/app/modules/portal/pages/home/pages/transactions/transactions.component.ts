@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
@@ -10,6 +10,7 @@ import { TransactionService } from '@services/transaction.service';
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent {
+  readonly showSideBar = signal<boolean>(false);
   readonly loading;
   readonly details;
   readonly transactions;
