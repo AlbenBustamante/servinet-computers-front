@@ -4,7 +4,9 @@
 />
 <article class="px-5 py-4 border-2 border-gray-300 rounded-xl text-center">
   <h3 class="text-xl font-light text-gray-700">Clave Dinámica</h3>
-  <p class="text-3xl font-medium tracking-widest text-violet-700">1234</p>
+  <p class="text-3xl font-medium tracking-widest text-violet-700">
+    {{ tempCode() ? tempCode()?.code : "----" }}
+  </p>
 </article>
 <ul class="container">
   <li>
