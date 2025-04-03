@@ -1,7 +1,15 @@
 <form role="form" class="form">
+  <datalist id="transactions">
+    <option
+      *ngFor="let transaction of transactions"
+      [value]="transaction.description"
+    >
+      {{ transaction.description }}
+    </option>
+  </datalist>
   <div class="control">
     <label for="update-description">Nota</label>
-    <input type="text" id="update-description" class="input" />
+    <input list="transactions" id="update-description" class="input" />
   </div>
   <div class="control">
     <label for="update-type">Tipo</label>
