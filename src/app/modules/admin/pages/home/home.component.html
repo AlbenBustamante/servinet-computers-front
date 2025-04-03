@@ -2,7 +2,9 @@
   hTitle="Bienvenido"
   hDescription="Visualiza y actualiza todos tus productos"
 />
-<article class="px-5 py-4 border-2 border-gray-300 rounded-xl text-center">
+<article
+  class="px-5 py-4 border-2 border-gray-300 rounded-xl text-center w-full max-w-xs m-auto"
+>
   <h3 class="text-xl font-light text-gray-700">Clave Dinámica</h3>
   <p class="text-3xl font-medium tracking-widest text-violet-700">
     {{ tempCode() ? tempCode()?.code : "----" }}
