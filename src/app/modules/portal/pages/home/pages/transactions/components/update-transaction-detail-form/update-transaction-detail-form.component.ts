@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ITransactionRes } from '@models/transaction.model';
+import { MyHomeService } from '@services/my-home.service';
 
 @Component({
   selector: 'app-update-transaction-detail-form',
@@ -8,4 +9,9 @@ import { ITransactionRes } from '@models/transaction.model';
 })
 export class UpdateTransactionDetailFormComponent {
   @Input({ required: true }) transactions!: ITransactionRes[];
+  readonly form;
+
+  constructor(private readonly myHomeService: MyHomeService) {
+    this.form = this.myHomeService.updateTransactionDetailForm;
+  }
 }

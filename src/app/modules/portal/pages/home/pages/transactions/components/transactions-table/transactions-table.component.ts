@@ -44,6 +44,17 @@ export class TransactionsTableComponent {
   constructor(private readonly myHomeService: MyHomeService) {}
 
   emitOnEdit(index: number) {
+    const { description, type, value, commission, date } =
+      this.myHomeService.details()[index];
+
+    this.myHomeService.updateTransactionDetailForm.patchValue({
+      description,
+      type,
+      value,
+      commission,
+      date,
+    });
+
     this.onEdit.emit();
   }
 }

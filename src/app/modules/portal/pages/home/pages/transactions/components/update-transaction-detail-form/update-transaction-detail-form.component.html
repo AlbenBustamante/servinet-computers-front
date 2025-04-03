@@ -1,4 +1,4 @@
-<form role="form" class="form">
+<form role="form" class="form" [formGroup]="form">
   <datalist id="transactions">
     <option
       *ngFor="let transaction of transactions"
@@ -9,30 +9,50 @@
   </datalist>
   <div class="control">
     <label for="update-description">Nota</label>
-    <input list="transactions" id="update-description" class="input" />
+    <input
+      list="transactions"
+      id="update-description"
+      class="input"
+      formControlName="description"
+    />
   </div>
   <div class="control">
     <label for="update-type">Tipo</label>
-    <select id="update-type" class="input">
+    <select id="update-type" class="input" formControlName="type">
       <option value="DEPOSIT">Depósito</option>
       <option value="WITHDRAWAL">Retiro</option>
     </select>
   </div>
   <div class="control">
     <label for="update-value">Valor</label>
-    <input type="number" id="update-value" class="input" />
+    <input
+      type="number"
+      id="update-value"
+      class="input"
+      formControlName="value"
+    />
   </div>
   <div class="control">
     <label for="update-commission">Adicional</label>
-    <input type="number" id="update-commission" class="input" />
+    <input
+      type="number"
+      id="update-commission"
+      class="input"
+      formControlName="commission"
+    />
   </div>
   <div class="control">
     <label for="update-date">Hora</label>
-    <input type="time" id="update-date" class="input" />
+    <input type="time" id="update-date" class="input" formControlName="date" />
   </div>
   <div class="control">
     <label for="temp-code">Código</label>
-    <input type="password" id="temp-code" class="input" />
+    <input
+      type="password"
+      id="temp-code"
+      class="input"
+      formControlName="tempcode"
+    />
   </div>
   <input type="submit" class="sr-only" />
 </form>

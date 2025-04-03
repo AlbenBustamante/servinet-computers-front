@@ -1,9 +1,10 @@
 import { Injectable, signal } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IAvailableTransfersDto,
   ICashTransferDto,
 } from '@models/cash-transfer.model';
+import { TransactionDetailType } from '@models/enums';
 import { IExpenseRes } from '@models/expense.model';
 import {
   ITransactionDetailRes,
@@ -25,6 +26,13 @@ export class MyHomeService {
   readonly updateTransactionDetailForm: FormGroup;
 
   constructor(private readonly fb: FormBuilder) {
-    this.updateTransactionDetailForm = this.fb.group({});
+    this.updateTransactionDetailForm = this.fb.group({
+      description: ['', Validators.required],
+      type: [TransactionDetailType.DEPOSIT, Validators.required],
+      value: ['', [Validators.required, Validators.min(0)]],
+      commission: ['', Validators.min(0)],
+      date: [null],
+      tempcode: ['', Validators.required],
+    });
   }
 }
