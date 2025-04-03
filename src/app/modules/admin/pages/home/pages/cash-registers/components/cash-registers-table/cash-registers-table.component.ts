@@ -55,11 +55,21 @@ export class CashRegistersTableComponent {
     const { id, description, status } =
       this.cashRegisterService.cashRegisters()[index];
 
+    const disabled = status === CashRegisterStatus.DISABLED;
+
     this.cashRegisterService.cashRegisterToUpdateId.set(id);
     this.cashRegisterService.updateCashRegisterForm.patchValue({
       description,
-      disabled: status === CashRegisterStatus.DISABLED,
+      disabled,
     });
+
+    if (disabled) {
+      this.cashRegisterService.updateCashRegisterForm
+        .get('disabled')
+        ?.disable();
+    } else {
+      this.cashRegisterService.updateCashRegisterForm.get('disabled')?.enable();
+    }
 
     this.onEdit.emit();
   }

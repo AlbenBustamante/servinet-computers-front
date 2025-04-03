@@ -16,7 +16,7 @@ export class NewCashRegisterFormComponent {
     private readonly cashRegister: CashRegisterService
   ) {
     this.form = this.fb.group({
-      numeral: ['', Validators.required],
+      numeral: [, [Validators.required, Validators.min(1)]],
       description: ['', Validators.required],
     });
   }
