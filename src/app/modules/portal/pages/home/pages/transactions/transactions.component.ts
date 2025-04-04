@@ -1,8 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
+import { TransactionDetailService } from '@services/transaction-detail.service';
 import { TransactionService } from '@services/transaction.service';
+import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-code-form.component';
 
 @Component({
   selector: 'app-transactions',
@@ -10,7 +12,11 @@ import { TransactionService } from '@services/transaction.service';
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent {
-  readonly showSideBar = signal<boolean>(false);
+  @ViewChild(TempCodeFormComponent) tempCodeForm!: TempCodeFormComponent;
+  readonly showSideBarUpdate = signal<boolean>(false);
+  readonly showSideBarDelete = signal<boolean>(false);
+  readonly transactionDetailToDeleteId = signal<number>(-1);
+  readonly deleteLoading = signal<boolean>(false);
   readonly loading;
   readonly details;
   readonly transactions;
@@ -19,7 +25,8 @@ export class TransactionsComponent {
     private readonly myHomeService: MyHomeService,
     private readonly myCashService: MyCashService,
     private readonly cashRegisterDetailService: CashRegisterDetailService,
-    private readonly transactionService: TransactionService
+    private readonly transactionService: TransactionService,
+    private readonly transactionDetailService: TransactionDetailService
   ) {
     this.details = this.myHomeService.details;
     this.loading = this.myHomeService.loading;
@@ -51,6 +58,40 @@ export class TransactionsComponent {
         error: (err) => {
           console.log(err);
           this.loading.set(false);
+        },
+      });
+  }
+
+  onDeleteTable(id: number) {
+    this.transactionDetailToDeleteId.set(id);
+    this.showSideBarDelete.set(true);
+  }
+
+  delete(code: string) {
+    this.deleteLoading.set(true);
+
+    this.transactionDetailService
+      .delete(this.transactionDetailToDeleteId(), Number(code))
+      .subscribe({
+        next: () => {
+          this.details.update((prevValue) => {
+            const index = prevValue.findIndex(
+              (detail) => detail.id === this.transactionDetailToDeleteId()
+            );
+
+            if (index > -1) {
+              prevValue.splice(index, 1);
+            }
+
+            return prevValue;
+          });
+
+          this.showSideBarDelete.set(false);
+          this.deleteLoading.set(false);
+        },
+        error: (err) => {
+          console.log(err);
+          this.deleteLoading.set(false);
         },
       });
   }

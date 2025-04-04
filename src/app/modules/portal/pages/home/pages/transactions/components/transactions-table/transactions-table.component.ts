@@ -11,6 +11,7 @@ import { TransactionDetailTypePipe } from '@shared/pipes/transaction-detail-type
 })
 export class TransactionsTableComponent {
   @Output() onEdit = new EventEmitter<void>();
+  @Output() onRemove = new EventEmitter<number>();
 
   readonly table: ITable = {
     header: [
@@ -39,6 +40,7 @@ export class TransactionsTableComponent {
     body: this.myHomeService.details,
     noDataMessage: '¡Ten una buena jornada!',
     onEdit: (index) => this.emitOnEdit(index),
+    onRemove: (index) => this.emitOnRemove(index),
   };
 
   constructor(private readonly myHomeService: MyHomeService) {}
@@ -56,5 +58,10 @@ export class TransactionsTableComponent {
     });
 
     this.onEdit.emit();
+  }
+
+  emitOnRemove(index: number) {
+    const { id } = this.myHomeService.details()[index];
+    this.onRemove.emit(id);
   }
 }

@@ -16,7 +16,7 @@ export class SidebarComponent {
   @Input({ required: true }) headline!: string;
   @Input({ required: true }) actionName!: string;
   @Input({ required: true }) showSideBar!: WritableSignal<boolean>;
-  @Input({ required: true }) mode!: 'register' | 'update';
+  @Input({ required: true }) mode!: 'register' | 'update' | 'delete';
   @Input() loading!: boolean;
 
   emitOnSubmit() {
@@ -33,6 +33,8 @@ export class SidebarComponent {
         return 'Registro';
       case 'update':
         return 'Actualización';
+      case 'delete':
+        return 'Eliminación';
       default:
         return 'Berserk';
     }

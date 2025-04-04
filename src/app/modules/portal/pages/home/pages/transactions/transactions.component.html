@@ -7,7 +7,10 @@
     <ng-template #spinner><app-spinner /></ng-template>
     <div class="w-full h-full" *ngIf="!loading(); else spinner">
       <h2 class="home-subtitle">Mis Transacciones</h2>
-      <app-transactions-table (onEdit)="showSideBar.set(true)" />
+      <app-transactions-table
+        (onEdit)="showSideBarUpdate.set(true)"
+        (onRemove)="onDeleteTable($event)"
+      />
     </div>
   </section>
 </div>
@@ -15,7 +18,17 @@
   headline="Transacción"
   actionName="Actualizar"
   mode="update"
-  [showSideBar]="showSideBar"
+  [showSideBar]="showSideBarUpdate"
 >
   <app-update-transaction-detail-form [transactions]="transactions()" />
+</app-sidebar>
+<app-sidebar
+  headline="Transacción"
+  actionName="Eliminar"
+  mode="delete"
+  [showSideBar]="showSideBarDelete"
+  [loading]="deleteLoading()"
+  (onSubmit)="tempCodeForm.emitOnSubmit()"
+>
+  <app-temp-code-form (onSubmit)="delete($event)" />
 </app-sidebar>

@@ -18,6 +18,8 @@ import { RolePipe } from './pipes/role.pipe';
 import { TransactionDetailTypePipe } from './pipes/transaction-detail-type.pipe';
 import { DiscountPipe } from './pipes/discount.pipe';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TempCodeFormComponent } from './components/temp-code-form/temp-code-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     TransactionDetailTypePipe,
     DiscountPipe,
     SidebarComponent,
+    TempCodeFormComponent,
   ],
-  imports: [CommonModule, RouterModule, FontAwesomeModule],
+  imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
     HeaderComponent,
     NavComponent,
@@ -51,6 +54,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CashRegisterStatusPipe,
     CashRegisterDetailStatusPipe,
     SidebarComponent,
+    TempCodeFormComponent,
   ],
 })
 export class SharedModule {}
