@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, formatDate } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MyHomeService } from '@services/my-home.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
@@ -54,7 +54,7 @@ export class TransactionsTableComponent {
       type,
       value,
       commission,
-      date,
+      date: formatDate(date, 'HH:mm', 'es-CO'),
     });
 
     this.onEdit.emit();
