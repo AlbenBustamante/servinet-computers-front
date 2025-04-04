@@ -1,6 +1,7 @@
 import { IResponse } from './response.model';
+import { IUserRes } from './user.model';
 
 export interface ITempCodeRes extends IResponse {
   code: number;
-  usedBy: number | null;
+  usedBy: IUserRes | null;
 }
