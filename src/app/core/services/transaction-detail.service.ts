@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -28,5 +28,16 @@ export class TransactionDetailService {
       dto,
       { context: checkToken() }
     );
+  }
+
+  delete(transactionDetailId: number, tempCode: number) {
+    let params = new HttpParams();
+
+    params = params.append('tempCode', tempCode);
+
+    return this.http.delete<void>(`${this.url}/${transactionDetailId}`, {
+      params,
+      context: checkToken(),
+    });
   }
 }
