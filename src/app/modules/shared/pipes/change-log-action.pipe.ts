@@ -10,7 +10,7 @@ export class ChangeLogActionPipe implements PipeTransform {
       case ChangeLogAction.DELETE:
         return 'Eliminación';
       case ChangeLogAction.UPDATE:
-        return 'Actualización';
+        return 'Modificación';
       default:
         return 'Berserk';
     }
