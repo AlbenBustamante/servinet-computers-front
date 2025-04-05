@@ -1,5 +1,6 @@
 import { IBase } from './base.model';
 import { ICashTransferDto } from './cash-transfer.model';
+import { IChangeLogRes } from './change-log.model';
 import { CashRegisterDetailStatus, CashRegisterStatus } from './enums';
 import { IExpenseRes } from './expense.model';
 import { IResponse } from './response.model';
@@ -68,6 +69,7 @@ interface IDetailedCashRegisterTransactionsDto {
 export interface IDetailedCashRegisterReportsDto {
   reports: ICashRegisterDetailReportsDto;
   transactions: IDetailedCashRegisterTransactionsDto;
+  changeLogs: IChangeLogRes[];
 }
 
 export interface IMyCashRegistersReports {

@@ -36,3 +36,14 @@ export enum CashBoxType {
   CASH_REGISTER = 'CASH_REGISTER',
   SAFE = 'SAFE',
 }
+
+export enum ChangeLogAction {
+  UPDATE = 'UPDATE',
+  DELETE = 'DELETE',
+}
+
+export enum ChangeLogType {
+  TRANSACTION_DETAIL = 'TRANSACTION_DETAIL',
+  EXPENSE = 'EXPENSE',
+  CASH_TRANSFER = 'CASH_TRANSFER',
+}
