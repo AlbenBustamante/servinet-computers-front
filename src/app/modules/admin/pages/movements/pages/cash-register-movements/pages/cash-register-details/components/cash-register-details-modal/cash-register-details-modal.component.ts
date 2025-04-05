@@ -2,7 +2,12 @@ import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { CashRegisterDetailMovementService } from '@services/cash-register-detail-movement.service';
 
-type SelectedType = 'TRANSACTIONS' | 'EXPENSES' | 'DISCOUNTS' | 'TRANSFERS';
+type SelectedType =
+  | 'TRANSACTIONS'
+  | 'EXPENSES'
+  | 'DISCOUNTS'
+  | 'TRANSFERS'
+  | 'CHANGES';
 
 @Component({
   selector: 'app-cash-register-details-modal',
@@ -18,6 +23,7 @@ export class CashRegisterDetailsModalComponent {
     { title: 'Gastos', type: 'EXPENSES' },
     { title: 'Descuentos', type: 'DISCOUNTS' },
     { title: 'Transferencias', type: 'TRANSFERS' },
+    { title: 'Cambios', type: 'CHANGES' },
   ];
   readonly faClose = faClose;
 
