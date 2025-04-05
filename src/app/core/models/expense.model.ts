@@ -8,3 +8,10 @@ export interface IExpenseReq {
 }
 
 export interface IExpenseRes extends IResponse, IExpenseReq {}
+
+export interface IUpdateExpenseDto {
+  description: string;
+  value: number;
+  discount: boolean;
+  tempCode: number;
+}
