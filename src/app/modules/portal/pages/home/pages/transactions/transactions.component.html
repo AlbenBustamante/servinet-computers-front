@@ -19,8 +19,13 @@
   actionName="Actualizar"
   mode="update"
   [showSideBar]="showSideBarUpdate"
+  [loading]="updateLoading()"
+  (onSubmit)="updateTransactionDetailForm.emitOnSubmit()"
 >
-  <app-update-transaction-detail-form [transactions]="transactions()" />
+  <app-update-transaction-detail-form
+    [transactions]="transactions()"
+    (onSubmit)="update($event)"
+  />
 </app-sidebar>
 <app-sidebar
   headline="Transacción"

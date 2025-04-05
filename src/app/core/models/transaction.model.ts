@@ -33,4 +33,5 @@ export interface IUpdateTransactionDetailDto {
   commission: number;
   type: TransactionDetailType;
   date: Date;
+  tempCode: number;
 }

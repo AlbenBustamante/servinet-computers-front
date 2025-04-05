@@ -32,7 +32,7 @@ export class MyHomeService {
       value: ['', [Validators.required, Validators.min(0)]],
       commission: ['', Validators.min(0)],
       date: [null],
-      tempcode: ['', Validators.required],
+      tempCode: [null, Validators.required],
     });
   }
 }

@@ -5,6 +5,8 @@ import { MyHomeService } from '@services/my-home.service';
 import { TransactionDetailService } from '@services/transaction-detail.service';
 import { TransactionService } from '@services/transaction.service';
 import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-code-form.component';
+import { UpdateTransactionDetailFormComponent } from './components/update-transaction-detail-form/update-transaction-detail-form.component';
+import { IUpdateTransactionDetailDto } from '@models/transaction.model';
 
 @Component({
   selector: 'app-transactions',
@@ -12,11 +14,15 @@ import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-co
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent {
+  @ViewChild(UpdateTransactionDetailFormComponent)
+  updateTransactionDetailForm!: UpdateTransactionDetailFormComponent;
   @ViewChild(TempCodeFormComponent) tempCodeForm!: TempCodeFormComponent;
+
   readonly showSideBarUpdate = signal<boolean>(false);
   readonly showSideBarDelete = signal<boolean>(false);
   readonly transactionDetailToUpdateId = signal<number>(-1);
   readonly transactionDetailToDeleteId = signal<number>(-1);
+  readonly updateLoading = signal<boolean>(false);
   readonly deleteLoading = signal<boolean>(false);
   readonly loading;
   readonly details;
@@ -71,6 +77,33 @@ export class TransactionsComponent {
   tableOnRemove(id: number) {
     this.transactionDetailToDeleteId.set(id);
     this.showSideBarDelete.set(true);
+  }
+
+  update(dto: IUpdateTransactionDetailDto) {
+    this.updateLoading.set(true);
+
+    this.transactionDetailService
+      .update(this.transactionDetailToUpdateId(), dto)
+      .subscribe({
+        next: (detail) => {
+          this.details.update((prevValue) => {
+            const index = prevValue.findIndex((d) => d.id === detail.id);
+
+            if (index > -1) {
+              prevValue[index] = detail;
+            }
+
+            return prevValue;
+          });
+
+          this.showSideBarUpdate.set(false);
+          this.updateLoading.set(false);
+        },
+        error: (err) => {
+          console.log(err);
+          this.updateLoading.set(false);
+        },
+      });
   }
 
   delete(code: string) {
