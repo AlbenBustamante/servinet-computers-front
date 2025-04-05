@@ -45,6 +45,12 @@ export class DetailedChangeLogsTableComponent {
       ],
       body: this.changeLogs,
       noDataMessage: 'El usuario no cuenta con modificaciones o eliminaciones',
+      onClick: (index) => this.onClick(index),
     };
+  }
+
+  onClick(index: number) {
+    const changeLog = this.changeLogs()![index];
+    console.log({ changeLog });
   }
 }
