@@ -7,7 +7,17 @@
     <ng-template #spinner> <app-spinner /></ng-template>
     <div class="w-full h-full" *ngIf="!loading(); else spinner">
       <h2 class="home-subtitle">Mis Gastos</h2>
-      <app-expenses-table />
+      <app-expenses-table (onRemove)="tableOnRemove($event)" />
     </div>
   </section>
 </div>
+<app-sidebar
+  [showSideBar]="showSideBarDelete"
+  [loading]="deleteLoading()"
+  actionName="Eliminar"
+  headline="Gasto"
+  mode="delete"
+  (onSubmit)="tempCodeForm.emitOnSubmit()"
+>
+  <app-temp-code-form (onSubmit)="remove($event)" />
+</app-sidebar>

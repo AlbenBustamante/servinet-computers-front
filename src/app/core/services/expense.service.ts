@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -14,6 +14,17 @@ export class ExpenseService {
 
   register(req: IExpenseReq) {
     return this.http.post<IExpenseRes>(this.url, req, {
+      context: checkToken(),
+    });
+  }
+
+  delete(expenseId: number, tempCode: string) {
+    let params = new HttpParams();
+
+    params = params.append('tempCode', Number(tempCode));
+
+    return this.http.delete<void>(`${this.url}/${expenseId}`, {
+      params,
       context: checkToken(),
     });
   }

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { IExpenseReq } from '@models/expense.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
+import { ExpenseService } from '@services/expense.service';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
+import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-code-form.component';
 
 @Component({
   selector: 'app-expenses',
@@ -10,13 +12,18 @@ import { MyHomeService } from '@services/my-home.service';
   styleUrls: ['./expenses.component.css'],
 })
 export class ExpensesComponent {
+  @ViewChild(TempCodeFormComponent) tempCodeForm!: TempCodeFormComponent;
+  private readonly expenseToDeleteId = signal<number>(-1);
+  readonly deleteLoading = signal<boolean>(false);
+  readonly showSideBarDelete = signal<boolean>(false);
   readonly loading;
   readonly expenses;
 
   constructor(
     private readonly myCashService: MyCashService,
     private readonly myHomeService: MyHomeService,
-    private readonly cashRegisterDetailService: CashRegisterDetailService
+    private readonly cashRegisterDetailService: CashRegisterDetailService,
+    private readonly expenseService: ExpenseService
   ) {
     this.loading = this.myHomeService.loading;
     this.expenses = this.myHomeService.expenses;
@@ -46,5 +53,37 @@ export class ExpensesComponent {
           this.loading.set(false);
         },
       });
+  }
+
+  tableOnRemove(id: number) {
+    this.expenseToDeleteId.set(id);
+    this.showSideBarDelete.set(true);
+  }
+
+  remove(code: string) {
+    this.deleteLoading.set(true);
+
+    this.expenseService.delete(this.expenseToDeleteId(), code).subscribe({
+      next: () => {
+        this.expenses.update((prevValue) => {
+          const index = prevValue.findIndex(
+            (e) => e.id === this.expenseToDeleteId()
+          );
+
+          if (index > -1) {
+            prevValue.splice(index, 1);
+          }
+
+          return prevValue;
+        });
+
+        this.deleteLoading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.deleteLoading.set(false);
+      },
+      complete: () => this.showSideBarDelete.set(false),
+    });
   }
 }
