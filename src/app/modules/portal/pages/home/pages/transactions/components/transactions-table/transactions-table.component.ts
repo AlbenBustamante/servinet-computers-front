@@ -10,7 +10,7 @@ import { TransactionDetailTypePipe } from '@shared/pipes/transaction-detail-type
   styleUrls: ['./transactions-table.component.css'],
 })
 export class TransactionsTableComponent {
-  @Output() onEdit = new EventEmitter<void>();
+  @Output() onEdit = new EventEmitter<number>();
   @Output() onRemove = new EventEmitter<number>();
 
   readonly table: ITable = {
@@ -46,7 +46,7 @@ export class TransactionsTableComponent {
   constructor(private readonly myHomeService: MyHomeService) {}
 
   emitOnEdit(index: number) {
-    const { description, type, value, commission, date } =
+    const { id, description, type, value, commission, date } =
       this.myHomeService.details()[index];
 
     this.myHomeService.updateTransactionDetailForm.patchValue({
@@ -57,7 +57,7 @@ export class TransactionsTableComponent {
       date: formatDate(date, 'HH:mm', 'es-CO'),
     });
 
-    this.onEdit.emit();
+    this.onEdit.emit(id);
   }
 
   emitOnRemove(index: number) {

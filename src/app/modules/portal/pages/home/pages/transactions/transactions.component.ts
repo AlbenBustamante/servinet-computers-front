@@ -15,6 +15,7 @@ export class TransactionsComponent {
   @ViewChild(TempCodeFormComponent) tempCodeForm!: TempCodeFormComponent;
   readonly showSideBarUpdate = signal<boolean>(false);
   readonly showSideBarDelete = signal<boolean>(false);
+  readonly transactionDetailToUpdateId = signal<number>(-1);
   readonly transactionDetailToDeleteId = signal<number>(-1);
   readonly deleteLoading = signal<boolean>(false);
   readonly loading;
@@ -62,7 +63,12 @@ export class TransactionsComponent {
       });
   }
 
-  onDeleteTable(id: number) {
+  tableOnEdit(id: number) {
+    this.transactionDetailToUpdateId.set(id);
+    this.showSideBarUpdate.set(true);
+  }
+
+  tableOnRemove(id: number) {
     this.transactionDetailToDeleteId.set(id);
     this.showSideBarDelete.set(true);
   }

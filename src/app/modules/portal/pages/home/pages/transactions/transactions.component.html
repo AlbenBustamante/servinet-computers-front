@@ -8,8 +8,8 @@
     <div class="w-full h-full" *ngIf="!loading(); else spinner">
       <h2 class="home-subtitle">Mis Transacciones</h2>
       <app-transactions-table
-        (onEdit)="showSideBarUpdate.set(true)"
-        (onRemove)="onDeleteTable($event)"
+        (onEdit)="tableOnEdit($event)"
+        (onRemove)="tableOnRemove($event)"
       />
     </div>
   </section>
