@@ -20,6 +20,8 @@ import { DiscountPipe } from './pipes/discount.pipe';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TempCodeFormComponent } from './components/temp-code-form/temp-code-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChangeLogTypePipe } from './pipes/change-log-type.pipe';
+import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DiscountPipe,
     SidebarComponent,
     TempCodeFormComponent,
+    ChangeLogTypePipe,
+    ChangeLogActionPipe,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
