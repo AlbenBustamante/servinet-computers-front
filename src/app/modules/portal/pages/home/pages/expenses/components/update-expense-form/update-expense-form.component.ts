@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { IUpdateExpenseDto } from '@models/expense.model';
 import { MyHomeService } from '@services/my-home.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { MyHomeService } from '@services/my-home.service';
   styleUrls: ['./update-expense-form.component.css'],
 })
 export class UpdateExpenseFormComponent {
-  @Output() onSubmit = new EventEmitter<void>();
+  @Output() onSubmit = new EventEmitter<IUpdateExpenseDto>();
   readonly form;
 
   constructor(private readonly myHomeService: MyHomeService) {
@@ -15,7 +16,11 @@ export class UpdateExpenseFormComponent {
   }
 
   emitOnSubmit() {
-    this.onSubmit.emit();
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+
+    this.onSubmit.emit(this.form.value);
   }
 
   get discount(): boolean {

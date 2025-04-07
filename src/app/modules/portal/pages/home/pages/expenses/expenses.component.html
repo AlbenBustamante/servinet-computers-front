@@ -20,8 +20,9 @@
   actionName="Actualizar"
   headline="Gasto"
   mode="update"
+  (onSubmit)="updateExpenseForm.emitOnSubmit()"
 >
-  <app-update-expense-form />
+  <app-update-expense-form (onSubmit)="update($event)" />
 </app-sidebar>
 <app-sidebar
   [showSideBar]="showSideBarDelete"

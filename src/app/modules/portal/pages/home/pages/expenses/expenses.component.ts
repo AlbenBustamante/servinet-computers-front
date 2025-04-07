@@ -1,5 +1,5 @@
 import { Component, signal, ViewChild } from '@angular/core';
-import { IExpenseReq } from '@models/expense.model';
+import { IExpenseReq, IUpdateExpenseDto } from '@models/expense.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { ExpenseService } from '@services/expense.service';
 import { MyCashService } from '@services/my-cash.service';
@@ -70,6 +70,31 @@ export class ExpensesComponent {
   tableOnRemove(id: number) {
     this.expenseToDeleteId.set(id);
     this.showSideBarDelete.set(true);
+  }
+
+  update(dto: IUpdateExpenseDto) {
+    this.updateLoading.set(true);
+
+    this.expenseService.update(this.expenseToUpdateId(), dto).subscribe({
+      next: (expense) => {
+        this.expenses.update((prevValue) => {
+          const index = prevValue.findIndex((e) => e.id === expense.id);
+
+          if (index > -1) {
+            prevValue[index] = expense;
+          }
+
+          return prevValue;
+        });
+
+        this.showSideBarUpdate.set(false);
+        this.updateLoading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.updateLoading.set(false);
+      },
+    });
   }
 
   remove(code: string) {
