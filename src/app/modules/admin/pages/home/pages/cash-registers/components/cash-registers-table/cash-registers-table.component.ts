@@ -63,14 +63,6 @@ export class CashRegistersTableComponent {
       disabled,
     });
 
-    if (disabled) {
-      this.cashRegisterService.updateCashRegisterForm
-        .get('disabled')
-        ?.disable();
-    } else {
-      this.cashRegisterService.updateCashRegisterForm.get('disabled')?.enable();
-    }
-
     this.onEdit.emit();
   }
 

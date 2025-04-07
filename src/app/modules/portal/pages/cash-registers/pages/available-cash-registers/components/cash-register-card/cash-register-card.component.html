@@ -14,7 +14,8 @@
       class="text-lg font-medium"
       [ngClass]="{
         'text-green-700': cashRegister.status === 'AVAILABLE',
-        'text-red-700': cashRegister.status === 'OCCUPIED'
+        'text-red-700': cashRegister.status === 'OCCUPIED',
+        'text-gray-700': cashRegister.status === 'DISABLED'
       }"
       >{{ cashRegister.status | cashRegisterStatus }}</span
     >
@@ -24,7 +25,7 @@
       type="button"
       [disabled]="cashRegister.status !== 'AVAILABLE'"
       (click)="clickHandler()"
-      >Abrir caja</app-button
+      >{{ actionName }}</app-button
     >
   </footer>
 </article>
