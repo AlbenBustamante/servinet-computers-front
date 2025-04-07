@@ -38,8 +38,8 @@
     />
   </div>
   <p
-    [ngClass]="discount ? 'visible' : 'invisible'"
-    class="text-center text-red-700 text-balance font-medium"
+    [ngClass]="discount ? 'opacity-100' : 'opacity-0'"
+    class="text-center text-red-700 text-balance font-medium transition-opacity"
   >
     El valor será descontado de su nómina
   </p>
