@@ -87,13 +87,13 @@ export class ExpensesComponent {
           return prevValue;
         });
 
-        this.showSideBarUpdate.set(false);
         this.updateLoading.set(false);
       },
       error: (err) => {
         console.log(err);
         this.updateLoading.set(false);
       },
+      complete: () => this.showSideBarUpdate.set(false),
     });
   }
 
