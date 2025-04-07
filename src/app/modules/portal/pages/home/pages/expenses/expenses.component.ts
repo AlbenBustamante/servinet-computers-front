@@ -5,6 +5,7 @@ import { ExpenseService } from '@services/expense.service';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
 import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-code-form.component';
+import { UpdateExpenseFormComponent } from './components/update-expense-form/update-expense-form.component';
 
 @Component({
   selector: 'app-expenses',
@@ -12,10 +13,16 @@ import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-co
   styleUrls: ['./expenses.component.css'],
 })
 export class ExpensesComponent {
+  @ViewChild(UpdateExpenseFormComponent)
+  updateExpenseForm!: UpdateExpenseFormComponent;
   @ViewChild(TempCodeFormComponent) tempCodeForm!: TempCodeFormComponent;
+
+  private readonly expenseToUpdateId = signal<number>(-1);
   private readonly expenseToDeleteId = signal<number>(-1);
-  readonly deleteLoading = signal<boolean>(false);
+  readonly showSideBarUpdate = signal<boolean>(false);
   readonly showSideBarDelete = signal<boolean>(false);
+  readonly updateLoading = signal<boolean>(false);
+  readonly deleteLoading = signal<boolean>(false);
   readonly loading;
   readonly expenses;
 
@@ -53,6 +60,11 @@ export class ExpensesComponent {
           this.loading.set(false);
         },
       });
+  }
+
+  tableOnEdit(id: number) {
+    this.expenseToUpdateId.set(id);
+    this.showSideBarUpdate.set(true);
   }
 
   tableOnRemove(id: number) {

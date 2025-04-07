@@ -1,0 +1,47 @@
+<form class="form" [formGroup]="form" (ngSubmit)="emitOnSubmit()">
+  <div class="control">
+    <label for="update-description">Descripción</label>
+    <input
+      type="text"
+      id="update-description"
+      class="input"
+      formControlName="description"
+    />
+  </div>
+  <div class="control">
+    <label for="update-value">Valor</label>
+    <input
+      type="number"
+      id="update-value"
+      class="input"
+      formControlName="value"
+    />
+  </div>
+  <div class="flex flex-row-reverse justify-end items-center gap-3">
+    <label for="update-discount" class="text-gray-700 font-medium"
+      >Descontar</label
+    >
+    <input
+      type="checkbox"
+      id="update-discount"
+      class="input"
+      formControlName="discount"
+    />
+  </div>
+  <div class="control">
+    <label for="update-temp-code">Código</label>
+    <input
+      type="password"
+      id="update-temp-code"
+      class="input"
+      formControlName="tempCode"
+    />
+  </div>
+  <p
+    [ngClass]="discount ? 'visible' : 'invisible'"
+    class="text-center text-red-700 text-balance font-medium"
+  >
+    El valor será descontado de su nómina
+  </p>
+  <input type="submit" value="submit" class="sr-only" />
+</form>

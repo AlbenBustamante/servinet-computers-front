@@ -10,6 +10,7 @@ import { DiscountPipe } from '@shared/pipes/discount.pipe';
   styleUrls: ['./expenses-table.component.css'],
 })
 export class ExpensesTableComponent {
+  @Output() onEdit = new EventEmitter<number>();
   @Output() onRemove = new EventEmitter<number>();
 
   readonly table: ITable = {
@@ -32,12 +33,26 @@ export class ExpensesTableComponent {
     ],
     body: this.myHomeService.expenses,
     noDataMessage: 'Parece que aún no tienes gastos',
-    onRemove: (index) => this.emitOnEmit(index),
+    onEdit: (index) => this.emitOnEdit(index),
+    onRemove: (index) => this.emitOnRemove(index),
   };
 
   constructor(private readonly myHomeService: MyHomeService) {}
 
-  emitOnEmit(index: number) {
+  emitOnEdit(index: number) {
+    const { id, description, value, discount } =
+      this.myHomeService.expenses()[index];
+
+    this.myHomeService.updateExpenseForm.patchValue({
+      description,
+      value,
+      discount,
+    });
+
+    this.onEdit.emit(id);
+  }
+
+  emitOnRemove(index: number) {
     const { id } = this.myHomeService.expenses()[index];
     this.onRemove.emit(id);
   }

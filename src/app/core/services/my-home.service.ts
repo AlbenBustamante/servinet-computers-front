@@ -24,6 +24,7 @@ export class MyHomeService {
     undefined
   );
   readonly updateTransactionDetailForm: FormGroup;
+  readonly updateExpenseForm: FormGroup;
 
   constructor(private readonly fb: FormBuilder) {
     this.updateTransactionDetailForm = this.fb.group({
@@ -32,6 +33,13 @@ export class MyHomeService {
       value: ['', [Validators.required, Validators.min(0)]],
       commission: ['', Validators.min(0)],
       date: [null],
+      tempCode: [null, Validators.required],
+    });
+
+    this.updateExpenseForm = this.fb.group({
+      description: [null, Validators.required],
+      value: [null, [Validators.required, Validators.min(0)]],
+      discount: [null, Validators.required],
       tempCode: [null, Validators.required],
     });
   }

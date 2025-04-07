@@ -8,9 +8,9 @@ export class ChangeLogActionPipe implements PipeTransform {
   transform(value: ChangeLogAction): string {
     switch (value) {
       case ChangeLogAction.DELETE:
-        return 'Eliminación';
+        return 'Eliminado';
       case ChangeLogAction.UPDATE:
-        return 'Modificación';
+        return 'Modificado';
       default:
         return 'Berserk';
     }

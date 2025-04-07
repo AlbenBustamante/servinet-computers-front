@@ -7,10 +7,22 @@
     <ng-template #spinner> <app-spinner /></ng-template>
     <div class="w-full h-full" *ngIf="!loading(); else spinner">
       <h2 class="home-subtitle">Mis Gastos</h2>
-      <app-expenses-table (onRemove)="tableOnRemove($event)" />
+      <app-expenses-table
+        (onEdit)="tableOnEdit($event)"
+        (onRemove)="tableOnRemove($event)"
+      />
     </div>
   </section>
 </div>
+<app-sidebar
+  [showSideBar]="showSideBarUpdate"
+  [loading]="updateLoading()"
+  actionName="Actualizar"
+  headline="Gasto"
+  mode="update"
+>
+  <app-update-expense-form />
+</app-sidebar>
 <app-sidebar
   [showSideBar]="showSideBarDelete"
   [loading]="deleteLoading()"
