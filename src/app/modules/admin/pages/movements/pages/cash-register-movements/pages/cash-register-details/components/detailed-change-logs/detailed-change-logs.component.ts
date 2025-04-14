@@ -1,4 +1,5 @@
 import { Component, computed, Input } from '@angular/core';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { IChangeLogRes } from '@models/change-log.model';
 
 @Component({
@@ -9,6 +10,7 @@ import { IChangeLogRes } from '@models/change-log.model';
 export class DetailedChangeLogsComponent {
   @Input({ required: true }) changeLog!: IChangeLogRes | undefined;
 
+  readonly faLeftArrow = faChevronLeft;
   readonly type = computed(() => this.changeLog?.type);
 
   readonly previous = computed(() => {

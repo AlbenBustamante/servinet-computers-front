@@ -1,3 +1,39 @@
+<article class="px-5">
+  <header class="flex items-center justify-between gap-1">
+    <button
+      class="text-gray-700 flex items-center gap-1.5 px-4 py-1.5 rounded-2xl hover:bg-gray-200 duration-100"
+    >
+      <fa-icon [icon]="faLeftArrow" size="sm" /> Volver
+    </button>
+    <h3 class="text-xl text-violet-700 font-medium">
+      Registro ID #{{ previous().id }}
+    </h3>
+  </header>
+  <ul class="w-full max-w-md m-auto">
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Tipo :
+      <span class="text-left">{{ changeLog?.type | changeLogType }}</span>
+    </li>
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Hora de Registro :
+      <span class="text-left">{{
+        previous().createdDate | date : "HH:mm:ss a"
+      }}</span>
+    </li>
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Actualizado :
+      <span class="text-left">{{
+        current().modifiedDate | date : "HH:mm:ss a"
+      }}</span>
+    </li>
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Estado del cajero :
+      <span class="text-left">{{
+        previous().cashRegisterDetail.status | cashRegisterDetailStatus
+      }}</span>
+    </li>
+  </ul>
+</article>
 <div class="grid grid-cols-2 gap-5 p-5">
   <article class="info-card">
     <h4 class="subtitle">Original</h4>
@@ -65,7 +101,9 @@
         *ngIf="type() === 'TRANSACTION_DETAIL'"
       >
         Hora
-        <span class="item-value">{{ previous().date | date : "hh:mm a" }}</span>
+        <span class="item-value">{{
+          previous().date | date : "HH:mm:ss a"
+        }}</span>
       </li>
     </ul>
   </article>
@@ -142,7 +180,9 @@
         *ngIf="type() === 'TRANSACTION_DETAIL'"
       >
         Hora
-        <span class="item-value">{{ current().date | date : "hh:mm a" }}</span>
+        <span class="item-value">{{
+          current().date | date : "HH:mm:ss a"
+        }}</span>
       </li>
     </ul>
   </article>

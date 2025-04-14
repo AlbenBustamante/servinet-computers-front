@@ -48,7 +48,7 @@ export class CashRegisterDetailsComponent {
 
   get cashier() {
     const user = this.reports?.cashRegisterDetail.user;
-    return user ? `${user.name} ${user.lastName}` : '';
+    return user ? `${user.name} ${user.lastName} - ${user.code}` : '';
   }
 
   get details() {
