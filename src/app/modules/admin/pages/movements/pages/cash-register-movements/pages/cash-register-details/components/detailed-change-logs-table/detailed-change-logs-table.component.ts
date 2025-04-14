@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { IChangeLogRes } from '@models/change-log.model';
 import { CashRegisterDetailMovementService } from '@services/cash-register-detail-movement.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 import { CashRegisterDetailStatusPipe } from '@shared/pipes/cash-register-detail-status.pipe';
@@ -12,6 +13,7 @@ import { ChangeLogTypePipe } from '@shared/pipes/change-log-type.pipe';
   styleUrls: ['./detailed-change-logs-table.component.css'],
 })
 export class DetailedChangeLogsTableComponent {
+  readonly selectedLog = signal<IChangeLogRes | undefined>(undefined);
   readonly changeLogs;
   readonly table: ITable;
 
@@ -51,6 +53,6 @@ export class DetailedChangeLogsTableComponent {
 
   onClick(index: number) {
     const changeLog = this.changeLogs()![index];
-    console.log({ changeLog });
+    this.selectedLog.set(changeLog);
   }
 }

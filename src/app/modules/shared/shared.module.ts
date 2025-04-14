@@ -57,6 +57,8 @@ import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
     CustomTableComponent,
     CashRegisterStatusPipe,
     CashRegisterDetailStatusPipe,
+    TransactionDetailTypePipe,
+    DiscountPipe,
     SidebarComponent,
     TempCodeFormComponent,
   ],

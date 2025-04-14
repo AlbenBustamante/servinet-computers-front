@@ -1,0 +1,27 @@
+.info-card {
+  @apply px-5 py-4 border-2 border-gray-300 rounded-2xl;
+}
+
+.subtitle {
+  @apply text-gray-800 uppercase font-medium;
+}
+
+.list {
+  @apply flex flex-col gap-2 mt-3;
+}
+
+.item {
+  @apply text-gray-700 uppercase font-medium flex justify-between hover:bg-violet-100 px-1 py-0.5 rounded;
+}
+
+.item-value {
+  @apply font-normal text-gray-700;
+}
+
+.item-prev {
+  @apply bg-red-50 text-red-700;
+}
+
+.item-new {
+  @apply bg-green-50 text-green-700;
+}
