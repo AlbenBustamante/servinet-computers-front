@@ -5,7 +5,7 @@
       <li
         class="item"
         [ngClass]="{
-          'item-prev': previous().description !== current().description
+          'item-prev': equals('description')
         }"
         *ngIf="type() === 'TRANSACTION_DETAIL' || type() === 'EXPENSE'"
       >
@@ -15,7 +15,7 @@
       <li
         class="item"
         [ngClass]="{
-          'item-prev': previous().type !== current().type
+          'item-prev': equals('type')
         }"
         *ngIf="type() === 'TRANSACTION_DETAIL'"
       >
@@ -27,7 +27,7 @@
       <li
         class="item"
         [ngClass]="{
-          'item-prev': previous().discount !== current().discount
+          'item-prev': equals('discount')
         }"
         *ngIf="type() === 'EXPENSE'"
       >
@@ -37,7 +37,7 @@
       <li
         class="item"
         [ngClass]="{
-          'item-prev': previous().value !== current().value
+          'item-prev': equals('value')
         }"
       >
         Valor
@@ -48,7 +48,7 @@
       <li
         class="item"
         [ngClass]="{
-          'item-prev': previous().commission !== current().commission
+          'item-prev': equals('commission')
         }"
         *ngIf="type() === 'TRANSACTION_DETAIL'"
       >
@@ -60,7 +60,7 @@
       <li
         class="item"
         [ngClass]="{
-          'item-prev': previous().date !== current().date
+          'item-prev': equals('date')
         }"
         *ngIf="type() === 'TRANSACTION_DETAIL'"
       >
@@ -71,7 +71,14 @@
   </article>
   <article class="info-card">
     <h4 class="subtitle">Reciente</h4>
-    <ul class="list">
+    <ng-template #deleted>
+      <p
+        class="w-full h-[75%] flex items-center justify-center text-red-700 text-3xl font-medium"
+      >
+        Eliminado
+      </p>
+    </ng-template>
+    <ul class="list" *ngIf="changeLog?.action === 'UPDATE'; else deleted">
       <li
         class="item"
         [ngClass]="{

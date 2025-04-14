@@ -20,4 +20,12 @@ export class DetailedChangeLogsComponent {
       ? JSON.parse(this.changeLog?.newData ?? '')
       : null
   );
+
+  equals(property: string) {
+    if (this.current() === null) {
+      return false;
+    }
+
+    return this.previous()[property] !== this.current()[property];
+  }
 }
