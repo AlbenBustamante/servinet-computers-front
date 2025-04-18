@@ -7,7 +7,16 @@
     <ng-template #spinner><app-spinner /></ng-template>
     <div class="w-full h-full" *ngIf="!loading(); else spinner">
       <h2 class="home-subtitle">Mis Transferencias</h2>
-      <app-cash-transfers-table />
+      <app-cash-transfers-table (onRemove)="onRemove($event)" />
     </div>
   </section>
 </div>
+<app-sidebar
+  [showSideBar]="showDeleteSideBar"
+  headline="Transferencia"
+  actionName="Eliminar"
+  mode="delete"
+  (onSubmit)="tempCodeForm.emitOnSubmit()"
+>
+  <app-temp-code-form (onSubmit)="delete($event)" />
+</app-sidebar>

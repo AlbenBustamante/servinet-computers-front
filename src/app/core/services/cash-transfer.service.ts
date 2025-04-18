@@ -31,11 +31,11 @@ export class CashTransferService {
   delete(
     cashTransferId: number,
     cashRegisterDetailId: number,
-    tempCode: number
+    tempCode: string
   ) {
     const params = new HttpParams()
       .append('cashRegisterDetailId', cashRegisterDetailId)
-      .append('tempCode', tempCode);
+      .append('tempCode', Number(tempCode));
 
     return this.http.delete<void>(`${this.url}/${cashTransferId}`, {
       params,
