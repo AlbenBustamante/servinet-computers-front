@@ -1,0 +1,21 @@
+<ul class="flex items-center justify-center gap-3">
+  <li
+    class="flex items-center justify-center w-7 h-9 text-violet-700 text-lg text-center font-medium border-2 border-violet-700 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform"
+  >
+    <fa-icon [icon]="faLeft" size="xs" />
+  </li>
+  <li
+    *ngFor="let page of pages()"
+    class="flex items-center justify-center w-7 h-9 text-violet-700 text-lg text-center font-medium border-2 border-violet-700 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform"
+    [ngClass]="{
+      'text-white bg-violet-700': selectedPage() === page
+    }"
+  >
+    {{ page + 1 }}
+  </li>
+  <li
+    class="flex items-center justify-center w-7 h-9 text-violet-700 text-lg text-center font-medium border-2 border-violet-700 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform"
+  >
+    <fa-icon [icon]="faRight" size="xs" />
+  </li>
+</ul>

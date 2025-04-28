@@ -22,6 +22,7 @@ import { TempCodeFormComponent } from './components/temp-code-form/temp-code-for
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangeLogTypePipe } from './pipes/change-log-type.pipe';
 import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
     TempCodeFormComponent,
     ChangeLogTypePipe,
     ChangeLogActionPipe,
+    PaginationComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
@@ -62,6 +64,7 @@ import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
     ChangeLogTypePipe,
     SidebarComponent,
     TempCodeFormComponent,
+    PaginationComponent,
   ],
 })
 export class SharedModule {}
