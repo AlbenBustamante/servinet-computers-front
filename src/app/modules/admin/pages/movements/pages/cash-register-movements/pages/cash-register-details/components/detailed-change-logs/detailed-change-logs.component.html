@@ -1,0 +1,189 @@
+<article class="px-5">
+  <header class="flex items-center justify-between gap-1">
+    <button
+      class="text-gray-700 flex items-center gap-1.5 px-4 py-1.5 rounded-2xl hover:bg-gray-200 duration-100"
+    >
+      <fa-icon [icon]="faLeftArrow" size="sm" /> Volver
+    </button>
+    <h3 class="text-xl text-violet-700 font-medium">
+      Registro ID #{{ previous().id }}
+    </h3>
+  </header>
+  <ul class="w-full max-w-md m-auto">
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Tipo :
+      <span class="text-left">{{ changeLog?.type | changeLogType }}</span>
+    </li>
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Hora de Registro :
+      <span class="text-left">{{
+        previous().createdDate | date : "HH:mm:ss a"
+      }}</span>
+    </li>
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Actualizado :
+      <span class="text-left">{{
+        current().modifiedDate | date : "HH:mm:ss a"
+      }}</span>
+    </li>
+    <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
+      Estado del cajero :
+      <span class="text-left">{{
+        previous().cashRegisterDetail.status | cashRegisterDetailStatus
+      }}</span>
+    </li>
+  </ul>
+</article>
+<div class="grid grid-cols-2 gap-5 p-5">
+  <article class="info-card">
+    <h4 class="subtitle">Original</h4>
+    <ul class="list">
+      <li
+        class="item"
+        [ngClass]="{
+          'item-prev': equals('description')
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL' || type() === 'EXPENSE'"
+      >
+        Descripción
+        <span class="item-value">{{ previous().description }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-prev': equals('type')
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL'"
+      >
+        Tipo
+        <span class="item-value">{{
+          previous().type | transactionDetailType
+        }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-prev': equals('discount')
+        }"
+        *ngIf="type() === 'EXPENSE'"
+      >
+        Descuenta
+        <span class="item-value">{{ previous().discount | discount }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-prev': equals('value')
+        }"
+      >
+        Valor
+        <span class="item-value">{{
+          previous().value | currency : "symbol" : "$" : "0.00"
+        }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-prev': equals('commission')
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL'"
+      >
+        Adicional
+        <span class="item-value">{{
+          previous().commission | currency : "symbol" : "$" : "0.00"
+        }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-prev': equals('date')
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL'"
+      >
+        Hora
+        <span class="item-value">{{
+          previous().date | date : "HH:mm:ss a"
+        }}</span>
+      </li>
+    </ul>
+  </article>
+  <article class="info-card">
+    <h4 class="subtitle">Reciente</h4>
+    <ng-template #deleted>
+      <p
+        class="w-full h-[75%] flex items-center justify-center text-red-700 text-3xl font-medium"
+      >
+        Eliminado
+      </p>
+    </ng-template>
+    <ul class="list" *ngIf="changeLog?.action === 'UPDATE'; else deleted">
+      <li
+        class="item"
+        [ngClass]="{
+          'item-new': previous().description !== current().description
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL' || type() === 'EXPENSE'"
+      >
+        Descripción
+        <span class="item-value">{{ current().description }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-new': previous().type !== current().type
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL'"
+      >
+        Tipo
+        <span class="item-value">{{
+          current().type | transactionDetailType
+        }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-new': previous().discount !== current().discount
+        }"
+        *ngIf="type() === 'EXPENSE'"
+      >
+        Descuenta
+        <span class="item-value">{{ current().discount | discount }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-new': previous().value !== current().value
+        }"
+      >
+        Valor
+        <span class="item-value">{{
+          current().value | currency : "symbol" : "$" : "0.00"
+        }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-new': previous().commission !== current().commission
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL'"
+      >
+        Adicional
+        <span class="item-value">{{
+          current().commission | currency : "symbol" : "$" : "0.00"
+        }}</span>
+      </li>
+      <li
+        class="item"
+        [ngClass]="{
+          'item-new': previous().date !== current().date
+        }"
+        *ngIf="type() === 'TRANSACTION_DETAIL'"
+      >
+        Hora
+        <span class="item-value">{{
+          current().date | date : "HH:mm:ss a"
+        }}</span>
+      </li>
+    </ul>
+  </article>
+</div>

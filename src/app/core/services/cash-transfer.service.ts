@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -24,6 +24,21 @@ export class CashTransferService {
 
   getAvailableTransfers() {
     return this.http.get<IAvailableTransfersDto>(this.url, {
+      context: checkToken(),
+    });
+  }
+
+  delete(
+    cashTransferId: number,
+    cashRegisterDetailId: number,
+    tempCode: string
+  ) {
+    const params = new HttpParams()
+      .append('cashRegisterDetailId', cashRegisterDetailId)
+      .append('tempCode', Number(tempCode));
+
+    return this.http.delete<void>(`${this.url}/${cashTransferId}`, {
+      params,
       context: checkToken(),
     });
   }

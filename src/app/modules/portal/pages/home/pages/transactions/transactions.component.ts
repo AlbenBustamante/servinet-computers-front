@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, computed, signal, ViewChild } from '@angular/core';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
@@ -7,6 +7,7 @@ import { TransactionService } from '@services/transaction.service';
 import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-code-form.component';
 import { UpdateTransactionDetailFormComponent } from './components/update-transaction-detail-form/update-transaction-detail-form.component';
 import { IUpdateTransactionDetailDto } from '@models/transaction.model';
+import { IPagination } from '@models/response.model';
 
 @Component({
   selector: 'app-transactions',
@@ -24,6 +25,8 @@ export class TransactionsComponent {
   readonly transactionDetailToDeleteId = signal<number>(-1);
   readonly updateLoading = signal<boolean>(false);
   readonly deleteLoading = signal<boolean>(false);
+  readonly pagination = signal<IPagination | undefined>(undefined);
+  readonly paginationLoading = signal<boolean>(false);
   readonly loading;
   readonly details;
   readonly transactions;
@@ -50,7 +53,8 @@ export class TransactionsComponent {
       .getTransactions(cashRegisterDetailId)
       .subscribe({
         next: (transactions) => {
-          this.details.set(transactions);
+          this.pagination.set(transactions.page);
+          this.details.set(transactions.content);
           this.transactionService.getAll().subscribe({
             next: (descriptions) => {
               this.transactions.set(descriptions);
@@ -67,6 +71,24 @@ export class TransactionsComponent {
           this.loading.set(false);
         },
       });
+  }
+
+  onSelectPage(page: number) {
+    this.paginationLoading.set(true);
+
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
+
+    this.cashRegisterDetailService.getTransactions(id, page).subscribe({
+      next: (transactions) => {
+        this.pagination.set(transactions.page);
+        this.details.set(transactions.content);
+        this.paginationLoading.set(false);
+      },
+      error: (err) => {
+        this.paginationLoading.set(false);
+        console.log(err);
+      },
+    });
   }
 
   tableOnEdit(id: number) {

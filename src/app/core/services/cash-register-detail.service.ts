@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -18,6 +18,7 @@ import { IBase } from '@models/base.model';
 import { IExpenseRes } from '@models/expense.model';
 import { ITransactionDetailRes } from '@models/transaction.model';
 import { ICashTransferDto } from '@models/cash-transfer.model';
+import { IPageResponse } from '@models/response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -72,10 +73,12 @@ export class CashRegisterDetailService {
     );
   }
 
-  getTransactions(cashRegisterDetailId: number) {
-    return this.http.get<ITransactionDetailRes[]>(
+  getTransactions(cashRegisterDetailId: number, page: number = 0) {
+    const params = new HttpParams().append('pageNumber', page);
+
+    return this.http.get<IPageResponse<ITransactionDetailRes>>(
       this.urlIdPath(cashRegisterDetailId, 'transactions'),
-      { context: checkToken() }
+      { params, context: checkToken() }
     );
   }
 

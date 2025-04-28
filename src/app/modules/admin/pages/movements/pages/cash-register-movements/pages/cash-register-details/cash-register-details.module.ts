@@ -18,9 +18,33 @@ import { CashierObservationsComponent } from './components/cashier-observations/
 import { SomeStatComponent } from './components/some-stat/some-stat.component';
 import { CashierDiscrepancyComponent } from './components/cashier-discrepancy/cashier-discrepancy.component';
 import { DetailedChangeLogsTableComponent } from './components/detailed-change-logs-table/detailed-change-logs-table.component';
+import { DetailedChangeLogsComponent } from './components/detailed-change-logs/detailed-change-logs.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [CashRegisterDetailsComponent, StatCardComponent, HeaderStatsComponent, CashRegisterDetailsModalComponent, DetailedTransactionsTableComponent, DetailedExpensesTableComponent, DetailedDiscountsTableComponent, DetailedTransfersTableComponent, HourStatComponent, CashierHourStatsComponent, CashierSomeStatsComponent, CashierObservationsComponent, SomeStatComponent, CashierDiscrepancyComponent, DetailedChangeLogsTableComponent],
-  imports: [CommonModule, CashRegisterDetailsRoutingModule, SharedModule],
+  declarations: [
+    CashRegisterDetailsComponent,
+    StatCardComponent,
+    HeaderStatsComponent,
+    CashRegisterDetailsModalComponent,
+    DetailedTransactionsTableComponent,
+    DetailedExpensesTableComponent,
+    DetailedDiscountsTableComponent,
+    DetailedTransfersTableComponent,
+    HourStatComponent,
+    CashierHourStatsComponent,
+    CashierSomeStatsComponent,
+    CashierObservationsComponent,
+    SomeStatComponent,
+    CashierDiscrepancyComponent,
+    DetailedChangeLogsTableComponent,
+    DetailedChangeLogsComponent,
+  ],
+  imports: [
+    CommonModule,
+    CashRegisterDetailsRoutingModule,
+    SharedModule,
+    FontAwesomeModule,
+  ],
 })
 export default class CashRegisterDetailsModule {}

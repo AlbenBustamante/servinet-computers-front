@@ -5,7 +5,7 @@ import { ChangeLogType } from '@models/enums';
   name: 'changeLogType',
 })
 export class ChangeLogTypePipe implements PipeTransform {
-  transform(value: ChangeLogType): string {
+  transform(value: ChangeLogType | undefined): string {
     switch (value) {
       case ChangeLogType.CASH_TRANSFER:
         return 'Transferencia entre Cajas';
