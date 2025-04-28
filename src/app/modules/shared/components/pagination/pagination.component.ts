@@ -1,4 +1,12 @@
-import { Component, computed, Input, Signal, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  Input,
+  Output,
+  Signal,
+  signal,
+} from '@angular/core';
 import {
   faChevronLeft,
   faChevronRight,
@@ -11,7 +19,9 @@ import { IPagination } from '@models/response.model';
   styleUrls: ['./pagination.component.css'],
 })
 export class PaginationComponent {
+  @Output() onSelectPage = new EventEmitter<number>();
   @Input({ required: true }) pagination!: Signal<IPagination | undefined>;
+  @Input({ required: true }) loading!: boolean;
 
   readonly pages = computed(() => {
     const array: number[] = [];
@@ -27,4 +37,13 @@ export class PaginationComponent {
   readonly selectedPage = signal<number>(0);
   readonly faLeft = faChevronLeft;
   readonly faRight = faChevronRight;
+
+  emitOnSelectPage(page: number) {
+    if (this.loading) {
+      return;
+    }
+
+    this.selectedPage.set(page);
+    this.onSelectPage.emit(page);
+  }
 }

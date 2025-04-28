@@ -12,7 +12,11 @@
         (onRemove)="tableOnRemove($event)"
       />
       <br />
-      <app-pagination [pagination]="pagination" />
+      <app-pagination
+        [loading]="paginationLoading()"
+        [pagination]="pagination"
+        (onSelectPage)="onSelectPage($event)"
+      />
     </div>
   </section>
 </div>

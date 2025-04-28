@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -73,10 +73,12 @@ export class CashRegisterDetailService {
     );
   }
 
-  getTransactions(cashRegisterDetailId: number) {
+  getTransactions(cashRegisterDetailId: number, page: number = 0) {
+    const params = new HttpParams().append('pageNumber', page);
+
     return this.http.get<IPageResponse<ITransactionDetailRes>>(
       this.urlIdPath(cashRegisterDetailId, 'transactions'),
-      { context: checkToken() }
+      { params, context: checkToken() }
     );
   }
 

@@ -26,6 +26,7 @@ export class TransactionsComponent {
   readonly updateLoading = signal<boolean>(false);
   readonly deleteLoading = signal<boolean>(false);
   readonly pagination = signal<IPagination | undefined>(undefined);
+  readonly paginationLoading = signal<boolean>(false);
   readonly loading;
   readonly details;
   readonly transactions;
@@ -70,6 +71,24 @@ export class TransactionsComponent {
           this.loading.set(false);
         },
       });
+  }
+
+  onSelectPage(page: number) {
+    this.paginationLoading.set(true);
+
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
+
+    this.cashRegisterDetailService.getTransactions(id, page).subscribe({
+      next: (transactions) => {
+        this.pagination.set(transactions.page);
+        this.details.set(transactions.content);
+        this.paginationLoading.set(false);
+      },
+      error: (err) => {
+        this.paginationLoading.set(false);
+        console.log(err);
+      },
+    });
   }
 
   tableOnEdit(id: number) {
