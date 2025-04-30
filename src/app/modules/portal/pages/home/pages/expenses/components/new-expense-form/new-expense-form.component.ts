@@ -4,6 +4,7 @@ import { IExpenseReq } from '@models/expense.model';
 import { ExpenseService } from '@services/expense.service';
 import { MyCashService } from '@services/my-cash.service';
 import { MyHomeService } from '@services/my-home.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-new-expense-form',
@@ -19,7 +20,8 @@ export class NewExpenseFormComponent {
     private readonly fb: FormBuilder,
     private readonly myCashService: MyCashService,
     private readonly expenseService: ExpenseService,
-    private readonly myTransactionsService: MyHomeService
+    private readonly myHomeService: MyHomeService,
+    private readonly formLoading: FormLoading
   ) {
     this.form = this.fb.group({
       description: ['', Validators.required],
@@ -35,20 +37,17 @@ export class NewExpenseFormComponent {
 
     this.setLoading(true);
 
-    const cashRegisterDetailId =
-      this.myCashService.currentCashRegister()!.cashRegisterDetail.id;
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
 
     const req: IExpenseReq = {
       ...this.form.value,
-      cashRegisterDetailId,
+      cashRegisterDetailId: id,
     };
 
     this.expenseService.register(req).subscribe({
       next: (expense) => {
-        this.myTransactionsService.expenses.update((prevValue) => [
-          ...prevValue,
-          expense,
-        ]);
+        this.myHomeService.pagination.set(expense.page);
+        this.myHomeService.expenses.set(expense.content);
         this.resetForm();
         this.setLoading(false);
       },
@@ -70,8 +69,6 @@ export class NewExpenseFormComponent {
   }
 
   private setLoading(loading: boolean) {
-    this.loading.set(loading);
-
-    loading ? this.form.disable() : this.form.enable();
+    this.formLoading.setLoading(this.form, this.loading, loading);
   }
 }

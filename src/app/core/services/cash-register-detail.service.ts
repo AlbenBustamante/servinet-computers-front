@@ -66,10 +66,12 @@ export class CashRegisterDetailService {
     );
   }
 
-  getExpenses(cashRegisterDetailId: number) {
-    return this.http.get<IExpenseRes[]>(
+  getExpenses(cashRegisterDetailId: number, page: number = 0) {
+    const params = new HttpParams().append('pageNumber', page);
+
+    return this.http.get<IPageResponse<IExpenseRes>>(
       this.urlIdPath(cashRegisterDetailId, 'expenses'),
-      { context: checkToken() }
+      { params, context: checkToken() }
     );
   }
 
@@ -82,10 +84,12 @@ export class CashRegisterDetailService {
     );
   }
 
-  getCashTransfers(cashRegisterDetailId: number) {
-    return this.http.get<ICashTransferDto[]>(
+  getCashTransfers(cashRegisterDetailId: number, page: number = 0) {
+    const params = new HttpParams().append('pageNumber', page);
+
+    return this.http.get<IPageResponse<ICashTransferDto>>(
       this.urlIdPath(cashRegisterDetailId, 'cash-transfers'),
-      { context: checkToken() }
+      { params, context: checkToken() }
     );
   }
 

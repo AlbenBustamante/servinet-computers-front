@@ -7,6 +7,7 @@ import {
   ICashTransferDto,
   ICreateCashTransferDto,
 } from '@models/cash-transfer.model';
+import { IPageResponse } from '@models/response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +18,11 @@ export class CashTransferService {
   constructor(private readonly http: HttpClient) {}
 
   register(createTransferDto: ICreateCashTransferDto) {
-    return this.http.post<ICashTransferDto>(this.url, createTransferDto, {
-      context: checkToken(),
-    });
+    return this.http.post<IPageResponse<ICashTransferDto>>(
+      this.url,
+      createTransferDto,
+      { context: checkToken() }
+    );
   }
 
   getAvailableTransfers() {

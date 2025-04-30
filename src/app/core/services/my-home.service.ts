@@ -6,6 +6,7 @@ import {
 } from '@models/cash-transfer.model';
 import { TransactionDetailType } from '@models/enums';
 import { IExpenseRes } from '@models/expense.model';
+import { IPagination } from '@models/response.model';
 import {
   ITransactionDetailRes,
   ITransactionRes,
@@ -16,6 +17,8 @@ import {
 })
 export class MyHomeService {
   readonly loading = signal<boolean>(false);
+  readonly pagination = signal<IPagination | undefined>(undefined);
+  readonly paginationLoading = signal<boolean>(false);
   readonly expenses = signal<IExpenseRes[]>([]);
   readonly details = signal<ITransactionDetailRes[]>([]);
   readonly cashTransfers = signal<ICashTransferDto[]>([]);

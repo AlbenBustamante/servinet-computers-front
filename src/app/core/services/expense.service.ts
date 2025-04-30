@@ -7,6 +7,7 @@ import {
   IExpenseRes,
   IUpdateExpenseDto,
 } from '@models/expense.model';
+import { IPageResponse } from '@models/response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class ExpenseService {
   constructor(private readonly http: HttpClient) {}
 
   register(req: IExpenseReq) {
-    return this.http.post<IExpenseRes>(this.url, req, {
+    return this.http.post<IPageResponse<IExpenseRes>>(this.url, req, {
       context: checkToken(),
     });
   }

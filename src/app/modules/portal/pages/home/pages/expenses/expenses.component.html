@@ -11,6 +11,12 @@
         (onEdit)="tableOnEdit($event)"
         (onRemove)="tableOnRemove($event)"
       />
+      <br />
+      <app-pagination
+        *ngIf="expenses().length > 0"
+        [pagination]="pagination"
+        [loading]="paginationLoading()"
+      />
     </div>
   </section>
 </div>

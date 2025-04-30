@@ -19,6 +19,8 @@ export class TransfersComponent {
   readonly loading;
   readonly availableTransfers;
   readonly cashTransfers;
+  readonly pagination;
+  readonly paginationLoading;
 
   constructor(
     private readonly cashTransferService: CashTransferService,
@@ -29,6 +31,8 @@ export class TransfersComponent {
     this.loading = this.myHomeService.loading;
     this.availableTransfers = this.myHomeService.availableTransfers;
     this.cashTransfers = this.myHomeService.cashTransfers;
+    this.pagination = this.myHomeService.pagination;
+    this.paginationLoading = this.myHomeService.paginationLoading;
   }
 
   ngOnInit() {
@@ -44,7 +48,8 @@ export class TransfersComponent {
     calls.subscribe({
       next: ([availableTransfers, cashTransfers]) => {
         this.availableTransfers.set(availableTransfers);
-        this.cashTransfers.set(cashTransfers);
+        this.cashTransfers.set(cashTransfers.content);
+        this.pagination.set(cashTransfers.page);
         this.loading.set(false);
       },
       error: (err) => {

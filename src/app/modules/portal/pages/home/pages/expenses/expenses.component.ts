@@ -25,6 +25,8 @@ export class ExpensesComponent {
   readonly deleteLoading = signal<boolean>(false);
   readonly loading;
   readonly expenses;
+  readonly pagination;
+  readonly paginationLoading;
 
   constructor(
     private readonly myCashService: MyCashService,
@@ -34,32 +36,32 @@ export class ExpensesComponent {
   ) {
     this.loading = this.myHomeService.loading;
     this.expenses = this.myHomeService.expenses;
+    this.pagination = this.myHomeService.pagination;
+    this.paginationLoading = this.myHomeService.paginationLoading;
   }
 
   onSubmit(req: IExpenseReq) {
-    const cashRegisterDetailId =
-      this.myCashService.currentCashRegister()!.cashRegisterDetail.id;
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
 
-    req.cashRegisterDetailId = cashRegisterDetailId;
+    req.cashRegisterDetailId = id;
   }
 
   ngOnInit() {
     this.loading.set(true);
 
-    this.cashRegisterDetailService
-      .getExpenses(
-        this.myCashService.currentCashRegister()!.cashRegisterDetail.id
-      )
-      .subscribe({
-        next: (expenses) => {
-          this.expenses.set(expenses);
-          this.loading.set(false);
-        },
-        error: (err) => {
-          console.log(err);
-          this.loading.set(false);
-        },
-      });
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
+
+    this.cashRegisterDetailService.getExpenses(id).subscribe({
+      next: (expenses) => {
+        this.expenses.set(expenses.content);
+        this.pagination.set(expenses.page);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
   }
 
   tableOnEdit(id: number) {

@@ -13,6 +13,7 @@
       />
       <br />
       <app-pagination
+        *ngIf="details().length > 0"
         [loading]="paginationLoading()"
         [pagination]="pagination"
         (onSelectPage)="onSelectPage($event)"

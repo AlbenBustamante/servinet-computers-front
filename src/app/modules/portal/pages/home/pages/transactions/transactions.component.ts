@@ -25,8 +25,8 @@ export class TransactionsComponent {
   readonly transactionDetailToDeleteId = signal<number>(-1);
   readonly updateLoading = signal<boolean>(false);
   readonly deleteLoading = signal<boolean>(false);
-  readonly pagination = signal<IPagination | undefined>(undefined);
-  readonly paginationLoading = signal<boolean>(false);
+  readonly paginationLoading;
+  readonly pagination;
   readonly loading;
   readonly details;
   readonly transactions;
@@ -38,9 +38,11 @@ export class TransactionsComponent {
     private readonly transactionService: TransactionService,
     private readonly transactionDetailService: TransactionDetailService
   ) {
+    this.pagination = this.myHomeService.pagination;
     this.details = this.myHomeService.details;
     this.loading = this.myHomeService.loading;
     this.transactions = this.myHomeService.transactions;
+    this.paginationLoading = this.myHomeService.paginationLoading;
   }
 
   ngOnInit() {

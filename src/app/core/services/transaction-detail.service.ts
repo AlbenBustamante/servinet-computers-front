@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
+import { IPageResponse } from '@models/response.model';
 import {
   ITransactionDetailReq,
   ITransactionDetailRes,
@@ -17,7 +18,7 @@ export class TransactionDetailService {
   constructor(private readonly http: HttpClient) {}
 
   register(req: ITransactionDetailReq) {
-    return this.http.post<ITransactionDetailRes>(this.url, req, {
+    return this.http.post<IPageResponse<ITransactionDetailRes>>(this.url, req, {
       context: checkToken(),
     });
   }

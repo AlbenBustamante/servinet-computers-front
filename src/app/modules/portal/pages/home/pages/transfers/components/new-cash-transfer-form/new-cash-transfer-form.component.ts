@@ -22,6 +22,7 @@ export class NewCashTransferFormComponent {
   readonly cashTransfers;
   readonly form;
   readonly currentCashRegister;
+  readonly pagination;
 
   constructor(
     private readonly baseService: BaseService,
@@ -33,6 +34,7 @@ export class NewCashTransferFormComponent {
     this.availableTransfers = this.myHomeService.availableTransfers;
     this.cashTransfers = this.myHomeService.cashTransfers;
     this.currentCashRegister = this.myCashService.currentCashRegister;
+    this.pagination = this.myHomeService.pagination;
 
     this.form = this.fb.group({
       receive: ['true', Validators.required],
@@ -70,7 +72,8 @@ export class NewCashTransferFormComponent {
 
     this.cashTransferService.register(createCashTransferDto).subscribe({
       next: (cashTransfer) => {
-        this.cashTransfers.update((prevValue) => [...prevValue, cashTransfer]);
+        this.cashTransfers.set(cashTransfer.content);
+        this.pagination.set(cashTransfer.page);
         this.resetForm();
         this.setLoading(false);
       },

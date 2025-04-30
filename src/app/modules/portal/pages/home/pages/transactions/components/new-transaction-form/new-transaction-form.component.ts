@@ -14,6 +14,7 @@ import { FormLoading } from '@utils/form-loading';
 })
 export class NewTransactionFormComponent {
   readonly loading = signal<boolean>(false);
+  readonly pagination;
   readonly transactions;
   readonly details;
   readonly currentCashRegister;
@@ -26,6 +27,7 @@ export class NewTransactionFormComponent {
     private readonly fb: FormBuilder,
     private readonly formLoading: FormLoading
   ) {
+    this.pagination = this.myHomeService.pagination;
     this.transactions = this.myHomeService.transactions;
     this.details = this.myHomeService.details;
     this.currentCashRegister = this.myCashService.currentCashRegister;
@@ -65,7 +67,8 @@ export class NewTransactionFormComponent {
 
     this.transactionDetailService.register(detail).subscribe({
       next: (transaction) => {
-        this.details.update((prevValue) => [...prevValue, transaction]);
+        this.pagination.set(transaction.page);
+        this.details.set(transaction.content);
         this.form.reset();
         this.form.get('type')?.setValue(TransactionDetailType.DEPOSIT);
         this.setLoading(false);

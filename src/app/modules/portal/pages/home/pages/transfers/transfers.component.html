@@ -8,6 +8,12 @@
     <div class="w-full h-full" *ngIf="!loading(); else spinner">
       <h2 class="home-subtitle">Mis Transferencias</h2>
       <app-cash-transfers-table (onRemove)="onRemove($event)" />
+      <br />
+      <app-pagination
+        *ngIf="cashTransfers().length > 0"
+        [loading]="paginationLoading()"
+        [pagination]="pagination"
+      />
     </div>
   </section>
 </div>
