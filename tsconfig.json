@@ -19,19 +19,16 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
+    "lib": ["ES2022", "dom"],
     "paths": {
       "@guards/*": ["app/core/guards/*"],
       "@interceptors/*": ["app/core/interceptors/*"],
       "@models/*": ["app/core/models/*"],
       "@services/*": ["app/core/services/*"],
       "@utils/*": ["app/core/utils/*"],
-      "@admin/*": ["app/modules/admin/*"],
-      "@portal/*": ["app/modules/portal/*"],
-      "@shared/*": ["app/modules/shared/*"],
+      "@admin/*": ["app/admin/*"],
+      "@portal/*": ["app/portal/*"],
+      "@shared/*": ["app/shared/*"],
       "@environments/*": ["environments/*"]
     }
   },
