@@ -32,7 +32,7 @@
       >
         <td
           *ngFor="let header of table.header"
-          class="text-gray-800 px-5 py-2"
+          class="text-gray-800 px-5 py-2 text-nowrap"
           [ngClass]="{
             'text-left': !header.align,
             'text-center': header.align === 'center',
