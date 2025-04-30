@@ -38,12 +38,14 @@ export class PaginationComponent {
   readonly faLeft = faChevronLeft;
   readonly faRight = faChevronRight;
 
-  emitOnSelectPage(page: number) {
+  emitOnSelectPage(event: Event) {
     if (this.loading) {
       return;
     }
 
-    this.selectedPage.set(page);
-    this.onSelectPage.emit(page);
+    const { value } = event.target as HTMLSelectElement;
+
+    this.selectedPage.set(Number(value));
+    this.onSelectPage.emit(Number(value));
   }
 }

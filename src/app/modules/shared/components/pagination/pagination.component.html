@@ -4,16 +4,15 @@
   >
     <fa-icon [icon]="faLeft" size="xs" />
   </li>
-  <li
-    *ngFor="let page of pages()"
-    class="flex items-center justify-center w-7 h-9 text-violet-700 text-lg text-center font-medium border-2 border-violet-700 rounded-lg cursor-pointer hover:scale-[1.02] transition-all"
-    [ngClass]="{
-      'text-white bg-violet-700': selectedPage() === page,
-      'cursor-default': loading
-    }"
-    (click)="emitOnSelectPage(page)"
-  >
-    {{ page + 1 }}
+  <li>
+    <select
+      class="text-center w-28 h-9 border-violet-700 border-2 outline-none rounded-lg text-violet-700 text-lg font-medium cursor-pointer"
+      (change)="emitOnSelectPage($event)"
+    >
+      <option *ngFor="let page of pages()" [value]="page">
+        {{ page + 1 }}
+      </option>
+    </select>
   </li>
   <li
     class="flex items-center justify-center w-7 h-9 text-violet-700 text-lg text-center font-medium border-2 border-violet-700 rounded-lg cursor-pointer hover:scale-[1.02] transition-all"
