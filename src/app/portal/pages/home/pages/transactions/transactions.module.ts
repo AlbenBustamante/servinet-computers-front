@@ -8,6 +8,7 @@ import { TransactionsTableComponent } from './components/transactions-table/tran
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateTransactionDetailFormComponent } from './components/update-transaction-detail-form/update-transaction-detail-form.component';
+import HomeTableSectionComponent from '../../home.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UpdateTransactionDetailFormComponent } from './components/update-transa
     TransactionsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    HomeTableSectionComponent,
   ],
 })
 export default class TransactionsModule {}
