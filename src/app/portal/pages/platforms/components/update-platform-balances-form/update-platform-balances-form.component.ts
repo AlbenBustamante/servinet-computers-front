@@ -1,7 +1,7 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '@models/enums';
-import { IPlatformBalanceReq, IPortalPlatform } from '@models/platform.model';
+import { IPortalPlatform } from '@models/platform.model';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { PlatformService } from '@services/platform.service';
 import { TokenService } from '@services/token.service';
@@ -49,22 +49,20 @@ export class UpdatePlatformBalancesFormComponent {
       return this.balancesForm.markAllAsTouched();
     }
 
-    const balanceReq: IPlatformBalanceReq = {
-      ...this.balancesForm.value,
-      platformId: this.selectedPortalPlatform()!.platformId,
-    };
-
     this.loading.set(true);
 
     this.platformBalanceService
-      .update(this.selectedPortalPlatform()!.platformBalanceId, balanceReq)
+      .update(
+        this.selectedPortalPlatform()!.platformBalanceId,
+        this.balancesForm.value
+      )
       .subscribe({
         next: (platformBalance) => {
           const portalPlatforms = this.portalPlatforms();
 
           const index = portalPlatforms.findIndex(
             (portalPlatform) =>
-              portalPlatform.platformId === platformBalance.platformId
+              portalPlatform.platformId === platformBalance.platform.id
           );
 
           if (index > -1) {

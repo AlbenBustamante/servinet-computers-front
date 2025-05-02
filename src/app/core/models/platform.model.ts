@@ -12,14 +12,15 @@ export interface IUpdatePlatformDto {
   name: string;
 }
 
-export interface IPlatformBalanceReq {
-  platformId: number;
+export interface IPlatformBalanceRes extends IResponse {
   initialBalance: number;
   finalBalance: number;
+  platform: IPlatformRes;
 }
 
-export interface IPlatformBalanceRes extends IResponse, IPlatformBalanceReq {
-  platformName: string;
+export interface IUpdatePlatformBalanceDto {
+  initialBalance: number;
+  finalBalance: number;
 }
 
 export interface IPlatformTransferReq {

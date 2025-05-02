@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
-  IPlatformBalanceReq,
   IPlatformBalanceRes,
+  IUpdatePlatformBalanceDto,
 } from '@models/platform.model';
 
 @Injectable({
@@ -15,10 +15,10 @@ export class PlatformBalanceService {
 
   constructor(private readonly http: HttpClient) {}
 
-  update(balanceId: number, req: IPlatformBalanceReq) {
+  update(balanceId: number, dto: IUpdatePlatformBalanceDto) {
     return this.http.patch<IPlatformBalanceRes>(
       `${this.url}/${balanceId}`,
-      req,
+      dto,
       { context: checkToken() }
     );
   }
