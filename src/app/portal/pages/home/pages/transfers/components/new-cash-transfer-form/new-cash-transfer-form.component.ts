@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { ICreateCashTransferDto } from '@models/cash-transfer.model';
 import { CashBoxType } from '@models/enums';
+import { ISafeDetailRes } from '@models/safe.model';
 import { BaseService } from '@services/base.service';
 import { CashTransferService } from '@services/cash-transfer.service';
 import { MyCashService } from '@services/my-cash.service';
@@ -17,6 +18,10 @@ export class NewCashTransferFormComponent {
   readonly loading = signal<boolean>(false);
   readonly receive = signal<boolean>(true);
   readonly selectedType = signal<CashBoxType>(CashBoxType.CASH_REGISTER);
+  readonly selectedSafe = signal<ISafeDetailRes | undefined>(undefined);
+  readonly selectedSafeBase = computed(
+    () => this.selectedSafe()?.detailFinalBase
+  );
   readonly availableAmount = signal<boolean>(true);
   readonly availableTransfers;
   readonly cashTransfers;
@@ -43,6 +48,23 @@ export class NewCashTransferFormComponent {
       value: [, Validators.min(0)],
       safeValue: [''],
     });
+  }
+
+  setSelectedCashBox(event: Event) {
+    if (this.selectedType() === CashBoxType.CASH_REGISTER) {
+      return this.selectedSafe.set(undefined);
+    }
+
+    const target = event.target as HTMLSelectElement;
+    const value = Number(target.value);
+    const index = this.availableTransfers()?.safes.findIndex(
+      (safe) => safe.id === value
+    );
+
+    if (index !== undefined && index > -1) {
+      const safe = this.availableTransfers()?.safes[index];
+      this.selectedSafe.set(safe);
+    }
   }
 
   setSelectedType(event: Event) {
