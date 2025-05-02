@@ -10,17 +10,17 @@ export class BaseService {
 
   defaultForm() {
     return this.fb.group({
-      hundredThousand: ['', [Validators.required, Validators.min(0)]],
-      fiftyThousand: ['', [Validators.required, Validators.min(0)]],
-      twentyThousand: ['', [Validators.required, Validators.min(0)]],
-      tenThousand: ['', [Validators.required, Validators.min(0)]],
-      fiveThousand: ['', [Validators.required, Validators.min(0)]],
-      twoThousand: ['', [Validators.required, Validators.min(0)]],
-      thousand: ['', [Validators.required, Validators.min(0)]],
-      fiveHundred: ['', [Validators.required, Validators.min(0)]],
-      twoHundred: ['', [Validators.required, Validators.min(0)]],
-      hundred: ['', [Validators.required, Validators.min(0)]],
-      fifty: ['', [Validators.required, Validators.min(0)]],
+      hundredThousand: ['', Validators.min(0)],
+      fiftyThousand: ['', Validators.min(0)],
+      twentyThousand: ['', Validators.min(0)],
+      tenThousand: ['', Validators.min(0)],
+      fiveThousand: ['', Validators.min(0)],
+      twoThousand: ['', Validators.min(0)],
+      thousand: ['', Validators.min(0)],
+      fiveHundred: ['', Validators.min(0)],
+      twoHundred: ['', Validators.min(0)],
+      hundred: ['', Validators.min(0)],
+      fifty: ['', Validators.min(0)],
     });
   }
 
@@ -42,14 +42,9 @@ export class BaseService {
 
   readonly cashBase = signal(this.defaultBase());
 
-  calculate(baseForm: FormGroup, safe: boolean = false): ICalculatorBase {
-    const billet = this.calculateByRange(0, 6, baseForm, safe);
-    const coin = this.calculateByRange(
-      6,
-      this.cashBase().length,
-      baseForm,
-      safe
-    );
+  calculate(baseForm: FormGroup): ICalculatorBase {
+    const billet = this.calculateByRange(0, 6, baseForm);
+    const coin = this.calculateByRange(6, this.cashBase().length, baseForm);
 
     const resAmount = billet.amount + coin.amount;
     const resTotal = billet.total + coin.total;
@@ -61,15 +56,14 @@ export class BaseService {
   private calculateByRange(
     startValue: number,
     endValue: number,
-    baseForm: FormGroup,
-    safe: boolean
+    baseForm: FormGroup
   ): IBaseDetail {
     let amount = 0;
     let total = 0;
 
     for (let i = startValue; i < endValue; i++) {
       const resAmount = Number(baseForm.get(this.cashBase()[i].title)?.value);
-      const resTotal = resAmount * this.cashBase()[i].value * (safe ? 100 : 1);
+      const resTotal = resAmount * this.cashBase()[i].value;
 
       this.cashBase()[i].total = resTotal;
 

@@ -40,7 +40,7 @@ export class UpdateBaseFormComponent {
 
     this.safeDetailService.updateBase(safeDetailId, base).subscribe({
       next: (safeDetail) => {
-        const { total } = this.baseService.calculate(this.form, true);
+        const { total } = this.baseService.calculate(this.form);
         this.baseDetail.set(total);
         this.selectedSafeDetail.set(safeDetail);
 

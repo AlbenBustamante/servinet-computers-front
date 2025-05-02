@@ -18,7 +18,7 @@ export class SafeBaseService {
   setSelectedSafe(safeDetail: ISafeDetailRes) {
     const base = safeDetail.detailFinalBase;
     this.baseService.updateForm(this.form, base);
-    this.baseService.calculate(this.form, true);
+    this.baseService.calculate(this.form);
     this.selectedSafe.set(safeDetail);
   }
 }
