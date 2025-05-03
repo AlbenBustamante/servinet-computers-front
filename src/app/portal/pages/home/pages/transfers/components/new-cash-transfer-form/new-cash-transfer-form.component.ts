@@ -52,6 +52,20 @@ export class NewCashTransferFormComponent {
     this.form.get('safeDenomination')?.disable();
   }
 
+  get disableButton() {
+    if (this.selectedType() === CashBoxType.CASH_REGISTER || !this.receive()) {
+      return false;
+    }
+
+    const amount = this.form.get('safeAmount')?.value;
+
+    if (!amount) {
+      return false;
+    }
+
+    return amount > this.availableAmount();
+  }
+
   get selectedSafeBase() {
     return this.selectedSafe()?.detailFinalBase;
   }

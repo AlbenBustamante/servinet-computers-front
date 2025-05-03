@@ -159,11 +159,12 @@
     class="opacity-0 text-sm -my-2 font-medium text-gray-600 text-center"
     [ngClass]="{
       'opacity-100': selectedType() === 'SAFE',
-      'text-green-700': availableAmount() > 0
+      'text-green-700': availableAmount() > 0,
+      'text-red-700': disableButton
     }"
     >{{ selectedSafePropertyMessage() }}</small
   >
-  <app-button type="submit" [loading]="loading()"
+  <app-button type="submit" [loading]="loading()" [disabled]="disableButton"
     >{{ receive() ? "Recibir" : "Entregar" }} Transferencia</app-button
   >
 </form>
