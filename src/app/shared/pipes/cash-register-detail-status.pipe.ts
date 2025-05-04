@@ -5,7 +5,7 @@ import { CashRegisterDetailStatus } from '@models/enums';
   name: 'cashRegisterDetailStatus',
 })
 export class CashRegisterDetailStatusPipe implements PipeTransform {
-  transform(value: CashRegisterDetailStatus): string {
+  transform(value: CashRegisterDetailStatus | undefined): string {
     if (value === CashRegisterDetailStatus.WORKING) {
       return 'Trabajando';
     }

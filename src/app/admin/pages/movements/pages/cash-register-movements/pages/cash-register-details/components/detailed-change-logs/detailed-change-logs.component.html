@@ -1,7 +1,8 @@
 <article class="px-5">
   <header class="flex items-center justify-between gap-1">
     <button
-      class="text-gray-700 flex items-center gap-1.5 px-4 py-1.5 rounded-2xl hover:bg-gray-200 duration-100"
+      class="text-gray-600 flex items-center gap-1.5 px-4 py-1.5 rounded-2xl hover:bg-gray-200 duration-100"
+      (click)="onReturn.emit()"
     >
       <fa-icon [icon]="faLeftArrow" size="sm" /> Volver
     </button>
@@ -29,7 +30,7 @@
     <li class="grid grid-cols-2 gap-1 text-right text-gray-700">
       Estado del cajero :
       <span class="text-left">{{
-        previous().cashRegisterDetail.status | cashRegisterDetailStatus
+        changeLog?.currentStatus | cashRegisterDetailStatus
       }}</span>
     </li>
   </ul>
