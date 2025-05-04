@@ -3,19 +3,16 @@
     <h2 class="home-subtitle">Nueva Transferencia</h2>
     <app-new-cash-transfer-form />
   </section>
-  <section class="card flex items-center justify-center">
-    <ng-template #spinner><app-spinner /></ng-template>
-    <div class="w-full h-full" *ngIf="!loading(); else spinner">
-      <h2 class="home-subtitle">Mis Transferencias</h2>
-      <app-cash-transfers-table (onRemove)="onRemove($event)" />
-      <br />
-      <app-pagination
-        *ngIf="cashTransfers().length > 0"
-        [loading]="paginationLoading()"
-        [pagination]="pagination"
-      />
-    </div>
-  </section>
+  <app-home-table-section
+    [paginationLoading]="paginationLoading"
+    [pagination]="pagination"
+    [loading]="loading"
+    headline="Mis transferencias"
+    [length]="cashTransfers().length"
+    (onSelectPage)="onSelectPage($event)"
+  >
+    <app-cash-transfers-table (onRemove)="onRemove($event)" />
+  </app-home-table-section>
 </div>
 <app-sidebar
   [showSideBar]="showDeleteSideBar"

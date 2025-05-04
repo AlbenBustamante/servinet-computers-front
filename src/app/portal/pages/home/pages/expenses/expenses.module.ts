@@ -8,14 +8,21 @@ import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExpensesTableComponent } from './components/expenses-table/expenses-table.component';
 import { UpdateExpenseFormComponent } from './components/update-expense-form/update-expense-form.component';
+import HomeTableSectionComponent from '../../home.module';
 
 @NgModule({
-  declarations: [ExpensesComponent, NewExpenseFormComponent, ExpensesTableComponent, UpdateExpenseFormComponent],
+  declarations: [
+    ExpensesComponent,
+    NewExpenseFormComponent,
+    ExpensesTableComponent,
+    UpdateExpenseFormComponent,
+  ],
   imports: [
     CommonModule,
     ExpensesRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    HomeTableSectionComponent,
   ],
 })
 export default class ExpensesModule {}

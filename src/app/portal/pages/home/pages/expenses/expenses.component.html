@@ -3,22 +3,19 @@
     <h2 class="home-subtitle">Nuevo Gasto</h2>
     <app-new-expense-form />
   </section>
-  <section class="card flex items-center justify-center">
-    <ng-template #spinner> <app-spinner /></ng-template>
-    <div class="w-full h-full" *ngIf="!loading(); else spinner">
-      <h2 class="home-subtitle">Mis Gastos</h2>
-      <app-expenses-table
-        (onEdit)="tableOnEdit($event)"
-        (onRemove)="tableOnRemove($event)"
-      />
-      <br />
-      <app-pagination
-        *ngIf="expenses().length > 0"
-        [pagination]="pagination"
-        [loading]="paginationLoading()"
-      />
-    </div>
-  </section>
+  <app-home-table-section
+    headline="Mis gastos"
+    [length]="expenses().length"
+    [loading]="loading"
+    [pagination]="pagination"
+    [paginationLoading]="paginationLoading"
+    (onSelectPage)="onSelectPage($event)"
+  >
+    <app-expenses-table
+      (onEdit)="tableOnEdit($event)"
+      (onRemove)="tableOnRemove($event)"
+    />
+  </app-home-table-section>
 </div>
 <app-sidebar
   [showSideBar]="showSideBarUpdate"

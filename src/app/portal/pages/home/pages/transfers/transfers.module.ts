@@ -7,14 +7,20 @@ import { NewCashTransferFormComponent } from './components/new-cash-transfer-for
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { CashTransfersTableComponent } from './components/cash-transfers-table/cash-transfers-table.component';
+import HomeTableSectionComponent from '../../home.module';
 
 @NgModule({
-  declarations: [TransfersComponent, NewCashTransferFormComponent, CashTransfersTableComponent],
+  declarations: [
+    TransfersComponent,
+    NewCashTransferFormComponent,
+    CashTransfersTableComponent,
+  ],
   imports: [
     CommonModule,
     TransfersRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    HomeTableSectionComponent,
   ],
 })
 export default class TransfersModule {}

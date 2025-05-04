@@ -64,6 +64,24 @@ export class ExpensesComponent {
     });
   }
 
+  onSelectPage(page: number) {
+    this.paginationLoading.set(true);
+
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
+
+    this.cashRegisterDetailService.getExpenses(id, page).subscribe({
+      next: (expenses) => {
+        this.pagination.set(expenses.page);
+        this.expenses.set(expenses.content);
+        this.paginationLoading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.paginationLoading.set(false);
+      },
+    });
+  }
+
   tableOnEdit(id: number) {
     this.expenseToUpdateId.set(id);
     this.showSideBarUpdate.set(true);

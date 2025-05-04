@@ -59,6 +59,24 @@ export class TransfersComponent {
     });
   }
 
+  onSelectPage(page: number) {
+    this.paginationLoading.set(true);
+
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
+
+    this.cashRegisterDetailService.getCashTransfers(id, page).subscribe({
+      next: (cashTransfers) => {
+        this.pagination.set(cashTransfers.page);
+        this.cashTransfers.set(cashTransfers.content);
+        this.paginationLoading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.paginationLoading.set(false);
+      },
+    });
+  }
+
   onRemove(index: number) {
     this.onRemoveId.set(index);
     this.showDeleteSideBar.set(true);
