@@ -3,27 +3,19 @@
     <h2 class="home-subtitle">Nueva Transacción</h2>
     <app-new-transaction-form />
   </section>
-  <section class="card flex items-center justify-center h-[25rem]">
-    <ng-template #spinner><app-spinner /></ng-template>
-    <div
-      class="w-full h-full flex flex-col justify-between"
-      *ngIf="!loading(); else spinner"
-    >
-      <div>
-        <h2 class="home-subtitle">Mis Transacciones</h2>
-        <app-transactions-table
-          (onEdit)="tableOnEdit($event)"
-          (onRemove)="tableOnRemove($event)"
-        />
-      </div>
-      <app-pagination
-        *ngIf="details().length > 0"
-        [loading]="paginationLoading()"
-        [pagination]="pagination"
-        (onSelectPage)="onSelectPage($event)"
-      />
-    </div>
-  </section>
+  <app-home-table-section
+    headline="Mis transacciones"
+    [length]="details().length"
+    [loading]="loading"
+    [pagination]="pagination"
+    [paginationLoading]="paginationLoading"
+    (onSelectPage)="onSelectPage($event)"
+  >
+    <app-transactions-table
+      (onEdit)="tableOnEdit($event)"
+      (onRemove)="tableOnRemove($event)"
+    />
+  </app-home-table-section>
 </div>
 <app-sidebar
   headline="Transacción"

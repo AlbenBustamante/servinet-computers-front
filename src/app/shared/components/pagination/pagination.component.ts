@@ -22,6 +22,8 @@ export class PaginationComponent {
   @Output() onSelectPage = new EventEmitter<number>();
   @Input({ required: true }) pagination!: Signal<IPagination | undefined>;
   @Input({ required: true }) loading!: boolean;
+  readonly faLeft = faChevronLeft;
+  readonly faRight = faChevronRight;
 
   readonly pages = computed(() => {
     const array: number[] = [];
@@ -34,9 +36,22 @@ export class PaginationComponent {
     return array;
   });
 
-  readonly selectedPage = signal<number>(0);
-  readonly faLeft = faChevronLeft;
-  readonly faRight = faChevronRight;
+  emitDirectionOnSelectPage(direction: 'left' | 'right') {
+    const { currentPage, totalPages } = this.pagination()!;
+
+    if (direction === 'left' && currentPage < 1) {
+      return;
+    }
+
+    if (direction === 'right' && currentPage === totalPages - 1) {
+      return;
+    }
+
+    const newCurrentPage =
+      direction === 'left' ? currentPage - 1 : currentPage + 1;
+
+    this.onSelectPage.emit(newCurrentPage);
+  }
 
   emitOnSelectPage(event: Event) {
     if (this.loading) {
@@ -45,7 +60,6 @@ export class PaginationComponent {
 
     const { value } = event.target as HTMLSelectElement;
 
-    this.selectedPage.set(Number(value));
     this.onSelectPage.emit(Number(value));
   }
 }
