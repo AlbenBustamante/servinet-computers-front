@@ -109,13 +109,13 @@ export class NewCashTransferFormComponent {
     this.availableAmount.set(0);
     const safe = this.selectedSafeBase;
 
-    if (safe === undefined) {
+    if (!safe) {
       return this.selectedSafePropertyMessage.set('Selecciona una caja fuerte');
     }
 
     const denomination = this.form.get('safeDenomination')?.value;
 
-    if (denomination === '') {
+    if (!denomination || denomination === '') {
       return this.selectedSafePropertyMessage.set(
         'Selecciona una denominación'
       );
