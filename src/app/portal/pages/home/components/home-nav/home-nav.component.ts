@@ -10,5 +10,6 @@ export class HomeNavComponent {
     { route: './transacciones', name: 'Transacciones' },
     { route: './gastos', name: 'Gastos' },
     { route: './transferencias', name: 'Transferencias' },
+    { route: './depositos-bancarios', name: 'Bancos' },
   ];
 }

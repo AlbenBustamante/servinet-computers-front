@@ -20,6 +20,11 @@ const routes: Routes = [
         path: 'transferencias',
         loadChildren: () => import('./pages/transfers/transfers.module'),
       },
+      {
+        path: 'depositos-bancarios',
+        loadChildren: () =>
+          import('./pages/bank-deposits/bank-deposits.module'),
+      },
     ],
   },
 ];
