@@ -186,6 +186,8 @@ export class NewCashTransferFormComponent {
     let value = 0;
     let safeDetailId: number | undefined = undefined;
     let safeBase: IBase | undefined = undefined;
+    let safeDenomination: number | undefined = undefined;
+    let safeAmount: number | undefined = undefined;
 
     const { safes } = this.availableTransfers()!;
     const { id } = this.currentCashRegister()?.cashRegisterDetail!;
@@ -213,18 +215,16 @@ export class NewCashTransferFormComponent {
         const property = this.form.get('safeDenomination')
           ?.value! as keyof IBase;
 
-        const amount = this.form.get('safeAmount')?.value! as number;
+        safeAmount = this.form.get('safeAmount')?.value! as number;
+        safeDenomination = this.baseService.getValue(property);
 
         if (this.receive()) {
-          safeBase[property] -= safeBase[property] > 0 ? amount : 0;
+          safeBase[property] -= safeBase[property] > 0 ? safeAmount : 0;
         } else {
-          safeBase[property] += amount;
+          safeBase[property] += safeAmount;
         }
 
-        const base = this.baseService.defaultBase();
-
-        const valueFound = base.find((b) => b.title === property)!;
-        value = valueFound.value * 100;
+        value = safeDenomination * safeAmount;
       }
     } else {
       value = this.form.get('value')?.value!;
@@ -239,6 +239,8 @@ export class NewCashTransferFormComponent {
       safeDetailId,
       safeBase,
       currentCashRegisterDetailId: id,
+      safeAmount,
+      safeDenomination,
     };
   }
 

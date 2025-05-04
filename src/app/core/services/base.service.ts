@@ -40,6 +40,17 @@ export class BaseService {
     ];
   }
 
+  getValue(property: keyof IBase) {
+    const defaultBase = this.defaultBase();
+    const index = defaultBase.findIndex((base) => base.title === property);
+
+    if (index > -1) {
+      return defaultBase[index].value;
+    }
+
+    return -1;
+  }
+
   readonly cashBase = signal(this.defaultBase());
 
   calculate(baseForm: FormGroup): ICalculatorBase {

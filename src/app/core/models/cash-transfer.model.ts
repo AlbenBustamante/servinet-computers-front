@@ -12,6 +12,8 @@ export interface ICreateCashTransferDto {
   receiverType: CashBoxType;
   safeDetailId?: number;
   safeBase?: IBase;
+  safeDenomination?: number;
+  safeAmount?: number;
   currentCashRegisterDetailId: number;
 }
 
