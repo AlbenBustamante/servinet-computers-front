@@ -59,7 +59,7 @@ export class NewPlatformTransferFormComponent {
 
         const index = portalPlatforms.findIndex(
           (portalPlatform) =>
-            portalPlatform.platformId === platformTransfer.platformId
+            portalPlatform.platformId === platformTransfer.platform.id
         );
 
         if (index > -1) {

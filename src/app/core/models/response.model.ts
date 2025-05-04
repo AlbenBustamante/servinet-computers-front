@@ -1,5 +1,5 @@
-export interface IResponse {
-  id: number;
+export interface IResponse<ID> {
+  id: ID;
   enabled: boolean;
   createdBy: string;
   modifiedBy: string;

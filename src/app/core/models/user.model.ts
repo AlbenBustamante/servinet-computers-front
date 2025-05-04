@@ -12,7 +12,7 @@ export interface IUserReq {
   role: Role;
 }
 
-export interface IUserRes extends IResponse {
+export interface IUserRes extends IResponse<number> {
   name: string;
   lastName: string;
   code: string;

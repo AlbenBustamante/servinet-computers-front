@@ -6,7 +6,7 @@ export interface ITransactionReq {
   type?: TransactionType;
 }
 
-export interface ITransactionRes extends IResponse, ITransactionReq {}
+export interface ITransactionRes extends IResponse<number>, ITransactionReq {}
 
 export interface ITransactionDetailReq {
   cashRegisterDetailId: number;
@@ -18,7 +18,7 @@ export interface ITransactionDetailReq {
   date?: Date;
 }
 
-export interface ITransactionDetailRes extends IResponse {
+export interface ITransactionDetailRes extends IResponse<number> {
   cashRegisterDetailId: number;
   description: string;
   value: number;

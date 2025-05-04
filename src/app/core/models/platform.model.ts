@@ -4,7 +4,7 @@ export interface IPlatformReq {
   name: string;
 }
 
-export interface IPlatformRes extends IResponse {
+export interface IPlatformRes extends IResponse<number> {
   name: string;
 }
 
@@ -12,7 +12,7 @@ export interface IUpdatePlatformDto {
   name: string;
 }
 
-export interface IPlatformBalanceRes extends IResponse {
+export interface IPlatformBalanceRes extends IResponse<number> {
   initialBalance: number;
   finalBalance: number;
   platform: IPlatformRes;
@@ -28,11 +28,10 @@ export interface IPlatformTransferReq {
   value: number;
 }
 
-export interface IPlatformTransferRes extends IResponse {
-  platformId: number;
-  platformName: string;
+export interface IPlatformTransferRes extends IResponse<number> {
   value: number;
   voucherUrls?: string[];
+  platform: IPlatformRes;
 }
 
 export interface IPortalPlatform {

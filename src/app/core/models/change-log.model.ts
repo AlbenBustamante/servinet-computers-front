@@ -5,7 +5,7 @@ import {
 } from './enums';
 import { IResponse } from './response.model';
 
-export interface IChangeLogRes extends IResponse {
+export interface IChangeLogRes extends IResponse<number> {
   previousData: string;
   newData: string;
   action: ChangeLogAction;

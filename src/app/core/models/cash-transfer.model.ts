@@ -15,7 +15,7 @@ export interface ICreateCashTransferDto {
   currentCashRegisterDetailId: number;
 }
 
-export interface ICashTransferDto extends IResponse {
+export interface ICashTransferDto extends IResponse<number> {
   value: number;
   receiverId: number;
   senderId: number;

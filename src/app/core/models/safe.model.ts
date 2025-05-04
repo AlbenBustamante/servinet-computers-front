@@ -5,11 +5,11 @@ export interface ISafeReq {
   numeral: number;
 }
 
-export interface ISafeRes extends IResponse {
+export interface ISafeRes extends IResponse<number> {
   numeral: number;
 }
 
-export interface ISafeDetailRes extends IResponse {
+export interface ISafeDetailRes extends IResponse<number> {
   detailInitialBase: IBase;
   detailFinalBase: IBase;
   safeId: number;
@@ -24,7 +24,7 @@ export interface ISafeBaseReq {
   base: IBase;
 }
 
-export interface ISafeBaseRes extends IResponse {
+export interface ISafeBaseRes extends IResponse<number> {
   safeDetailId: number;
   base: number;
   detailBase: IBase;

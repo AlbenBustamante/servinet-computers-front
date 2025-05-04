@@ -14,7 +14,7 @@ export class PlatformTransfersTableComponent {
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
-      { key: 'platformName', title: 'Plataforma' },
+      { key: 'platform.name', title: 'Plataforma' },
       {
         key: 'value',
         title: 'Valor',

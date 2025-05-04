@@ -13,7 +13,7 @@ export interface ICashRegisterReq {
   status: CashRegisterStatus;
 }
 
-export interface ICashRegisterRes extends IResponse, ICashRegisterReq {}
+export interface ICashRegisterRes extends IResponse<number>, ICashRegisterReq {}
 
 export interface IUpdateCashRegisterDto {
   description: string;
@@ -29,7 +29,7 @@ export interface ICashRegisterDetailReq {
   baseObservation: string;
 }
 
-export interface ICashRegisterDetailRes extends IResponse {
+export interface ICashRegisterDetailRes extends IResponse<number> {
   userId: number;
   initialWorking: Date;
   initialBreak: Date;

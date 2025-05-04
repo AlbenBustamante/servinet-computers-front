@@ -7,7 +7,7 @@ export interface IExpenseReq {
   discount: boolean;
 }
 
-export interface IExpenseRes extends IResponse, IExpenseReq {}
+export interface IExpenseRes extends IResponse<number>, IExpenseReq {}
 
 export interface IUpdateExpenseDto {
   description: string;
