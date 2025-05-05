@@ -5,6 +5,7 @@ export interface IExpenseReq {
   description: string;
   value: number;
   discount: boolean;
+  administrative: boolean;
 }
 
 export interface IExpenseRes extends IResponse<number>, IExpenseReq {}

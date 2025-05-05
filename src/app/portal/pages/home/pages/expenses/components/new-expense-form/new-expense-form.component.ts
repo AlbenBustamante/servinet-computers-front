@@ -27,6 +27,7 @@ export class NewExpenseFormComponent {
       description: ['', Validators.required],
       value: ['', [Validators.required, Validators.min(50)]],
       discount: [false, Validators.required],
+      administrative: [false, Validators.required],
     });
   }
 

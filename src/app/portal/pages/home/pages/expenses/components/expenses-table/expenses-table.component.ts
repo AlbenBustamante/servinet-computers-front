@@ -25,6 +25,11 @@ export class ExpensesTableComponent {
       },
       { key: 'discount', title: 'Descuenta', pipe: new DiscountPipe() },
       {
+        key: 'administrative',
+        title: 'Administrativo',
+        pipe: new DiscountPipe(),
+      },
+      {
         key: 'createdDate',
         title: 'Hora',
         pipe: new DatePipe('es-CO'),
