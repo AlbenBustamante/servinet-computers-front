@@ -47,3 +47,9 @@ export enum ChangeLogType {
   EXPENSE = 'EXPENSE',
   CASH_TRANSFER = 'CASH_TRANSFER',
 }
+
+export enum BankDepositStatus {
+  OPEN = 'OPEN',
+  IN_PROGRESS = 'IN_PROGRESS',
+  CLOSED = 'CLOSED',
+}
