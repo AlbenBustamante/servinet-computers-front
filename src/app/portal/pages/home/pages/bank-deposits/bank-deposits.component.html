@@ -27,12 +27,42 @@
   <hr class="mt-7 border-violet-300" />
 </header>
 <div class="px-5 py-7">
-  <section class="px-7 py-5 max-w-md border-2 border-violet-300 rounded-xl">
-    <h3 class="home-subtitle">Listado de depósitos</h3>
-    <ul class="flex flex-col gap-7 mt-4 max-h-[22.5rem] p-1 overflow-y-auto">
-      <li *ngFor="let bankDeposit of bankDeposits()">
-        <app-bank-deposit-item [bankDeposit]="bankDeposit" />
-      </li>
-    </ul>
-  </section>
+  <ng-template #noBankDeposits>
+    <div
+      class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-48"
+    >
+      <p class="text-gray-500 text-2xl text-center font-medium">
+        Parece que aún no se han abierto depósitos
+      </p>
+    </div>
+  </ng-template>
+  <div
+    #list
+    *ngIf="bankDeposits().length > 0; else noBankDeposits"
+    class="grid grid-cols-2 gap-12"
+  >
+    <section class="px-7 py-5 border-2 border-violet-300 rounded-xl">
+      <h3 class="home-subtitle">Listado de depósitos</h3>
+      <ul
+        class="flex flex-col gap-7 mt-4 max-h-[22.5rem] py-1 px-1.5 overflow-y-auto"
+      >
+        <li *ngFor="let bankDeposit of bankDeposits()">
+          <app-bank-deposit-item
+            [bankDeposit]="bankDeposit"
+            (click)="setSelectedBankDeposit(bankDeposit)"
+          />
+        </li>
+      </ul>
+    </section>
+    <section>
+      <div
+        *ngIf="!selectedBankDeposit()"
+        class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-48"
+      >
+        <p class="text-gray-500 text-2xl text-center font-medium text-balance">
+          Selecciona un depósito para aportar o actualizar su estado
+        </p>
+      </div>
+    </section>
+  </div>
 </div>

@@ -21,6 +21,7 @@ export class BankDepositsComponent {
   readonly showForm = signal<boolean>(false);
   readonly newBankDepositLoading = signal<boolean>(false);
   readonly newBankDepositForm;
+  readonly selectedBankDeposit = signal<IBankDepositDto | undefined>(undefined);
 
   constructor(
     private readonly bankDepositService: BankDepositService,
@@ -73,6 +74,10 @@ export class BankDepositsComponent {
         this.setLoading(false);
       },
     });
+  }
+
+  setSelectedBankDeposit(bankDeposit: IBankDepositDto) {
+    this.selectedBankDeposit.set(bankDeposit);
   }
 
   private setLoading(loading: boolean) {
