@@ -18,7 +18,11 @@
       showForm() ? 'mt-5 opacity-100 visible' : 'opacity-0 invisible h-0'
     "
   >
-    <app-new-bank-deposit-form (onCancel)="showForm.set(false)" />
+    <app-new-bank-deposit-form
+      [form]="newBankDepositForm"
+      (onSubmit)="onNewBankDeposit()"
+      (onCancel)="showForm.set(false)"
+    />
   </div>
   <hr class="mt-7 border-violet-300" />
 </header>

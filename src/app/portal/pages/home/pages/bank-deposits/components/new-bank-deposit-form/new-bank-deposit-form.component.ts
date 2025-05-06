@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,18 +9,17 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class NewBankDepositFormComponent {
   @Output() onCancel = new EventEmitter<void>();
+  @Output() onSubmit = new EventEmitter<void>();
+  @Input({ required: true }) form!: FormGroup;
   readonly faCancel = faTrashAlt;
-  readonly form;
 
-  constructor(private readonly fb: FormBuilder) {
-    this.form = this.fb.group({
-      collector: ['', Validators.required],
-      expenseNote: [],
-      expenseValue: [, Validators.min(0)],
-    });
+  emitOnSubmit() {
+    if (this.form.invalid) {
+      return this.form.markAllAsTouched();
+    }
+
+    this.onSubmit.emit();
   }
-
-  onSubmit() {}
 
   emitOnCancel() {
     this.form.reset();

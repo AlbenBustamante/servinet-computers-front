@@ -5,8 +5,8 @@ import { IResponse } from './response.model';
 
 export interface ICreateBankDepositDto {
   collector: string;
-  expenseNote: string;
-  expenseValue: number;
+  expenseNote?: string | null;
+  expenseValue?: number | null;
   cashRegisterDetailId: number;
 }
 
