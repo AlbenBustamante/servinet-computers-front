@@ -1,11 +1,26 @@
-<header
-  class="flex items-center justify-between border-b border-violet-300 pb-7 px-5"
->
-  <h2 class="text-2xl text-violet-950 font-medium uppercase">
-    Depósitos Bancarios
-  </h2>
-
-  <app-icon-button type="button" [icon]="faAdd">Nuevo depósito</app-icon-button>
+<header class="pb-7 px-5">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl text-violet-950 font-medium uppercase">
+      Depósitos Bancarios
+    </h2>
+    <app-icon-button
+      type="button"
+      [icon]="faAdd"
+      (click)="showForm.set(true)"
+      [disabled]="showForm()"
+    >
+      Nuevo depósito
+    </app-icon-button>
+  </div>
+  <div
+    class="duration-300"
+    [ngClass]="
+      showForm() ? 'mt-5 opacity-100 visible' : 'opacity-0 invisible h-0'
+    "
+  >
+    <app-new-bank-deposit-form (onCancel)="showForm.set(false)" />
+  </div>
+  <hr class="mt-7 border-violet-300" />
 </header>
 <div class="px-5 py-7">
   <section class="px-7 py-5 max-w-md border-2 border-violet-300 rounded-xl">

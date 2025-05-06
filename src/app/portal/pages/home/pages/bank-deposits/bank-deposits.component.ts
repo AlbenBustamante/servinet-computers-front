@@ -9,9 +9,10 @@ import { BankDepositService } from '@services/bank-deposit.service';
   styleUrls: ['./bank-deposits.component.css'],
 })
 export class BankDepositsComponent {
+  readonly faAdd = faAdd;
   readonly loading = signal<boolean>(false);
   readonly bankDeposits = signal<IBankDepositDto[]>([]);
-  readonly faAdd = faAdd;
+  readonly showForm = signal<boolean>(false);
 
   constructor(private readonly bankDepositService: BankDepositService) {}
 
