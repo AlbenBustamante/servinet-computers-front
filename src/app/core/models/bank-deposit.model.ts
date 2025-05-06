@@ -22,6 +22,7 @@ export interface IBankDepositDto extends IResponse<number> {
   collector: string;
   status: BankDepositStatus;
   openedBy: string;
+  totalCollected: number;
   expense: IExpenseRes;
   depositors: IDepositor[];
   payments: IBankDepositPaymentDto;
