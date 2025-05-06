@@ -1,12 +1,21 @@
 <article
   class="card text-lg cursor-pointer hover:scale-[1.02] transition-transform"
 >
-  <header class="-mx-7 -my-5 rounded-t-xl bg-green-700 py-2 mb-3">
-    <h4 class="text-green-50 text-xl font-medium text-center">Abierto</h4>
+  <header
+    class="-mx-7 -my-5 rounded-t-xl py-2 mb-3"
+    [ngClass]="{
+      'bg-green-700 ': bankDeposit.status === 'OPEN',
+      'bg-stone-700': bankDeposit.status === 'IN_PROGRESS',
+      'bg-violet-700': bankDeposit.status === 'CLOSED'
+    }"
+  >
+    <h4 class="text-green-50 text-xl font-medium text-center">
+      {{ bankDeposit.status | bankDepositStatus }}
+    </h4>
   </header>
   <p class="text-gray-700 flex items-center justify-between">
     Recolector:
-    <span class="text-gray-700 font-medium">María Rodriguez</span>
+    <span class="text-gray-700 font-medium">{{ bankDeposit.collector }}</span>
   </p>
   <p class="text-gray-700 flex items-center justify-between">
     Recaudado:
@@ -15,6 +24,9 @@
     }}</span>
   </p>
   <p class="text-gray-700 flex items-center justify-between">
-    Hora: <span class="text-gray-700 font-medium">13:04 p.m</span>
+    Hora:
+    <span class="text-gray-700 font-medium">{{
+      bankDeposit.createdDate | date : "HH:mm a"
+    }}</span>
   </p>
 </article>

@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChangeLogTypePipe } from './pipes/change-log-type.pipe';
 import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { BankDepositStatusPipe } from './pipes/bank-deposit-status.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ChangeLogTypePipe,
     ChangeLogActionPipe,
     PaginationComponent,
+    BankDepositStatusPipe,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
@@ -62,6 +64,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     TransactionDetailTypePipe,
     DiscountPipe,
     ChangeLogTypePipe,
+    BankDepositStatusPipe,
     SidebarComponent,
     TempCodeFormComponent,
     PaginationComponent,
