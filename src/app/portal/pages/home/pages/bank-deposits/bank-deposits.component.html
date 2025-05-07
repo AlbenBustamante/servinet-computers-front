@@ -56,13 +56,27 @@
     </section>
     <section>
       <div
-        *ngIf="!selectedBankDeposit()"
-        class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-48"
+        class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-64"
+        *ngIf="!selectedBankDeposit(); else details"
       >
         <p class="text-gray-500 text-2xl text-center font-medium text-balance">
           Selecciona un depósito para aportar o actualizar su estado
         </p>
       </div>
+      <ng-template #details>
+        <form *ngIf="!alreadyDeposited()">
+          <fieldset class="form px-5 py-4 border border-violet-300 rounded-xl">
+            <legend class="text-gray-700 text-xl font-medium px-2">
+              ¿Cuánto entregas?
+            </legend>
+            <div class="control">
+              <label for="depositValue">Valor a entregar</label>
+              <input type="number" id="depositValue" class="input" />
+            </div>
+            <app-button type="submit">Entregar</app-button>
+          </fieldset>
+        </form>
+      </ng-template>
     </section>
   </div>
 </div>

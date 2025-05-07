@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -22,6 +22,21 @@ export class BankDepositsComponent {
   readonly newBankDepositLoading = signal<boolean>(false);
   readonly newBankDepositForm;
   readonly selectedBankDeposit = signal<IBankDepositDto | undefined>(undefined);
+  readonly alreadyDeposited = computed(() => {
+    const selectedBankDeposit = this.selectedBankDeposit();
+
+    if (!selectedBankDeposit) {
+      return false;
+    }
+
+    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
+
+    const index = selectedBankDeposit.depositors.findIndex(
+      (depositor) => depositor.id === id
+    );
+
+    return index > -1;
+  });
 
   constructor(
     private readonly bankDepositService: BankDepositService,
