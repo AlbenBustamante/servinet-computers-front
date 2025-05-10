@@ -39,7 +39,9 @@
         type="button"
         (click)="emitOnCancel()"
       />
-      <app-button type="submit">Abrir nuevo depósito</app-button>
+      <app-button type="submit" [loading]="loading">
+        Abrir nuevo depósito
+      </app-button>
     </div>
   </fieldset>
 </form>

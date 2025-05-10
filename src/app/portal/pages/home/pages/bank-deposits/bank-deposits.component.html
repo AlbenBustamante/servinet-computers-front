@@ -20,6 +20,7 @@
   >
     <app-new-bank-deposit-form
       [form]="newBankDepositForm"
+      [loading]="newBankDepositLoading()"
       (onSubmit)="onNewBankDeposit()"
       (onCancel)="showForm.set(false)"
     />
@@ -64,18 +65,12 @@
         </p>
       </div>
       <ng-template #details>
-        <form *ngIf="!alreadyDeposited()">
-          <fieldset class="form px-5 py-4 border border-violet-300 rounded-xl">
-            <legend class="text-gray-700 text-xl font-medium px-2">
-              ¿Cuánto entregas?
-            </legend>
-            <div class="control">
-              <label for="depositValue">Valor a entregar</label>
-              <input type="number" id="depositValue" class="input" />
-            </div>
-            <app-button type="submit">Entregar</app-button>
-          </fieldset>
-        </form>
+        <app-new-depositor-form
+          *ngIf="!alreadyDeposited()"
+          [form]="createDepositorForm"
+          [loading]="createDepositorLoading()"
+          (onSubmit)="onEnrollDepositor()"
+        />
       </ng-template>
     </section>
   </div>

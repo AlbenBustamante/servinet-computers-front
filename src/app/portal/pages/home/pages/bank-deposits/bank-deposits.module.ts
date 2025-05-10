@@ -7,12 +7,14 @@ import { SharedModule } from '@shared/shared.module';
 import { BankDepositItemComponent } from './components/bank-deposit-item/bank-deposit-item.component';
 import { NewBankDepositFormComponent } from './components/new-bank-deposit-form/new-bank-deposit-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewDepositorFormComponent } from './components/new-depositor-form/new-depositor-form.component';
 
 @NgModule({
   declarations: [
     BankDepositsComponent,
     BankDepositItemComponent,
     NewBankDepositFormComponent,
+    NewDepositorFormComponent,
   ],
   imports: [
     CommonModule,

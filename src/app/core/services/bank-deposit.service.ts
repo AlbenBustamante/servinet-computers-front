@@ -5,6 +5,7 @@ import { checkToken } from '@interceptors/token.interceptor';
 import {
   IBankDepositDto,
   ICreateBankDepositDto,
+  ICreateDepositorDto,
 } from '@models/bank-deposit.model';
 
 @Injectable({
@@ -19,6 +20,14 @@ export class BankDepositService {
     return this.http.post<IBankDepositDto>(this.url, createBankDepositDto, {
       context: checkToken(),
     });
+  }
+
+  enrollDepositor(createDepositorDto: ICreateDepositorDto) {
+    return this.http.post<IBankDepositDto>(
+      `${this.url}/enroll-depositor`,
+      createDepositorDto,
+      { context: checkToken() }
+    );
   }
 
   getAllBetween(startDate?: Date, endDate?: Date) {

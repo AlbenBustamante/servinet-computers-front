@@ -11,6 +11,7 @@ export class NewBankDepositFormComponent {
   @Output() onCancel = new EventEmitter<void>();
   @Output() onSubmit = new EventEmitter<void>();
   @Input({ required: true }) form!: FormGroup;
+  @Input({ required: true }) loading!: boolean;
   readonly faCancel = faTrashAlt;
 
   emitOnSubmit() {
