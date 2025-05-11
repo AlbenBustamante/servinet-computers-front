@@ -8,6 +8,7 @@ import { BankDepositItemComponent } from './components/bank-deposit-item/bank-de
 import { NewBankDepositFormComponent } from './components/new-bank-deposit-form/new-bank-deposit-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewDepositorFormComponent } from './components/new-depositor-form/new-depositor-form.component';
+import { BankDepositInfoListComponent } from './components/bank-deposit-info-list/bank-deposit-info-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NewDepositorFormComponent } from './components/new-depositor-form/new-d
     BankDepositItemComponent,
     NewBankDepositFormComponent,
     NewDepositorFormComponent,
+    BankDepositInfoListComponent,
   ],
   imports: [
     CommonModule,

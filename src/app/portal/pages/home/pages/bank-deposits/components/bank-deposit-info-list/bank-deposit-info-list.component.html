@@ -1,0 +1,31 @@
+<div
+  class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full py-6 px-5"
+>
+  <article class="w-full">
+    <h4>
+      {{ empty ? "Sin datos" : headline }}
+    </h4>
+    <ul *ngIf="!empty" class="flex flex-col gap-3">
+      <ng-container *ngIf="type === 'depositor'; else payments">
+        <li
+          *ngFor="let depositor of bankDeposit?.depositors"
+          class="flex items-center justify-between"
+        >
+          {{ depositor.fullName }}
+          <span>{{
+            depositor.value | currency : "symbol" : "$" : "0.00"
+          }}</span>
+        </li>
+      </ng-container>
+      <ng-template #payments>
+        <li
+          *ngFor="let payment of bankDeposit?.payments"
+          class="flex items-center justify-between"
+        >
+          {{ payment.platform.name }}
+          <span>{{ payment.value | currency : "symbol" : "$" : "0.00" }}</span>
+        </li>
+      </ng-template>
+    </ul>
+  </article>
+</div>

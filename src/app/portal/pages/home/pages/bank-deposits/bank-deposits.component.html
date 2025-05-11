@@ -55,7 +55,7 @@
         </li>
       </ul>
     </section>
-    <section>
+    <section class="flex flex-col gap-7">
       <div
         class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-64"
         *ngIf="!selectedBankDeposit(); else details"
@@ -90,6 +90,16 @@
             </div>
           </div>
         </ng-template>
+        <app-bank-deposit-info-list
+          headline="Aportantes"
+          type="depositor"
+          [bankDeposit]="selectedBankDeposit()"
+        />
+        <app-bank-deposit-info-list
+          headline="Bancos"
+          type="payment"
+          [bankDeposit]="selectedBankDeposit()"
+        />
       </ng-template>
     </section>
   </div>
