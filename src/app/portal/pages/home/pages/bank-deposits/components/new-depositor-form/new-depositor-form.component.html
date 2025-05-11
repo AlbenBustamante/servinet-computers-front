@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="emitOnSubmit()">
+  <fieldset class="form px-5 py-4 border border-violet-300 rounded-xl">
+    <legend class="text-gray-700 text-xl font-medium px-2">
+      ¿Cuánto entregas?
+    </legend>
+    <div class="control">
+      <label for="depositValue">Valor a entregar</label>
+      <input
+        type="number"
+        id="depositValue"
+        class="input"
+        formControlName="value"
+      />
+    </div>
+    <app-button type="submit" [loading]="loading">Entregar</app-button>
+  </fieldset>
+</form>

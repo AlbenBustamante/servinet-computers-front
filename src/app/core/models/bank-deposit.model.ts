@@ -1,4 +1,3 @@
-import { ICashRegisterDetailRes } from './cash-register.model';
 import { BankDepositStatus } from './enums';
 import { IExpenseRes } from './expense.model';
 import { IPlatformRes } from './platform.model';
@@ -18,6 +17,14 @@ interface IDepositor {
   date: Date;
 }
 
+export interface ICreateDepositorDto {
+  pk: {
+    bankDepositId: number;
+    cashRegisterDetailId: number;
+  };
+  value: number;
+}
+
 export interface IBankDepositDto extends IResponse<number> {
   collector: string;
   status: BankDepositStatus;
@@ -25,7 +32,7 @@ export interface IBankDepositDto extends IResponse<number> {
   totalCollected: number;
   expense: IExpenseRes;
   depositors: IDepositor[];
-  payments: IBankDepositPaymentDto;
+  payments: IBankDepositPaymentDto[];
 }
 
 export interface IBankDepositPaymentDto extends IResponse<number> {

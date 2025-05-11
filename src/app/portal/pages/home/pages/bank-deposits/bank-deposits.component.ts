@@ -1,9 +1,10 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
   IBankDepositDto,
   ICreateBankDepositDto,
+  ICreateDepositorDto,
 } from '@models/bank-deposit.model';
 import { BankDepositService } from '@services/bank-deposit.service';
 import { MyCashService } from '@services/my-cash.service';
@@ -15,27 +16,35 @@ import { FormLoading } from '@utils/form-loading';
   styleUrls: ['./bank-deposits.component.css'],
 })
 export class BankDepositsComponent {
+  readonly currentCashRegister;
   readonly faAdd = faAdd;
+  readonly faDelete = faTrash;
   readonly loading = signal<boolean>(false);
   readonly bankDeposits = signal<IBankDepositDto[]>([]);
   readonly showForm = signal<boolean>(false);
   readonly newBankDepositLoading = signal<boolean>(false);
   readonly newBankDepositForm;
   readonly selectedBankDeposit = signal<IBankDepositDto | undefined>(undefined);
-  readonly alreadyDeposited = computed(() => {
+  readonly createDepositorLoading = signal<boolean>(false);
+  readonly createDepositorForm;
+  readonly myAport = computed(() => {
     const selectedBankDeposit = this.selectedBankDeposit();
 
     if (!selectedBankDeposit) {
-      return false;
+      return null;
     }
 
-    const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
+    const { id } = this.currentCashRegister()!.cashRegisterDetail;
 
     const index = selectedBankDeposit.depositors.findIndex(
       (depositor) => depositor.id === id
     );
 
-    return index > -1;
+    if (index > -1) {
+      return selectedBankDeposit.depositors[index];
+    }
+
+    return null;
   });
 
   constructor(
@@ -44,10 +53,16 @@ export class BankDepositsComponent {
     private readonly fb: FormBuilder,
     private readonly formLoading: FormLoading
   ) {
+    this.currentCashRegister = this.myCashService.currentCashRegister;
+
     this.newBankDepositForm = this.fb.group({
       collector: ['', Validators.required],
       expenseNote: [null],
       expenseValue: [null, Validators.min(0)],
+    });
+
+    this.createDepositorForm = this.fb.group({
+      value: [, [Validators.required, Validators.min(0)]],
     });
   }
 
@@ -67,7 +82,7 @@ export class BankDepositsComponent {
   }
 
   onNewBankDeposit() {
-    this.setLoading(true);
+    this.setNewBankDepositLoading(true);
 
     const { id } = this.myCashService.currentCashRegister()!.cashRegisterDetail;
 
@@ -81,12 +96,47 @@ export class BankDepositsComponent {
       next: (bankDeposit) => {
         this.bankDeposits.update((prevValue) => [...prevValue, bankDeposit]);
         this.newBankDepositForm.reset();
-        this.setLoading(false);
+        this.setNewBankDepositLoading(false);
         this.showForm.set(false);
       },
       error: (err) => {
         console.log(err);
-        this.setLoading(false);
+        this.setNewBankDepositLoading(false);
+      },
+    });
+  }
+
+  onEnrollDepositor() {
+    this.setCreateDepositorLoading(true);
+
+    const createDepositorDto: ICreateDepositorDto = {
+      pk: {
+        bankDepositId: this.selectedBankDeposit()?.id!,
+        cashRegisterDetailId:
+          this.currentCashRegister()?.cashRegisterDetail.id!,
+      },
+      value: this.createDepositorForm.get('value')?.value!,
+    };
+
+    this.bankDepositService.enrollDepositor(createDepositorDto).subscribe({
+      next: (bankDeposit) => {
+        this.bankDeposits.update((prevValue) => {
+          const index = prevValue.findIndex((b) => b.id === bankDeposit.id);
+
+          if (index > -1) {
+            prevValue[index] = bankDeposit;
+          }
+
+          return prevValue;
+        });
+
+        this.createDepositorForm.reset();
+        this.selectedBankDeposit.set(bankDeposit);
+        this.setCreateDepositorLoading(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.setCreateDepositorLoading(false);
       },
     });
   }
@@ -95,10 +145,18 @@ export class BankDepositsComponent {
     this.selectedBankDeposit.set(bankDeposit);
   }
 
-  private setLoading(loading: boolean) {
+  private setNewBankDepositLoading(loading: boolean) {
     this.formLoading.setLoading(
       this.newBankDepositForm,
       this.newBankDepositLoading,
+      loading
+    );
+  }
+
+  private setCreateDepositorLoading(loading: boolean) {
+    this.formLoading.setLoading(
+      this.createDepositorForm,
+      this.createDepositorLoading,
       loading
     );
   }

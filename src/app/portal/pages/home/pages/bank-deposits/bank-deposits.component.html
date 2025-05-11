@@ -20,6 +20,7 @@
   >
     <app-new-bank-deposit-form
       [form]="newBankDepositForm"
+      [loading]="newBankDepositLoading()"
       (onSubmit)="onNewBankDeposit()"
       (onCancel)="showForm.set(false)"
     />
@@ -59,23 +60,36 @@
         class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-64"
         *ngIf="!selectedBankDeposit(); else details"
       >
-        <p class="text-gray-500 text-2xl text-center font-medium text-balance">
-          Selecciona un depósito para aportar o actualizar su estado
+        <p class="text-gray-500 text-2xl text-center font-medium">
+          Selecciona un depósito
         </p>
       </div>
       <ng-template #details>
-        <form *ngIf="!alreadyDeposited()">
-          <fieldset class="form px-5 py-4 border border-violet-300 rounded-xl">
-            <legend class="text-gray-700 text-xl font-medium px-2">
-              ¿Cuánto entregas?
-            </legend>
-            <div class="control">
-              <label for="depositValue">Valor a entregar</label>
-              <input type="number" id="depositValue" class="input" />
+        <app-new-depositor-form
+          *ngIf="!myAport(); else yourAport"
+          [form]="createDepositorForm"
+          [loading]="createDepositorLoading()"
+          (onSubmit)="onEnrollDepositor()"
+        />
+        <ng-template #yourAport>
+          <div
+            class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-24 px-5"
+          >
+            <div class="flex justify-between items-center w-full">
+              <p class="text-gray-700 text-2xl text-center font-medium">
+                Aportaste:
+                <span class="text-green-700">{{
+                  myAport()?.value | currency : "symbol" : "$" : "0.00"
+                }}</span>
+              </p>
+              <app-icon-button
+                [icon]="faDelete"
+                type="button"
+                color="neutral"
+              />
             </div>
-            <app-button type="submit">Entregar</app-button>
-          </fieldset>
-        </form>
+          </div>
+        </ng-template>
       </ng-template>
     </section>
   </div>

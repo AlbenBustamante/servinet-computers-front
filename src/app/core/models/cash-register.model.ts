@@ -52,6 +52,7 @@ export interface ICashRegisterDetailReportsDto {
   finalBase: number;
   deposits: number;
   withdrawals: number;
+  bankDeposits: number;
   expenses: number;
   discounts: number;
   earnings: number;
