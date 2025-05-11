@@ -60,17 +60,36 @@
         class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-64"
         *ngIf="!selectedBankDeposit(); else details"
       >
-        <p class="text-gray-500 text-2xl text-center font-medium text-balance">
-          Selecciona un depósito para aportar o actualizar su estado
+        <p class="text-gray-500 text-2xl text-center font-medium">
+          Selecciona un depósito
         </p>
       </div>
       <ng-template #details>
         <app-new-depositor-form
-          *ngIf="!alreadyDeposited()"
+          *ngIf="!myAport(); else yourAport"
           [form]="createDepositorForm"
           [loading]="createDepositorLoading()"
           (onSubmit)="onEnrollDepositor()"
         />
+        <ng-template #yourAport>
+          <div
+            class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-24 px-5"
+          >
+            <div class="flex justify-between items-center w-full">
+              <p class="text-gray-700 text-2xl text-center font-medium">
+                Aportaste:
+                <span class="text-green-700">{{
+                  myAport()?.value | currency : "symbol" : "$" : "0.00"
+                }}</span>
+              </p>
+              <app-icon-button
+                [icon]="faDelete"
+                type="button"
+                color="neutral"
+              />
+            </div>
+          </div>
+        </ng-template>
       </ng-template>
     </section>
   </div>

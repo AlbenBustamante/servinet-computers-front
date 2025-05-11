@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
   IBankDepositDto,
   ICreateBankDepositDto,
@@ -18,6 +18,7 @@ import { FormLoading } from '@utils/form-loading';
 export class BankDepositsComponent {
   readonly currentCashRegister;
   readonly faAdd = faAdd;
+  readonly faDelete = faTrash;
   readonly loading = signal<boolean>(false);
   readonly bankDeposits = signal<IBankDepositDto[]>([]);
   readonly showForm = signal<boolean>(false);
@@ -26,11 +27,11 @@ export class BankDepositsComponent {
   readonly selectedBankDeposit = signal<IBankDepositDto | undefined>(undefined);
   readonly createDepositorLoading = signal<boolean>(false);
   readonly createDepositorForm;
-  readonly alreadyDeposited = computed(() => {
+  readonly myAport = computed(() => {
     const selectedBankDeposit = this.selectedBankDeposit();
 
     if (!selectedBankDeposit) {
-      return false;
+      return null;
     }
 
     const { id } = this.currentCashRegister()!.cashRegisterDetail;
@@ -39,7 +40,11 @@ export class BankDepositsComponent {
       (depositor) => depositor.id === id
     );
 
-    return index > -1;
+    if (index > -1) {
+      return selectedBankDeposit.depositors[index];
+    }
+
+    return null;
   });
 
   constructor(
