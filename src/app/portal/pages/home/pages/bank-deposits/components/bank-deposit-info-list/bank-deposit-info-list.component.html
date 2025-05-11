@@ -14,7 +14,7 @@
           class="flex items-center justify-between text-gray-600"
         >
           {{ depositor.fullName }}
-          <hr class="w-1/4 bg-violet-300" />
+          <hr class="w-1/4 border-violet-200" />
           <span class="text-green-700 font-medium">{{
             depositor.value | currency : "symbol" : "$" : "0.00"
           }}</span>
@@ -26,7 +26,7 @@
           class="flex items-center justify-between text-gray-600"
         >
           {{ payment.platform.name }}
-          <hr class="w-1/4 bg-violet-300" />
+          <hr class="w-1/4 border-violet-200" />
           <span class="text-green-700 font-medium">{{
             payment.value | currency : "symbol" : "$" : "0.00"
           }}</span>
