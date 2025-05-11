@@ -2,17 +2,20 @@
   class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full py-6 px-5"
 >
   <article class="w-full">
-    <h4>
-      {{ empty ? "Sin datos" : headline }}
-    </h4>
-    <ul *ngIf="!empty" class="flex flex-col gap-3">
+    <header class="mb-2">
+      <h4 class="text-xl text-violet-700 font-medium hover:text-violet-600">
+        {{ empty ? "Sin datos" : headline }}
+      </h4>
+    </header>
+    <ul *ngIf="!empty" class="flex flex-col gap-1">
       <ng-container *ngIf="type === 'depositor'; else payments">
         <li
           *ngFor="let depositor of bankDeposit?.depositors"
-          class="flex items-center justify-between"
+          class="flex items-center justify-between text-gray-600"
         >
           {{ depositor.fullName }}
-          <span>{{
+          <hr class="w-1/4 bg-violet-300" />
+          <span class="text-green-700 font-medium">{{
             depositor.value | currency : "symbol" : "$" : "0.00"
           }}</span>
         </li>
@@ -20,10 +23,13 @@
       <ng-template #payments>
         <li
           *ngFor="let payment of bankDeposit?.payments"
-          class="flex items-center justify-between"
+          class="flex items-center justify-between text-gray-600"
         >
           {{ payment.platform.name }}
-          <span>{{ payment.value | currency : "symbol" : "$" : "0.00" }}</span>
+          <hr class="w-1/4 bg-violet-300" />
+          <span class="text-green-700 font-medium">{{
+            payment.value | currency : "symbol" : "$" : "0.00"
+          }}</span>
         </li>
       </ng-template>
     </ul>
