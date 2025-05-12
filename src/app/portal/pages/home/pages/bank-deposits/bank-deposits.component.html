@@ -82,6 +82,7 @@
                 }}</span>
               </p>
               <app-icon-button
+                *ngIf="selectedBankDeposit()?.status === 'OPEN'"
                 [icon]="faDelete"
                 type="button"
                 color="neutral"
