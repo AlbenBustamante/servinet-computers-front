@@ -72,6 +72,7 @@
         />
         <ng-template #yourAport>
           <div
+            *ngIf="selectedBankDeposit()?.status === 'OPEN'"
             class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-24 px-5"
           >
             <div class="flex justify-between items-center w-full">
@@ -82,7 +83,6 @@
                 }}</span>
               </p>
               <app-icon-button
-                *ngIf="selectedBankDeposit()?.status === 'OPEN'"
                 [icon]="faDelete"
                 type="button"
                 color="neutral"
