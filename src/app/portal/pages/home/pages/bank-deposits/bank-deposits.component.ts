@@ -6,9 +6,12 @@ import {
   ICreateBankDepositDto,
   ICreateDepositorDto,
 } from '@models/bank-deposit.model';
+import { IPlatformRes } from '@models/platform.model';
 import { BankDepositService } from '@services/bank-deposit.service';
 import { MyCashService } from '@services/my-cash.service';
+import { PlatformService } from '@services/platform.service';
 import { FormLoading } from '@utils/form-loading';
+import { zip } from 'rxjs';
 
 @Component({
   selector: 'app-bank-deposits',
@@ -20,6 +23,7 @@ export class BankDepositsComponent {
   readonly faAdd = faAdd;
   readonly faDelete = faTrash;
   readonly loading = signal<boolean>(false);
+  readonly platforms = signal<IPlatformRes[]>([]);
   readonly bankDeposits = signal<IBankDepositDto[]>([]);
   readonly showForm = signal<boolean>(false);
   readonly newBankDepositLoading = signal<boolean>(false);
@@ -27,6 +31,9 @@ export class BankDepositsComponent {
   readonly selectedBankDeposit = signal<IBankDepositDto | undefined>(undefined);
   readonly createDepositorLoading = signal<boolean>(false);
   readonly createDepositorForm;
+  readonly createPaymentLoading = signal<boolean>(false);
+  readonly createPaymentForm;
+
   readonly myAport = computed(() => {
     const selectedBankDeposit = this.selectedBankDeposit();
 
@@ -49,6 +56,7 @@ export class BankDepositsComponent {
 
   constructor(
     private readonly bankDepositService: BankDepositService,
+    private readonly platformService: PlatformService,
     private readonly myCashService: MyCashService,
     private readonly fb: FormBuilder,
     private readonly formLoading: FormLoading
@@ -64,10 +72,31 @@ export class BankDepositsComponent {
     this.createDepositorForm = this.fb.group({
       value: [, [Validators.required, Validators.min(0)]],
     });
+
+    this.createPaymentForm = this.fb.group({
+      platformId: [-1, [Validators.required, Validators.min(1)]],
+      value: ['', [Validators.required, Validators.min(0)]],
+    });
   }
 
   ngOnInit() {
     this.loading.set(true);
+
+    const calls = zip([
+      this.bankDepositService.getAllBetween(),
+      this.platformService.getAll(),
+    ]);
+
+    calls.subscribe({
+      next: ([bankDeposits, platforms]) => {
+        this.platforms.set(platforms);
+        this.bankDeposits.set(bankDeposits);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
 
     this.bankDepositService.getAllBetween().subscribe({
       next: (bankDeposits) => {
@@ -139,6 +168,11 @@ export class BankDepositsComponent {
         this.setCreateDepositorLoading(false);
       },
     });
+  }
+
+  onNewBankDepositPayment() {
+    const platformId = Number(this.createPaymentForm.get('platformId')?.value);
+    console.log({ platformId });
   }
 
   setSelectedBankDeposit(bankDeposit: IBankDepositDto) {

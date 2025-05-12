@@ -90,6 +90,13 @@
             </div>
           </div>
         </ng-template>
+        <app-new-bank-deposit-payment-form
+          *ngIf="selectedBankDeposit()?.status === 'IN_PROGRESS'"
+          (onSubmit)="onNewBankDepositPayment()"
+          [platforms]="platforms()"
+          [form]="createPaymentForm"
+          [loading]="createPaymentLoading()"
+        />
         <app-bank-deposit-info-list
           headline="Aportantes"
           type="depositor"
