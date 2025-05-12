@@ -4,7 +4,7 @@
   <article class="w-full">
     <header class="mb-2">
       <h4 class="text-xl text-violet-700 font-medium hover:text-violet-600">
-        {{ empty ? "Sin datos" : headline }}
+        {{ formattedHeadline }}
       </h4>
     </header>
     <ul *ngIf="!empty" class="flex flex-col gap-1">

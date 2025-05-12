@@ -22,4 +22,8 @@ export class BankDepositInfoListComponent {
 
     return this.bankDeposit.payments.length === 0;
   }
+
+  get formattedHeadline() {
+    return this.empty ? `Sin ${this.headline.toLowerCase()}` : this.headline;
+  }
 }
