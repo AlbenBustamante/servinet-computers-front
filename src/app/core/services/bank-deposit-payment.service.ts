@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
-  IBankDepositPaymentDto,
+  IBankDepositDto,
   ICreateBankDepositPaymentDto,
 } from '@models/bank-deposit.model';
 
@@ -16,7 +16,7 @@ export class BankDepositPaymentService {
   constructor(private readonly http: HttpClient) {}
 
   create(dto: ICreateBankDepositPaymentDto) {
-    return this.http.post<IBankDepositPaymentDto>(this.url, dto, {
+    return this.http.post<IBankDepositDto>(this.url, dto, {
       context: checkToken(),
     });
   }

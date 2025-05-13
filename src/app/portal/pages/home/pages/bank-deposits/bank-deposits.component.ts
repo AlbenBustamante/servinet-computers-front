@@ -187,12 +187,13 @@ export class BankDepositsComponent {
     this.bankDepositPaymentService
       .create(createBankDepositPaymentDto)
       .subscribe({
-        next: (payment) => {
+        next: (bankDeposit) => {
           this.bankDeposits.update((prevValue) => {
             const index = prevValue.findIndex(
               (bankDeposit) => bankDeposit.id === id
             );
-            prevValue[index].payments.push(payment);
+
+            prevValue[index] = bankDeposit;
 
             return prevValue;
           });
