@@ -45,5 +45,7 @@ export interface IPortalPlatform {
 }
 
 export interface IPlatformStatsDto extends IPortalPlatform {
+  bankDepositsAmount: number;
+  bankDepositsTotal: number;
   total: number;
 }

@@ -33,6 +33,17 @@ export class PlatformsStatsTableComponent {
         pipe: new CurrencyPipe('es-CO'),
       },
       {
+        key: 'bankDepositsAmount',
+        title: 'Consignaciones',
+        align: 'center',
+      },
+      {
+        key: 'bankDepositsTotal',
+        title: 'Total Consignado',
+        align: 'right',
+        pipe: new CurrencyPipe('es-CO'),
+      },
+      {
         key: 'total',
         title: 'Total',
         align: 'right',
