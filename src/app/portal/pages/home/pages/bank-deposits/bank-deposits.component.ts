@@ -4,9 +4,11 @@ import { faAdd, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
   IBankDepositDto,
   ICreateBankDepositDto,
+  ICreateBankDepositPaymentDto,
   ICreateDepositorDto,
 } from '@models/bank-deposit.model';
 import { IPlatformRes } from '@models/platform.model';
+import { BankDepositPaymentService } from '@services/bank-deposit-payment.service';
 import { BankDepositService } from '@services/bank-deposit.service';
 import { MyCashService } from '@services/my-cash.service';
 import { PlatformService } from '@services/platform.service';
@@ -56,6 +58,7 @@ export class BankDepositsComponent {
 
   constructor(
     private readonly bankDepositService: BankDepositService,
+    private readonly bankDepositPaymentService: BankDepositPaymentService,
     private readonly platformService: PlatformService,
     private readonly myCashService: MyCashService,
     private readonly fb: FormBuilder,
@@ -171,8 +174,41 @@ export class BankDepositsComponent {
   }
 
   onNewBankDepositPayment() {
-    const platformId = Number(this.createPaymentForm.get('platformId')?.value);
-    console.log({ platformId });
+    this.setCreatePaymentLoading(true);
+
+    const { id } = this.selectedBankDeposit()!;
+
+    const createBankDepositPaymentDto: ICreateBankDepositPaymentDto = {
+      bankDepositId: id,
+      platformId: Number(this.createPaymentForm.get('platformId')?.value),
+      value: Number(this.createPaymentForm.get('value')?.value),
+    };
+
+    this.bankDepositPaymentService
+      .create(createBankDepositPaymentDto)
+      .subscribe({
+        next: (payment) => {
+          this.bankDeposits.update((prevValue) => {
+            const index = prevValue.findIndex(
+              (bankDeposit) => bankDeposit.id === id
+            );
+            prevValue[index].payments.push(payment);
+
+            return prevValue;
+          });
+
+          this.createPaymentForm.patchValue({
+            platformId: -1,
+            value: '',
+          });
+
+          this.setCreatePaymentLoading(false);
+        },
+        error: (err) => {
+          console.log(err);
+          this.setCreatePaymentLoading(false);
+        },
+      });
   }
 
   setSelectedBankDeposit(bankDeposit: IBankDepositDto) {
@@ -191,6 +227,14 @@ export class BankDepositsComponent {
     this.formLoading.setLoading(
       this.createDepositorForm,
       this.createDepositorLoading,
+      loading
+    );
+  }
+
+  private setCreatePaymentLoading(loading: boolean) {
+    this.formLoading.setLoading(
+      this.createPaymentForm,
+      this.createPaymentLoading,
       loading
     );
   }

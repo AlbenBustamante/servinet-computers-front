@@ -35,6 +35,12 @@ export interface IBankDepositDto extends IResponse<number> {
   payments: IBankDepositPaymentDto[];
 }
 
+export interface ICreateBankDepositPaymentDto {
+  bankDepositId: number;
+  platformId: number;
+  value: number;
+}
+
 export interface IBankDepositPaymentDto extends IResponse<number> {
   bankDepositId: number;
   value: number;
