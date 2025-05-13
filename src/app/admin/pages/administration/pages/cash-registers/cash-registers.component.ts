@@ -19,6 +19,7 @@ import { CashRegisterBaseService } from '@services/cash-register-base.service';
 import { IBase } from '@models/base.model';
 import { Router } from '@angular/router';
 import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-register-base-modal/update-cash-register-base-modal.component';
+import { CashRegisterDetailStatus } from '@models/enums';
 
 @Component({
   selector: 'app-admin-cash-registers',
@@ -50,17 +51,15 @@ export class CashRegistersComponent {
       title: 'Actualizar Base Inicial',
       fn: () => this.openUpdateInitialBaseModal(),
     },
-  ];
-  readonly pendingOptions: AdmItemCardOptions = [
-    { title: 'Cerrar caja', fn: () => this.openCloseCashRegisterModal() },
-  ];
-  readonly remainingOptions: AdmItemCardOptions = [
-    ...this.currentOptions,
     {
       title: 'Actualizar Base Final',
       fn: () => this.openUpdateFinalBaseModal(),
     },
   ];
+  readonly pendingOptions: AdmItemCardOptions = [
+    { title: 'Cerrar caja', fn: () => this.openCloseCashRegisterModal() },
+  ];
+  readonly remainingOptions: AdmItemCardOptions = [...this.currentOptions];
 
   readonly length = computed(() => {
     const details = this.cashRegisterDetails();
@@ -149,7 +148,12 @@ export class CashRegistersComponent {
 
   openUpdateFinalBaseModal() {
     this.initial.set(false);
-    const { detailFinalBase } = this.selectedCashRegisterDetail()!;
+    const { detailFinalBase, status } = this.selectedCashRegisterDetail()!;
+
+    if (status !== CashRegisterDetailStatus.CLOSED) {
+      return;
+    }
+
     this.cashRegisterBaseService.calculate(detailFinalBase);
     this.updateCashRegisterBaseModal.open();
   }
