@@ -1,0 +1,52 @@
+<header
+  class="relative rounded-b-2xl shadow-sm px-10 pt-5 pb-20 bg-violet-200 space-y-5"
+>
+  <div class="flex items-center justify-between">
+    <app-my-main-stats-header
+      [cashRegisterDetail]="currentCashRegister?.cashRegisterDetail"
+    />
+    <form>
+      <label for="selectCashRegister" class="sr-only"
+        >Selecciona una caja</label
+      >
+      <select
+        id="selectCashRegister"
+        class="input shadow w-36"
+        (change)="emitHandleSelectedCashRegister($event)"
+      >
+        <option
+          [value]="i"
+          *ngFor="
+            let report of myCashRegisters?.cashRegisterDetailsReports;
+            index as i
+          "
+          [selected]="i === currentCashRegisterIndex"
+        >
+          Caja {{ report.cashRegisterDetail.cashRegister.numeral }}
+        </option>
+        <option
+          value="all"
+          *ngIf="(myCashRegisters?.cashRegisterDetailsReports)!.length > 1"
+        >
+          Todas
+        </option>
+      </select>
+    </form>
+  </div>
+  <div class="absolute left-7 right-7 grid grid-cols-3 gap-11">
+    <app-my-value-stat-header-card
+      headline="Saldo en caja"
+      [value]="currentCashRegister?.balance"
+    />
+    <app-my-value-stat-header-card
+      headline="Depósitos"
+      [value]="currentCashRegister?.deposits"
+      color="green"
+    />
+    <app-my-value-stat-header-card
+      headline="Retiros"
+      [value]="currentCashRegister?.withdrawals"
+      color="red"
+    />
+  </div>
+</header>

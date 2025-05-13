@@ -1,0 +1,27 @@
+<nav
+  class="hidden lg:w-56 h-[calc(100vh-4rem)] lg:fixed z-40 px-5 py-5 lg:left-0 lg:top-16 lg:bottom-0 bg-violet-200 text-gray-700 lg:flex flex-col justify-between"
+>
+  <ul class="flex flex-col gap-5">
+    <li *ngFor="let route of routes(); index as i">
+      <a
+        [routerLink]="route.route"
+        routerLinkActive="bg-violet-300 text-gray-800"
+        class="flex items-center gap-2 px-4 py-2 rounded-xl font-medium hover:bg-violet-300"
+      >
+        <fa-icon [icon]="route.icon"></fa-icon>
+        <span class="text-lg">{{ route.title }}</span>
+      </a>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <a
+        (click)="logout()"
+        class="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-violet-300 cursor-pointer"
+      >
+        <fa-icon [icon]="faLogout"></fa-icon>
+        <span class="text-lg font-medium">Cerrar sesión</span>
+      </a>
+    </li>
+  </ul>
+</nav>

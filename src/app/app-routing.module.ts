@@ -13,22 +13,22 @@ const routes: Routes = [
   {
     path: 'login',
     canActivate: [loginGuard],
-    loadChildren: () => import('./modules/login/login.module'),
+    loadChildren: () => import('./login/login.module'),
   },
   {
     path: 'admin',
     canActivate: [adminGuard],
-    loadChildren: () => import('./modules/admin/admin.module'),
+    loadChildren: () => import('./admin/admin.module'),
   },
   {
     path: 'portal',
     canActivate: [portalGuard],
-    loadChildren: () => import('./modules/portal/portal.module'),
+    loadChildren: () => import('./portal/portal.module'),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

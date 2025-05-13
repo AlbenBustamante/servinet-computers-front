@@ -1,23 +1,34 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
-import { checkToken } from '@interceptors/token.interceptor';
-import {
-  ICashRegisterBaseReq,
-  ICashRegisterBaseRes,
-} from '@models/cash-register.model';
+import { Injectable, signal } from '@angular/core';
+import { ICashRegisterDetailRes } from '@models/cash-register.model';
+import { BaseService } from './base.service';
+import { IBase, IBaseDetail } from '@models/base.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CashRegisterBaseService {
-  private readonly url = `${environment.apiUrl}/cash-register-bases`;
+  readonly form;
+  readonly baseDetail = signal<IBaseDetail | undefined>(undefined);
+  readonly selectedCashRegister = signal<ICashRegisterDetailRes | undefined>(
+    undefined
+  );
 
-  constructor(private readonly http: HttpClient) {}
+  private readonly base;
 
-  register(req: ICashRegisterBaseReq) {
-    return this.http.post<ICashRegisterBaseRes>(this.url, req, {
-      context: checkToken(),
-    });
+  constructor(private readonly baseService: BaseService) {
+    this.form = this.baseService.defaultForm();
+    this.base = this.baseService.cashBase;
+  }
+
+  resetBase() {
+    this.base.set(this.baseService.defaultBase());
+    this.baseDetail.set({ amount: 0, total: 0 });
+    this.baseService.updateForm(this.form, BaseService.empty);
+  }
+
+  calculate(base: IBase) {
+    this.baseService.updateForm(this.form, base);
+    const { total } = this.baseService.calculate(this.form);
+    this.baseDetail.set(total);
   }
 }

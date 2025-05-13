@@ -1,0 +1,23 @@
+<app-loading *ngIf="loading(); else page" />
+<ng-template #page>
+  <app-header-title
+    hTitle="Reportes"
+    hDescription="Checa todos los movimientos que realizaste durante el día"
+  />
+  <app-change-type-form (onChangeReport)="onChangeReport($event)" />
+  <div class="divider my-5"></div>
+  <section class="card">
+    <h3
+      class="text-center text-xl text-gray-700 font-medium"
+      *ngIf="!selectedReport(); else table"
+    >
+      Selecciona el tipo de reporte
+    </h3>
+    <ng-template #table>
+      <app-reports-tables
+        [reports]="reports()"
+        [selectedReport]="selectedReport()"
+      />
+    </ng-template>
+  </section>
+</ng-template>

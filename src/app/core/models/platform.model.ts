@@ -4,18 +4,23 @@ export interface IPlatformReq {
   name: string;
 }
 
-export interface IPlatformRes extends IResponse {
+export interface IPlatformRes extends IResponse<number> {
   name: string;
 }
 
-export interface IPlatformBalanceReq {
-  platformId: number;
-  initialBalance: number;
-  finalBalance: number;
+export interface IUpdatePlatformDto {
+  name: string;
 }
 
-export interface IPlatformBalanceRes extends IResponse, IPlatformBalanceReq {
-  platformName: string;
+export interface IPlatformBalanceRes extends IResponse<number> {
+  initialBalance: number;
+  finalBalance: number;
+  platform: IPlatformRes;
+}
+
+export interface IUpdatePlatformBalanceDto {
+  initialBalance: number;
+  finalBalance: number;
 }
 
 export interface IPlatformTransferReq {
@@ -23,10 +28,10 @@ export interface IPlatformTransferReq {
   value: number;
 }
 
-export interface IPlatformTransferRes extends IResponse {
-  platformId: number;
+export interface IPlatformTransferRes extends IResponse<number> {
   value: number;
-  voucherUrls: string[];
+  voucherUrls?: string[];
+  platform: IPlatformRes;
 }
 
 export interface IPortalPlatform {
@@ -37,4 +42,10 @@ export interface IPortalPlatform {
   finalBalance: number;
   transfersAmount: number;
   transfersTotal: number;
+}
+
+export interface IPlatformStatsDto extends IPortalPlatform {
+  bankDepositsAmount: number;
+  bankDepositsTotal: number;
+  total: number;
 }

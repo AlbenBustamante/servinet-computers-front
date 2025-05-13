@@ -1,0 +1,41 @@
+<dialog
+  #modal
+  class="w-[calc(100vw_-_15%)] h-[calc(100vh_-_24%)] px-4 py-5 rounded-2xl outline-none backdrop:bg-black backdrop:bg-opacity-30 backdrop:backdrop-blur-sm"
+>
+  <header class="mb-4 border-b border-gray-400 pb-4 grid grid-cols-3">
+    <h2 class="text-center text-gray-800 text-3xl font-medium col-start-2">
+      Caja Registradora N° {{ numeral }}
+    </h2>
+    <button
+      type="button"
+      class="col-start-3 justify-self-end self-center text-gray-500 text-3xl font-bold w-9 h-9 outline-none hover:bg-gray-200 hover:text-gray-600 rounded-full duration-200"
+      (click)="close()"
+    >
+      X
+    </button>
+  </header>
+  <div>
+    <ul class="flex items-center justify-center gap-2.5">
+      <ng-container *ngFor="let item of types; index as i">
+        <li
+          class="item"
+          [ngClass]="{ 'bg-violet-50': selectedType() === item.type }"
+          (click)="setSelectedType(item.type)"
+        >
+          {{ item.title }}
+        </li>
+        <div class="h-8 w-px bg-violet-100" *ngIf="i < types.length - 1"></div>
+      </ng-container>
+    </ul>
+    <div class="divider my-4"></div>
+  </div>
+  <div class="h-[75%] overflow-y-auto">
+    <app-detailed-transactions-table
+      *ngIf="selectedType() === 'TRANSACTIONS'"
+    />
+    <app-detailed-expenses-table *ngIf="selectedType() === 'EXPENSES'" />
+    <app-detailed-discounts-table *ngIf="selectedType() === 'DISCOUNTS'" />
+    <app-detailed-transfers-table *ngIf="selectedType() === 'TRANSFERS'" />
+    <app-detailed-change-logs-table *ngIf="selectedType() === 'CHANGES'" />
+  </div>
+</dialog>

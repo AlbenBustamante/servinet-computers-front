@@ -1,0 +1,11 @@
+<app-button
+  [color]="color"
+  [type]="type"
+  [disabled]="disabled"
+  [loading]="loading"
+>
+  <div class="flex items-center gap-3">
+    <fa-icon [icon]="icon" [animation]="spinner ? 'spin' : undefined" />
+    <ng-content></ng-content>
+  </div>
+</app-button>

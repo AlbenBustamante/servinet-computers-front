@@ -6,6 +6,7 @@ import { checkToken } from '@interceptors/token.interceptor';
 import { IAuthRequest, IAuthResponse } from '@models/auth.model';
 import { IUserReq, IUserRes } from '@models/user.model';
 import { TokenService } from './token.service';
+import { MyCashService } from './my-cash.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,13 @@ import { TokenService } from './token.service';
 export class AuthService {
   private readonly authUrl: string = `${environment.apiUrl}/auth`;
   private readonly userUrl: string = `${environment.apiUrl}/users`;
-  readonly loggedIn = signal<IUserRes | undefined>(undefined);
+  readonly loggedIn = signal<IUserRes | null>(null);
+  readonly userToRegisterLoading = signal<boolean>(false);
 
   constructor(
     private readonly http: HttpClient,
-    private readonly tokenService: TokenService
+    private readonly tokenService: TokenService,
+    private readonly myCashService: MyCashService
   ) {}
 
   register(req: IUserReq) {
@@ -31,11 +34,18 @@ export class AuthService {
   }
 
   logout() {
-    return this.http
+    this.myCashService.currentCashRegister.set(undefined);
+    this.myCashService.myCashRegisters.set(undefined);
+    this.myCashService.cashRegisterStatus.set(undefined);
+    this.loggedIn.set(null);
+    localStorage.clear();
+    this.tokenService.remove();
+
+    /*return this.http
       .post<Boolean>(`${this.authUrl}/sign-out`, null, {
         context: checkToken(),
       })
-      .pipe(tap(() => this.tokenService.remove()));
+      .pipe(tap(() => this.tokenService.remove()));*/
   }
 
   getLoggedIn() {

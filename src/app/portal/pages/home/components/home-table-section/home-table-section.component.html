@@ -1,0 +1,19 @@
+<section class="card flex items-center justify-center h-96">
+  <ng-template #spinner><app-spinner /></ng-template>
+  <div
+    class="w-full h-full"
+    [ngClass]="{ 'flex flex-col justify-between': length >= 1 }"
+    *ngIf="!loading(); else spinner"
+  >
+    <div>
+      <h2 class="home-subtitle">{{ headline }}</h2>
+      <ng-content></ng-content>
+    </div>
+    <app-pagination
+      *ngIf="length > 0"
+      [loading]="paginationLoading()"
+      [pagination]="pagination"
+      (onSelectPage)="emitOnSelectPage($event)"
+    />
+  </div>
+</section>

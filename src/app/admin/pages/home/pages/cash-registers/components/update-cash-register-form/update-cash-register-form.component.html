@@ -1,0 +1,23 @@
+<form role="form" class="form" [formGroup]="form" (ngSubmit)="emitOnComplete()">
+  <div class="control">
+    <label for="description">Descripción</label>
+    <input
+      type="text"
+      class="input"
+      id="description"
+      formControlName="description"
+    />
+  </div>
+  <div class="w-full flex flex-row-reverse items-center justify-end gap-3">
+    <label for="disabled" class="block text-gray-700 font-medium"
+      >Deshabilitado</label
+    >
+    <input
+      type="checkbox"
+      id="disabled"
+      class="input"
+      formControlName="disabled"
+    />
+  </div>
+  <input type="submit" value="submit" class="sr-only" />
+</form>

@@ -1,0 +1,6 @@
+<ng-template #tableData><app-custom-table [table]="table" /></ng-template>
+<app-detailed-change-logs
+  *ngIf="selectedLog(); else tableData"
+  [changeLog]="selectedLog()"
+  (onReturn)="selectedLog.set(undefined)"
+/>

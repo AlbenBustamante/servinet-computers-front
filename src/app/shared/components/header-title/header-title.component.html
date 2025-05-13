@@ -1,0 +1,9 @@
+<header
+  class="border-b-2 border-neutral-300 mb-5 py-4 px-6 -ml-6 w-[calc(100%_+_3rem)]"
+>
+  <h2 class="text-3xl text-gray-700 font-medium">{{ hTitle }}</h2>
+  <p class="text-gray-700 text-lg mt-1">{{ hDescription }}.</p>
+  <ng-container *ngIf="hDescriptionSecondLine">
+    <p class="text-gray-700 text-lg">{{ hDescriptionSecondLine }}.</p>
+  </ng-container>
+</header>

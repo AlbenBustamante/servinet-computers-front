@@ -1,0 +1,9 @@
+<article
+  class="card cursor-pointer uppercase hover:scale-105 duration-150"
+  (click)="emitOpen()"
+>
+  <h3 class="text-xl mb-1">{{ stat }}</h3>
+  <p class="text-right text-3xl font-bold">
+    {{ value ?? 0 | currency : "symbol" : "$" : "0.00" }}
+  </p>
+</article>

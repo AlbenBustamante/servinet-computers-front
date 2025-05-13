@@ -1,0 +1,15 @@
+<app-header-title
+  hTitle="Apertura de caja"
+  hDescription="Cuenta o verifica la base inicial para finalizar la apertura de caja"
+/>
+<section>
+  <app-spinner *ngIf="loading()" />
+  <app-base-form
+    *ngIf="!loading()"
+    [cashRegisterId]="selectedCashRegister()!.id"
+    (setBase)="setBase($event)"
+    (setObservation)="setObservation($event)"
+    (register)="register()"
+    (onReturn)="onReturn()"
+  />
+</section>

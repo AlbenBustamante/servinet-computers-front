@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="emitOnSubmit()">
+  <fieldset class="form px-5 py-4 border border-violet-300 rounded-xl">
+    <legend class="text-gray-700 text-xl font-medium px-2">
+      Nuevo depósito
+    </legend>
+    <div class="control">
+      <label for="collector">Recolector</label>
+      <input
+        type="text"
+        id="collector"
+        class="input"
+        formControlName="collector"
+      />
+    </div>
+    <div class="grid grid-cols-2 gap-5">
+      <div class="control">
+        <label for="expenseNote">Razón del gasto</label>
+        <input
+          type="text"
+          id="expenseNote"
+          class="input"
+          formControlName="expenseNote"
+        />
+      </div>
+      <div class="control">
+        <label for="expenseValue">Valor del gasto</label>
+        <input
+          type="number"
+          id="expenseValue"
+          class="input"
+          formControlName="expenseValue"
+        />
+      </div>
+    </div>
+    <div class="flex items-center justify-between gap-5">
+      <app-icon-button
+        color="neutral"
+        [icon]="faCancel"
+        type="button"
+        (click)="emitOnCancel()"
+      />
+      <app-button type="submit" [loading]="loading">
+        Abrir nuevo depósito
+      </app-button>
+    </div>
+  </fieldset>
+</form>

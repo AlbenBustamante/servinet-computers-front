@@ -1,0 +1,28 @@
+<button
+  class="w-full flex items-center justify-center gap-1.5 text-lg px-6 py-1.5 rounded-xl font-semibold focus:outline-none focus:ring-4 disabled:opacity-95 drop-shadow-lg"
+  [ngClass]="getColor"
+  [type]="type"
+  [disabled]="disabled || loading"
+>
+  <div
+    *ngIf="loading; else content"
+    role="status"
+    class="flex justify-center items-center gap-1.5"
+  >
+    <div
+      class="flex justify-center items-center w-5 h-5 bg-gradient-to-t from-stone-50 to-stone-300 rounded-full animate-spin"
+    >
+      <div
+        class="w-3.5 h-3.5 rounded-full"
+        [ngClass]="{
+          'bg-violet-600': color === 'primary',
+          'bg-neutral-600': color === 'neutral'
+        }"
+      ></div>
+    </div>
+    <span>Cargando...</span>
+  </div>
+  <ng-template #content>
+    <ng-content></ng-content>
+  </ng-template>
+</button>

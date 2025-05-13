@@ -1,0 +1,16 @@
+<article class="card w-full max-w-sm">
+  <header>
+    <h4 class="text-2xl text-gray-700 font-medium">Estadísticas</h4>
+  </header>
+  <hr class="divider mt-1.5 mb-2" />
+  <ul class="flex flex-col gap-0.5 -mx-2">
+    <app-some-stat
+      stat="Transacciones"
+      [value]="reports?.transactionsAmount"
+      [format]="false"
+    />
+    <app-some-stat stat="Base Inicial" [value]="reports?.initialBase" />
+    <app-some-stat stat="Base Final" [value]="reports?.finalBase" />
+    <app-some-stat stat="Descuentos" [value]="reports?.discounts" />
+  </ul>
+</article>

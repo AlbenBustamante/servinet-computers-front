@@ -4,7 +4,7 @@ import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  template: '<router-outlet />',
 })
 export class AppComponent {
   private readonly testService = inject(TestService);

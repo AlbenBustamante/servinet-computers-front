@@ -1,0 +1,27 @@
+<form [formGroup]="balancesForm" (ngSubmit)="onBalancesSubmit()" class="form">
+  <div class="control">
+    <label for="initialBalance">Saldo Inicial</label>
+    <input
+      type="number"
+      id="initialBalance"
+      [readOnly]="loading()"
+      class="input"
+      formControlName="initialBalance"
+      placeholder="0"
+    />
+  </div>
+  <div class="control">
+    <label for="finalBalance">Saldo Final</label>
+    <input
+      type="number"
+      id="finalBalance"
+      [readOnly]="loading()"
+      class="input"
+      formControlName="finalBalance"
+      placeholder="0"
+    />
+  </div>
+  <app-button type="submit" [loading]="loading()" [disabled]="!canEdit()">
+    Guardar
+  </app-button>
+</form>

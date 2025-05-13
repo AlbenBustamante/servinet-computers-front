@@ -1,0 +1,25 @@
+<div class="flex flex-col gap-1">
+  <h3 class="text-gray-700 text-3xl font-medium">
+    Caja
+    {{ cashRegisterDetail?.cashRegister?.numeral ?? "" }}
+  </h3>
+  <div class="text-gray-600 flex items-center gap-7">
+    <app-my-hour-stat-header
+      headline="Entrada"
+      [time]="cashRegisterDetail?.initialWorking"
+    />
+    <div class="h-5 w-px bg-violet-400"></div>
+    <app-my-hour-stat-header
+      headline="Almuerzo"
+      [time]="cashRegisterDetail?.initialBreak"
+    >
+      -
+      <app-my-hour-stat-header [time]="cashRegisterDetail?.finalBreak" />
+    </app-my-hour-stat-header>
+    <div class="h-5 w-px bg-violet-400"></div>
+    <app-my-hour-stat-header
+      headline="Salida"
+      [time]="cashRegisterDetail?.finalWorking"
+    />
+  </div>
+</div>

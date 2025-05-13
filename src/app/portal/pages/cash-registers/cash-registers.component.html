@@ -1,0 +1,4 @@
+<app-loading *ngIf="loading(); else body" />
+<ng-template #body>
+  <router-outlet />
+</ng-template>

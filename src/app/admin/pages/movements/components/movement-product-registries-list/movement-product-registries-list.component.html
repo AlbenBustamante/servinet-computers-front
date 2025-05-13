@@ -1,0 +1,19 @@
+<ul class="flex flex-col gap-4">
+  <ng-container *ngIf="selectedProduct === 'Cajas Registradoras'">
+    <app-movement-product-registry
+      *ngFor="let cashRegister of cashRegisters"
+      route="./caja-registradora"
+      [id]="cashRegister.id"
+      >Caja Registradora N°
+      {{ cashRegister.numeral }}</app-movement-product-registry
+    >
+  </ng-container>
+  <ng-container *ngIf="selectedProduct === 'Cajas Fuertes'">
+    <app-movement-product-registry
+      *ngFor="let safe of safes"
+      route="./caja-fuerte"
+      [id]="safe.id"
+      >Caja Fuerte N° {{ safe.numeral }}</app-movement-product-registry
+    >
+  </ng-container>
+</ul>

@@ -1,17 +1,20 @@
-export interface IResponse {
-  id: number;
+export interface IResponse<ID> {
+  id: ID;
   enabled: boolean;
+  createdBy: string;
+  modifiedBy: string;
   createdDate: string;
   modifiedDate: string;
 }
 
-export interface IPageResponse<T extends IResponse> {
-  statusCode: number;
-  ok: boolean;
-  data: {
-    totalElements: number;
-    totalPages: number;
-    currentPage: number;
-    results: T[];
-  };
+export interface IPagination {
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  currentPage: number;
+}
+
+export interface IPageResponse<T> {
+  page: IPagination;
+  content: T[];
 }

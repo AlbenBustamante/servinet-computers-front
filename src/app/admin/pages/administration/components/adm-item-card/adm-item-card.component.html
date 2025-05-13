@@ -1,0 +1,46 @@
+<article class="card">
+  <header class="mb-2 flex items-center justify-between gap-2">
+    <h4 class="text-2xl text-violet-700 font-medium">
+      <ng-content />
+    </h4>
+    <div class="relative inline-block dropdown" *ngIf="options.length > 0">
+      <fa-icon
+        [icon]="faOptions"
+        size="xl"
+        class="text-gray-700 cursor-pointer px-0.5 rounded-full hover:bg-gray-50"
+        (click)="toggleShowDropdown()"
+      />
+      <ul
+        class="absolute z-10 bg-white drop-shadow right-0 rounded-lg py-2 w-48 flex flex-col gap-0.5"
+        [ngClass]="showDropdown ? 'block' : 'hidden'"
+      >
+        <li *ngFor="let option of options">
+          <a
+            class="flex items-center px-4 py-1.5 cursor-pointer text-gray-700 hover:bg-gray-100"
+            (click)="option.fn()"
+            >{{ option.title }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </header>
+  <p
+    class="text-xl text-gray-700 font-medium cursor-default"
+    [ngClass]="{
+      'text-red-700': finalBalance < 0,
+      'flex items-center justify-between': pending || status !== undefined,
+      'text-right': !pending || status === undefined
+    }"
+  >
+    <span
+      *ngIf="status !== undefined"
+      class="text-2xl"
+      [ngClass]="{
+        'text-green-700': status === 'AVAILABLE',
+      }"
+      >{{ status | cashRegisterStatus }}</span
+    >
+    <span *ngIf="pending" class="text-2xl text-red-600">Por cerrar</span>
+    {{ finalBalance | currency : "symbol" : "$" : "0.00" }}
+  </p>
+</article>

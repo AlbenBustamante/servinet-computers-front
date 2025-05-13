@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="emitOnSubmit()">
+  <fieldset class="px-5 py-4 border border-violet-300 rounded-xl form">
+    <legend class="text-gray-700 text-xl font-medium px-2">
+      Registrar consignación a plataforma
+    </legend>
+    <div class="control">
+      <label for="paymentPlatform">Plataforma</label>
+      <select id="paymentPlatform" class="input" formControlName="platformId">
+        <option value="-1" disabled>Selecciona una plataforma</option>
+        <option *ngFor="let platform of platforms" [value]="platform.id">
+          {{ platform.name }}
+        </option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="paymentValue">Valor</label>
+      <input
+        type="number"
+        id="paymentValue"
+        class="input"
+        formControlName="value"
+        placeholder="Ej: $5.000.000"
+      />
+    </div>
+    <app-button type="submit" [loading]="loading">Registrar</app-button>
+  </fieldset>
+</form>

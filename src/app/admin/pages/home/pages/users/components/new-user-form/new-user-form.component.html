@@ -1,0 +1,51 @@
+<form class="form" [formGroup]="form" (ngSubmit)="emitOnComplete()">
+  <div class="control">
+    <label for="name">Nombre</label>
+    <input
+      type="text"
+      id="name"
+      [readOnly]="loading()"
+      formControlName="name"
+      class="input"
+    />
+  </div>
+  <div class="control">
+    <label for="lastName">Apellido(s)</label>
+    <input
+      type="text"
+      id="lastName"
+      [readOnly]="loading()"
+      formControlName="lastName"
+      class="input"
+    />
+  </div>
+  <div class="control">
+    <label for="password">Contraseña</label>
+    <input
+      type="password"
+      id="password"
+      [readOnly]="loading()"
+      formControlName="password"
+      class="input"
+    />
+  </div>
+  <div class="control">
+    <label for="repeatPassword">Confirma la contraseña</label>
+    <input
+      type="password"
+      id="repeatPassword"
+      [readOnly]="loading()"
+      formControlName="repeatPassword"
+      class="input"
+    />
+  </div>
+  <div class="control">
+    <label for="role">Rol de usuario</label>
+    <select id="role" formControlName="role" class="input">
+      <option value="CASHIER">CAJERO</option>
+      <option value="SUPERVISOR">SUPERVISOR</option>
+      <option value="ADMIN">ADMINISTRADOR</option>
+    </select>
+  </div>
+  <input type="submit" value="submit" class="sr-only" />
+</form>

@@ -1,0 +1,25 @@
+<section class="px-5 pt-11 pb-12 border-2 border-violet-200 rounded-3xl">
+  <h2 class="text-4xl text-gray-700 font-medium text-center mb-8">
+    Totalidad de Saldos
+  </h2>
+  <div class="stats text-gray-700">
+    <app-cash-box-stat-card
+      (open)="openPlatforms()"
+      stat="Plataformas"
+      [value]="dashboard()?.platformBalancesTotal"
+    />
+    <app-cash-box-stat-card
+      (open)="openCashRegisters()"
+      stat="Cajas Registradoras"
+      [value]="dashboard()?.cashRegistersTotal"
+    />
+    <app-cash-box-stat-card
+      (open)="openSafes()"
+      stat="Cajas Fuertes"
+      [value]="dashboard()?.safesTotal"
+    />
+  </div>
+</section>
+<app-platforms-modal />
+<app-cash-registers-modal />
+<app-safes-stats-modal />

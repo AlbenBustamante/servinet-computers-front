@@ -1,0 +1,10 @@
+<form class="form px-5">
+  <label for="observation" class="sr-only">Observación</label>
+  <textarea
+    [formControl]="observationControl"
+    id="observation"
+    rows="4"
+    class="input mb-3"
+  ></textarea>
+  <app-button type="button" (click)="emitObservation()">Guardar</app-button>
+</form>

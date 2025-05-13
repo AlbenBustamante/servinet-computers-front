@@ -1,0 +1,113 @@
+<header class="pb-7 px-5">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl text-violet-950 font-medium uppercase">
+      Depósitos Bancarios
+    </h2>
+    <app-icon-button
+      type="button"
+      [icon]="faAdd"
+      (click)="showForm.set(true)"
+      [disabled]="showForm()"
+    >
+      Nuevo depósito
+    </app-icon-button>
+  </div>
+  <div
+    class="duration-300"
+    [ngClass]="
+      showForm() ? 'mt-5 opacity-100 visible' : 'opacity-0 invisible h-0'
+    "
+  >
+    <app-new-bank-deposit-form
+      [form]="newBankDepositForm"
+      [loading]="newBankDepositLoading()"
+      (onSubmit)="onNewBankDeposit()"
+      (onCancel)="showForm.set(false)"
+    />
+  </div>
+  <hr class="mt-7 border-violet-300" />
+</header>
+<div class="px-5 py-7">
+  <ng-template #noBankDeposits>
+    <div
+      class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-48"
+    >
+      <p class="text-gray-500 text-2xl text-center font-medium">
+        Parece que aún no se han abierto depósitos
+      </p>
+    </div>
+  </ng-template>
+  <div
+    #list
+    *ngIf="bankDeposits().length > 0; else noBankDeposits"
+    class="grid grid-cols-2 gap-12"
+  >
+    <section>
+      <h3 class="home-subtitle">Listado de depósitos</h3>
+      <hr class="w-full border-gray-200 mt-3 mb-7" />
+      <ul class="flex flex-col gap-7 px-1.5">
+        <li *ngFor="let bankDeposit of bankDeposits()">
+          <app-bank-deposit-item
+            [bankDeposit]="bankDeposit"
+            (click)="setSelectedBankDeposit(bankDeposit)"
+          />
+        </li>
+      </ul>
+    </section>
+    <section class="flex flex-col gap-7">
+      <div
+        class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-64"
+        *ngIf="!selectedBankDeposit(); else details"
+      >
+        <p class="text-gray-500 text-2xl text-center font-medium">
+          Selecciona un depósito
+        </p>
+      </div>
+      <ng-template #details>
+        <app-new-depositor-form
+          *ngIf="!myAport(); else yourAport"
+          [form]="createDepositorForm"
+          [loading]="createDepositorLoading()"
+          (onSubmit)="onEnrollDepositor()"
+        />
+        <ng-template #yourAport>
+          <div
+            *ngIf="selectedBankDeposit()?.status === 'OPEN'"
+            class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-24 px-5"
+          >
+            <div class="flex justify-between items-center w-full">
+              <p class="text-gray-700 text-2xl text-center font-medium">
+                Aportaste:
+                <span class="text-green-700">{{
+                  myAport()?.value | currency : "symbol" : "$" : "0.00"
+                }}</span>
+              </p>
+              <app-icon-button
+                [icon]="faDelete"
+                type="button"
+                color="neutral"
+              />
+            </div>
+          </div>
+        </ng-template>
+        <app-new-bank-deposit-payment-form
+          *ngIf="selectedBankDeposit()?.status === 'IN_PROGRESS'"
+          (onSubmit)="onNewBankDepositPayment()"
+          [platforms]="platforms()"
+          [form]="createPaymentForm"
+          [loading]="createPaymentLoading()"
+        />
+        <app-bank-deposit-info-list
+          headline="Aportantes"
+          type="depositor"
+          [bankDeposit]="selectedBankDeposit()"
+        />
+        <app-bank-deposit-info-list
+          headline="Bancos"
+          type="payment"
+          [bankDeposit]="selectedBankDeposit()"
+        />
+      </ng-template>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<form class="form" [formGroup]="form" (ngSubmit)="emitOnSubmit()">
+  <div class="control">
+    <label for="delete-tempcode">Código</label>
+    <input
+      type="password"
+      id="delete-tempcode"
+      formControlName="tempCode"
+      class="input"
+      autocomplete="off"
+    />
+  </div>
+  <input type="submit" value="submit" class="sr-only" />
+</form>
