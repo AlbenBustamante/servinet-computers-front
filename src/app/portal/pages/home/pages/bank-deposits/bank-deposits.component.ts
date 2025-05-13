@@ -189,14 +189,13 @@ export class BankDepositsComponent {
       .subscribe({
         next: (bankDeposit) => {
           this.bankDeposits.update((prevValue) => {
-            const index = prevValue.findIndex(
-              (bankDeposit) => bankDeposit.id === id
-            );
-
+            const index = prevValue.findIndex((b) => b.id === id);
             prevValue[index] = bankDeposit;
 
             return prevValue;
           });
+
+          this.selectedBankDeposit.set(bankDeposit);
 
           this.createPaymentForm.patchValue({
             platformId: -1,
