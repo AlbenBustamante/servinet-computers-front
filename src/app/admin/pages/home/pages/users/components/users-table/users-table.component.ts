@@ -19,6 +19,7 @@ export class UsersTableComponent {
       { key: 'id', title: 'ID', align: 'center' },
       { key: 'name', title: 'Nombres' },
       { key: 'lastName', title: 'Apellidos' },
+      { key: 'email', title: 'Email' },
       { key: 'code', title: 'Código' },
       { key: 'role', title: 'Rol', pipe: new RolePipe() },
       { key: 'enabled', title: 'Estado', pipe: new EnabledPipe() },

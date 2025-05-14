@@ -7,14 +7,14 @@ import { ITransactionDetailRes } from './transaction.model';
 export interface IUserReq {
   name: string;
   lastName: string;
-  password: string;
-  repeatPassword: string;
+  email: string;
   role: Role;
 }
 
 export interface IUserRes extends IResponse<number> {
   name: string;
   lastName: string;
+  email: string;
   code: string;
   role: Role;
 }

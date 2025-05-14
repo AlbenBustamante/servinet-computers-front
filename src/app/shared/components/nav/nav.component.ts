@@ -22,6 +22,6 @@ export class NavComponent {
   logout() {
     this.authService.logout();
     // this.tokenService.remove();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/auth/login');
   }
 }

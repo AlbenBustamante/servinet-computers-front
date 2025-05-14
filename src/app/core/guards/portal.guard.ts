@@ -7,14 +7,14 @@ export const portalGuard: CanActivateFn = () => {
   const token = inject(TokenService).get();
 
   if (!token) {
-    inject(Router).navigateByUrl('/login');
+    inject(Router).navigateByUrl('/auth');
     return false;
   }
 
   const { role } = inject(TokenService).getInfo();
 
   if (role === Role.ADMIN) {
-    inject(Router).navigateByUrl('/login');
+    inject(Router).navigateByUrl('/auth');
     return false;
   }
 
