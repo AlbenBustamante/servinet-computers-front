@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Role } from '@models/enums';
 import { AuthService } from '@services/auth.service';
 import { TokenService } from '@services/token.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-login-form',
@@ -18,7 +19,8 @@ export class LoginFormComponent {
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly tokenService: TokenService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly formLoading: FormLoading
   ) {
     this.form = this.fb.group({
       code: ['', Validators.required],
@@ -31,16 +33,16 @@ export class LoginFormComponent {
       return this.form.markAllAsTouched();
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     this.authService.login(this.form.value).subscribe({
       next: () => {
         const { role } = this.tokenService.getInfo();
-        this.loading.set(false);
+        this.setLoading(false);
         this.router.navigateByUrl(role === Role.ADMIN ? '/admin' : '/portal');
       },
       error: (error) => {
-        this.loading.set(false);
+        this.setLoading(false);
         console.log(error);
       },
     });
@@ -48,5 +50,9 @@ export class LoginFormComponent {
 
   goToChangePassword() {
     this.router.navigateByUrl('/auth/cambio-contraseña');
+  }
+
+  private setLoading(loading: boolean) {
+    this.formLoading.setLoading(this.form, this.loading, loading);
   }
 }

@@ -3,7 +3,11 @@ import { Injectable, signal } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { IAuthRequest, IAuthResponse } from '@models/auth.model';
+import {
+  IAuthRequest,
+  IAuthResponse,
+  IRequestPasswordTempCodeDto,
+} from '@models/auth.model';
 import { IUserReq, IUserRes } from '@models/user.model';
 import { TokenService } from './token.service';
 import { MyCashService } from './my-cash.service';
@@ -25,6 +29,10 @@ export class AuthService {
 
   register(req: IUserReq) {
     return this.http.post<IUserRes>(`${this.authUrl}/register`, req);
+  }
+
+  requestChangePassword(dto: IRequestPasswordTempCodeDto) {
+    return this.http.post<void>(`${this.authUrl}/request-change-password`, dto);
   }
 
   login(req: IAuthRequest) {
