@@ -3,7 +3,7 @@ import { TokenService } from '@services/token.service';
 import { inject } from '@angular/core';
 import { Role } from '@models/enums';
 
-export const loginGuard: CanActivateFn = () => {
+export const authGuard: CanActivateFn = () => {
   const token = inject(TokenService).get();
 
   if (token) {

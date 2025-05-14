@@ -45,4 +45,8 @@ export class LoginFormComponent {
       },
     });
   }
+
+  goToChangePassword() {
+    this.router.navigateByUrl('/auth/cambio-contraseña');
+  }
 }
