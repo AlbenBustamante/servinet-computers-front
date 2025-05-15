@@ -1,5 +1,16 @@
 import { Role } from './enums';
 
+export interface IRequestPasswordTempCodeDto {
+  userCode: string;
+}
+
+export interface IChangePasswordDto {
+  userCode: string;
+  tempCode: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export interface IAuthRequest {
   code: string;
   password: string;

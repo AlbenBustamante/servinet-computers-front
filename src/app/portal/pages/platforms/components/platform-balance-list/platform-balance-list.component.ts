@@ -1,4 +1,4 @@
-import { Component, WritableSignal } from '@angular/core';
+import { Component } from '@angular/core';
 import { IPortalPlatform } from '@models/platform.model';
 import { PlatformTransferService } from '@services/platform-transfer.service';
 import { PlatformService } from '@services/platform.service';
@@ -9,11 +9,11 @@ import { PlatformService } from '@services/platform.service';
   styleUrls: ['./platform-balance-list.component.css'],
 })
 export class PlatformBalanceListComponent {
-  readonly portalPlatforms: WritableSignal<IPortalPlatform[]>;
-  readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
-  readonly selectedPortalPlatformIndex: WritableSignal<number | null>;
-  readonly editing: WritableSignal<boolean>;
-  readonly vouchers: WritableSignal<File[]>;
+  readonly portalPlatforms;
+  readonly selectedPortalPlatform;
+  readonly selectedPortalPlatformIndex;
+  readonly editing;
+  readonly vouchers;
 
   constructor(
     private readonly platformService: PlatformService,

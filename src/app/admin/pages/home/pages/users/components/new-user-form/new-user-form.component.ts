@@ -4,6 +4,7 @@ import { Role } from '@models/enums';
 import { IUserRes } from '@models/user.model';
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-new-user-form',
@@ -19,7 +20,8 @@ export class NewUserFormComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly formLoading: FormLoading
   ) {
     this.loading = this.authService.userToRegisterLoading;
     this.users = this.userService.users;
@@ -27,8 +29,7 @@ export class NewUserFormComponent {
     this.form = this.fb.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
-      password: ['', Validators.required],
-      repeatPassword: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       role: [Role.CASHIER, Validators.required],
     });
   }
@@ -56,8 +57,6 @@ export class NewUserFormComponent {
   }
 
   private setLoading(loading: boolean) {
-    this.loading.set(loading);
-
-    loading ? this.form.disable() : this.form.enable();
+    this.formLoading.setLoading(this.form, this.loading, loading);
   }
 }
