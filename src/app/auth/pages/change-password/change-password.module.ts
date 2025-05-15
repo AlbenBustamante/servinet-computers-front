@@ -6,10 +6,14 @@ import { ChangePasswordComponent } from './change-password.component';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RequestChangePasswordFormComponent } from './components/request-change-password-form/request-change-password-form.component';
-import { PasswordTempCodeFormComponent } from './password-temp-code-form/password-temp-code-form.component';
+import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
 
 @NgModule({
-  declarations: [ChangePasswordComponent, RequestChangePasswordFormComponent, PasswordTempCodeFormComponent],
+  declarations: [
+    ChangePasswordComponent,
+    RequestChangePasswordFormComponent,
+    ChangePasswordFormComponent,
+  ],
   imports: [
     CommonModule,
     ChangePasswordRoutingModule,

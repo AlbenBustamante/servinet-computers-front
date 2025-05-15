@@ -1,6 +1,10 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { IRequestPasswordTempCodeDto } from '@models/auth.model';
+import { Router } from '@angular/router';
+import {
+  IChangePasswordDto,
+  IRequestPasswordTempCodeDto,
+} from '@models/auth.model';
 import { AuthService } from '@services/auth.service';
 import { FormLoading } from '@utils/form-loading';
 
@@ -11,10 +15,11 @@ import { FormLoading } from '@utils/form-loading';
 })
 export class ChangePasswordComponent {
   readonly requestChangePasswordForm;
+  readonly userCode = signal<string>('');
   readonly requested = signal<boolean>(false);
   readonly requestedLoading = signal<boolean>(false);
-  readonly passwordTempCodeLoading = signal<boolean>(false);
-  readonly passwordTempCodeForm;
+  readonly changePasswordLoading = signal<boolean>(false);
+  readonly changePasswordForm;
 
   readonly title = computed(() => {
     const requested = this.requested();
@@ -35,14 +40,17 @@ export class ChangePasswordComponent {
   constructor(
     private readonly authService: AuthService,
     private readonly fb: FormBuilder,
-    private readonly formLoading: FormLoading
+    private readonly formLoading: FormLoading,
+    private readonly router: Router
   ) {
     this.requestChangePasswordForm = this.fb.group({
       userCode: [, Validators.required],
     });
 
-    this.passwordTempCodeForm = this.fb.group({
-      passwordTempCode: [, Validators.required],
+    this.changePasswordForm = this.fb.group({
+      tempCode: [, Validators.required],
+      newPassword: [, Validators.required],
+      confirmPassword: [, Validators.required],
     });
   }
 
@@ -55,8 +63,10 @@ export class ChangePasswordComponent {
 
     this.authService.requestChangePassword(dto).subscribe({
       next: () => {
-        this.setRequestChangePasswordLoading(false);
+        this.userCode.set(dto.userCode);
         this.requested.set(true);
+        this.requestChangePasswordForm.reset();
+        this.setRequestChangePasswordLoading(false);
       },
       error: (err) => {
         this.setRequestChangePasswordLoading(false);
@@ -65,10 +75,46 @@ export class ChangePasswordComponent {
     });
   }
 
+  changePassword() {
+    this.setChangePasswordLoading(true);
+
+    const dto: IChangePasswordDto = {
+      userCode: this.userCode(),
+      tempCode: this.changePasswordForm.get('tempCode')?.value!,
+      newPassword: this.changePasswordForm.get('newPassword')?.value!,
+      confirmPassword: this.changePasswordForm.get('confirmPassword')?.value!,
+    };
+
+    this.authService.changePassword(dto).subscribe({
+      next: () => {
+        this.setChangePasswordLoading(false);
+        this.changePasswordForm.reset();
+        this.goToLogin();
+        alert('Cambio exitoso');
+      },
+      error: (err) => {
+        console.log(err);
+        this.setChangePasswordLoading(false);
+      },
+    });
+  }
+
+  goToLogin() {
+    this.router.navigateByUrl('/auth');
+  }
+
   private setRequestChangePasswordLoading(loading: boolean) {
     this.formLoading.setLoading(
       this.requestChangePasswordForm,
       this.requestedLoading,
+      loading
+    );
+  }
+
+  private setChangePasswordLoading(loading: boolean) {
+    this.formLoading.setLoading(
+      this.changePasswordForm,
+      this.changePasswordLoading,
       loading
     );
   }

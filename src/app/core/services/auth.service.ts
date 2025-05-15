@@ -6,6 +6,7 @@ import { checkToken } from '@interceptors/token.interceptor';
 import {
   IAuthRequest,
   IAuthResponse,
+  IChangePasswordDto,
   IRequestPasswordTempCodeDto,
 } from '@models/auth.model';
 import { IUserReq, IUserRes } from '@models/user.model';
@@ -33,6 +34,10 @@ export class AuthService {
 
   requestChangePassword(dto: IRequestPasswordTempCodeDto) {
     return this.http.post<void>(`${this.authUrl}/request-change-password`, dto);
+  }
+
+  changePassword(dto: IChangePasswordDto) {
+    return this.http.post<void>(`${this.authUrl}/change-password`, dto);
   }
 
   login(req: IAuthRequest) {
