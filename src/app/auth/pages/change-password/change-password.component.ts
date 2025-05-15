@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IRequestPasswordTempCodeDto } from '@models/auth.model';
 import { AuthService } from '@services/auth.service';
@@ -13,9 +13,24 @@ export class ChangePasswordComponent {
   readonly requestChangePasswordForm;
   readonly requested = signal<boolean>(false);
   readonly requestedLoading = signal<boolean>(false);
-  readonly canChange = signal<boolean>(false);
   readonly passwordTempCodeLoading = signal<boolean>(false);
   readonly passwordTempCodeForm;
+
+  readonly title = computed(() => {
+    const requested = this.requested();
+
+    return requested
+      ? 'Confirmar cambio de clave'
+      : 'Solicitud para cambio de clave';
+  });
+
+  readonly subtitle = computed(() => {
+    const requested = this.requested();
+
+    return requested
+      ? 'Ingresa el código temporal enviado a tu correo registrado'
+      : 'Ingresa tu código de acceso para enviarte un código temporal';
+  });
 
   constructor(
     private readonly authService: AuthService,

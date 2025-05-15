@@ -15,5 +15,7 @@ export class RequestChangePasswordFormComponent {
     if (this.form.invalid) {
       return this.form.markAllAsTouched();
     }
+
+    this.onSubmit.emit();
   }
 }
