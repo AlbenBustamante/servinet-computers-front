@@ -38,21 +38,23 @@
     <div class="control">
       <label for="value">Valor</label>
       <input
-        type="number"
+        type="text"
         class="input"
         id="value"
         formControlName="value"
         autocomplete="off"
+        appCurrencyFormat
       />
     </div>
     <div class="control">
       <label for="commission">Adicional</label>
       <input
-        type="number"
+        type="text"
         id="commission"
         class="input"
         formControlName="commission"
         autocomplete="off"
+        appCurrencyFormat
       />
     </div>
   </div>
