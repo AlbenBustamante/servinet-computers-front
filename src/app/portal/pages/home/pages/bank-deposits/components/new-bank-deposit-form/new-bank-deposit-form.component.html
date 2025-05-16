@@ -10,6 +10,7 @@
         id="collector"
         class="input"
         formControlName="collector"
+        autocomplete="off"
       />
     </div>
     <div class="grid grid-cols-2 gap-5">
@@ -20,15 +21,18 @@
           id="expenseNote"
           class="input"
           formControlName="expenseNote"
+          autocomplete="off"
         />
       </div>
       <div class="control">
         <label for="expenseValue">Valor del gasto</label>
         <input
-          type="number"
+          type="text"
           id="expenseValue"
           class="input"
           formControlName="expenseValue"
+          autocomplete="off"
+          appCurrencyFormat
         />
       </div>
     </div>

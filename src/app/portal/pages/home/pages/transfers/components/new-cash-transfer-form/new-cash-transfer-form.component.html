@@ -57,12 +57,13 @@
   >
     <label for="value">Valor</label>
     <input
-      type="number"
+      type="text"
       id="value"
       class="input"
       placeholder="$0"
       formControlName="value"
       autocomplete="off"
+      appCurrencyFormat
     />
   </div>
   <ng-template #safeValue>

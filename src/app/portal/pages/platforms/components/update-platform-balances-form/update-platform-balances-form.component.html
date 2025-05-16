@@ -2,23 +2,27 @@
   <div class="control">
     <label for="initialBalance">Saldo Inicial</label>
     <input
-      type="number"
+      type="text"
       id="initialBalance"
       [readOnly]="loading()"
       class="input"
       formControlName="initialBalance"
       placeholder="0"
+      autocomplete="off"
+      appCurrencyFormat
     />
   </div>
   <div class="control">
     <label for="finalBalance">Saldo Final</label>
     <input
-      type="number"
+      type="text"
       id="finalBalance"
       [readOnly]="loading()"
       class="input"
       formControlName="finalBalance"
       placeholder="0"
+      autocomplete="off"
+      appCurrencyFormat
     />
   </div>
   <app-button type="submit" [loading]="loading()" [disabled]="!canEdit()">
