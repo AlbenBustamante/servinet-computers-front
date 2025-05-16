@@ -62,18 +62,20 @@
       class="input"
       placeholder="$0"
       formControlName="value"
+      autocomplete="off"
     />
   </div>
   <ng-template #safeValue>
     <div class="grid grid-cols-3 gap-3">
       <div class="control col-span-1">
-        <label for="safeAmount">Cantidad</label>
+        <label for="safeAmount">Billetes</label>
         <input
           type="number"
           id="safeAmount"
           class="input"
           placeholder="0"
           formControlName="safeAmount"
+          autocomplete="off"
         />
       </div>
       <div class="control col-span-2">
