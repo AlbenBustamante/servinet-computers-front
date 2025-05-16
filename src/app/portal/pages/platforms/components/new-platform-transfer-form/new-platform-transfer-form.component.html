@@ -1,7 +1,7 @@
 <form
   class="w-full flex flex-wrap justify-between items-center gap-3"
   [formGroup]="transferForm"
-  (ngSubmit)="onTransferSubmit()"
+  (ngSubmit)="loading() ? undefined : onTransferSubmit()"
 >
   <div>
     <label
@@ -24,12 +24,13 @@
     />
   </div>
   <input
-    type="number"
+    type="text"
     id="transfer-value"
-    [readOnly]="loading()"
     placeholder="10000"
     class="input"
     formControlName="value"
+    autocomplete="off"
+    appCurrencyFormat
   />
   <button
     type="submit"

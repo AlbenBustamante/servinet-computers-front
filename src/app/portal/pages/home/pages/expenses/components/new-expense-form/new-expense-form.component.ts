@@ -66,6 +66,7 @@ export class NewExpenseFormComponent {
   private resetForm() {
     this.form.reset();
     this.form.get('discount')?.setValue(false);
+    this.form.get('administrative')?.setValue(false);
     this.discount.set(false);
   }
 

@@ -24,6 +24,7 @@ import { ChangeLogTypePipe } from './pipes/change-log-type.pipe';
 import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { BankDepositStatusPipe } from './pipes/bank-deposit-status.pipe';
+import { CurrencyFormatDirective } from './directives/currency-format.directive';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { BankDepositStatusPipe } from './pipes/bank-deposit-status.pipe';
     ChangeLogActionPipe,
     PaginationComponent,
     BankDepositStatusPipe,
+    CurrencyFormatDirective,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
@@ -68,6 +70,7 @@ import { BankDepositStatusPipe } from './pipes/bank-deposit-status.pipe';
     SidebarComponent,
     TempCodeFormComponent,
     PaginationComponent,
+    CurrencyFormatDirective,
   ],
 })
 export class SharedModule {}

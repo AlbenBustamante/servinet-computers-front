@@ -6,10 +6,12 @@
     <div class="control">
       <label for="depositValue">Valor a entregar</label>
       <input
-        type="number"
+        type="text"
         id="depositValue"
         class="input"
         formControlName="value"
+        autocomplete="off"
+        appCurrencyFormat
       />
     </div>
     <app-button type="submit" [loading]="loading">Entregar</app-button>

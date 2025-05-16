@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPlatformTransferReq, IPortalPlatform } from '@models/platform.model';
 import { PlatformTransferService } from '@services/platform-transfer.service';
 import { PlatformService } from '@services/platform.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-new-platform-transfer-form',
@@ -19,7 +20,8 @@ export class NewPlatformTransferFormComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly platformService: PlatformService,
-    private readonly platformTransferService: PlatformTransferService
+    private readonly platformTransferService: PlatformTransferService,
+    private readonly formLoading: FormLoading
   ) {
     this.vouchers = this.platformTransferService.vouchers;
     this.portalPlatforms = this.platformService.portalPlatforms;
@@ -46,7 +48,7 @@ export class NewPlatformTransferFormComponent {
       return this.transferForm.markAllAsTouched();
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     const transfer: IPlatformTransferReq = {
       ...this.transferForm.value,
@@ -76,11 +78,15 @@ export class NewPlatformTransferFormComponent {
 
         this.transferForm.reset();
         this.vouchers.set([]);
-        this.loading.set(false);
+        this.setLoading(false);
       },
       error: (_) => {
-        this.loading.set(false);
+        this.setLoading(false);
       },
     });
+  }
+
+  private setLoading(loading: boolean) {
+    this.formLoading.setLoading(this.transferForm, this.loading, loading);
   }
 }

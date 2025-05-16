@@ -15,11 +15,13 @@
     <div class="control">
       <label for="paymentValue">Valor</label>
       <input
-        type="number"
+        type="text"
         id="paymentValue"
         class="input"
         formControlName="value"
         placeholder="Ej: $5.000.000"
+        autocomplete="off"
+        appCurrencyFormat
       />
     </div>
     <app-button type="submit" [loading]="loading">Registrar</app-button>

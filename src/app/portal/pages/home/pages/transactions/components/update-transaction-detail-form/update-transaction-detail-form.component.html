@@ -14,6 +14,7 @@
       id="update-description"
       class="input"
       formControlName="description"
+      autocomplete="off"
     />
   </div>
   <div class="control">
@@ -26,19 +27,23 @@
   <div class="control">
     <label for="update-value">Valor</label>
     <input
-      type="number"
+      type="text"
       id="update-value"
       class="input"
       formControlName="value"
+      autocomplete="off"
+      appCurrencyFormat
     />
   </div>
   <div class="control">
     <label for="update-commission">Adicional</label>
     <input
-      type="number"
+      type="text"
       id="update-commission"
       class="input"
       formControlName="commission"
+      autocomplete="off"
+      appCurrencyFormat
     />
   </div>
   <div class="control">
