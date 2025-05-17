@@ -1,10 +1,10 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Role } from '@models/enums';
-import { IPortalPlatform } from '@models/platform.model';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { PlatformService } from '@services/platform.service';
 import { TokenService } from '@services/token.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-update-platform-balances-form',
@@ -13,9 +13,9 @@ import { TokenService } from '@services/token.service';
 })
 export class UpdatePlatformBalancesFormComponent {
   readonly balancesForm: FormGroup;
-  readonly portalPlatforms: WritableSignal<IPortalPlatform[]>;
-  readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
-  readonly editing: WritableSignal<boolean>;
+  readonly portalPlatforms;
+  readonly selectedPortalPlatform;
+  readonly editing;
   readonly loading = signal<boolean>(false);
   readonly canEdit = signal<boolean>(false);
 
@@ -23,7 +23,8 @@ export class UpdatePlatformBalancesFormComponent {
     private readonly fb: FormBuilder,
     private readonly platformService: PlatformService,
     private readonly platformBalanceService: PlatformBalanceService,
-    private readonly tokenService: TokenService
+    private readonly tokenService: TokenService,
+    private readonly formLoading: FormLoading
   ) {
     this.portalPlatforms = this.platformService.portalPlatforms;
     this.editing = this.platformService.balanceEditing;
@@ -49,7 +50,7 @@ export class UpdatePlatformBalancesFormComponent {
       return this.balancesForm.markAllAsTouched();
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     this.platformBalanceService
       .update(
@@ -80,12 +81,16 @@ export class UpdatePlatformBalancesFormComponent {
           }
 
           this.editing.set(false);
-          this.loading.set(false);
+          this.setLoading(false);
         },
         error: (_) => {
           this.editing.set(false);
-          this.loading.set(false);
+          this.setLoading(false);
         },
       });
+  }
+
+  private setLoading(loading: boolean) {
+    this.formLoading.setLoading(this.balancesForm, this.loading, loading);
   }
 }
