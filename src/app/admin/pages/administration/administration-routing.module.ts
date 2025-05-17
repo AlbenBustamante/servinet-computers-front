@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: AdministrationComponent,
     children: [
-      { path: '', redirectTo: 'cajas-fuertes', pathMatch: 'full' },
+      { path: '', redirectTo: 'plataformas', pathMatch: 'full' },
       {
         path: 'cajas-fuertes',
         loadChildren: () => import('./pages/safes/safes.module'),
@@ -16,6 +16,10 @@ const routes: Routes = [
         path: 'cajas-registradoras',
         loadChildren: () =>
           import('./pages/cash-registers/cash-registers.module'),
+      },
+      {
+        path: 'plataformas',
+        loadChildren: () => import('./pages/platforms/platforms.module'),
       },
     ],
   },
