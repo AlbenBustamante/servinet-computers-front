@@ -1,0 +1,20 @@
+<app-header-title
+  [hTitle]="details()?.platform?.name"
+  hDescription="Administra tus saldos y transferencias realizadas a la plataforma"
+  [return]="true"
+/>
+<div class="grid grid-cols-2 gap-7">
+  <section class="border border-gray-300 rounded-2xl px-7 py-5">
+    <h3 class="text-violet-700 font-medium text-2xl mb-1">Saldos</h3>
+    <ul class="flex flex-col gap-1">
+      <app-platform-detail-balance
+        headline="Inicial"
+        [balance]="details()?.balances?.[0]?.initialBalance"
+      />
+      <app-platform-detail-balance
+        headline="Final"
+        [balance]="details()?.balances?.[0]?.finalBalance"
+      />
+    </ul>
+  </section>
+</div>

@@ -1,5 +1,4 @@
 import { Component, Input, signal, ViewChild } from '@angular/core';
-import { IDetailedCashRegisterReportsDto } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { CashRegisterDetailsModalComponent } from './components/cash-register-details-modal/cash-register-details-modal.component';
 import { CashRegisterDetailMovementService } from '@services/cash-register-detail-movement.service';

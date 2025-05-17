@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlatformService } from '@services/platform.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
@@ -22,20 +23,24 @@ export class PlatformsTableComponent {
         pipe: new DatePipe('es-CO'),
         pipeArgs: 'shortDateTime',
       },
-      {
-        key: 'modifiedDate',
-        title: 'Fecha de actualización',
-        pipe: new DatePipe('es-CO'),
-        pipeArgs: 'shortDateTime',
-      },
     ],
     body: this.platformService.platforms,
     noDataMessage: 'Sin plataformas registradas...',
+    onClick: (index) => this.onClick(index),
     onEdit: (index) => this.emitOnEdit(index),
     onRemove: (index) => this.onRemove(index),
   };
 
-  constructor(private readonly platformService: PlatformService) {}
+  constructor(
+    private readonly platformService: PlatformService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {}
+
+  private onClick(index: number) {
+    const { id } = this.platformService.platforms()[index];
+    this.router.navigate(['./', id], { relativeTo: this.route });
+  }
 
   private emitOnEdit(index: number) {
     const { id, name } = this.platformService.platforms()[index];

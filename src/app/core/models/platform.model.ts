@@ -49,3 +49,9 @@ export interface IPlatformStatsDto extends IPortalPlatform {
   bankDepositsTotal: number;
   total: number;
 }
+
+export interface IAdminPlatformDto {
+  platform: IPlatformRes;
+  balances: IPlatformBalanceRes[];
+  transfers: IPlatformTransferRes[];
+}

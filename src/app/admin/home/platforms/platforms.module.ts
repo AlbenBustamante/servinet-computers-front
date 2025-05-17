@@ -8,6 +8,8 @@ import { NewPlatformFormComponent } from './components/new-platform-form/new-pla
 import { PlatformsTableComponent } from './components/platforms-table/platforms-table.component';
 import { UpdatePlatformFormComponent } from './components/update-platform-form/update-platform-form.component';
 import { PlatformsListComponent } from './platforms-list/platforms-list.component';
+import { PlatformDetailsComponent } from './platform-details/platform-details.component';
+import { PlatformDetailBalanceComponent } from './components/platform-detail-balance/platform-detail-balance.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { PlatformsListComponent } from './platforms-list/platforms-list.componen
     PlatformsTableComponent,
     UpdatePlatformFormComponent,
     PlatformsListComponent,
+    PlatformDetailsComponent,
+    PlatformDetailBalanceComponent,
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,9 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
+  IAdminPlatformDto,
   IPlatformReq,
   IPlatformRes,
   IPortalPlatform,
@@ -52,6 +53,15 @@ export class PlatformService {
         context: checkToken(),
       })
       .pipe(tap((platforms) => this.platforms.set(platforms)));
+  }
+
+  getDetails(platformId: number, month: string) {
+    const params = new HttpParams().append('month', month);
+
+    return this.http.get<IAdminPlatformDto>(
+      `${this.url}/${platformId}/details`,
+      { context: checkToken(), params }
+    );
   }
 
   loadPortalPlatforms() {

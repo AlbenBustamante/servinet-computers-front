@@ -8,7 +8,7 @@ import { faLongArrowLeft } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header-title.component.css'],
 })
 export class HeaderTitleComponent {
-  @Input({ required: true }) hTitle!: string;
+  @Input({ required: true }) hTitle?: string;
   @Input({ required: true }) hDescription!: string;
   @Input() hDescriptionSecondLine!: string;
   @Input() return!: boolean;

@@ -1,0 +1,9 @@
+<li
+  class="text-lg text-gray-700 px-2 py-1 rounded-lg hover:bg-violet-50 grid grid-cols-3 items-center"
+>
+  {{ headline }}
+  <hr class="border-gray-300 w-full" />
+  <span class="text-gray-700 text-right font-medium">
+    {{ balance | currency : "symbol" : "$" : "0.00" }}
+  </span>
+</li>
