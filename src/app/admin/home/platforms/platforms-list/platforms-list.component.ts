@@ -1,13 +1,13 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { PlatformService } from '@services/platform.service';
-import { UpdatePlatformFormComponent } from './components/update-platform-form/update-platform-form.component';
+import { UpdatePlatformFormComponent } from '@admin/home/platforms/components/update-platform-form/update-platform-form.component';
 
 @Component({
-  selector: 'app-admin-platforms',
-  templateUrl: './platforms.component.html',
-  styleUrls: ['./platforms.component.css'],
+  selector: 'app-platforms-list',
+  templateUrl: './platforms-list.component.html',
+  styleUrls: ['./platforms-list.component.css'],
 })
-export class PlatformsComponent {
+export class PlatformsListComponent {
   @ViewChild(UpdatePlatformFormComponent)
   updatePlatformForm!: UpdatePlatformFormComponent;
   readonly loading = signal<boolean>(true);

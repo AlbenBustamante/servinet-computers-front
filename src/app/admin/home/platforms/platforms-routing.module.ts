@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PlatformsComponent } from './platforms.component';
+import { PlatformsListComponent } from './platforms-list/platforms-list.component';
 
-const routes: Routes = [{ path: '', component: PlatformsComponent }];
+const routes: Routes = [{ path: '', component: PlatformsListComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
