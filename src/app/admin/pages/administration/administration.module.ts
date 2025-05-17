@@ -9,12 +9,14 @@ import { AdmItemCardComponent } from './components/adm-item-card/adm-item-card.c
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdmBaseCalculatorComponent } from './components/adm-base-calculator/adm-base-calculator.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdmNavItemComponent } from './components/adm-nav-item/adm-nav-item.component';
 
 @NgModule({
   declarations: [
     AdministrationComponent,
     AdmItemCardComponent,
     AdmBaseCalculatorComponent,
+    AdmNavItemComponent,
   ],
   imports: [
     CommonModule,
