@@ -1,5 +1,6 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faAdd, faTools } from '@fortawesome/free-solid-svg-icons';
 import { IAdminPlatformDto } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 
@@ -12,6 +13,8 @@ export class PlatformDetailsComponent {
   readonly loading = signal<boolean>(false);
   readonly details = signal<IAdminPlatformDto | undefined>(undefined);
   readonly month = signal<string>('');
+  readonly faAdd = faAdd;
+  readonly faEdit = faTools;
 
   constructor(
     private readonly platformService: PlatformService,
