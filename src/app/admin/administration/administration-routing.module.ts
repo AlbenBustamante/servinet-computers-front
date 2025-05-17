@@ -1,32 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PortalComponent } from './portal.component';
+import { AdministrationComponent } from './administration.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PortalComponent,
+    component: AdministrationComponent,
     children: [
+      { path: '', redirectTo: 'plataformas', pathMatch: 'full' },
       {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
+        path: 'cajas-fuertes',
+        loadChildren: () => import('./safes/safes.module'),
       },
       {
-        path: 'home',
-        loadChildren: () => import('./home/home.module'),
-      },
-      {
-        path: 'cajas',
+        path: 'cajas-registradoras',
         loadChildren: () => import('./cash-registers/cash-registers.module'),
       },
       {
         path: 'plataformas',
         loadChildren: () => import('./platforms/platforms.module'),
-      },
-      {
-        path: 'reportes',
-        loadChildren: () => import('./reports/reports.module'),
       },
     ],
   },
@@ -36,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PortalRoutingModule {}
+export class AdministrationRoutingModule {}
