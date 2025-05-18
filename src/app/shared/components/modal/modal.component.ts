@@ -8,7 +8,9 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 export class ModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
   @Input({ required: true }) headline!: string;
-  @Input() width: 'sm' | 'lg' = 'lg';
+  @Input() align: 'left' | 'center' | 'right' = 'left';
+  @Input() fontSize: '2xl' | '3xl' = '2xl';
+  @Input() width: 'sm' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' = 'lg';
 
   open() {
     this.modal.nativeElement.showModal();
@@ -18,7 +20,15 @@ export class ModalComponent {
     this.modal.nativeElement.close();
   }
 
-  get maxWidth() {
+  get mapFontSize() {
+    return `text-${this.fontSize}`;
+  }
+
+  get mapTextAlign() {
+    return `text-${this.align}`;
+  }
+
+  get mapMaxWidth() {
     return `max-w-${this.width}`;
   }
 }

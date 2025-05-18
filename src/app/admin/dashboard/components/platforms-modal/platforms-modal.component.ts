@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-platforms-modal',
@@ -6,13 +7,13 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./platforms-modal.component.css'],
 })
 export class PlatformsModalComponent {
-  @ViewChild('modal') platformsModal!: ElementRef<HTMLDialogElement>;
+  @ViewChild(ModalComponent) modal!: ModalComponent;
 
   open() {
-    this.platformsModal.nativeElement.showModal();
+    this.modal.open();
   }
 
   close() {
-    this.platformsModal.nativeElement.close();
+    this.modal.close();
   }
 }
