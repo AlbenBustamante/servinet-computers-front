@@ -1,0 +1,14 @@
+<app-header-title
+  [hTitle]="details()?.platform?.name"
+  hDescription="Administra tus saldos y transferencias realizadas a la plataforma"
+  [return]="true"
+/>
+<div class="grid grid-cols-2 gap-7">
+  <app-platform-details-balances [balances]="details()?.balances?.[0]" />
+  <app-platform-details-quick-actions
+    (onEditBalances)="balancesModal.open()"
+    (onNewTransfer)="transferModal.open()"
+  />
+</div>
+<app-update-balances-modal />
+<app-new-platform-transfer-modal />

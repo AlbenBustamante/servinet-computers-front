@@ -14,12 +14,11 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        loadChildren: () => import('./pages/login/login.module'),
+        loadChildren: () => import('./login/login.module'),
       },
       {
         path: 'cambio-contraseña',
-        loadChildren: () =>
-          import('./pages/change-password/change-password.module'),
+        loadChildren: () => import('./change-password/change-password.module'),
       },
     ],
   },

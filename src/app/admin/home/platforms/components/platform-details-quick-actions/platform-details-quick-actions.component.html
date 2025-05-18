@@ -1,0 +1,24 @@
+<section class="border border-gray-300 rounded-2xl px-7 py-5">
+  <h3 class="text-violet-700 font-medium text-2xl mb-5">Acciones rápidas</h3>
+  <ul class="flex flex-col gap-3">
+    <li>
+      <app-icon-button
+        [icon]="faAdd"
+        type="button"
+        (click)="onNewTransfer.emit()"
+      >
+        Agregar transferencia
+      </app-icon-button>
+    </li>
+    <li>
+      <app-icon-button
+        [icon]="faEdit"
+        type="button"
+        color="neutral"
+        (click)="onEditBalances.emit()"
+      >
+        Editar saldos
+      </app-icon-button>
+    </li>
+  </ul>
+</section>

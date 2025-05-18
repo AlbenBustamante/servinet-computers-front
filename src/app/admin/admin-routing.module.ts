@@ -8,19 +8,18 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', loadChildren: () => import('./pages/home/home.module') },
+      { path: 'home', loadChildren: () => import('./home/home.module') },
       {
         path: 'panel',
-        loadChildren: () => import('./pages/dashboard/dashboard.module'),
+        loadChildren: () => import('./dashboard/dashboard.module'),
       },
       {
         path: 'administracion',
-        loadChildren: () =>
-          import('./pages/administration/administration.module'),
+        loadChildren: () => import('./administration/administration.module'),
       },
       {
         path: 'movimientos',
-        loadChildren: () => import('./pages/movements/movements.module'),
+        loadChildren: () => import('./movements/movements.module'),
       },
     ],
   },

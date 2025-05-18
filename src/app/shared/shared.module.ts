@@ -25,6 +25,7 @@ import { ChangeLogActionPipe } from './pipes/change-log-action.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { BankDepositStatusPipe } from './pipes/bank-deposit-status.pipe';
 import { CurrencyFormatDirective } from './directives/currency-format.directive';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CurrencyFormatDirective } from './directives/currency-format.directive'
     PaginationComponent,
     BankDepositStatusPipe,
     CurrencyFormatDirective,
+    ModalComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
@@ -61,6 +63,7 @@ import { CurrencyFormatDirective } from './directives/currency-format.directive'
     SpinnerComponent,
     LoadingComponent,
     CustomTableComponent,
+    ModalComponent,
     CashRegisterStatusPipe,
     CashRegisterDetailStatusPipe,
     TransactionDetailTypePipe,
