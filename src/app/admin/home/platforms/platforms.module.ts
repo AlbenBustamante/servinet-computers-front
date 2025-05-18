@@ -10,6 +10,7 @@ import { UpdatePlatformFormComponent } from './components/update-platform-form/u
 import { PlatformsListComponent } from './platforms-list/platforms-list.component';
 import { PlatformDetailsComponent } from './platform-details/platform-details.component';
 import { PlatformDetailBalanceComponent } from './components/platform-detail-balance/platform-detail-balance.component';
+import { UpdateBalancesModalComponent } from './components/update-balances-modal/update-balances-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PlatformDetailBalanceComponent } from './components/platform-detail-bal
     PlatformsListComponent,
     PlatformDetailsComponent,
     PlatformDetailBalanceComponent,
+    UpdateBalancesModalComponent,
   ],
   imports: [
     CommonModule,

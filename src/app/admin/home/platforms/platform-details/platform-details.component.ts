@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faAdd, faTools } from '@fortawesome/free-solid-svg-icons';
-import { IAdminPlatformDto } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
+import { PlatformDetailService } from '../services/platform-detail.service';
+import { UpdateBalancesModalComponent } from '../components/update-balances-modal/update-balances-modal.component';
 
 @Component({
   selector: 'app-platform-details',
@@ -10,16 +11,21 @@ import { PlatformService } from '@services/platform.service';
   styleUrls: ['./platform-details.component.css'],
 })
 export class PlatformDetailsComponent {
-  readonly loading = signal<boolean>(false);
-  readonly details = signal<IAdminPlatformDto | undefined>(undefined);
+  @ViewChild(UpdateBalancesModalComponent) modal!: UpdateBalancesModalComponent;
+  readonly loading;
+  readonly details;
   readonly month = signal<string>('');
   readonly faAdd = faAdd;
   readonly faEdit = faTools;
 
   constructor(
+    private readonly platformDetailService: PlatformDetailService,
     private readonly platformService: PlatformService,
     private readonly route: ActivatedRoute
-  ) {}
+  ) {
+    this.loading = this.platformDetailService.loading;
+    this.details = this.platformDetailService.details;
+  }
 
   ngOnInit() {
     this.loading.set(true);
@@ -30,6 +36,13 @@ export class PlatformDetailsComponent {
     this.platformService.getDetails(id, this.month()).subscribe({
       next: (details) => {
         this.details.set(details);
+        const balances = details.balances[0];
+
+        this.modal.form.patchValue({
+          initialBalance: balances?.initialBalance,
+          finalBalance: balances?.finalBalance,
+        });
+
         this.loading.set(false);
       },
       error: (err) => {
