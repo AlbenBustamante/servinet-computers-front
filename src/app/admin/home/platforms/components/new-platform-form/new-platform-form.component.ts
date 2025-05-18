@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlatformService } from '@services/platform.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-new-platform-form',
@@ -13,7 +14,8 @@ export class NewPlatformFormComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly platformService: PlatformService
+    private readonly platformService: PlatformService,
+    private readonly formLoading: FormLoading
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -25,17 +27,21 @@ export class NewPlatformFormComponent {
       return this.form.markAllAsTouched();
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     this.platformService.register(this.form.value).subscribe({
       next: () => {
-        this.loading.set(false);
+        this.setLoading(false);
         this.form.reset();
       },
       error: (error) => {
-        this.loading.set(false);
+        this.setLoading(false);
         console.log(error);
       },
     });
+  }
+
+  private setLoading(loading: boolean) {
+    this.formLoading.setLoading(this.form, this.loading, loading);
   }
 }

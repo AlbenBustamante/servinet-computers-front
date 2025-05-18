@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SafeService } from '@services/safe.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-new-safe-form',
@@ -13,7 +14,8 @@ export class NewSafeFormComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly safeService: SafeService
+    private readonly safeService: SafeService,
+    private readonly formLoading: FormLoading
   ) {
     this.form = this.fb.group({
       numeral: ['', [Validators.required, Validators.min(0)]],
@@ -25,17 +27,21 @@ export class NewSafeFormComponent {
       return this.form.markAllAsTouched();
     }
 
-    this.loading.set(true);
+    this.setLoading(true);
 
     this.safeService.register(this.form.value).subscribe({
       next: (_) => {
         this.form.reset();
-        this.loading.set(false);
+        this.setLoading(false);
       },
       error: (err) => {
         console.log(err);
-        this.loading.set(false);
+        this.setLoading(false);
       },
     });
+  }
+
+  private setLoading(loading: boolean) {
+    this.formLoading.setLoading(this.form, this.loading, loading);
   }
 }
