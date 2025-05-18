@@ -3,20 +3,18 @@
   hDescription="Administra tus saldos y transferencias realizadas a la plataforma"
   [return]="true"
 />
-<form class="text-center mb-5">
-  <label for="date" class="text-gray-700 font-medium">
-    Fecha
+
+<div class="grid grid-cols-2 gap-x-7 gap-y-5">
+  <form class="col-span-2 w-full">
     <input
       type="date"
       id="date"
-      class="input"
+      class="input w-full"
       (change)="onChangeDate($event)"
       [value]="today"
       [max]="today"
     />
-  </label>
-</form>
-<div class="grid grid-cols-2 gap-7">
+  </form>
   <app-platform-details-balances [balances]="details()?.balances?.[0]" />
   <app-platform-details-quick-actions
     (onEditBalances)="balancesModal.open()"
