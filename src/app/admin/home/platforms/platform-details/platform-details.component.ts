@@ -4,6 +4,7 @@ import { PlatformService } from '@services/platform.service';
 import { PlatformDetailService } from '../services/platform-detail.service';
 import { UpdateBalancesModalComponent } from '../components/update-balances-modal/update-balances-modal.component';
 import { NewPlatformTransferModalComponent } from '../components/new-platform-transfer-modal/new-platform-transfer-modal.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-platform-details',
@@ -18,7 +19,8 @@ export class PlatformDetailsComponent {
 
   readonly loading;
   readonly details;
-  readonly month = signal<string>('');
+  readonly dateInput = new FormControl(new Date());
+  readonly date = signal<Date>(new Date());
 
   constructor(
     private readonly platformDetailService: PlatformDetailService,
@@ -33,9 +35,37 @@ export class PlatformDetailsComponent {
     this.loading.set(true);
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.month.set(new Date().toISOString().slice(0, 7));
+    const date = this.date().toISOString().slice(0, 10);
 
-    this.platformService.getDetails(id, this.month()).subscribe({
+    this.platformService.getDetails(id, date).subscribe({
+      next: (details) => {
+        this.details.set(details);
+        const balances = details.balances[0];
+
+        this.balancesModal.form.patchValue({
+          initialBalance: balances?.initialBalance,
+          finalBalance: balances?.finalBalance,
+        });
+
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  getDetails(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const date = new Date(target.value);
+    this.date.set(date);
+    this.loading.set(true);
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const dateStr = date.toISOString().slice(0, 10);
+
+    this.platformService.getDetails(id, dateStr).subscribe({
       next: (details) => {
         this.details.set(details);
         const balances = details.balances[0];

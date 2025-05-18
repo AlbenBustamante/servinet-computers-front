@@ -55,8 +55,8 @@ export class PlatformService {
       .pipe(tap((platforms) => this.platforms.set(platforms)));
   }
 
-  getDetails(platformId: number, month: string) {
-    const params = new HttpParams().append('month', month);
+  getDetails(platformId: number, date: string) {
+    const params = new HttpParams().append('date', date);
 
     return this.http.get<IAdminPlatformDto>(
       `${this.url}/${platformId}/details`,

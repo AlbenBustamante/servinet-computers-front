@@ -3,6 +3,12 @@
   hDescription="Administra tus saldos y transferencias realizadas a la plataforma"
   [return]="true"
 />
+<form class="text-center mb-5">
+  <label for="date" class="text-gray-700">
+    Filtrar por fecha
+    <input type="date" id="date" class="input" (change)="getDetails($event)" />
+  </label>
+</form>
 <div class="grid grid-cols-2 gap-7">
   <app-platform-details-balances [balances]="details()?.balances?.[0]" />
   <app-platform-details-quick-actions
