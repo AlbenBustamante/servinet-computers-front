@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PlatformService } from '@services/platform.service';
 import { PlatformDetailService } from '../services/platform-detail.service';
 import { UpdateBalancesModalComponent } from '../components/update-balances-modal/update-balances-modal.component';
+import { NewPlatformTransferModalComponent } from '../components/new-platform-transfer-modal/new-platform-transfer-modal.component';
 
 @Component({
   selector: 'app-platform-details',
@@ -10,7 +11,11 @@ import { UpdateBalancesModalComponent } from '../components/update-balances-moda
   styleUrls: ['./platform-details.component.css'],
 })
 export class PlatformDetailsComponent {
-  @ViewChild(UpdateBalancesModalComponent) modal!: UpdateBalancesModalComponent;
+  @ViewChild(UpdateBalancesModalComponent)
+  balancesModal!: UpdateBalancesModalComponent;
+  @ViewChild(NewPlatformTransferModalComponent)
+  transferModal!: NewPlatformTransferModalComponent;
+
   readonly loading;
   readonly details;
   readonly month = signal<string>('');
@@ -35,7 +40,7 @@ export class PlatformDetailsComponent {
         this.details.set(details);
         const balances = details.balances[0];
 
-        this.modal.form.patchValue({
+        this.balancesModal.form.patchValue({
           initialBalance: balances?.initialBalance,
           finalBalance: balances?.finalBalance,
         });

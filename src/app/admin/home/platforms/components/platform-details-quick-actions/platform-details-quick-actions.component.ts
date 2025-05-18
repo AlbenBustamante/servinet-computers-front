@@ -8,6 +8,7 @@ import { faAdd, faTools } from '@fortawesome/free-solid-svg-icons';
 })
 export class PlatformDetailsQuickActionsComponent {
   @Output() onEditBalances = new EventEmitter<void>();
+  @Output() onNewTransfer = new EventEmitter<void>();
   readonly faAdd = faAdd;
   readonly faEdit = faTools;
 }

@@ -1,33 +1,32 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PlatformBalanceService } from '@services/platform-balance.service';
+import { IPlatformTransferReq } from '@models/platform.model';
+import { PlatformTransferService } from '@services/platform-transfer.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { FormLoading } from '@utils/form-loading';
 import { PlatformDetailService } from '../../services/platform-detail.service';
-import { IUpdatePlatformBalanceDto } from '@models/platform.model';
 
 @Component({
-  selector: 'app-update-balances-modal',
-  templateUrl: './update-balances-modal.component.html',
-  styleUrls: ['./update-balances-modal.component.css'],
+  selector: 'app-new-platform-transfer-modal',
+  templateUrl: './new-platform-transfer-modal.component.html',
+  styleUrls: ['./new-platform-transfer-modal.component.css'],
 })
-export class UpdateBalancesModalComponent {
+export class NewPlatformTransferModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
-  readonly details;
-  readonly form;
   readonly loading = signal<boolean>(false);
+  readonly form;
+  readonly details;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly platformDetailService: PlatformDetailService,
-    private readonly platformBalanceService: PlatformBalanceService,
+    private readonly platformTransferService: PlatformTransferService,
     private readonly formLoading: FormLoading
   ) {
     this.details = this.platformDetailService.details;
 
     this.form = this.fb.group({
-      initialBalance: [0, Validators.required],
-      finalBalance: [0, Validators.required],
+      value: [, [Validators.required, Validators.min(0)]],
     });
   }
 
@@ -37,33 +36,31 @@ export class UpdateBalancesModalComponent {
 
   onSubmit() {
     if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
+      return this.form.markAllAsTouched();
     }
 
     this.setLoading(true);
 
-    const dto: IUpdatePlatformBalanceDto = {
-      initialBalance: this.form.get('initialBalance')?.value!,
-      finalBalance: this.form.get('finalBalance')?.value!,
+    const platformId = this.details()?.platform.id!;
+
+    const dto: IPlatformTransferReq = {
+      platformId,
+      value: this.form.get('value')?.value!,
     };
 
-    const { id } = this.details()?.balances[0]!;
-
-    this.platformBalanceService.update(id, dto).subscribe({
-      next: (balance) => {
+    this.platformTransferService.register(dto).subscribe({
+      next: (transfer) => {
+        this.form.reset();
         this.details.update((prevValue) => {
-          prevValue!.balances[0] = balance;
-
+          prevValue?.transfers.push(transfer);
           return prevValue;
         });
-
         this.setLoading(false);
         this.modal.close();
       },
       error: (err) => {
-        console.log(err);
         this.setLoading(false);
+        console.log(err);
       },
     });
   }
