@@ -17,6 +17,7 @@ export class NewPlatformTransferModalComponent {
   readonly form;
   readonly details;
   readonly date;
+  readonly empty;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -26,6 +27,7 @@ export class NewPlatformTransferModalComponent {
   ) {
     this.details = this.platformDetailService.details;
     this.date = this.platformDetailService.date;
+    this.empty = this.platformDetailService.empty;
 
     this.form = this.fb.group({
       value: [, [Validators.required, Validators.min(0)]],

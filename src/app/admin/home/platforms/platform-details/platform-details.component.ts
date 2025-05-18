@@ -20,6 +20,7 @@ export class PlatformDetailsComponent {
   readonly loading;
   readonly details;
   readonly date;
+  readonly empty;
 
   constructor(
     private readonly platformDetailService: PlatformDetailService,
@@ -29,6 +30,7 @@ export class PlatformDetailsComponent {
     this.loading = this.platformDetailService.loading;
     this.details = this.platformDetailService.details;
     this.date = this.platformDetailService.date;
+    this.empty = this.platformDetailService.empty;
   }
 
   ngOnInit() {
@@ -42,7 +44,8 @@ export class PlatformDetailsComponent {
 
   onChangeDate(event: Event) {
     const target = event.target as HTMLInputElement;
-    const date = new Date(target.value);
+    const [year, month, day] = target.value.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
 
     this.date.set(date);
     this.loading.set(true);
@@ -58,6 +61,7 @@ export class PlatformDetailsComponent {
       next: (details) => {
         this.details.set(details);
         const balances = details.balances[0];
+        this.empty.set(balances === undefined);
 
         this.balancesModal.form.patchValue({
           initialBalance: balances?.initialBalance,
