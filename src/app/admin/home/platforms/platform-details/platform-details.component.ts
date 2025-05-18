@@ -1,6 +1,5 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faAdd, faTools } from '@fortawesome/free-solid-svg-icons';
 import { PlatformService } from '@services/platform.service';
 import { PlatformDetailService } from '../services/platform-detail.service';
 import { UpdateBalancesModalComponent } from '../components/update-balances-modal/update-balances-modal.component';
@@ -15,8 +14,6 @@ export class PlatformDetailsComponent {
   readonly loading;
   readonly details;
   readonly month = signal<string>('');
-  readonly faAdd = faAdd;
-  readonly faEdit = faTools;
 
   constructor(
     private readonly platformDetailService: PlatformDetailService,

@@ -4,6 +4,6 @@
   {{ headline }}
   <hr class="border-gray-300 w-full" />
   <span class="text-gray-700 text-right font-medium">
-    {{ balance | currency : "symbol" : "$" : "0.00" }}
+    {{ balance ?? 0 | currency : "symbol" : "$" : "0.00" }}
   </span>
 </li>

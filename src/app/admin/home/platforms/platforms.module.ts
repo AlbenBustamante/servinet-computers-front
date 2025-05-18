@@ -11,6 +11,8 @@ import { PlatformsListComponent } from './platforms-list/platforms-list.componen
 import { PlatformDetailsComponent } from './platform-details/platform-details.component';
 import { PlatformDetailBalanceComponent } from './components/platform-detail-balance/platform-detail-balance.component';
 import { UpdateBalancesModalComponent } from './components/update-balances-modal/update-balances-modal.component';
+import { PlatformDetailsBalancesComponent } from './components/platform-details-balances/platform-details-balances.component';
+import { PlatformDetailsQuickActionsComponent } from './components/platform-details-quick-actions/platform-details-quick-actions.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { UpdateBalancesModalComponent } from './components/update-balances-modal
     PlatformDetailsComponent,
     PlatformDetailBalanceComponent,
     UpdateBalancesModalComponent,
+    PlatformDetailsBalancesComponent,
+    PlatformDetailsQuickActionsComponent,
   ],
   imports: [
     CommonModule,

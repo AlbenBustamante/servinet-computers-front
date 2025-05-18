@@ -4,34 +4,7 @@
   [return]="true"
 />
 <div class="grid grid-cols-2 gap-7">
-  <section class="border border-gray-300 rounded-2xl px-7 py-5">
-    <h3 class="text-violet-700 font-medium text-2xl mb-5">Saldos</h3>
-    <ul class="flex flex-col gap-1">
-      <app-platform-detail-balance
-        headline="Inicial"
-        [balance]="details()?.balances?.[0]?.initialBalance"
-      />
-      <app-platform-detail-balance
-        headline="Final"
-        [balance]="details()?.balances?.[0]?.finalBalance"
-      />
-    </ul>
-  </section>
-  <section class="border border-gray-300 rounded-2xl px-7 py-5">
-    <h3 class="text-violet-700 font-medium text-2xl mb-5">Acciones rápidas</h3>
-    <div class="flex flex-col gap-3">
-      <app-icon-button [icon]="faAdd" type="button">
-        Agregar transferencia
-      </app-icon-button>
-      <app-icon-button
-        [icon]="faEdit"
-        type="button"
-        color="neutral"
-        (click)="modal.open()"
-      >
-        Editar saldos
-      </app-icon-button>
-    </div>
-  </section>
+  <app-platform-details-balances [balances]="details()?.balances?.[0]" />
+  <app-platform-details-quick-actions (onEditBalances)="modal.open()" />
 </div>
 <app-update-balances-modal />
