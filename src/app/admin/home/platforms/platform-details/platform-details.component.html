@@ -4,8 +4,12 @@
   [return]="true"
 />
 
-<div class="grid grid-cols-2 gap-x-7 gap-y-5">
-  <form class="col-span-2 w-full">
+<div class="grid grid-cols-2 gap-x-7 gap-y-5 justify-items-stretch">
+  <app-platform-details-balances
+    [balances]="details()?.balances?.[0]"
+    class="row-span-2"
+  />
+  <form class="w-full">
     <input
       type="date"
       id="date"
@@ -15,7 +19,6 @@
       [max]="today"
     />
   </form>
-  <app-platform-details-balances [balances]="details()?.balances?.[0]" />
   <app-platform-details-quick-actions
     (onEditBalances)="balancesModal.open()"
     (onNewTransfer)="transferModal.open()"
