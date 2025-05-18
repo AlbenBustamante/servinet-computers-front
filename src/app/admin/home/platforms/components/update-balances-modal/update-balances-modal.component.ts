@@ -1,4 +1,4 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
@@ -15,6 +15,7 @@ export class UpdateBalancesModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
   readonly details;
   readonly form;
+  readonly date;
   readonly loading = signal<boolean>(false);
 
   constructor(
@@ -24,6 +25,7 @@ export class UpdateBalancesModalComponent {
     private readonly formLoading: FormLoading
   ) {
     this.details = this.platformDetailService.details;
+    this.date = this.platformDetailService.date;
 
     this.form = this.fb.group({
       initialBalance: [0, Validators.required],

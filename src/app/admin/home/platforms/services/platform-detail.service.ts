@@ -7,6 +7,7 @@ import { IAdminPlatformDto } from '@models/platform.model';
 export class PlatformDetailService {
   readonly loading = signal<boolean>(false);
   readonly details = signal<IAdminPlatformDto | undefined>(undefined);
+  readonly date = signal<Date>(new Date());
 
   constructor() {}
 }

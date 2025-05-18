@@ -4,9 +4,15 @@
   [return]="true"
 />
 <form class="text-center mb-5">
-  <label for="date" class="text-gray-700">
-    Filtrar por fecha
-    <input type="date" id="date" class="input" (change)="getDetails($event)" />
+  <label for="date" class="text-gray-700 font-medium">
+    Fecha
+    <input
+      type="date"
+      id="date"
+      class="input"
+      (change)="onChangeDate($event)"
+      [max]="today"
+    />
   </label>
 </form>
 <div class="grid grid-cols-2 gap-7">

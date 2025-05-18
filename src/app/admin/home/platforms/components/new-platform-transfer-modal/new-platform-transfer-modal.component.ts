@@ -16,6 +16,7 @@ export class NewPlatformTransferModalComponent {
   readonly loading = signal<boolean>(false);
   readonly form;
   readonly details;
+  readonly date;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -24,9 +25,11 @@ export class NewPlatformTransferModalComponent {
     private readonly formLoading: FormLoading
   ) {
     this.details = this.platformDetailService.details;
+    this.date = this.platformDetailService.date;
 
     this.form = this.fb.group({
       value: [, [Validators.required, Validators.min(0)]],
+      date: [],
     });
   }
 
@@ -46,6 +49,7 @@ export class NewPlatformTransferModalComponent {
     const dto: IPlatformTransferReq = {
       platformId,
       value: this.form.get('value')?.value!,
+      date: this.date(),
     };
 
     this.platformTransferService.register(dto).subscribe({
