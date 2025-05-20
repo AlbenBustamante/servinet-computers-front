@@ -14,10 +14,12 @@
       Selecciona el tipo de reporte
     </h3>
     <ng-template #table>
-      <app-reports-tables
-        [reports]="reports()"
-        [selectedReport]="selectedReport()"
-      />
+      <div class="overflow-x-auto">
+        <app-reports-tables
+          [reports]="reports()"
+          [selectedReport]="selectedReport()"
+        />
+      </div>
     </ng-template>
   </section>
 </ng-template>
