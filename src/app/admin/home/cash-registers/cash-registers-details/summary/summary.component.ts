@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ICashRegisterDetailRes } from '@models/cash-register.model';
+import { CashRegisterService } from '@services/cash-register.service';
 
 @Component({
   selector: 'app-summary',
@@ -8,12 +10,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SummaryComponent {
   private readonly id: number;
+  readonly loading = signal<boolean>(false);
+  readonly detail = signal<ICashRegisterDetailRes | undefined>(undefined);
 
-  constructor(private readonly route: ActivatedRoute) {
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly cashRegisterService: CashRegisterService
+  ) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit() {
-    console.log({ id: this.id });
+    this.loading.set(true);
+
+    this.cashRegisterService.getLastDetail(this.id).subscribe({
+      next: (detail) => {
+        this.detail.set(detail);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
   }
 }

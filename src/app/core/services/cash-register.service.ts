@@ -61,6 +61,13 @@ export class CashRegisterService {
     });
   }
 
+  getLastDetail(cashRegisterId: number) {
+    return this.http.get<ICashRegisterDetailRes>(
+      `${this.url}/${cashRegisterId}/lastDetail`,
+      { context: checkToken() }
+    );
+  }
+
   getMovements(cashRegisterId: number) {
     return this.http.get<ICashRegisterDetailRes[]>(
       `${this.url}/${cashRegisterId}/movements`,
