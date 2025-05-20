@@ -15,6 +15,7 @@ import { PlatformDetailsBalancesComponent } from './components/platform-details-
 import { PlatformDetailsQuickActionsComponent } from './components/platform-details-quick-actions/platform-details-quick-actions.component';
 import { NewPlatformTransferModalComponent } from './components/new-platform-transfer-modal/new-platform-transfer-modal.component';
 import { TransfersTableComponent } from './components/transfers-table/transfers-table.component';
+import { HomeSharedModule } from '../home-shared/home-shared.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { TransfersTableComponent } from './components/transfers-table/transfers-
     PlatformsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    HomeSharedModule,
   ],
 })
 export default class PlatformsModule {}

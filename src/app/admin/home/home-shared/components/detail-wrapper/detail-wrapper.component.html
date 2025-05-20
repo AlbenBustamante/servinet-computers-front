@@ -1,0 +1,9 @@
+<section class="border border-gray-300 rounded-2xl px-7 py-5 size-full">
+  <h3 class="text-violet-700 font-medium text-2xl mb-5">{{ headline }}</h3>
+  <ng-template #spinner>
+    <app-spinner />
+  </ng-template>
+  <ng-container *ngIf="!loading; else spinner">
+    <ng-content></ng-content>
+  </ng-container>
+</section>
