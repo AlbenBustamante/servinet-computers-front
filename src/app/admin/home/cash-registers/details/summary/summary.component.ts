@@ -1,6 +1,5 @@
-import { Component, computed, Inject, LOCALE_ID, signal } from '@angular/core';
+import { Component, computed, Inject, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ICashRegisterDetailRes } from '@models/cash-register.model';
 import { CashRegisterService } from '@services/cash-register.service';
 import { DetailService } from '../services/detail.service';
 import { formatDate } from '@angular/common';

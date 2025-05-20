@@ -1,0 +1,12 @@
+<app-detail-wrapper headline="Base" [loading]="loading()">
+  <app-detail-stat-wrapper
+    headline="Inicial"
+    [stat]="detail()?.initialBase"
+    pipe="currency"
+  />
+  <app-detail-stat-wrapper
+    headline="Final"
+    [stat]="detail()?.finalBase"
+    pipe="currency"
+  />
+</app-detail-wrapper>
