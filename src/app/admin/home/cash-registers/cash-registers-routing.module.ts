@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CashRegistersListComponent } from './cash-registers-list/cash-registers-list.component';
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
-  { path: '', component: CashRegistersListComponent },
+  { path: '', component: ListComponent },
   {
     path: ':id',
     loadChildren: () =>
-      import('./cash-registers-details/cash-registers-details.module'),
+      import('./details/details.module'),
   },
 ];
 

@@ -7,8 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NewPlatformFormComponent } from './components/new-platform-form/new-platform-form.component';
 import { PlatformsTableComponent } from './components/platforms-table/platforms-table.component';
 import { UpdatePlatformFormComponent } from './components/update-platform-form/update-platform-form.component';
-import { PlatformsListComponent } from './platforms-list/platforms-list.component';
-import { PlatformDetailsComponent } from './platform-details/platform-details.component';
+import { ListComponent } from './list/list.component';
+import { DetailsComponent } from './details/details.component';
 import { PlatformDetailBalanceComponent } from './components/platform-detail-balance/platform-detail-balance.component';
 import { UpdateBalancesModalComponent } from './components/update-balances-modal/update-balances-modal.component';
 import { PlatformDetailsBalancesComponent } from './components/platform-details-balances/platform-details-balances.component';
@@ -22,8 +22,8 @@ import { HomeSharedModule } from '../home-shared/home-shared.module';
     NewPlatformFormComponent,
     PlatformsTableComponent,
     UpdatePlatformFormComponent,
-    PlatformsListComponent,
-    PlatformDetailsComponent,
+    ListComponent,
+    DetailsComponent,
     PlatformDetailBalanceComponent,
     UpdateBalancesModalComponent,
     PlatformDetailsBalancesComponent,

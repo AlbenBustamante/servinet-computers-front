@@ -3,11 +3,11 @@ import { PlatformService } from '@services/platform.service';
 import { UpdatePlatformFormComponent } from '@admin/home/platforms/components/update-platform-form/update-platform-form.component';
 
 @Component({
-  selector: 'app-platforms-list',
-  templateUrl: './platforms-list.component.html',
-  styleUrls: ['./platforms-list.component.css'],
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css'],
 })
-export class PlatformsListComponent {
+export class ListComponent {
   @ViewChild(UpdatePlatformFormComponent)
   updatePlatformForm!: UpdatePlatformFormComponent;
   readonly loading = signal<boolean>(true);

@@ -1,17 +1,17 @@
 import { Component, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlatformService } from '@services/platform.service';
-import { PlatformDetailService } from '../services/platform-detail.service';
-import { UpdateBalancesModalComponent } from '../components/update-balances-modal/update-balances-modal.component';
-import { NewPlatformTransferModalComponent } from '../components/new-platform-transfer-modal/new-platform-transfer-modal.component';
+import { PlatformDetailService } from '@admin/home/platforms/services/platform-detail.service';
+import { UpdateBalancesModalComponent } from '@admin/home/platforms/components/update-balances-modal/update-balances-modal.component';
+import { NewPlatformTransferModalComponent } from '@admin/home/platforms/components/new-platform-transfer-modal/new-platform-transfer-modal.component';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-platform-details',
-  templateUrl: './platform-details.component.html',
-  styleUrls: ['./platform-details.component.css'],
+  selector: 'app-details',
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.css'],
 })
-export class PlatformDetailsComponent {
+export class DetailsComponent {
   @ViewChild(UpdateBalancesModalComponent)
   balancesModal!: UpdateBalancesModalComponent;
   @ViewChild(NewPlatformTransferModalComponent)

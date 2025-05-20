@@ -7,14 +7,14 @@ import { NewCashRegisterFormComponent } from './components/new-cash-register-for
 import { ReactiveFormsModule } from '@angular/forms';
 import { CashRegistersTableComponent } from './components/cash-registers-table/cash-registers-table.component';
 import { UpdateCashRegisterFormComponent } from './components/update-cash-register-form/update-cash-register-form.component';
-import { CashRegistersListComponent } from './cash-registers-list/cash-registers-list.component';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
     NewCashRegisterFormComponent,
     CashRegistersTableComponent,
     UpdateCashRegisterFormComponent,
-    CashRegistersListComponent,
+    ListComponent,
   ],
   imports: [
     CommonModule,
