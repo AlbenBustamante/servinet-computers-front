@@ -1,13 +1,13 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { CashRegisterService } from '@services/cash-register.service';
-import { UpdateCashRegisterFormComponent } from './components/update-cash-register-form/update-cash-register-form.component';
+import { UpdateCashRegisterFormComponent } from '../components/update-cash-register-form/update-cash-register-form.component';
 
 @Component({
-  selector: 'app-cash-registers',
-  templateUrl: './cash-registers.component.html',
-  styleUrls: ['./cash-registers.component.css'],
+  selector: 'app-cash-registers-list',
+  templateUrl: './cash-registers-list.component.html',
+  styleUrls: ['./cash-registers-list.component.css'],
 })
-export class CashRegistersComponent {
+export class CashRegistersListComponent {
   @ViewChild(UpdateCashRegisterFormComponent)
   updateCashRegisterForm!: UpdateCashRegisterFormComponent;
 
@@ -32,9 +32,5 @@ export class CashRegistersComponent {
         this.loading.set(false);
       },
     });
-  }
-
-  onUpdate() {
-    this.updateCashRegisterForm.emitOnComplete();
   }
 }

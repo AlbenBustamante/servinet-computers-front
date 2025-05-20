@@ -1,6 +1,7 @@
 <app-header-title
   hTitle="Cajas registradoras"
   hDescription="Administra las cajas registradoras"
+  [return]="true"
 />
 <div class="mt-10 grid grid-cols-[21rem_1fr] gap-5">
   <article class="card">
@@ -20,6 +21,7 @@
   [showSideBar]="showSideBar"
   mode="update"
   [loading]="updateCashRegisterLoading()"
-  (onSubmit)="onUpdate()"
-  ><app-update-cash-register-form (onComplete)="showSideBar.set(false)"
-/></app-sidebar>
+  (onSubmit)="updateCashRegisterForm.emitOnComplete()"
+>
+  <app-update-cash-register-form (onComplete)="showSideBar.set(false)" />
+</app-sidebar>
