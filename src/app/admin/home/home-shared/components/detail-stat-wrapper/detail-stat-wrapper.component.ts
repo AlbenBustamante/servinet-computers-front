@@ -19,7 +19,13 @@ export class DetailStatWrapperComponent {
     }
 
     if (this.pipe === 'currency') {
-      return formatCurrency(this.stat as number, this.locale, '$', '0.00');
+      return formatCurrency(
+        this.stat as number,
+        this.locale,
+        '$',
+        undefined,
+        '0.00'
+      );
     }
 
     if (this.pipe === 'time') {

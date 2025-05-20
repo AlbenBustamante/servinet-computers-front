@@ -1,12 +1,14 @@
 <app-detail-wrapper headline="Saldos" [loading]="loading()">
-  <ul class="flex flex-col gap-1">
-    <app-platform-detail-balance
+  <ul class="flex flex-col gap-3">
+    <app-detail-stat-wrapper
       headline="Inicial"
-      [balance]="details()?.balances?.[0]?.initialBalance"
+      [stat]="details()?.balances?.[0]?.initialBalance"
+      pipe="currency"
     />
-    <app-platform-detail-balance
+    <app-detail-stat-wrapper
       headline="Final"
-      [balance]="details()?.balances?.[0]?.finalBalance"
+      [stat]="details()?.balances?.[0]?.finalBalance"
+      pipe="currency"
     />
   </ul>
 </app-detail-wrapper>

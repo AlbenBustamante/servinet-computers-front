@@ -9,7 +9,6 @@ import { PlatformsTableComponent } from './components/platforms-table/platforms-
 import { UpdatePlatformFormComponent } from './components/update-platform-form/update-platform-form.component';
 import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
-import { PlatformDetailBalanceComponent } from './components/platform-detail-balance/platform-detail-balance.component';
 import { UpdateBalancesModalComponent } from './components/update-balances-modal/update-balances-modal.component';
 import { PlatformDetailsBalancesComponent } from './components/platform-details-balances/platform-details-balances.component';
 import { PlatformDetailsQuickActionsComponent } from './components/platform-details-quick-actions/platform-details-quick-actions.component';
@@ -24,7 +23,6 @@ import { HomeSharedModule } from '../home-shared/home-shared.module';
     UpdatePlatformFormComponent,
     ListComponent,
     DetailsComponent,
-    PlatformDetailBalanceComponent,
     UpdateBalancesModalComponent,
     PlatformDetailsBalancesComponent,
     PlatformDetailsQuickActionsComponent,
