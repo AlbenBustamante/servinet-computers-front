@@ -1,10 +1,11 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, signal, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IPlatformTransferReq } from '@models/platform.model';
 import { PlatformTransferService } from '@services/platform-transfer.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { FormLoading } from '@utils/form-loading';
 import { PlatformDetailService } from '../../services/platform-detail.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-new-platform-transfer-modal',
@@ -16,17 +17,23 @@ export class NewPlatformTransferModalComponent {
   readonly loading = signal<boolean>(false);
   readonly form;
   readonly details;
+  readonly date;
+  readonly empty;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly platformDetailService: PlatformDetailService,
     private readonly platformTransferService: PlatformTransferService,
-    private readonly formLoading: FormLoading
+    private readonly formLoading: FormLoading,
+    @Inject(LOCALE_ID) private readonly locale: string
   ) {
     this.details = this.platformDetailService.details;
+    this.date = this.platformDetailService.date;
+    this.empty = this.platformDetailService.empty;
 
     this.form = this.fb.group({
       value: [, [Validators.required, Validators.min(0)]],
+      date: [],
     });
   }
 
@@ -46,6 +53,7 @@ export class NewPlatformTransferModalComponent {
     const dto: IPlatformTransferReq = {
       platformId,
       value: this.form.get('value')?.value!,
+      date: formatDate(this.date(), 'yyyy-MM-dd', this.locale),
     };
 
     this.platformTransferService.register(dto).subscribe({

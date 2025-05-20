@@ -13,7 +13,9 @@
   </h3>
   <div class="px-5 pt-5 pb-6 bg-white rounded-lg drop-shadow-lg">
     <app-spinner *ngIf="loading()" />
-    <app-platforms-table *ngIf="!loading()" (onEdit)="onEdit()" />
+    <div class="overflow-x-auto">
+      <app-platforms-table *ngIf="!loading()" (onEdit)="onEdit()" />
+    </div>
   </div>
 </section>
 <app-sidebar

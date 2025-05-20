@@ -3,12 +3,31 @@
   hDescription="Administra tus saldos y transferencias realizadas a la plataforma"
   [return]="true"
 />
-<div class="grid grid-cols-2 gap-7">
-  <app-platform-details-balances [balances]="details()?.balances?.[0]" />
+<div class="grid grid-cols-2 gap-x-7 gap-y-5">
+  <app-platform-details-balances
+    [balances]="details()?.balances?.[0]"
+    class="row-span-2"
+  />
+  <form class="w-full">
+    <input
+      type="date"
+      id="date"
+      class="input w-full"
+      (change)="onChangeDate($event)"
+      [value]="today"
+      [max]="today"
+    />
+  </form>
   <app-platform-details-quick-actions
     (onEditBalances)="balancesModal.open()"
     (onNewTransfer)="transferModal.open()"
   />
+  <article class="card col-span-2">
+    <h4 class="text-center text-violet-700 font-medium text-2xl mb-5">
+      Transferencias
+    </h4>
+    <app-transfers-table />
+  </article>
 </div>
 <app-update-balances-modal />
 <app-new-platform-transfer-modal />

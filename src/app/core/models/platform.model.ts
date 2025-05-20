@@ -26,6 +26,7 @@ export interface IUpdatePlatformBalanceDto {
 export interface IPlatformTransferReq {
   platformId: number;
   value: number;
+  date?: string;
 }
 
 export interface IPlatformTransferRes extends IResponse<number> {

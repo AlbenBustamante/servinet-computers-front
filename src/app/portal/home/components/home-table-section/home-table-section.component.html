@@ -7,7 +7,9 @@
   >
     <div>
       <h2 class="home-subtitle">{{ headline }}</h2>
-      <ng-content></ng-content>
+      <div class="overflow-x-auto">
+        <ng-content></ng-content>
+      </div>
     </div>
     <app-pagination
       *ngIf="length > 0"

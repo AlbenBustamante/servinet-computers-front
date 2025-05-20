@@ -5,64 +5,62 @@
     {{ table.noDataMessage }}
   </p>
 </ng-template>
-<div class="overflow-x-auto" *ngIf="data().length > 0; else noData">
-  <table class="w-full">
-    <thead>
-      <tr class="bg-gray-50">
-        <th
-          scope="col"
-          *ngFor="let header of table.header"
-          class="text-gray-800 text-sm px-5 py-2 uppercase text-nowrap"
-          [ngClass]="{
-            'text-left': !header.align,
-            'text-center': header.align === 'center',
-            'text-right': header.align === 'right'
-          }"
-        >
-          {{ header.title }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let row of data(); index as i"
-        class="even:bg-gray-50 odd:bg-white hover:bg-gray-100"
-        [ngClass]="{ 'cursor-pointer': table.onClick }"
-        (click)="table.onClick ? table.onClick(i) : undefined"
+<table class="w-full outline-none" *ngIf="data().length > 0; else noData">
+  <thead>
+    <tr class="bg-gray-50">
+      <th
+        scope="col"
+        *ngFor="let header of table.header"
+        class="text-gray-800 text-sm px-5 py-2 uppercase text-nowrap"
+        [ngClass]="{
+          'text-left': !header.align,
+          'text-center': header.align === 'center',
+          'text-right': header.align === 'right'
+        }"
       >
-        <td
-          *ngFor="let header of table.header"
-          class="text-gray-800 px-5 py-2 text-nowrap"
-          [ngClass]="{
-            'text-left': !header.align,
-            'text-center': header.align === 'center',
-            'text-right': header.align === 'right'
-          }"
-        >
-          {{
-            getNestedValue(row, header.key, {
-              defaultValue: "--",
-              prefixSign: header.prefixSign
-            }) | dynamic : header.pipe : header.pipeArgs ?? "default"
-          }}
-        </td>
-        <td *ngIf="table.onEdit || table.onRemove">
-          <span class="flex items-center justify-center gap-1">
-            <fa-icon
-              *ngIf="table.onEdit"
-              [icon]="faEdit"
-              class="text-yellow-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
-              (click)="onEdit($event, i)"
-            />
-            <fa-icon
-              *ngIf="table.onRemove"
-              [icon]="faRemove"
-              class="text-red-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
-              (click)="onRemove($event, i)"
-            />
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        {{ header.title }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let row of data(); index as i"
+      class="even:bg-gray-50 odd:bg-white hover:bg-gray-100"
+      [ngClass]="{ 'cursor-pointer': table.onClick }"
+      (click)="table.onClick ? table.onClick(i) : undefined"
+    >
+      <td
+        *ngFor="let header of table.header"
+        class="text-gray-800 px-5 py-2 text-nowrap"
+        [ngClass]="{
+          'text-left': !header.align,
+          'text-center': header.align === 'center',
+          'text-right': header.align === 'right'
+        }"
+      >
+        {{
+          getNestedValue(row, header.key, {
+            defaultValue: "--",
+            prefixSign: header.prefixSign
+          }) | dynamic : header.pipe : header.pipeArgs ?? "default"
+        }}
+      </td>
+      <td *ngIf="table.onEdit || table.onRemove">
+        <span class="flex items-center justify-center gap-1">
+          <fa-icon
+            *ngIf="table.onEdit"
+            [icon]="faEdit"
+            class="text-yellow-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
+            (click)="onEdit($event, i)"
+          />
+          <fa-icon
+            *ngIf="table.onRemove"
+            [icon]="faRemove"
+            class="text-red-500 text-lg cursor-pointer py-0.5 px-2 rounded-full hover:bg-black hover:bg-opacity-10"
+            (click)="onRemove($event, i)"
+          />
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

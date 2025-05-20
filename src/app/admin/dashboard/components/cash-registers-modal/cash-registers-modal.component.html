@@ -1,16 +1,10 @@
-<dialog
-  #modal
-  class="px-4 py-5 rounded-lg outline-none backdrop:bg-black backdrop:bg-opacity-30 backdrop:backdrop-blur-sm"
->
-  <header class="mb-5 border-b border-gray-400 pb-2">
-    <h2 class="text-center text-gray-800 text-3xl font-medium">
-      Cajas Registradoras
-    </h2>
-  </header>
-  <app-cash-registers-stats-table />
+<app-modal headline="Cajas Registradoras" align="center" width="4xl">
+  <div class="max-h-[21rem] overflow-y-auto">
+    <app-cash-registers-stats-table />
+  </div>
   <footer
     class="flex items-center justify-end mt-7 border-t border-gray-400 pt-5"
   >
     <app-button type="button" (click)="close()">Cerrar</app-button>
   </footer>
-</dialog>
+</app-modal>

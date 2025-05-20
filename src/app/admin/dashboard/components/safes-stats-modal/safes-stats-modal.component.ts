@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-safes-stats-modal',
@@ -6,13 +7,13 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./safes-stats-modal.component.css'],
 })
 export class SafesStatsModalComponent {
-  @ViewChild('modal') modal!: ElementRef<HTMLDialogElement>;
+  @ViewChild(ModalComponent) modal!: ModalComponent;
 
   open() {
-    this.modal.nativeElement.showModal();
+    this.modal.open();
   }
 
   close() {
-    this.modal.nativeElement.close();
+    this.modal.close();
   }
 }
