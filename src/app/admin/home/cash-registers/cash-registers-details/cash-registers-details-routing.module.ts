@@ -4,7 +4,7 @@ import { SummaryComponent } from './summary/summary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'summary', pathMatch: 'full' },
-  { path: 'summary', component: SummaryComponent },
+  { path: 'resumen', component: SummaryComponent },
 ];
 
 @NgModule({
