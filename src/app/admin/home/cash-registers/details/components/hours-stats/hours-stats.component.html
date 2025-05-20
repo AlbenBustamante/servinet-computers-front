@@ -1,0 +1,22 @@
+<app-detail-wrapper headline="Horas" [loading]="loading()">
+  <app-detail-stat-wrapper
+    headline="Entrada"
+    [stat]="detail()?.initialWorking"
+    pipe="time"
+  />
+  <app-detail-stat-wrapper
+    headline="Almuerzo Entrada"
+    [stat]="detail()?.initialBreak"
+    pipe="time"
+  />
+  <app-detail-stat-wrapper
+    headline="Almuerzo Salida"
+    [stat]="detail()?.finalBreak"
+    pipe="time"
+  />
+  <app-detail-stat-wrapper
+    headline="Salida"
+    [stat]="detail()?.finalWorking"
+    pipe="time"
+  />
+</app-detail-wrapper>

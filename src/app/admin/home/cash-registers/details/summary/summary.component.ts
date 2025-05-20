@@ -2,6 +2,7 @@ import { Component, computed, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICashRegisterDetailRes } from '@models/cash-register.model';
 import { CashRegisterService } from '@services/cash-register.service';
+import { DetailService } from '../services/detail.service';
 
 @Component({
   selector: 'app-summary',
@@ -10,17 +11,20 @@ import { CashRegisterService } from '@services/cash-register.service';
 })
 export class SummaryComponent {
   private readonly id: number;
-  readonly loading = signal<boolean>(false);
-  readonly detail = signal<ICashRegisterDetailRes | undefined>(undefined);
+  readonly loading;
+  readonly detail;
   readonly title = computed(
-    () => `Caja Registradora N° ${this.detail()?.cashRegister.numeral}`
+    () => `Caja Registradora N° ${this.detail()?.cashRegister.numeral ?? 0}`
   );
 
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly service: DetailService,
     private readonly cashRegisterService: CashRegisterService
   ) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.loading = this.service.loading;
+    this.detail = this.service.detail;
   }
 
   ngOnInit() {
