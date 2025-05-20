@@ -22,6 +22,12 @@
     (onEditBalances)="balancesModal.open()"
     (onNewTransfer)="transferModal.open()"
   />
+  <article class="card col-span-2">
+    <h4 class="text-center text-violet-700 font-medium text-2xl mb-5">
+      Transferencias
+    </h4>
+    <app-transfers-table />
+  </article>
 </div>
 <app-update-balances-modal />
 <app-new-platform-transfer-modal />

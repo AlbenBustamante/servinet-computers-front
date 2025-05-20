@@ -1,9 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, computed, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlatformService } from '@services/platform.service';
 import { PlatformDetailService } from '../services/platform-detail.service';
 import { UpdateBalancesModalComponent } from '../components/update-balances-modal/update-balances-modal.component';
 import { NewPlatformTransferModalComponent } from '../components/new-platform-transfer-modal/new-platform-transfer-modal.component';
+import { IPlatformTransferRes } from '@models/platform.model';
 
 @Component({
   selector: 'app-platform-details',
@@ -17,6 +18,7 @@ export class PlatformDetailsComponent {
   transferModal!: NewPlatformTransferModalComponent;
 
   readonly today = new Date().toISOString().slice(0, 10);
+  readonly transfers;
   readonly loading;
   readonly details;
   readonly date;
@@ -29,6 +31,7 @@ export class PlatformDetailsComponent {
   ) {
     this.loading = this.platformDetailService.loading;
     this.details = this.platformDetailService.details;
+    this.transfers = this.platformDetailService.transfers;
     this.date = this.platformDetailService.date;
     this.empty = this.platformDetailService.empty;
   }
@@ -60,6 +63,8 @@ export class PlatformDetailsComponent {
     this.platformService.getDetails(id, dateStr).subscribe({
       next: (details) => {
         this.details.set(details);
+        this.transfers.set(details.transfers);
+
         const balances = details.balances[0];
         this.empty.set(balances === undefined);
 

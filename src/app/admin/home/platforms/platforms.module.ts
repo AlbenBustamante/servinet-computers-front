@@ -14,6 +14,7 @@ import { UpdateBalancesModalComponent } from './components/update-balances-modal
 import { PlatformDetailsBalancesComponent } from './components/platform-details-balances/platform-details-balances.component';
 import { PlatformDetailsQuickActionsComponent } from './components/platform-details-quick-actions/platform-details-quick-actions.component';
 import { NewPlatformTransferModalComponent } from './components/new-platform-transfer-modal/new-platform-transfer-modal.component';
+import { TransfersTableComponent } from './components/transfers-table/transfers-table.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NewPlatformTransferModalComponent } from './components/new-platform-tra
     PlatformDetailsBalancesComponent,
     PlatformDetailsQuickActionsComponent,
     NewPlatformTransferModalComponent,
+    TransfersTableComponent,
   ],
   imports: [
     CommonModule,
