@@ -1,10 +1,10 @@
-import { Component, computed, signal, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlatformService } from '@services/platform.service';
 import { PlatformDetailService } from '../services/platform-detail.service';
 import { UpdateBalancesModalComponent } from '../components/update-balances-modal/update-balances-modal.component';
 import { NewPlatformTransferModalComponent } from '../components/new-platform-transfer-modal/new-platform-transfer-modal.component';
-import { IPlatformTransferRes } from '@models/platform.model';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-platform-details',
@@ -17,7 +17,7 @@ export class PlatformDetailsComponent {
   @ViewChild(NewPlatformTransferModalComponent)
   transferModal!: NewPlatformTransferModalComponent;
 
-  readonly today = new Date().toISOString().slice(0, 10);
+  readonly today = formatDate(new Date(), 'yyyy-MM-dd', this.locale);
   readonly transfers;
   readonly loading;
   readonly details;
@@ -27,7 +27,8 @@ export class PlatformDetailsComponent {
   constructor(
     private readonly platformDetailService: PlatformDetailService,
     private readonly platformService: PlatformService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    @Inject(LOCALE_ID) private readonly locale: string
   ) {
     this.loading = this.platformDetailService.loading;
     this.details = this.platformDetailService.details;
@@ -40,7 +41,7 @@ export class PlatformDetailsComponent {
     this.loading.set(true);
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    const date = this.date().toISOString().slice(0, 10);
+    const date = this.today;
 
     this.getDetails(id, date);
   }
@@ -54,7 +55,7 @@ export class PlatformDetailsComponent {
     this.loading.set(true);
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    const dateStr = date.toISOString().slice(0, 10);
+    const dateStr = formatDate(date, 'yyyy-MM-dd', this.locale);
 
     this.getDetails(id, dateStr);
   }
