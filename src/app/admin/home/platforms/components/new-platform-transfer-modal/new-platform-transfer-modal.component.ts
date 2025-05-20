@@ -14,7 +14,7 @@ import { formatDate } from '@angular/common';
 })
 export class NewPlatformTransferModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
-  readonly loading = signal<boolean>(false);
+  readonly loading;
   readonly form;
   readonly details;
   readonly date;
@@ -27,6 +27,7 @@ export class NewPlatformTransferModalComponent {
     private readonly formLoading: FormLoading,
     @Inject(LOCALE_ID) private readonly locale: string
   ) {
+    this.loading = this.platformDetailService.loading;
     this.details = this.platformDetailService.details;
     this.date = this.platformDetailService.date;
     this.empty = this.platformDetailService.empty;

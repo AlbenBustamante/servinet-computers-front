@@ -17,7 +17,7 @@ export class UpdateBalancesModalComponent {
   readonly form;
   readonly date;
   readonly empty;
-  readonly loading = signal<boolean>(false);
+  readonly loading;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -28,6 +28,7 @@ export class UpdateBalancesModalComponent {
     this.details = this.platformDetailService.details;
     this.date = this.platformDetailService.date;
     this.empty = this.platformDetailService.empty;
+    this.loading = this.platformDetailService.loading;
 
     this.form = this.fb.group({
       initialBalance: [0, Validators.required],

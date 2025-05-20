@@ -1,13 +1,16 @@
 <section class="border border-gray-300 rounded-2xl px-7 py-5 size-full">
   <h3 class="text-violet-700 font-medium text-2xl mb-5">Saldos</h3>
-  <ul class="flex flex-col gap-1">
+  <ng-template #spinner>
+    <app-spinner />
+  </ng-template>
+  <ul class="flex flex-col gap-1" *ngIf="!loading(); else spinner">
     <app-platform-detail-balance
       headline="Inicial"
-      [balance]="balances?.initialBalance"
+      [balance]="details()?.balances?.[0]?.initialBalance"
     />
     <app-platform-detail-balance
       headline="Final"
-      [balance]="balances?.finalBalance"
+      [balance]="details()?.balances?.[0]?.finalBalance"
     />
   </ul>
 </section>
