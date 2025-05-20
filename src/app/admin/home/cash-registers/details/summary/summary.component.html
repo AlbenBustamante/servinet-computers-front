@@ -4,5 +4,14 @@
   [return]="true"
 />
 <div class="grid grid-cols-2 gap-x-7 gap-y-5">
-  <app-hours-stats />
+  <app-hours-stats class="row-span-2" />
+  <form>
+    <input
+      type="date"
+      class="input w-full"
+      [value]="today"
+      [max]="today"
+      (change)="onChangeDate($event)"
+    />
+  </form>
 </div>
