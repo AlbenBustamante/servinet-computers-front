@@ -1,0 +1,19 @@
+<header class="flex items-center justify-between gap-3">
+  <app-list-headline [headline]="headline" />
+  <app-icon-button
+    [icon]="faAdd"
+    type="button"
+    (click)="onClick.emit()"
+    class="invisible hidden sm:visible sm:block"
+  >
+    {{ action }}
+  </app-icon-button>
+  <app-icon-button
+    [icon]="faAdd"
+    type="button"
+    (click)="onClick.emit()"
+    class="visible block sm:invisible sm:hidden"
+  >
+  </app-icon-button>
+</header>
+<hr class="w-full border-neutral-300 my-3" />
