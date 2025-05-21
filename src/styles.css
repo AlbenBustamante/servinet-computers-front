@@ -16,7 +16,7 @@ body {
 }
 
 .form div.control label {
-  @apply block text-gray-700 font-medium;
+  @apply block text-gray-700 text-xs sm:text-sm md:text-base font-medium;
 }
 
 .form div.control-row {
@@ -39,11 +39,11 @@ body {
 }
 
 .input {
-  @apply rounded-lg px-4 py-2 border border-gray-300 bg-gray-50 text-gray-700 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none;
+  @apply rounded-lg px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 border border-gray-300 bg-gray-50 text-gray-700 text-sm md:text-base focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none;
 }
 
 .card {
-  @apply px-7 py-5 bg-white rounded-xl drop-shadow;
+  @apply px-5 sm:px-6 md:px-7 py-3.5 sm:py-4 md:py-5 bg-white rounded-xl drop-shadow;
 }
 
 .divider {
