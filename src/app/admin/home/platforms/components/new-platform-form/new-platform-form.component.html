@@ -1,11 +1,31 @@
-<form class="w-full form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="control">
-    <label for="name">Nombre</label>
-    <div class="grid grid-cols-[1fr,_15rem] gap-7">
-      <input type="text" id="name" formControlName="name" class="input" />
-      <app-button type="submit" [loading]="loading()">
-        Registrar plataforma</app-button
-      >
+<form
+  class="mb-3 duration-300"
+  [ngClass]="show ? 'opacity-100 visible h-full' : 'opacity-0 invisible h-0'"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <fieldset class="form border border-neutral-300 px-5 pt-2 pb-4 rounded-xl">
+    <legend class="px-2 text-gray-700 font-medium text-lg">
+      Nueva plataforma
+    </legend>
+    <div class="control">
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        id="name"
+        class="input"
+        placeholder="Ej: MoviiRed"
+        formControlName="name"
+      />
     </div>
-  </div>
+    <div class="flex items-center justify-between gap-3">
+      <app-icon-button
+        [icon]="faTrash"
+        type="button"
+        color="neutral"
+        (click)="emitOnClose()"
+      />
+      <app-button type="submit" [loading]="loading()">Registrar</app-button>
+    </div>
+  </fieldset>
 </form>

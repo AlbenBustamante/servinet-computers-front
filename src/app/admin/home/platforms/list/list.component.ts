@@ -12,6 +12,7 @@ export class ListComponent {
   readonly loading = signal<boolean>(true);
   readonly showSideBar = signal<boolean>(false);
   readonly updatePlatformLoading;
+  readonly showRegisterForm = signal<boolean>(false);
 
   constructor(private readonly platformService: PlatformService) {
     this.updatePlatformLoading = this.platformService.updatePlatformLoading;

@@ -7,6 +7,12 @@
   <app-list-headline-header
     headline="Listado de plataformas"
     action="Añadir plataforma"
+    [disabled]="showRegisterForm()"
+    (onClick)="showRegisterForm.set(true)"
+  />
+  <app-new-platform-form
+    [show]="showRegisterForm()"
+    (onClose)="showRegisterForm.set(false)"
   />
   <app-spinner *ngIf="loading()" />
   <div class="overflow-x-auto">

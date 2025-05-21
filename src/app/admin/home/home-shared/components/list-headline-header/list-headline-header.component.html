@@ -5,6 +5,7 @@
     type="button"
     (click)="onClick.emit()"
     class="invisible hidden sm:visible sm:block"
+    [disabled]="disabled"
   >
     {{ action }}
   </app-icon-button>
@@ -13,6 +14,7 @@
     type="button"
     (click)="onClick.emit()"
     class="visible block sm:invisible sm:hidden"
+    [disabled]="disabled"
   >
   </app-icon-button>
 </header>

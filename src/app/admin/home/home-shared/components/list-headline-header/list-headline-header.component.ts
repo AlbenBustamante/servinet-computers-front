@@ -9,6 +9,7 @@ export class ListHeadlineHeaderComponent {
   @Output() onClick = new EventEmitter<void>();
   @Input({ required: true }) headline!: string;
   @Input({ required: true }) action!: string;
+  @Input({ required: true }) disabled!: boolean;
 
   readonly faAdd = faAdd;
 }
