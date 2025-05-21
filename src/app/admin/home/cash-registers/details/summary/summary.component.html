@@ -3,8 +3,8 @@
   hDescription="Administración y movimientos de la caja registradora"
   [return]="true"
 />
-<div class="grid grid-cols-2 gap-x-7 gap-y-5">
-  <app-basic-info class="row-span-2" />
+<app-detail-layout>
+  <app-basic-info class="md:row-span-2" />
   <form>
     <input
       type="date"
@@ -14,7 +14,7 @@
       (change)="onChangeDate($event)"
     />
   </form>
-  <app-quick-actions class="row-span-2" />
+  <app-quick-actions class="md:row-span-2" />
   <app-hours-stats />
   <app-base />
-</div>
+</app-detail-layout>

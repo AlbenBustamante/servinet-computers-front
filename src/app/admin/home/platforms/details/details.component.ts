@@ -1,7 +1,7 @@
 import { Component, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlatformService } from '@services/platform.service';
-import { PlatformDetailService } from '@admin/home/platforms/services/platform-detail.service';
+import { DetailService } from '@admin/home/platforms/services/detail.service';
 import { UpdateBalancesModalComponent } from '@admin/home/platforms/components/update-balances-modal/update-balances-modal.component';
 import { NewPlatformTransferModalComponent } from '@admin/home/platforms/components/new-platform-transfer-modal/new-platform-transfer-modal.component';
 import { formatDate } from '@angular/common';
@@ -9,7 +9,6 @@ import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent {
   @ViewChild(UpdateBalancesModalComponent)
@@ -25,16 +24,16 @@ export class DetailsComponent {
   readonly empty;
 
   constructor(
-    private readonly platformDetailService: PlatformDetailService,
+    private readonly service: DetailService,
     private readonly platformService: PlatformService,
     private readonly route: ActivatedRoute,
     @Inject(LOCALE_ID) private readonly locale: string
   ) {
-    this.loading = this.platformDetailService.loading;
-    this.details = this.platformDetailService.details;
-    this.transfers = this.platformDetailService.transfers;
-    this.date = this.platformDetailService.date;
-    this.empty = this.platformDetailService.empty;
+    this.loading = this.service.loading;
+    this.details = this.service.details;
+    this.transfers = this.service.transfers;
+    this.date = this.service.date;
+    this.empty = this.service.empty;
   }
 
   ngOnInit() {

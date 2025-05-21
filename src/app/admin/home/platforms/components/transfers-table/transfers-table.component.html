@@ -1,1 +1,9 @@
-<app-custom-table [table]="table" />
+<article class="card">
+  <app-detail-headline headline="Transferencias" align="center" />
+  <ng-template #transfersSpinner>
+    <app-spinner />
+  </ng-template>
+  <div class="overflow-x-auto" *ngIf="!loading(); else transfersSpinner">
+    <app-custom-table [table]="table" />
+  </div>
+</article>

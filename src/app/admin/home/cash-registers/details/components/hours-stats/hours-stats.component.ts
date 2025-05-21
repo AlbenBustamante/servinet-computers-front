@@ -4,7 +4,6 @@ import { DetailService } from '../../services/detail.service';
 @Component({
   selector: 'app-hours-stats',
   templateUrl: './hours-stats.component.html',
-  styleUrls: ['./hours-stats.component.css'],
 })
 export class HoursStatsComponent {
   readonly loading;

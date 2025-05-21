@@ -7,7 +7,6 @@ import { CashRegisterStatusPipe } from '@shared/pipes/cash-register-status.pipe'
 @Component({
   selector: 'app-detail-stat-wrapper',
   templateUrl: './detail-stat-wrapper.component.html',
-  styleUrls: ['./detail-stat-wrapper.component.css'],
 })
 export class DetailStatWrapperComponent {
   @Input({ required: true }) headline!: string;

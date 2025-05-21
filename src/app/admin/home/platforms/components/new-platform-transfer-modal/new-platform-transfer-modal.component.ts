@@ -1,16 +1,15 @@
-import { Component, Inject, LOCALE_ID, signal, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IPlatformTransferReq } from '@models/platform.model';
 import { PlatformTransferService } from '@services/platform-transfer.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { FormLoading } from '@utils/form-loading';
-import { PlatformDetailService } from '../../services/platform-detail.service';
+import { DetailService } from '../../services/detail.service';
 import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-new-platform-transfer-modal',
   templateUrl: './new-platform-transfer-modal.component.html',
-  styleUrls: ['./new-platform-transfer-modal.component.css'],
 })
 export class NewPlatformTransferModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
@@ -22,15 +21,15 @@ export class NewPlatformTransferModalComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly platformDetailService: PlatformDetailService,
+    private readonly service: DetailService,
     private readonly platformTransferService: PlatformTransferService,
     private readonly formLoading: FormLoading,
     @Inject(LOCALE_ID) private readonly locale: string
   ) {
-    this.loading = this.platformDetailService.loading;
-    this.details = this.platformDetailService.details;
-    this.date = this.platformDetailService.date;
-    this.empty = this.platformDetailService.empty;
+    this.loading = this.service.loading;
+    this.details = this.service.details;
+    this.date = this.service.date;
+    this.empty = this.service.empty;
 
     this.form = this.fb.group({
       value: [, [Validators.required, Validators.min(0)]],

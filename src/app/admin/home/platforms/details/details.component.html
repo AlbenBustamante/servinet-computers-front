@@ -3,8 +3,8 @@
   hDescription="Administra tus saldos y transferencias realizadas a la plataforma"
   [return]="true"
 />
-<div class="grid grid-cols-2 gap-x-7 gap-y-5">
-  <app-platform-details-balances class="row-span-2" />
+<app-detail-layout>
+  <app-platform-details-balances class="md:row-span-2" />
   <form class="w-full">
     <input
       type="date"
@@ -19,17 +19,7 @@
     (onEditBalances)="balancesModal.open()"
     (onNewTransfer)="transferModal.open()"
   />
-  <article class="card col-span-2">
-    <h4 class="text-center text-violet-700 font-medium text-2xl mb-5">
-      Transferencias
-    </h4>
-    <ng-template #transfersSpinner>
-      <app-spinner />
-    </ng-template>
-    <div class="overflow-x-auto" *ngIf="!loading(); else transfersSpinner">
-      <app-transfers-table />
-    </div>
-  </article>
-</div>
+  <app-transfers-table class="md:col-span-2" />
+</app-detail-layout>
 <app-update-balances-modal />
 <app-new-platform-transfer-modal />

@@ -6,7 +6,6 @@ import { FormLoading } from '@utils/form-loading';
 @Component({
   selector: 'app-new-platform-form',
   templateUrl: './new-platform-form.component.html',
-  styleUrls: ['./new-platform-form.component.css'],
 })
 export class NewPlatformFormComponent {
   readonly form: FormGroup;

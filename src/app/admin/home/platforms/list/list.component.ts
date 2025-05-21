@@ -5,7 +5,6 @@ import { UpdatePlatformFormComponent } from '@admin/home/platforms/components/up
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
   @ViewChild(UpdatePlatformFormComponent)

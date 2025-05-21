@@ -1,14 +1,15 @@
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
-import { PlatformDetailService } from '../../services/platform-detail.service';
+import { DetailService } from '../../services/detail.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-transfers-table',
   templateUrl: './transfers-table.component.html',
-  styleUrls: ['./transfers-table.component.css'],
 })
 export class TransfersTableComponent {
+  readonly loading;
+
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
@@ -25,12 +26,14 @@ export class TransfersTableComponent {
         pipeArgs: 'shortDate',
       },
     ],
-    body: this.platformDetailService.transfers,
+    body: this.service.transfers,
     noDataMessage: 'No se han realizado transferencias',
   };
 
   constructor(
-    private readonly platformDetailService: PlatformDetailService,
+    private readonly service: DetailService,
     @Inject(LOCALE_ID) private readonly locale: string
-  ) {}
+  ) {
+    this.loading = this.service.loading;
+  }
 }

@@ -7,7 +7,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class PlatformDetailService {
+export class DetailService {
   readonly loading = signal<boolean>(false);
   readonly details = signal<IAdminPlatformDto | undefined>(undefined);
   readonly transfers = signal<IPlatformTransferRes[]>([]);
