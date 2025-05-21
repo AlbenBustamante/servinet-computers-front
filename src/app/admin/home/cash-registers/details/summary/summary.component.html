@@ -4,7 +4,7 @@
   [return]="true"
 />
 <div class="grid grid-cols-2 gap-x-7 gap-y-5">
-  <app-hours-stats class="row-span-2" />
+  <app-basic-info class="row-span-2" />
   <form>
     <input
       type="date"
@@ -14,6 +14,7 @@
       (change)="onChangeDate($event)"
     />
   </form>
-  <app-quick-actions />
+  <app-quick-actions class="row-span-2" />
+  <app-hours-stats />
   <app-base />
 </div>
