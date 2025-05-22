@@ -1,7 +1,7 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
 import {
   faBars,
-  faChevronDown,
+  faChevronRight,
   faLaptop,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -15,9 +15,14 @@ import { AuthService } from '@services/auth.service';
 export class HeaderComponent {
   @Output() onClickHamburguer = new EventEmitter<void>();
   private readonly authService = inject(AuthService);
+  readonly showDropdown = signal<boolean>(false);
   readonly loggedIn = this.authService.loggedIn;
   readonly faComputer = faLaptop;
   readonly faAccount = faUser;
-  readonly faExpand = faChevronDown;
+  readonly faExpand = faChevronRight;
   readonly faHamburguer = faBars;
+
+  toggleShowDropdown() {
+    this.showDropdown.update((prevValue) => !prevValue);
+  }
 }

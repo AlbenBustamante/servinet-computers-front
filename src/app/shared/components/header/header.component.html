@@ -14,18 +14,33 @@
     >
       <fa-icon [icon]="faHamburguer" size="xl" />
     </li>
-    <li>
+    <li class="relative">
       <button
-        class="px-4 py-2 flex items-center gap-3 ms-auto text-white"
+        class="px-4 py-2 flex items-center gap-3 ms-auto text-white rounded-xl hover:bg-violet-700 duration-200"
         style="text-shadow: 0 0 1px rgb(17, 24, 39)"
+        (click)="toggleShowDropdown()"
       >
         <fa-icon [icon]="faAccount" />
         <span class="hidden lg:inline font-medium">
           ID {{ loggedIn()?.id }} - {{ loggedIn()?.name }}
           {{ loggedIn()?.lastName }}
         </span>
-        <fa-icon [icon]="faExpand" />
+        <fa-icon [icon]="faExpand" [rotate]="!showDropdown() ? 90 : 270" />
       </button>
+      <ul
+        class="absolute top-16 right-0 w-48 text-violet-700 font-medium flex flex-col gap-2 px-2 py-1.5 rounded-xl bg-white shadow text-center duration-300"
+        [ngClass]="
+          showDropdown() ? 'visible opacity-100' : 'invisible opacity-0'
+        "
+      >
+        <li>
+          <a
+            class="flex items-center justify-center w-full px-2 py-1 hover:text-violet-600 hover:bg-violet-50 duration-200 cursor-pointer rounded-md"
+          >
+            Cerrar sesión
+          </a>
+        </li>
+      </ul>
     </li>
   </ul>
 </header>
