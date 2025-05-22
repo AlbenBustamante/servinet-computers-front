@@ -28,10 +28,6 @@ export class ListComponent {
     });
   }
 
-  onEdit() {
-    this.showSideBar.set(true);
-  }
-
   onUpdate() {
     this.updatePlatformForm.onSubmit();
     this.onComplete();

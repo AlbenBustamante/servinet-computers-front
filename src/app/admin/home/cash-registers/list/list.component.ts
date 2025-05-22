@@ -13,6 +13,7 @@ export class ListComponent {
   readonly loading = signal<boolean>(false);
   readonly showSideBar = signal<boolean>(false);
   readonly updateCashRegisterLoading;
+  readonly showRegisterForm = signal<boolean>(false);
 
   constructor(private readonly cashRegisterService: CashRegisterService) {
     this.updateCashRegisterLoading =

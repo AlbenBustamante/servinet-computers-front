@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CashRegistersTableComponent } from './components/cash-registers-table/cash-registers-table.component';
 import { UpdateCashRegisterFormComponent } from './components/update-cash-register-form/update-cash-register-form.component';
 import { ListComponent } from './list/list.component';
+import { HomeSharedModule } from '../home-shared/home-shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ListComponent } from './list/list.component';
     CashRegistersRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    HomeSharedModule,
   ],
 })
 export default class CashRegistersModule {}

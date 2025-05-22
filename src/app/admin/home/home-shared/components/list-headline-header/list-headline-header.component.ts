@@ -7,7 +7,6 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 })
 export class ListHeadlineHeaderComponent {
   @Output() onClick = new EventEmitter<void>();
-  @Input({ required: true }) headline!: string;
   @Input({ required: true }) action!: string;
   @Input({ required: true }) disabled!: boolean;
 
