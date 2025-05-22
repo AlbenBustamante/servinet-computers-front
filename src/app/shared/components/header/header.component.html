@@ -2,9 +2,17 @@
   class="w-full h-16 fixed left-0 top-0 right-0 z-40 px-5 bg-violet-800 drop-shadow-xl flex items-center"
 >
   <ul class="flex items-center justify-between w-full text-white">
-    <li class="invisible lg:visible lg:flex items-center gap-2 px-4 py-2">
+    <li
+      class="hidden invisible lg:visible lg:flex items-center gap-2 px-4 py-2"
+    >
       <fa-icon [icon]="faComputer" />
       <h1 class="text-xl font-semibold">Servinet</h1>
+    </li>
+    <li
+      class="block visible lg:hidden lg:invisible cursor-pointer p-2 rounded-lg hover:bg-violet-700 duration-200"
+      (click)="onClickHamburguer.emit()"
+    >
+      <fa-icon [icon]="faHamburguer" size="xl" />
     </li>
     <li>
       <button

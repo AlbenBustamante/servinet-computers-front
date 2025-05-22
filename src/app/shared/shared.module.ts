@@ -27,6 +27,7 @@ import { BankDepositStatusPipe } from './pipes/bank-deposit-status.pipe';
 import { CurrencyFormatDirective } from './directives/currency-format.directive';
 import { ModalComponent } from './components/modal/modal.component';
 import { FieldsetComponent } from './components/fieldset/fieldset.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { FieldsetComponent } from './components/fieldset/fieldset.component';
     CurrencyFormatDirective,
     ModalComponent,
     FieldsetComponent,
+    MainLayoutComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
@@ -77,6 +79,7 @@ import { FieldsetComponent } from './components/fieldset/fieldset.component';
     PaginationComponent,
     CurrencyFormatDirective,
     FieldsetComponent,
+    MainLayoutComponent,
   ],
 })
 export class SharedModule {}

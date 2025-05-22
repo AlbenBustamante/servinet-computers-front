@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {
+  faBars,
   faChevronDown,
   faLaptop,
   faUser,
@@ -12,9 +13,11 @@ import { AuthService } from '@services/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  @Output() onClickHamburguer = new EventEmitter<void>();
   private readonly authService = inject(AuthService);
   readonly loggedIn = this.authService.loggedIn;
   readonly faComputer = faLaptop;
   readonly faAccount = faUser;
   readonly faExpand = faChevronDown;
+  readonly faHamburguer = faBars;
 }
