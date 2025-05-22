@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {
   faBars,
   faChevronRight,
+  faCircleUser,
   faLaptop,
   faSignOut,
   faUser,
@@ -24,6 +25,7 @@ export class HeaderComponent {
   readonly faAccount = faUser;
   readonly faExpand = faChevronRight;
   readonly faHamburguer = faBars;
+  readonly faProfile = faCircleUser;
   readonly faLogout = faSignOut;
 
   constructor(private readonly router: Router) {}
