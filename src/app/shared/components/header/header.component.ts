@@ -1,8 +1,10 @@
 import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faBars,
   faChevronRight,
   faLaptop,
+  faSignOut,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '@services/auth.service';
@@ -15,14 +17,24 @@ import { AuthService } from '@services/auth.service';
 export class HeaderComponent {
   @Output() onClickHamburguer = new EventEmitter<void>();
   private readonly authService = inject(AuthService);
+
   readonly showDropdown = signal<boolean>(false);
   readonly loggedIn = this.authService.loggedIn;
   readonly faComputer = faLaptop;
   readonly faAccount = faUser;
   readonly faExpand = faChevronRight;
   readonly faHamburguer = faBars;
+  readonly faLogout = faSignOut;
+
+  constructor(private readonly router: Router) {}
 
   toggleShowDropdown() {
     this.showDropdown.update((prevValue) => !prevValue);
+  }
+
+  logout() {
+    this.authService.logout();
+    // this.tokenService.remove();
+    this.router.navigateByUrl('/auth/login');
   }
 }
