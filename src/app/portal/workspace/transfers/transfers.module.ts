@@ -7,7 +7,7 @@ import { NewCashTransferFormComponent } from './components/new-cash-transfer-for
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { CashTransfersTableComponent } from './components/cash-transfers-table/cash-transfers-table.component';
-import HomeTableSectionComponent from '../home.module';
+import HomeTableSectionComponent from '@portal/workspace/workspace.module';
 
 @NgModule({
   declarations: [

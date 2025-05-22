@@ -8,7 +8,7 @@ import { TransactionsTableComponent } from './components/transactions-table/tran
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateTransactionDetailFormComponent } from './components/update-transaction-detail-form/update-transaction-detail-form.component';
-import HomeTableSectionComponent from '../home.module';
+import HomeTableSectionComponent from '@portal/workspace/workspace.module';
 
 @NgModule({
   declarations: [
