@@ -9,9 +9,10 @@ import { HoursStatsComponent } from './components/hours-stats/hours-stats.compon
 import { BaseComponent } from './components/base/base.component';
 import { QuickActionsComponent } from './components/quick-actions/quick-actions.component';
 import { BasicInfoComponent } from './components/basic-info/basic-info.component';
+import { MovementsComponent } from './movements/movements.component';
 
 @NgModule({
-  declarations: [SummaryComponent, HoursStatsComponent, BaseComponent, QuickActionsComponent, BasicInfoComponent],
+  declarations: [SummaryComponent, HoursStatsComponent, BaseComponent, QuickActionsComponent, BasicInfoComponent, MovementsComponent],
   imports: [CommonModule, DetailsRoutingModule, SharedModule, HomeSharedModule],
 })
 export default class DetailsModule {}

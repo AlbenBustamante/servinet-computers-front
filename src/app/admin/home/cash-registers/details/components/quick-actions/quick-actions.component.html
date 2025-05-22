@@ -1,1 +1,9 @@
-<p>quick-actions works!</p>
+<app-detail-wrapper headline="Acciones rápidas" [loading]="false">
+  <ul class="flex flex-col gap-3">
+    <li>
+      <app-button type="button" (click)="goToMovements()">
+        Ver movimientos
+      </app-button>
+    </li>
+  </ul>
+</app-detail-wrapper>
