@@ -1,0 +1,11 @@
+<app-header (onClickHamburguer)="toggleShowNavBar()" />
+<app-nav
+  class="duration-300 lg:visible lg:opacity-100"
+  [routes]="routes"
+  [ngClass]="showNavBar() ? 'visible opacity-100' : 'invisible opacity-0'"
+/>
+<main
+  class="lg:ml-56 mt-16 lg:w-[calc(100%-14rem)] min-h-[calc(100vh-4rem)] px-6 pb-5"
+>
+  <ng-content></ng-content>
+</main>

@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module'),
       },
       {
+        path: 'transacciones',
+        loadChildren: () => import('./workspace/workspace.module'),
+      },
+      {
         path: 'cajas',
         loadChildren: () => import('./cash-registers/cash-registers.module'),
       },

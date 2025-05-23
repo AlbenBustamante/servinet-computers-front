@@ -1,0 +1,33 @@
+<app-header-title
+  hTitle="Plataformas"
+  hDescription="Administra todas las plataformas"
+  [return]="true"
+/>
+<article class="card">
+  <app-list-headline-header
+    action="Añadir plataforma"
+    [disabled]="showRegisterForm()"
+    (onClick)="showRegisterForm.set(true)"
+  />
+  <app-new-platform-form
+    [show]="showRegisterForm()"
+    (onClose)="showRegisterForm.set(false)"
+  />
+  <app-spinner *ngIf="loading()" />
+  <div class="mt-3 overflow-x-auto">
+    <app-platforms-table
+      *ngIf="!loading()"
+      (onEdit)="this.showSideBar.set(true)"
+    />
+  </div>
+</article>
+<app-sidebar
+  headline="Plataforma"
+  [showSideBar]="showSideBar"
+  [loading]="updatePlatformLoading()"
+  actionName="Actualizar"
+  mode="update"
+  (onSubmit)="onUpdate()"
+>
+  <app-update-platform-form (onComplete)="onComplete()" />
+</app-sidebar>

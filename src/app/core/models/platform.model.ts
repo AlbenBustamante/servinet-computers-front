@@ -29,6 +29,12 @@ export interface IPlatformTransferReq {
   date?: string;
 }
 
+export interface IUpdatePlatformTransferDto {
+  value: number;
+  platformId?: number;
+  date?: string;
+}
+
 export interface IPlatformTransferRes extends IResponse<number> {
   value: number;
   voucherUrls?: string[];

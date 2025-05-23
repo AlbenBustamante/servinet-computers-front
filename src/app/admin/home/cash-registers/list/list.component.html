@@ -1,0 +1,32 @@
+<app-header-title
+  hTitle="Cajas registradoras"
+  hDescription="Administra todas las cajas registradoras"
+  [return]="true"
+/>
+<article class="card">
+  <app-list-headline-header
+    action="Añadir caja registradora"
+    [disabled]="showRegisterForm()"
+    (onClick)="showRegisterForm.set(true)"
+  />
+  <app-new-cash-register-form
+    [show]="showRegisterForm()"
+    (onClose)="showRegisterForm.set(false)"
+  />
+  <ng-template #spinner>
+    <app-spinner />
+  </ng-template>
+  <div class="mt-3 overflow-x-auto" *ngIf="!loading(); else spinner">
+    <app-cash-registers-table (onEdit)="showSideBar.set(true)" />
+  </div>
+</article>
+<app-sidebar
+  headline="Caja Registradora"
+  actionName="Actualizar"
+  [showSideBar]="showSideBar"
+  mode="update"
+  [loading]="updateCashRegisterLoading()"
+  (onSubmit)="updateCashRegisterForm.emitOnComplete()"
+>
+  <app-update-cash-register-form (onComplete)="showSideBar.set(false)" />
+</app-sidebar>

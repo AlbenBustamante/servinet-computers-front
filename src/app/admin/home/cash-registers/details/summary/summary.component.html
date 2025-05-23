@@ -1,0 +1,20 @@
+<app-header-title
+  [hTitle]="title()"
+  hDescription="Administración y movimientos de la caja registradora"
+  [return]="true"
+/>
+<app-detail-layout>
+  <app-basic-info class="md:row-span-2" />
+  <form>
+    <input
+      type="date"
+      class="input w-full"
+      [value]="today"
+      [max]="today"
+      (change)="onChangeDate($event)"
+    />
+  </form>
+  <app-quick-actions class="md:row-span-2" />
+  <app-hours-stats />
+  <app-base />
+</app-detail-layout>

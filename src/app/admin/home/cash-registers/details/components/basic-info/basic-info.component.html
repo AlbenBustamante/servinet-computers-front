@@ -1,0 +1,24 @@
+<app-detail-wrapper headline="Detalles" [loading]="loading()">
+  <ul class="flex flex-col gap-1">
+    <app-detail-stat-wrapper
+      headline="Cajero"
+      [stat]="detail()?.createdBy"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-wrapper
+      headline="Hora Apertura"
+      [stat]="detail()?.createdDate"
+      pipe="time"
+    />
+    <app-detail-stat-wrapper
+      headline="Estado Caja"
+      [stat]="detail()?.cashRegister?.status"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-wrapper
+      headline="Estado Jornada"
+      [stat]="detail()?.status"
+      [pipe]="undefined"
+    />
+  </ul>
+</app-detail-wrapper>

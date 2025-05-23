@@ -7,7 +7,6 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
 @Component({
   selector: 'app-platforms-table',
   templateUrl: './platforms-table.component.html',
-  styleUrls: ['./platforms-table.component.css'],
 })
 export class PlatformsTableComponent {
   @Output() onEdit = new EventEmitter<void>();

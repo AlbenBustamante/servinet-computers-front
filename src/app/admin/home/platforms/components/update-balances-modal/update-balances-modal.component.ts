@@ -3,13 +3,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { FormLoading } from '@utils/form-loading';
-import { PlatformDetailService } from '../../services/platform-detail.service';
+import { DetailService } from '../../services/detail.service';
 import { IUpdatePlatformBalanceDto } from '@models/platform.model';
 
 @Component({
   selector: 'app-update-balances-modal',
   templateUrl: './update-balances-modal.component.html',
-  styleUrls: ['./update-balances-modal.component.css'],
 })
 export class UpdateBalancesModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
@@ -21,14 +20,14 @@ export class UpdateBalancesModalComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly platformDetailService: PlatformDetailService,
+    private readonly service: DetailService,
     private readonly platformBalanceService: PlatformBalanceService,
     private readonly formLoading: FormLoading
   ) {
-    this.details = this.platformDetailService.details;
-    this.date = this.platformDetailService.date;
-    this.empty = this.platformDetailService.empty;
-    this.loading = this.platformDetailService.loading;
+    this.details = this.service.details;
+    this.date = this.service.date;
+    this.empty = this.service.empty;
+    this.loading = this.service.loading;
 
     this.form = this.fb.group({
       initialBalance: [0, Validators.required],

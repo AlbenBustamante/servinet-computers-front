@@ -1,14 +1,7 @@
-<nav class="w-full bg-violet-100 py-6 rounded-t-none rounded-b-3xl drop-shadow">
-  <ul class="w-full flex items-center justify-center gap-5">
-    <li class="w-16 h-0.5 bg-violet-200"></li>
-    <li *ngFor="let route of routes" class="w-40">
-      <a
-        [routerLink]="route.route"
-        routerLinkActive="bg-violet-200 text-xl"
-        class="flex items-center w-full justify-center text-gray-700 text-lg rounded-xl py-2.5 border border-violet-200 hover:bg-violet-200 duration-100"
-        >{{ route.name }}</a
-      >
-    </li>
-    <li class="w-16 h-0.5 bg-violet-200"></li>
+<nav class="mt-5 w-full">
+  <ul class="flex items-center gap-1">
+    <app-home-nav-item headline="Mi cuenta" route="./mi-cuenta" />
+    <li class="text-neutral-200">|</li>
+    <app-home-nav-item headline="Ver jornadas" route="./jornadas" />
   </ul>
 </nav>

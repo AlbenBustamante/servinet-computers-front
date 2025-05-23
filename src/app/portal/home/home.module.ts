@@ -2,15 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { SharedModule } from '@shared/shared.module';
-import { RouterModule } from '@angular/router';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { LayoutComponent } from './layout/layout.component';
+import { HomeNavItemComponent } from './components/home-nav-item/home-nav-item.component';
 import { HomeNavComponent } from './components/home-nav/home-nav.component';
-import { HomeTableSectionComponent } from './components/home-table-section/home-table-section.component';
+import { JourneysComponent } from './journeys/journeys.component';
+import { JourneysTableComponent } from './components/journeys-table/journeys-table.component';
+import { SharedModule } from '@shared/shared.module';
+import { HomeSubtitleComponent } from './components/home-subtitle/home-subtitle.component';
 
 @NgModule({
-  declarations: [HomeComponent, HomeNavComponent, HomeTableSectionComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule, RouterModule],
-  exports: [HomeTableSectionComponent],
+  declarations: [
+    AboutMeComponent,
+    LayoutComponent,
+    HomeNavItemComponent,
+    HomeNavComponent,
+    JourneysComponent,
+    JourneysTableComponent,
+    HomeSubtitleComponent,
+  ],
+  imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export default class HomeModule {}

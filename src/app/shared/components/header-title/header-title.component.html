@@ -3,17 +3,25 @@
 >
   <button
     *ngIf="return"
-    class="bg-white border shadow-sm shadow-violet-300 rounded-2xl size-12 text-gray-700 hover:text-violet-700 hover:shadow-md duration-100"
+    class="flex items-center justify-center bg-white border shadow-sm shadow-violet-300 rounded-full p-3 size-8 md:p-6 md:size-12 text-gray-700 hover:text-violet-700 hover:shadow-md duration-100"
     title="Volver atrás"
     (click)="goToBack()"
   >
-    <fa-icon [icon]="faReturn" size="lg" />
+    <fa-icon [icon]="faReturn" class="text-sm md:text-xl" />
   </button>
   <div>
-    <h2 class="text-3xl text-gray-700 font-medium">{{ hTitle ?? "--" }}</h2>
-    <p class="text-gray-600 text-lg mt-1">{{ hDescription }}.</p>
+    <h2
+      class="text-xl sm:text-2xl md:text-3xl text-gray-700 font-medium text-pretty"
+    >
+      {{ hTitle ?? "--" }}
+    </h2>
+    <p class="text-gray-600 text-sm sm:text-base md:text-lg mt-1">
+      {{ hDescription }}.
+    </p>
     <ng-container *ngIf="hDescriptionSecondLine">
-      <p class="text-gray-500 text-lg">{{ hDescriptionSecondLine }}.</p>
+      <p class="text-gray-500 text-sm sm:text-base md:text-lg">
+        {{ hDescriptionSecondLine }}.
+      </p>
     </ng-container>
   </div>
 </header>

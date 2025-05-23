@@ -29,12 +29,6 @@ export class UsersTableComponent {
         pipe: new DatePipe('es-CO'),
         pipeArgs: 'shortDateTime',
       },
-      {
-        key: 'modifiedDate',
-        title: 'Fecha de actualización',
-        pipe: new DatePipe('es-CO'),
-        pipeArgs: 'shortDateTime',
-      },
     ],
     body: this.userService.users,
     noDataMessage: 'Sin usuarios registrados...',

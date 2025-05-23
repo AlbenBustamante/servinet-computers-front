@@ -1,28 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { LayoutComponent } from './layout/layout.component';
+import { JourneysComponent } from './journeys/journeys.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'transacciones', pathMatch: 'full' },
+      { path: '', redirectTo: 'mi-cuenta', pathMatch: 'full' },
+      { path: 'mi-cuenta', component: AboutMeComponent },
       {
-        path: 'transacciones',
-        loadChildren: () => import('./transactions/transactions.module'),
-      },
-      {
-        path: 'gastos',
-        loadChildren: () => import('./expenses/expenses.module'),
-      },
-      {
-        path: 'transferencias',
-        loadChildren: () => import('./transfers/transfers.module'),
-      },
-      {
-        path: 'depositos-bancarios',
-        loadChildren: () => import('./bank-deposits/bank-deposits.module'),
+        path: 'jornadas',
+        component: JourneysComponent,
       },
     ],
   },

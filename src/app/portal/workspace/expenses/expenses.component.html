@@ -1,0 +1,39 @@
+<div class="home-container">
+  <section class="home-form">
+    <h2 class="home-subtitle">Nuevo Gasto</h2>
+    <app-new-expense-form />
+  </section>
+  <app-workspace-table-section
+    headline="Mis gastos"
+    [length]="expenses().length"
+    [loading]="loading"
+    [pagination]="pagination"
+    [paginationLoading]="paginationLoading"
+    (onSelectPage)="onSelectPage($event)"
+  >
+    <app-expenses-table
+      (onEdit)="tableOnEdit($event)"
+      (onRemove)="tableOnRemove($event)"
+    />
+  </app-workspace-table-section>
+</div>
+<app-sidebar
+  [showSideBar]="showSideBarUpdate"
+  [loading]="updateLoading()"
+  actionName="Actualizar"
+  headline="Gasto"
+  mode="update"
+  (onSubmit)="updateExpenseForm.emitOnSubmit()"
+>
+  <app-update-expense-form (onSubmit)="update($event)" />
+</app-sidebar>
+<app-sidebar
+  [showSideBar]="showSideBarDelete"
+  [loading]="deleteLoading()"
+  actionName="Eliminar"
+  headline="Gasto"
+  mode="delete"
+  (onSubmit)="tempCodeForm.emitOnSubmit()"
+>
+  <app-temp-code-form (onSubmit)="remove($event)" />
+</app-sidebar>

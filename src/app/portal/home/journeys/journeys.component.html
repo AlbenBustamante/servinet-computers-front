@@ -1,0 +1,15 @@
+<section>
+  <header class="mb-3 flex items-center justify-between">
+    <app-home-subtitle headline="Mis jornadas" />
+    <form>
+      <input
+        type="month"
+        class="input"
+        [value]="formatMonth(today)"
+        (change)="onChangeMonth($event)"
+        [max]="formatMonth(today)"
+      />
+    </form>
+  </header>
+  <app-journeys-table />
+</section>

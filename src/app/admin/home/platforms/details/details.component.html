@@ -1,0 +1,25 @@
+<app-header-title
+  [hTitle]="details()?.platform?.name"
+  hDescription="Administra tus saldos y transferencias realizadas a la plataforma"
+  [return]="true"
+/>
+<app-detail-layout>
+  <app-platform-details-balances class="md:row-span-2" />
+  <form class="w-full">
+    <input
+      type="date"
+      id="date"
+      class="input w-full"
+      (change)="onChangeDate($event)"
+      [value]="today"
+      [max]="today"
+    />
+  </form>
+  <app-platform-details-quick-actions
+    (onEditBalances)="balancesModal.open()"
+    (onNewTransfer)="transferModal.open()"
+  />
+  <app-transfers-table class="md:col-span-2" />
+</app-detail-layout>
+<app-update-balances-modal />
+<app-new-platform-transfer-modal />

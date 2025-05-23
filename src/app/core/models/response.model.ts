@@ -3,8 +3,8 @@ export interface IResponse<ID> {
   enabled: boolean;
   createdBy: string;
   modifiedBy: string;
-  createdDate: string;
-  modifiedDate: string;
+  createdDate: Date;
+  modifiedDate: Date;
 }
 
 export interface IPagination {

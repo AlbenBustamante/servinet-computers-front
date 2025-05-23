@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CashRegisterStatus } from '@models/enums';
 import { CashRegisterService } from '@services/cash-register.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
@@ -27,28 +27,23 @@ export class CashRegistersTableComponent {
         pipe: new DatePipe('es-CO'),
         pipeArgs: 'shortDateTime',
       },
-      {
-        key: 'modifiedDate',
-        title: 'Fecha de actualización',
-        pipe: new DatePipe('es-CO'),
-        pipeArgs: 'shortDateTime',
-      },
     ],
     body: this.cashRegisterService.cashRegisters,
     noDataMessage: 'Sin cajas registradoras...',
-    onClick: (index) => this.goToMovements(index),
+    onClick: (index) => this.goToDetails(index),
     onEdit: (index) => this.emitOnEdit(index),
     onRemove: (index) => this.onRemove(index),
   };
 
   constructor(
     private readonly cashRegisterService: CashRegisterService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {}
 
-  private goToMovements(index: number) {
+  private goToDetails(index: number) {
     const { id } = this.table.body()![index];
-    this.router.navigateByUrl(`admin/movimientos/caja-registradora/${id}`);
+    this.router.navigate([id], { relativeTo: this.route });
   }
 
   private emitOnEdit(index: number) {

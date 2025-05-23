@@ -2,22 +2,53 @@
   class="w-full h-16 fixed left-0 top-0 right-0 z-40 px-5 bg-violet-800 drop-shadow-xl flex items-center"
 >
   <ul class="flex items-center justify-between w-full text-white">
-    <li class="invisible lg:visible lg:flex items-center gap-2 px-4 py-2">
+    <li
+      class="hidden invisible lg:visible lg:flex items-center gap-2 px-4 py-2"
+    >
       <fa-icon [icon]="faComputer" />
       <h1 class="text-xl font-semibold">Servinet</h1>
     </li>
-    <li>
+    <li
+      class="block visible lg:hidden lg:invisible cursor-pointer p-2 rounded-lg hover:bg-violet-700 duration-200"
+      (click)="onClickHamburguer.emit()"
+    >
+      <fa-icon [icon]="faHamburguer" size="xl" />
+    </li>
+    <li class="relative">
       <button
-        class="px-4 py-2 flex items-center gap-3 ms-auto text-white"
+        class="px-4 py-2 flex items-center gap-3 ms-auto text-white rounded-xl hover:bg-violet-700 duration-200"
         style="text-shadow: 0 0 1px rgb(17, 24, 39)"
+        (click)="toggleShowDropdown()"
       >
         <fa-icon [icon]="faAccount" />
         <span class="hidden lg:inline font-medium">
           ID {{ loggedIn()?.id }} - {{ loggedIn()?.name }}
           {{ loggedIn()?.lastName }}
         </span>
-        <fa-icon [icon]="faExpand" />
+        <fa-icon [icon]="faExpand" [rotate]="!showDropdown() ? 90 : 270" />
       </button>
+      <ul
+        class="absolute top-16 right-0 w-48 bg-violet-700 font-medium flex flex-col gap-2 px-2 py-1.5 rounded-xl text-white shadow duration-300"
+        [ngClass]="
+          showDropdown() ? 'visible opacity-100' : 'invisible opacity-0'
+        "
+      >
+        <li>
+          <a
+            class="flex items-center gap-3 w-full px-2 py-1 hover:bg-violet-600 hover:text-violet-50 duration-200 cursor-pointer rounded-md"
+          >
+            <fa-icon [icon]="faProfile" /> Perfil
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 w-full px-2 py-1 hover:bg-violet-600 hover:text-violet-50 duration-200 cursor-pointer rounded-md"
+            (click)="logout()"
+          >
+            <fa-icon [icon]="faLogout" /> Cerrar sesión
+          </a>
+        </li>
+      </ul>
     </li>
   </ul>
 </header>

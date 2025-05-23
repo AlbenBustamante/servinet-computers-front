@@ -5,6 +5,7 @@ import { checkToken } from '@interceptors/token.interceptor';
 import {
   IPlatformTransferReq,
   IPlatformTransferRes,
+  IUpdatePlatformTransferDto,
 } from '@models/platform.model';
 
 @Injectable({
@@ -38,10 +39,10 @@ export class PlatformTransferService {
     });
   }
 
-  update(transferId: number, req: IPlatformTransferReq) {
+  update(transferId: number, dto: IUpdatePlatformTransferDto) {
     return this.http.patch<IPlatformTransferRes>(
       `${this.url}/${transferId}`,
-      req,
+      dto,
       { context: checkToken() }
     );
   }
