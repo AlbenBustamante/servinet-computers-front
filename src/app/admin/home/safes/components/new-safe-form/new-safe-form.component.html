@@ -21,7 +21,9 @@
         color="neutral"
         (click)="emitOnClose()"
       />
-      <app-button type="submit">Registrar caja fuerte</app-button>
+      <app-button type="submit" [loading]="loading()">
+        Registrar caja fuerte
+      </app-button>
     </div>
   </app-fieldset>
 </form>
