@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProfileRoutingModule } from './profile-routing.module';
+import { HomeRoutingModule } from './home-routing.module';
 import { AboutMeComponent } from './about-me/about-me.component';
 
 @NgModule({
   declarations: [
     AboutMeComponent
   ],
-  imports: [CommonModule, ProfileRoutingModule],
+  imports: [CommonModule, HomeRoutingModule],
 })
-export default class ProfileModule {}
+export default class HomeModule {}

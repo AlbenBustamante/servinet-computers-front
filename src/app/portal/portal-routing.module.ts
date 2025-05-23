@@ -9,12 +9,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'perfil',
+        redirectTo: 'home',
         pathMatch: 'full',
       },
       {
-        path: 'perfil',
-        loadChildren: () => import('./profile/profile.module'),
+        path: 'home',
+        loadChildren: () => import('./home/home.module'),
       },
       {
         path: 'transacciones',

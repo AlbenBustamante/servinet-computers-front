@@ -3,8 +3,8 @@ import {
   faCashRegister,
   faList,
   faChartSimple,
-  faUserTie,
   faBriefcase,
+  faHome,
 } from '@fortawesome/free-solid-svg-icons';
 import { IRoute } from '@models/route.model';
 import { AuthService } from '@services/auth.service';
@@ -15,14 +15,14 @@ import { AuthService } from '@services/auth.service';
   styleUrls: ['./portal.component.css'],
 })
 export class PortalComponent {
-  private readonly faProfile = faUserTie;
+  private readonly faHome = faHome;
   private readonly faPortal = faBriefcase;
   private readonly faMyCash = faCashRegister;
   private readonly faList = faList;
   private readonly faReports = faChartSimple;
 
   readonly routes: IRoute[] = [
-    { title: 'Perfil', icon: this.faProfile, route: './perfil' },
+    { title: 'Inicio', icon: this.faHome, route: './home' },
     { title: 'Transacciones', icon: this.faPortal, route: './transacciones' },
     { title: 'Mis cajas', icon: this.faMyCash, route: './cajas' },
     { title: 'Plataformas', icon: this.faList, route: './plataformas' },
