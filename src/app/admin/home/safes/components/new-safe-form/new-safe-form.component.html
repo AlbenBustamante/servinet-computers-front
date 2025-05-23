@@ -1,14 +1,27 @@
-<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="control">
-    <label for="numeral">Número de caja</label>
-    <div class="grid grid-cols-[1fr_15rem] gap-7">
+<form
+  class="duration-300"
+  [ngClass]="show ? 'opacity-100 visible h-full' : 'opacity-0 invisible h-0'"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <app-fieldset legend="Nueva caja fuerte">
+    <div class="control">
+      <label for="numeral">Número de caja</label>
       <input
         type="number"
         class="input"
         id="numeral"
         formControlName="numeral"
       />
+    </div>
+    <div class="flex items-center justify-between">
+      <app-icon-button
+        [icon]="faTrash"
+        type="button"
+        color="neutral"
+        (click)="emitOnClose()"
+      />
       <app-button type="submit">Registrar caja fuerte</app-button>
     </div>
-  </div>
+  </app-fieldset>
 </form>

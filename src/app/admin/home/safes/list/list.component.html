@@ -1,0 +1,22 @@
+<app-header-title
+  hTitle="Cajas Fuertes"
+  hDescription="Administra todas tus cajas fuertes"
+  [return]="true"
+/>
+<article class="card">
+  <app-list-headline-header
+    action="Añadir caja fuerte"
+    [disabled]="showRegisterForm()"
+    (onClick)="showRegisterForm.set(true)"
+  />
+  <app-new-safe-form
+    [show]="showRegisterForm()"
+    (onClose)="showRegisterForm.set(false)"
+  />
+  <ng-template #spinner>
+    <app-spinner />
+  </ng-template>
+  <div class="mt-3 overflow-x-auto" *ngIf="!loading(); else spinner">
+    <app-safes-table />
+  </div>
+</article>
