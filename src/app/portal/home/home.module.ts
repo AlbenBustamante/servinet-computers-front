@@ -6,13 +6,15 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HomeNavItemComponent } from './components/home-nav-item/home-nav-item.component';
 import { HomeNavComponent } from './components/home-nav/home-nav.component';
+import { JourneysComponent } from './journeys/journeys.component';
 
 @NgModule({
   declarations: [
     AboutMeComponent,
     LayoutComponent,
     HomeNavItemComponent,
-    HomeNavComponent
+    HomeNavComponent,
+    JourneysComponent
   ],
   imports: [CommonModule, HomeRoutingModule],
 })
