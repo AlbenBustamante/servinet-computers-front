@@ -3,7 +3,7 @@
     <h2 class="home-subtitle">Nueva Transferencia</h2>
     <app-new-cash-transfer-form />
   </section>
-  <app-home-table-section
+  <app-workspace-table-section
     [paginationLoading]="paginationLoading"
     [pagination]="pagination"
     [loading]="loading"
@@ -12,7 +12,7 @@
     (onSelectPage)="onSelectPage($event)"
   >
     <app-cash-transfers-table (onRemove)="onRemove($event)" />
-  </app-home-table-section>
+  </app-workspace-table-section>
 </div>
 <app-sidebar
   [showSideBar]="showDeleteSideBar"

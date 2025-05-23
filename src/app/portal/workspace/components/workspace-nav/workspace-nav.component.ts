@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home-nav',
-  templateUrl: './home-nav.component.html',
-  styleUrls: ['./home-nav.component.css'],
+  selector: 'app-workspace-nav',
+  templateUrl: './workspace-nav.component.html',
+  styleUrls: ['./workspace-nav.component.css'],
 })
-export class HomeNavComponent {
+export class WorkspaceNavComponent {
   readonly routes = [
     { route: './transacciones', name: 'Transacciones' },
     { route: './gastos', name: 'Gastos' },

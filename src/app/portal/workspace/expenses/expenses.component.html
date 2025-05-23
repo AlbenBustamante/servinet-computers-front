@@ -3,7 +3,7 @@
     <h2 class="home-subtitle">Nuevo Gasto</h2>
     <app-new-expense-form />
   </section>
-  <app-home-table-section
+  <app-workspace-table-section
     headline="Mis gastos"
     [length]="expenses().length"
     [loading]="loading"
@@ -15,7 +15,7 @@
       (onEdit)="tableOnEdit($event)"
       (onRemove)="tableOnRemove($event)"
     />
-  </app-home-table-section>
+  </app-workspace-table-section>
 </div>
 <app-sidebar
   [showSideBar]="showSideBarUpdate"

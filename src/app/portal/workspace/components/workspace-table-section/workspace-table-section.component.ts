@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output, Signal } from '@angular/core';
 import { IPagination } from '@models/response.model';
 
 @Component({
-  selector: 'app-home-table-section',
-  templateUrl: './home-table-section.component.html',
-  styleUrls: ['./home-table-section.component.css'],
+  selector: 'app-workspace-table-section',
+  templateUrl: './workspace-table-section.component.html',
+  styleUrls: ['./workspace-table-section.component.css'],
 })
-export class HomeTableSectionComponent {
+export class WorkspaceTableSectionComponent {
   @Output() onSelectPage = new EventEmitter<number>();
   @Input({ required: true }) loading!: Signal<boolean>;
   @Input({ required: true }) length!: number;
