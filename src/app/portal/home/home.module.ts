@@ -9,6 +9,7 @@ import { HomeNavComponent } from './components/home-nav/home-nav.component';
 import { JourneysComponent } from './journeys/journeys.component';
 import { JourneysTableComponent } from './components/journeys-table/journeys-table.component';
 import { SharedModule } from '@shared/shared.module';
+import { HomeSubtitleComponent } from './components/home-subtitle/home-subtitle.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SharedModule } from '@shared/shared.module';
     HomeNavComponent,
     JourneysComponent,
     JourneysTableComponent,
+    HomeSubtitleComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
 })

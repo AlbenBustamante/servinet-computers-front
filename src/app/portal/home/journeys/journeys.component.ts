@@ -42,7 +42,26 @@ export class JourneysComponent {
     });
   }
 
-  private formatMonth(date: Date) {
+  onChangeMonth(event: Event) {
+    this.loading.set(true);
+
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
+    const { id } = this.tokenService.getInfo();
+
+    this.userService.getJourneys(id, value).subscribe({
+      next: (journeys) => {
+        this.journeys.set(journeys);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  formatMonth(date: Date) {
     return formatDate(date, 'yyyy-MM', this.locale);
   }
 }
