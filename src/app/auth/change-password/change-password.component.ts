@@ -11,7 +11,6 @@ import { FormLoading } from '@utils/form-loading';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css'],
 })
 export class ChangePasswordComponent {
   readonly requestChangePasswordForm;

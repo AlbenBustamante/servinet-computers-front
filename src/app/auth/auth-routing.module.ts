@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
+import { LoginComponent } from './login/login.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -9,16 +11,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'iniciar-sesion',
         pathMatch: 'full',
       },
       {
-        path: 'login',
-        loadChildren: () => import('./login/login.module'),
+        path: 'iniciar-sesion',
+        component: LoginComponent,
       },
       {
         path: 'cambio-contraseña',
-        loadChildren: () => import('./change-password/change-password.module'),
+        component: ChangePasswordComponent,
       },
     ],
   },
