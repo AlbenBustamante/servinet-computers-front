@@ -98,7 +98,7 @@ export class ChangePasswordComponent {
     });
   }
 
-  goToLogin() {
+  private goToLogin() {
     this.router.navigateByUrl('/auth');
   }
 

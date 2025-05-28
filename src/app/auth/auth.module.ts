@@ -10,6 +10,7 @@ import { SharedModule } from '@shared/shared.module';
 import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
 import { RequestChangePasswordFormComponent } from './components/request-change-password-form/request-change-password-form.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AuthCardComponent } from './components/auth-card/auth-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ChangePasswordComponent,
     ChangePasswordFormComponent,
     RequestChangePasswordFormComponent,
+    AuthCardComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, SharedModule],
 })

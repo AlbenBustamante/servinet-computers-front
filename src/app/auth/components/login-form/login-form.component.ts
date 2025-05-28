@@ -48,10 +48,6 @@ export class LoginFormComponent {
     });
   }
 
-  goToChangePassword() {
-    this.router.navigateByUrl('/auth/cambio-contraseña');
-  }
-
   private setLoading(loading: boolean) {
     this.formLoading.setLoading(this.form, this.loading, loading);
   }
