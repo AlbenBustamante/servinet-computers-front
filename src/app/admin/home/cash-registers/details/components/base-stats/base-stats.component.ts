@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '@admin/home/cash-registers/details/services/detail.service';
 
 @Component({
-  selector: 'app-base',
-  templateUrl: './base.component.html',
+  selector: 'app-base-stats',
+  templateUrl: './base-stats.component.html',
 })
-export class BaseComponent {
+export class BaseStatsComponent {
   readonly loading;
   readonly detail;
 
