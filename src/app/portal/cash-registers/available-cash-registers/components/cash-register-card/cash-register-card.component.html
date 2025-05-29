@@ -1,17 +1,17 @@
 <article class="card flex flex-col gap-5 items-center">
   <header>
-    <h3 class="font-medium text-gray-700 text-2xl">
+    <h3 class="font-medium text-gray-700 text-lg sm:text-xl md:text-2xl">
       Caja {{ cashRegister.numeral }}
     </h3>
   </header>
   <section>
-    <p class="text-gray-900 text-opacity-85 text-center">
+    <p class="text-gray-900 text-opacity-85 text-center text-sm sm:text-base">
       {{ cashRegister.description }}
     </p>
   </section>
   <section>
     <span
-      class="text-lg font-medium"
+      class="text-base md:text-lg font-medium"
       [ngClass]="{
         'text-green-700': cashRegister.status === 'AVAILABLE',
         'text-red-700': cashRegister.status === 'OCCUPIED',
@@ -25,7 +25,8 @@
       type="button"
       [disabled]="cashRegister.status !== 'AVAILABLE'"
       (click)="clickHandler()"
-      >{{ actionName }}</app-button
     >
+      {{ actionName }}
+    </app-button>
   </footer>
 </article>
