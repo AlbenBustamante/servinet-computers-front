@@ -7,12 +7,10 @@ import { TransactionService } from '@services/transaction.service';
 import { TempCodeFormComponent } from '@shared/components/temp-code-form/temp-code-form.component';
 import { UpdateTransactionDetailFormComponent } from './components/update-transaction-detail-form/update-transaction-detail-form.component';
 import { IUpdateTransactionDetailDto } from '@models/transaction.model';
-import { IPagination } from '@models/response.model';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent {
   @ViewChild(UpdateTransactionDetailFormComponent)

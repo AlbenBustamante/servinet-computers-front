@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WorkspaceComponent } from './workspace.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'transacciones', pathMatch: 'full' },
       {
         path: 'transacciones',
-        loadChildren: () => import('./transactions/transactions.module'),
+        component: TransactionsComponent,
       },
       {
         path: 'gastos',

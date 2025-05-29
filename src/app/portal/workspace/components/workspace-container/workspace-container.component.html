@@ -1,0 +1,9 @@
+<div class="grid lg:grid-cols-[20rem_minmax(20rem,_1fr)] gap-6 w-full">
+  <section class="card w-full max-w-sm mx-auto self-start">
+    <h2 class="font-medium text-lg sm:text-xl md:text-2xl text-gray-700 mb-3">
+      {{ formHeadline }}
+    </h2>
+    <ng-content select="[form]"></ng-content>
+  </section>
+  <ng-content></ng-content>
+</div>

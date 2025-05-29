@@ -1,8 +1,5 @@
-<div class="home-container">
-  <section class="home-form">
-    <h2 class="home-subtitle">Nueva Transacción</h2>
-    <app-new-transaction-form />
-  </section>
+<app-workspace-container formHeadline="Nueva Transacción">
+  <app-new-transaction-form form />
   <app-workspace-table-section
     headline="Mis transacciones"
     [length]="details().length"
@@ -16,7 +13,7 @@
       (onRemove)="tableOnRemove($event)"
     />
   </app-workspace-table-section>
-</div>
+</app-workspace-container>
 <app-sidebar
   headline="Transacción"
   actionName="Actualizar"

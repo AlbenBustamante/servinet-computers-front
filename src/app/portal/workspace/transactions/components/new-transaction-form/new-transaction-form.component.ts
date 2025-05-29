@@ -10,7 +10,6 @@ import { FormLoading } from '@utils/form-loading';
 @Component({
   selector: 'app-new-transaction-form',
   templateUrl: './new-transaction-form.component.html',
-  styleUrls: ['./new-transaction-form.component.css'],
 })
 export class NewTransactionFormComponent {
   readonly loading = signal<boolean>(false);
