@@ -7,7 +7,6 @@ import { DiscountPipe } from '@shared/pipes/discount.pipe';
 @Component({
   selector: 'app-expenses-table',
   templateUrl: './expenses-table.component.html',
-  styleUrls: ['./expenses-table.component.css'],
 })
 export class ExpensesTableComponent {
   @Output() onEdit = new EventEmitter<number>();

@@ -18,7 +18,6 @@ import { zip } from 'rxjs';
 @Component({
   selector: 'app-bank-deposits',
   templateUrl: './bank-deposits.component.html',
-  styleUrls: ['./bank-deposits.component.css'],
 })
 export class BankDepositsComponent {
   readonly currentCashRegister;

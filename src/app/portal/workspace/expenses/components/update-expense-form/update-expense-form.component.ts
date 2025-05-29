@@ -5,7 +5,6 @@ import { MyHomeService } from '@services/my-home.service';
 @Component({
   selector: 'app-update-expense-form',
   templateUrl: './update-expense-form.component.html',
-  styleUrls: ['./update-expense-form.component.css'],
 })
 export class UpdateExpenseFormComponent {
   @Output() onSubmit = new EventEmitter<IUpdateExpenseDto>();

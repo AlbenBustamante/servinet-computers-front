@@ -1,8 +1,5 @@
-<div class="home-container">
-  <section class="home-form">
-    <h2 class="home-subtitle">Nueva Transferencia</h2>
-    <app-new-cash-transfer-form />
-  </section>
+<app-workspace-container formHeadline="Nueva Transferencia">
+  <app-new-cash-transfer-form form />
   <app-workspace-table-section
     [paginationLoading]="paginationLoading"
     [pagination]="pagination"
@@ -13,7 +10,7 @@
   >
     <app-cash-transfers-table (onRemove)="onRemove($event)" />
   </app-workspace-table-section>
-</div>
+</app-workspace-container>
 <app-sidebar
   [showSideBar]="showDeleteSideBar"
   headline="Transferencia"

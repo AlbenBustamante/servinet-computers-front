@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WorkspaceComponent } from './workspace.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { TransfersComponent } from './transfers/transfers.component';
+import { BankDepositsComponent } from './bank-deposits/bank-deposits.component';
 
 const routes: Routes = [
   {
@@ -15,15 +18,15 @@ const routes: Routes = [
       },
       {
         path: 'gastos',
-        loadChildren: () => import('./expenses/expenses.module'),
+        component: ExpensesComponent,
       },
       {
         path: 'transferencias',
-        loadChildren: () => import('./transfers/transfers.module'),
+        component: TransfersComponent,
       },
       {
         path: 'depositos-bancarios',
-        loadChildren: () => import('./bank-deposits/bank-deposits.module'),
+        component: BankDepositsComponent,
       },
     ],
   },
