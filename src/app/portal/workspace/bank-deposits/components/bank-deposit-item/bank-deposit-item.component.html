@@ -1,36 +1,38 @@
 <article
-  class="card text-lg cursor-pointer hover:scale-[1.02] transition-transform"
+  class="text-sm sm:text-base md:text-lg text-gray-700 cursor-pointer transition-colors"
+  [ngClass]="{
+    'hover:bg-green-50 ': bankDeposit.status === 'OPEN',
+    'hover:bg-violet-50': bankDeposit.status === 'IN_PROGRESS',
+    'hover:bg-stone-50': bankDeposit.status === 'CLOSED',
+    card: !selected,
+    'card-accent': selected
+  }"
 >
   <header
-    class="-mx-7 -my-5 rounded-t-xl py-2 mb-3"
+    class="-mx-5 sm:-mx-6 md:-mx-7 -my-5 rounded-t-xl py-2 mb-3"
     [ngClass]="{
       'bg-green-700 ': bankDeposit.status === 'OPEN',
       'bg-violet-700': bankDeposit.status === 'IN_PROGRESS',
       'bg-stone-700': bankDeposit.status === 'CLOSED'
     }"
   >
-    <h4 class="text-green-50 text-xl font-medium text-center">
+    <h4
+      class="text-green-50 text-base sm:text-lg md:text-xl font-medium text-center"
+    >
       {{ bankDeposit.status | bankDepositStatus }}
     </h4>
   </header>
-  <p class="text-gray-700 flex items-center justify-between">
-    Recolector:
-    <span class="text-gray-700 font-medium">{{ bankDeposit.collector }}</span>
-  </p>
-  <p class="text-gray-700 flex items-center justify-between">
-    Recaudado:
-    <span class="text-gray-700 font-medium">{{
-      bankDeposit.totalCollected | currency : "symbol" : "$" : "0.00"
-    }}</span>
-  </p>
-  <p class="text-gray-700 flex items-center justify-between">
-    Abierto por:
-    <span class="text-gray-700 font-medium">{{ bankDeposit.openedBy }}</span>
-  </p>
-  <p class="text-gray-700 flex items-center justify-between">
-    Hora:
-    <span class="text-gray-700 font-medium">{{
-      bankDeposit.createdDate | date : "HH:mm a"
-    }}</span>
-  </p>
+  <app-item-paragraph stat="ID" [value]="bankDeposit.id" />
+  <app-item-paragraph stat="Recolector" [value]="bankDeposit.collector" />
+  <app-item-paragraph
+    stat="Recaudado"
+    [value]="bankDeposit.totalCollected"
+    pipe="currency"
+  />
+  <app-item-paragraph stat="Abierto por" [value]="bankDeposit.openedBy" />
+  <app-item-paragraph
+    stat="Hora"
+    [value]="bankDeposit.createdDate"
+    pipe="time"
+  />
 </article>

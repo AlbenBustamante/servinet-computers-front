@@ -1,6 +1,10 @@
 <header class="pb-7 px-5">
-  <div class="flex items-center justify-between">
-    <h2 class="text-2xl text-violet-950 font-medium uppercase">
+  <div
+    class="flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between"
+  >
+    <h2
+      class="text-lg sm:text-xl md:text-2xl text-violet-950 font-medium uppercase"
+    >
       Depósitos Bancarios
     </h2>
     <app-icon-button
@@ -32,7 +36,9 @@
     <div
       class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-48"
     >
-      <p class="text-gray-500 text-2xl text-center font-medium">
+      <p
+        class="text-gray-500 text-lg sm:text-xl md:text-2xl text-center font-medium text-pretty"
+      >
         Parece que aún no se han abierto depósitos
       </p>
     </div>
@@ -40,15 +46,16 @@
   <div
     #list
     *ngIf="bankDeposits().length > 0; else noBankDeposits"
-    class="grid grid-cols-2 gap-12"
+    class="flex flex-col md:grid md:grid-cols-2 gap-12"
   >
     <section>
-      <h3 class="home-subtitle">Listado de depósitos</h3>
+      <app-workspace-subtitle subtitle="Listado de depósitos" />
       <hr class="w-full border-gray-200 mt-3 mb-7" />
       <ul class="flex flex-col gap-7 px-1.5">
         <li *ngFor="let bankDeposit of bankDeposits()">
           <app-bank-deposit-item
             [bankDeposit]="bankDeposit"
+            [selected]="selectedBankDeposit()?.id === bankDeposit.id"
             (click)="setSelectedBankDeposit(bankDeposit)"
           />
         </li>
@@ -59,11 +66,19 @@
         class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-64"
         *ngIf="!selectedBankDeposit(); else details"
       >
-        <p class="text-gray-500 text-2xl text-center font-medium">
+        <p
+          class="text-gray-500 text-lg sm:text-xl md:text-2xl text-center font-medium"
+        >
           Selecciona un depósito
         </p>
       </div>
       <ng-template #details>
+        <div>
+          <app-workspace-subtitle
+            [subtitle]="subtitleForSelectedBankDeposit()"
+          />
+          <hr class="w-full border-gray-200" />
+        </div>
         <app-new-depositor-form
           *ngIf="!myAport(); else yourAport"
           [form]="createDepositorForm"
@@ -76,7 +91,9 @@
             class="border-2 border-violet-200 rounded-xl flex items-center justify-center w-full h-24 px-5"
           >
             <div class="flex justify-between items-center w-full">
-              <p class="text-gray-700 text-2xl text-center font-medium">
+              <p
+                class="text-gray-700 text-lg sm:text-xl md:text-2xl text-center font-medium"
+              >
                 Aportaste:
                 <span class="text-green-700">{{
                   myAport()?.value | currency : "symbol" : "$" : "0.00"

@@ -34,6 +34,10 @@ export class BankDepositsComponent {
   readonly createDepositorForm;
   readonly createPaymentLoading = signal<boolean>(false);
   readonly createPaymentForm;
+  readonly subtitleForSelectedBankDeposit = computed(() => {
+    const selectedBankDeposit = this.selectedBankDeposit();
+    return `ID seleccionado: ${selectedBankDeposit?.id}`;
+  });
 
   readonly myAport = computed(() => {
     const selectedBankDeposit = this.selectedBankDeposit();

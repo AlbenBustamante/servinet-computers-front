@@ -1,8 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="emitOnSubmit()">
-  <fieldset class="px-5 py-4 border border-violet-300 rounded-xl form">
-    <legend class="text-gray-700 text-xl font-medium px-2">
-      Registrar consignación a plataforma
-    </legend>
+  <app-fieldset legend="Registrar consignación a plataforma">
     <div class="control">
       <label for="paymentPlatform">Plataforma</label>
       <select id="paymentPlatform" class="input" formControlName="platformId">
@@ -25,5 +22,5 @@
       />
     </div>
     <app-button type="submit" [loading]="loading">Registrar</app-button>
-  </fieldset>
+  </app-fieldset>
 </form>

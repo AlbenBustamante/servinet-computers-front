@@ -27,6 +27,8 @@ import { NewBankDepositFormComponent } from './bank-deposits/components/new-bank
 import { NewBankDepositPaymentFormComponent } from './bank-deposits/components/new-bank-deposit-payment-form/new-bank-deposit-payment-form.component';
 import { NewDepositorFormComponent } from './bank-deposits/components/new-depositor-form/new-depositor-form.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { WorkspaceSubtitleComponent } from './components/workspace-subtitle/workspace-subtitle.component';
+import { ItemParagraphComponent } from './bank-deposits/components/item-paragraph/item-paragraph.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NewBankDepositFormComponent,
     NewBankDepositPaymentFormComponent,
     NewDepositorFormComponent,
+    WorkspaceSubtitleComponent,
+    ItemParagraphComponent,
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="emitOnSubmit()">
-  <fieldset class="form px-5 py-4 border border-violet-300 rounded-xl">
-    <legend class="text-gray-700 text-xl font-medium px-2">
-      Nuevo depósito
-    </legend>
+  <app-fieldset legend="Nuevo depósito">
     <div class="control">
       <label for="collector">Recolector</label>
       <input
@@ -13,7 +10,13 @@
         autocomplete="off"
       />
     </div>
-    <div class="grid grid-cols-2 gap-5">
+    <label
+      class="block text-yellow-700 text-xs sm:text-sm md:text-base font-light text-pretty"
+    >
+      <input type="checkbox" (change)="toggleExpensive()" />
+      Marca esta casilla si el envío genera algún costo
+    </label>
+    <div class="grid grid-cols-2 gap-5" *ngIf="expensive()">
       <div class="control">
         <label for="expenseNote">Razón del gasto</label>
         <input
@@ -47,5 +50,5 @@
         Abrir nuevo depósito
       </app-button>
     </div>
-  </fieldset>
+  </app-fieldset>
 </form>
