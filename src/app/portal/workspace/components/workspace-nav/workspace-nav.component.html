@@ -1,9 +1,9 @@
 <nav
-  class="flex items-center justify-center bg-violet-100 px-3 h-16 rounded-b-lg drop-shadow overflow-x-auto"
+  class="flex items-center justify-center bg-violet-100 px-3 h-20 rounded-b-lg drop-shadow overflow-x-auto sticky top-16 z-50"
 >
   <ul class="flex items-center gap-5">
     <ng-container *ngFor="let route of routes; index as i">
-      <li class="h-16">
+      <li class="h-20">
         <a
           [routerLink]="route.route"
           routerLinkActive="text-violet-700 border-b-2 md:border-b-4 border-violet-700"
