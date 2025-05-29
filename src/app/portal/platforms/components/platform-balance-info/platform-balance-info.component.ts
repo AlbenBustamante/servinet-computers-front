@@ -1,17 +1,15 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Role } from '@models/enums';
-import { IPortalPlatform } from '@models/platform.model';
 import { PlatformService } from '@services/platform.service';
 import { TokenService } from '@services/token.service';
 
 @Component({
   selector: 'app-platform-balance-info',
   templateUrl: './platform-balance-info.component.html',
-  styleUrls: ['./platform-balance-info.component.css'],
 })
 export class PlatformBalanceInfoComponent {
-  readonly selectedPortalPlatform: WritableSignal<IPortalPlatform | null>;
-  readonly editing: WritableSignal<boolean>;
+  readonly selectedPortalPlatform;
+  readonly editing;
   readonly canEdit = signal<boolean>(false);
 
   constructor(

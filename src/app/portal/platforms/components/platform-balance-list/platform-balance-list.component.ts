@@ -6,7 +6,6 @@ import { PlatformService } from '@services/platform.service';
 @Component({
   selector: 'app-platform-balance-list',
   templateUrl: './platform-balance-list.component.html',
-  styleUrls: ['./platform-balance-list.component.css'],
 })
 export class PlatformBalanceListComponent {
   readonly portalPlatforms;

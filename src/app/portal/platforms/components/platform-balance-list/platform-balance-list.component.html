@@ -1,10 +1,12 @@
 <header class="mb-2 pb-2 border-b-2 border-gray-100">
-  <h2 class="text-2xl text-gray-800 font-medium">Listado de plataformas</h2>
+  <h2 class="text-lg sm:text-xl md:text-2xl text-gray-800 font-medium">
+    Listado de plataformas
+  </h2>
 </header>
 <ul class="flex flex-col gap-1 max-h-[25rem] overflow-y-auto">
   <li
     *ngFor="let portalPlatform of portalPlatforms(); index as i"
-    class="text-gray-700 text-lg px-2 py-1 rounded-md cursor-pointer hover:bg-violet-100"
+    class="text-gray-700 text-base sm:text-base md:text-lg px-2 py-1 rounded-md cursor-pointer hover:bg-violet-100"
     [ngClass]="
       i == selectedPortalPlatformIndex() ? 'bg-violet-100 text-gray-900' : ''
     "
