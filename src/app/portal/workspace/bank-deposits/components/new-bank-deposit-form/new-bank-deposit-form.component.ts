@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +13,11 @@ export class NewBankDepositFormComponent {
   @Input({ required: true }) form!: FormGroup;
   @Input({ required: true }) loading!: boolean;
   readonly faCancel = faTrashAlt;
+  readonly expensive = signal<boolean>(false);
+
+  toggleExpensive() {
+    this.expensive.update((prevValue) => !prevValue);
+  }
 
   emitOnSubmit() {
     if (this.form.invalid) {

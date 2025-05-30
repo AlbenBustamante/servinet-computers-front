@@ -1,14 +1,21 @@
-<nav class="w-full bg-violet-100 py-6 rounded-t-none rounded-b-3xl drop-shadow">
-  <ul class="w-full flex items-center justify-center gap-5">
-    <li class="w-16 h-0.5 bg-violet-200"></li>
-    <li *ngFor="let route of routes" class="w-40">
-      <a
-        [routerLink]="route.route"
-        routerLinkActive="bg-violet-200 text-xl"
-        class="flex items-center w-full justify-center text-gray-700 text-lg rounded-xl py-2.5 border border-violet-200 hover:bg-violet-200 duration-100"
-        >{{ route.name }}</a
-      >
-    </li>
-    <li class="w-16 h-0.5 bg-violet-200"></li>
+<nav
+  class="flex items-center justify-center bg-violet-100 px-3 h-20 rounded-b-lg drop-shadow overflow-x-auto sticky top-16 z-50"
+>
+  <ul class="flex items-center gap-5">
+    <ng-container *ngFor="let route of routes; index as i">
+      <li class="h-20">
+        <a
+          [routerLink]="route.route"
+          routerLinkActive="text-violet-700 border-b-2 md:border-b-4 border-violet-700"
+          class="h-full flex items-center justify-center gap-2 text-center text-gray-600 hover:text-violet-600 duration-200"
+        >
+          <fa-icon [icon]="route.icon" class="text-2xl sm:text-sm md:text-lg" />
+          <span class="hidden sm:block text-sm sm:text-base md:text-lg">{{
+            route.name
+          }}</span>
+        </a>
+      </li>
+      <li *ngIf="i < routes.length - 1" class="text-neutral-300">|</li>
+    </ng-container>
   </ul>
 </nav>

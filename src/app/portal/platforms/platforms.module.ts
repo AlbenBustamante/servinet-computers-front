@@ -9,9 +9,10 @@ import { UpdatePlatformBalancesFormComponent } from './components/update-platfor
 import { PlatformBalanceInfoComponent } from './components/platform-balance-info/platform-balance-info.component';
 import { PlatformBalanceListComponent } from './components/platform-balance-list/platform-balance-list.component';
 import { NewPlatformTransferFormComponent } from './components/new-platform-transfer-form/new-platform-transfer-form.component';
+import { BalanceStatComponent } from './components/balance-stat/balance-stat.component';
 
 @NgModule({
-  declarations: [PlatformsComponent, UpdatePlatformBalancesFormComponent, PlatformBalanceInfoComponent, PlatformBalanceListComponent, NewPlatformTransferFormComponent],
+  declarations: [PlatformsComponent, UpdatePlatformBalancesFormComponent, PlatformBalanceInfoComponent, PlatformBalanceListComponent, NewPlatformTransferFormComponent, BalanceStatComponent],
   imports: [
     CommonModule,
     PlatformsRoutingModule,

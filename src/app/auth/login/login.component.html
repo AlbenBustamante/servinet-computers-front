@@ -1,13 +1,8 @@
-<article class="bg-white rounded-xl drop-shadow-lg">
-  <section class="px-8 py-6">
-    <header class="mb-5 flex flex-col gap-1.5">
-      <h2 class="text-2xl text-gray-700 font-semibold">
-        ¡Bienvenido de vuelta!
-      </h2>
-      <p class="text-lg text-gray-700">
-        Ingresa tus credenciales para acceder a la plataforma.
-      </p>
-    </header>
-    <app-login-form />
-  </section>
-</article>
+<app-auth-card
+  headline="¡Bienvenido de vuelta!"
+  description="Ingresa tus credenciales para acceder a la plataforma."
+  action="¿Olvidaste tu contraseña?"
+  route="cambio-contraseña"
+>
+  <app-login-form />
+</app-auth-card>

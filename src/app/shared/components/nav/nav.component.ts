@@ -6,7 +6,6 @@ import { AuthService } from '@services/auth.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent {
   @Input({ required: true }) routes!: IRoute[];
@@ -21,6 +20,6 @@ export class NavComponent {
   logout() {
     this.authService.logout();
     // this.tokenService.remove();
-    this.router.navigateByUrl('/auth/login');
+    this.router.navigateByUrl('/auth');
   }
 }

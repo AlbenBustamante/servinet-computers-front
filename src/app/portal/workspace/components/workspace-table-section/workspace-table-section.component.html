@@ -1,12 +1,18 @@
-<section class="card flex items-center justify-center h-96">
-  <ng-template #spinner><app-spinner /></ng-template>
+<section class="card h-[21rem] sm:h-[21.5rem] md:h-96">
+  <ng-template #spinner>
+    <div class="h-full flex items-center justify-center">
+      <app-spinner />
+    </div>
+  </ng-template>
   <div
-    class="w-full h-full"
+    class="size-full"
     [ngClass]="{ 'flex flex-col justify-between': length >= 1 }"
     *ngIf="!loading(); else spinner"
   >
     <div>
-      <h2 class="home-subtitle">{{ headline }}</h2>
+      <h2 class="font-medium text-lg sm:text-xl md:text-2xl text-gray-700 mb-3">
+        {{ headline }}
+      </h2>
       <div class="overflow-x-auto">
         <ng-content></ng-content>
       </div>

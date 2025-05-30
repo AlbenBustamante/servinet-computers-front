@@ -6,7 +6,6 @@ import { MyCashService } from '@services/my-cash.service';
 @Component({
   selector: 'app-available-cash-registers',
   templateUrl: './available-cash-registers.component.html',
-  styleUrls: ['./available-cash-registers.component.css'],
 })
 export class AvailableCashRegistersComponent {
   private readonly cashRegisterStatus;
@@ -14,7 +13,10 @@ export class AvailableCashRegistersComponent {
   readonly loading = signal<boolean>(false);
   readonly cashRegisters;
 
-  constructor(private readonly myCashService: MyCashService, private readonly cashRegisterService: CashRegisterService) {
+  constructor(
+    private readonly myCashService: MyCashService,
+    private readonly cashRegisterService: CashRegisterService
+  ) {
     this.cashRegisters = this.myCashService.cashRegisters;
     this.cashRegisterStatus = this.myCashService.cashRegisterStatus;
   }
@@ -29,12 +31,12 @@ export class AvailableCashRegistersComponent {
     this.cashRegisterService.getAll().subscribe({
       next: (cashRegisters) => {
         this.cashRegisters.set(cashRegisters);
-        this.loading.set(false)
+        this.loading.set(false);
       },
       error: (err) => {
         console.log(err);
-        this.loading.set(false)
-      }
+        this.loading.set(false);
+      },
     });
   }
 

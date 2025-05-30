@@ -6,7 +6,6 @@ import { MyCashService } from '@services/my-cash.service';
 @Component({
   selector: 'app-initial-working-form',
   templateUrl: './initial-working-form.component.html',
-  styleUrls: ['./initial-working-form.component.css'],
 })
 export class InitialWorkingFormComponent {
   @Output() setInitialWorking = new EventEmitter<string>();

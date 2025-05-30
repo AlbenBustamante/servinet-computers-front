@@ -5,7 +5,6 @@ import {
   Input,
   Output,
   Signal,
-  signal,
 } from '@angular/core';
 import {
   faChevronLeft,
@@ -16,7 +15,6 @@ import { IPagination } from '@models/response.model';
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.css'],
 })
 export class PaginationComponent {
   @Output() onSelectPage = new EventEmitter<number>();

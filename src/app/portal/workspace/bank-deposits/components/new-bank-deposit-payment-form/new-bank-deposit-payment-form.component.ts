@@ -5,7 +5,6 @@ import { IPlatformRes } from '@models/platform.model';
 @Component({
   selector: 'app-new-bank-deposit-payment-form',
   templateUrl: './new-bank-deposit-payment-form.component.html',
-  styleUrls: ['./new-bank-deposit-payment-form.component.css'],
 })
 export class NewBankDepositPaymentFormComponent {
   @Output() onSubmit = new EventEmitter<void>();

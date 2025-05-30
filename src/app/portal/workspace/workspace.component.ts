@@ -6,7 +6,6 @@ import { MyCashService } from '@services/my-cash.service';
 @Component({
   selector: 'app-portal-workspace',
   templateUrl: './workspace.component.html',
-  styleUrls: ['./workspace.component.css'],
 })
 export class WorkspaceComponent {
   readonly loading = signal<boolean>(false);

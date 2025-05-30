@@ -5,7 +5,6 @@ import { CashRegisterStatus } from '@models/enums';
 @Component({
   selector: 'app-cash-register-card',
   templateUrl: './cash-register-card.component.html',
-  styleUrls: ['./cash-register-card.component.css'],
 })
 export class CashRegisterCardComponent {
   @Input({ required: true }) cashRegister!: ICashRegisterRes;

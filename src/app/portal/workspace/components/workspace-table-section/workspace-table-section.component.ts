@@ -4,7 +4,6 @@ import { IPagination } from '@models/response.model';
 @Component({
   selector: 'app-workspace-table-section',
   templateUrl: './workspace-table-section.component.html',
-  styleUrls: ['./workspace-table-section.component.css'],
 })
 export class WorkspaceTableSectionComponent {
   @Output() onSelectPage = new EventEmitter<number>();

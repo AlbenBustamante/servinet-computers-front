@@ -26,7 +26,6 @@ export interface ITable {
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
-  styleUrls: ['./custom-table.component.css'],
 })
 export class CustomTableComponent {
   @Input({ required: true }) table!: ITable;

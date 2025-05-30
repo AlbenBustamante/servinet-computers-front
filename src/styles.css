@@ -46,22 +46,14 @@ body {
   @apply px-5 sm:px-6 md:px-7 py-3.5 sm:py-4 md:py-5 bg-white rounded-xl drop-shadow;
 }
 
+.card-accent {
+  @apply px-5 sm:px-6 md:px-7 py-3.5 sm:py-4 md:py-5 bg-white rounded-xl drop-shadow-lg;
+}
+
 .divider {
   @apply h-px w-full bg-neutral-300;
 }
 
 .divider-md {
   @apply h-0.5 w-full bg-neutral-300;
-}
-
-.home-container {
-  @apply grid lg:grid-cols-[20rem_minmax(20rem,_1fr)] gap-6 w-full;
-}
-
-.home-subtitle {
-  @apply font-medium text-2xl text-gray-700 mb-3;
-}
-
-.home-form {
-  @apply card w-full max-w-sm mx-auto self-start;
 }

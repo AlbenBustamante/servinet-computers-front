@@ -9,7 +9,6 @@ import { zip } from 'rxjs';
 @Component({
   selector: 'app-transfers',
   templateUrl: './transfers.component.html',
-  styleUrls: ['./transfers.component.css'],
 })
 export class TransfersComponent {
   @ViewChild(TempCodeFormComponent) tempCodeForm!: TempCodeFormComponent;

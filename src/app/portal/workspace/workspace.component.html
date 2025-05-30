@@ -2,17 +2,19 @@
 <ng-template #page>
   <section
     *ngIf="open() === false; else home"
-    class="h-[calc(100vh-5.5rem)] flex items-center justify-center"
+    class="h-[calc(100dvh-5.5rem)] flex items-center justify-center"
   >
-    <div class="bg-white rounded-2xl px-8 py-10 drop-shadow-xl">
-      <h2 class="mb-3 text-3xl text-gray-700 font-medium">
+    <article class="card">
+      <h2
+        class="mb-3 text-xl sm:text-2xl md:text-3xl text-gray-700 font-medium text-pretty"
+      >
         Parece que no tienes cajas
       </h2>
-      <p class="mb-8 text-lg text-gray-700">
+      <p class="mb-8 text-sm sm:text-base md:text-lg text-gray-700 text-pretty">
         Abre una caja para hacer transacciones
       </p>
       <app-button type="button" (click)="goToOpenCash()">Abrir caja</app-button>
-    </div>
+    </article>
   </section>
   <ng-template #home>
     <app-workspace-nav />

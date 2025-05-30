@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CashRegisterOpeningComponent } from './cash-register-opening.component';
+import { EntryTimeComponent } from './entry-time/entry-time.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: 'hora-entrada',
-        loadChildren: () => import('./entry-time/entry-time.module'),
+        component: EntryTimeComponent,
       },
       {
         path: 'base',
