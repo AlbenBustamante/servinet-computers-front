@@ -1,12 +1,12 @@
 import { Injectable, signal } from '@angular/core';
-import { ICashRegisterDetailRes } from '@models/cash-register.model';
+import { IJourneyDto } from '@models/journey.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeService {
   readonly loading = signal<boolean>(false);
-  readonly journeys = signal<ICashRegisterDetailRes[]>([]);
+  readonly journeys = signal<IJourneyDto[]>([]);
 
   constructor() {}
 }
