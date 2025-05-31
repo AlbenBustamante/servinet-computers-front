@@ -3,12 +3,14 @@ import { Component, Inject, LOCALE_ID, signal } from '@angular/core';
 import { UserService } from '@services/user.service';
 import { HomeService } from '../services/home.service';
 import { TokenService } from '@services/token.service';
+import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-journeys',
   templateUrl: './journeys.component.html',
 })
 export class JourneysComponent {
+  readonly faExcel = faFileExport;
   readonly date = signal<Date>(new Date());
   readonly today = new Date();
   readonly loading;
