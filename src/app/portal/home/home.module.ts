@@ -12,6 +12,7 @@ import { SharedModule } from '@shared/shared.module';
 import { HomeSubtitleComponent } from './components/home-subtitle/home-subtitle.component';
 import { JourneyStatComponent } from './journeys/components/journey-stat/journey-stat.component';
 import { JourneyStatsComponent } from './journeys/components/journey-stats/journey-stats.component';
+import { AboutMeStatComponent } from './about-me/components/about-me-stat/about-me-stat.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { JourneyStatsComponent } from './journeys/components/journey-stats/journ
     HomeSubtitleComponent,
     JourneyStatComponent,
     JourneyStatsComponent,
+    AboutMeStatComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
