@@ -43,6 +43,16 @@ export class UserService {
     });
   }
 
+  exportJourneysToExcel(userId: number, month: string) {
+    const params = new HttpParams().append('month', month);
+
+    return this.http.get(`${this.url}/${userId}/journeys/excel`, {
+      params,
+      context: checkToken(),
+      responseType: 'blob',
+    });
+  }
+
   getReports() {
     return this.http.get<IReportsRes>(`${this.url}/reports`, {
       context: checkToken(),

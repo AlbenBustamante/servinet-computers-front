@@ -33,9 +33,15 @@ export class HeaderComponent {
     this.showDropdown.update((prevValue) => !prevValue);
   }
 
+  goToProfile() {
+    this.showDropdown.set(false);
+    this.router.navigate(['portal', 'home']);
+  }
+
   logout() {
     this.authService.logout();
+    this.showDropdown.set(false);
     // this.tokenService.remove();
-    this.router.navigateByUrl('/auth/login');
+    this.router.navigateByUrl('/auth');
   }
 }

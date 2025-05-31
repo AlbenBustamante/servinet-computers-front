@@ -16,7 +16,12 @@
   <app-journey-stats [journeys]="journeys()" />
   <hr class="border-neutral-300 mt-2.5 mb-4" />
   <div class="w-full flex items-center justify-center">
-    <app-icon-button [icon]="faExcel" type="button" color="neutral">
+    <app-icon-button
+      [icon]="faExcel"
+      type="button"
+      color="neutral"
+      (click)="exportToExcel()"
+    >
       Exportar a Excel
     </app-icon-button>
   </div>

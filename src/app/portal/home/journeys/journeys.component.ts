@@ -63,6 +63,24 @@ export class JourneysComponent {
     });
   }
 
+  exportToExcel() {
+    const { id } = this.tokenService.getInfo();
+    const month = this.formatMonth(this.today);
+    this.userService.exportJourneysToExcel(id, month).subscribe({
+      next: (blob) => {
+        const a = document.createElement('a');
+        const objectUrl = URL.createObjectURL(blob);
+        a.href = objectUrl;
+        a.download = 'jornadas.xlsx';
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
   formatMonth(date: Date) {
     return formatDate(date, 'yyyy-MM', this.locale);
   }
