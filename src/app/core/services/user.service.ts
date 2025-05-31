@@ -5,7 +5,7 @@ import { checkToken } from '@interceptors/token.interceptor';
 import { IReportsRes, IUpdateUserDto, IUserRes } from '@models/user.model';
 import { tap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IJourneyDto } from '@models/journey.model';
+import { IJourneyDetailDto } from '@models/journey.model';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +37,7 @@ export class UserService {
   getJourneys(userId: number, month: string) {
     const params = new HttpParams().append('month', month);
 
-    return this.http.get<IJourneyDto[]>(`${this.url}/${userId}/journeys`, {
+    return this.http.get<IJourneyDetailDto>(`${this.url}/${userId}/journeys`, {
       params,
       context: checkToken(),
     });

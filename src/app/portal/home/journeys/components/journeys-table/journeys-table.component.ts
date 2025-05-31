@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component, computed, Inject, LOCALE_ID } from '@angular/core';
 import { HomeService } from '@portal/home/services/home.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
@@ -53,7 +53,7 @@ export class JourneysTableComponent {
         title: 'Horas trabajadas',
       },
     ],
-    body: this.service.journeys,
+    body: computed(() => this.service.journeys()?.journeys),
     noDataMessage: 'No se encontraron jornadas',
   };
 

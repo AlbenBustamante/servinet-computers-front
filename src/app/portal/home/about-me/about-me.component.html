@@ -9,5 +9,7 @@
   class="flex items-center justify-between w-full max-w-md mt-3 text-gray-700 text-xs sm:text-sm md:text-base"
 >
   Registrado desde:
-  <span>{{ loggedIn()?.createdDate | date : "dd/MM/yyyy HH:mm" }}</span>
+  <span>{{
+    loggedIn()?.createdDate | date : "EEE, dd 'de' MMM, yyyy hh:mm a"
+  }}</span>
 </p>

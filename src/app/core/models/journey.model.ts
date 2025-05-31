@@ -7,3 +7,9 @@ export interface IJourneyDto {
   totalOfDiscounts: number;
   totalOfHours: string;
 }
+
+export interface IJourneyDetailDto {
+  totalOfHours: string;
+  totalOfDiscounts: number;
+  journeys: IJourneyDto[];
+}

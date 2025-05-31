@@ -7,9 +7,11 @@ import { LayoutComponent } from './layout/layout.component';
 import { HomeNavItemComponent } from './components/home-nav-item/home-nav-item.component';
 import { HomeNavComponent } from './components/home-nav/home-nav.component';
 import { JourneysComponent } from './journeys/journeys.component';
-import { JourneysTableComponent } from './components/journeys-table/journeys-table.component';
+import { JourneysTableComponent } from './journeys/components/journeys-table/journeys-table.component';
 import { SharedModule } from '@shared/shared.module';
 import { HomeSubtitleComponent } from './components/home-subtitle/home-subtitle.component';
+import { JourneyStatComponent } from './journeys/components/journey-stat/journey-stat.component';
+import { JourneyStatsComponent } from './journeys/components/journey-stats/journey-stats.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { HomeSubtitleComponent } from './components/home-subtitle/home-subtitle.
     JourneysComponent,
     JourneysTableComponent,
     HomeSubtitleComponent,
+    JourneyStatComponent,
+    JourneyStatsComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
