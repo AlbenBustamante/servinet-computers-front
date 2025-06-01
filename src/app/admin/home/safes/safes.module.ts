@@ -8,9 +8,10 @@ import { NewSafeFormComponent } from './components/new-safe-form/new-safe-form.c
 import { SafesTableComponent } from './components/safes-table/safes-table.component';
 import { ListComponent } from './list/list.component';
 import { HomeSharedModule } from '../home-shared/home-shared.module';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
-  declarations: [NewSafeFormComponent, SafesTableComponent, ListComponent],
+  declarations: [NewSafeFormComponent, SafesTableComponent, ListComponent, DetailsComponent],
   imports: [
     CommonModule,
     SafesRoutingModule,

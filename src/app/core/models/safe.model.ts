@@ -17,6 +17,7 @@ export interface ISafeDetailRes extends IResponse<number> {
   finalBase: number;
   calculatedBase: number;
   safe: ISafeRes;
+  bases: ISafeBaseRes[];
 }
 
 export interface ISafeBaseReq {

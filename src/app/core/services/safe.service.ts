@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -30,6 +30,15 @@ export class SafeService {
 
   getDetails(safeId: number) {
     return this.http.get<ISafeDetailRes[]>(`${this.url}/${safeId}/details`, {
+      context: checkToken(),
+    });
+  }
+
+  getMovements(safeId: number, date: string) {
+    const params = new HttpParams().append('date', date);
+
+    return this.http.get<ISafeDetailRes>(`${this.url}/${safeId}/movements`, {
+      params,
       context: checkToken(),
     });
   }
