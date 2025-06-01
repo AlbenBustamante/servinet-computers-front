@@ -15,6 +15,8 @@ export class JourneysComponent {
   readonly today = new Date();
   readonly loading;
   readonly journeys;
+  readonly exportLoading = signal<boolean>(false);
+  readonly exportError = signal<string | undefined>(undefined);
 
   constructor(
     private readonly service: HomeService,
@@ -64,6 +66,7 @@ export class JourneysComponent {
   }
 
   exportToExcel() {
+    this.exportLoading.set(true);
     const { id } = this.tokenService.getInfo();
     const month = this.formatMonth(this.today);
     this.userService.exportJourneysToExcel(id, month).subscribe({
@@ -74,9 +77,13 @@ export class JourneysComponent {
         a.download = 'jornadas.xlsx';
         a.click();
         URL.revokeObjectURL(objectUrl);
+        this.exportError.set(undefined);
+        this.exportLoading.set(false);
       },
       error: (err) => {
-        console.log(err);
+        console.error(err);
+        this.exportError.set('Ha ocurrido un error');
+        this.exportLoading.set(false);
       },
     });
   }

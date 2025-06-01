@@ -15,14 +15,18 @@
   <hr class="border-neutral-300 my-2.5" />
   <app-journey-stats [journeys]="journeys()" />
   <hr class="border-neutral-300 mt-2.5 mb-4" />
-  <div class="w-full flex items-center justify-center">
+  <div class="w-full flex flex-col gap-1 items-center justify-center">
     <app-icon-button
       [icon]="faExcel"
       type="button"
       color="neutral"
       (click)="exportToExcel()"
+      [loading]="exportLoading()"
     >
       Exportar a Excel
     </app-icon-button>
+    <small class="text-xs text-red-700 font-medium" *ngIf="exportError()">
+      {{ exportError() }}
+    </small>
   </div>
 </section>
