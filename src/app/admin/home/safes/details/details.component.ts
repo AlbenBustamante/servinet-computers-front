@@ -38,7 +38,6 @@ export class DetailsComponent {
 
     this.safeService.getMovements(this.id, date).subscribe({
       next: (details) => {
-        console.log({ details });
         this.details.set(details);
         this.loading.set(false);
       },

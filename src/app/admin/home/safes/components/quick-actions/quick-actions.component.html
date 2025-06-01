@@ -1,1 +1,14 @@
-<p>quick-actions works!</p>
+<app-detail-wrapper headline="Administración" [loading]="false">
+  <ul class="flex flex-col gap-3">
+    <li>
+      <app-icon-button [icon]="faBase" type="button" color="neutral">
+        Ajustar base
+      </app-icon-button>
+    </li>
+    <li>
+      <app-icon-button [icon]="faTransfer" type="button" color="neutral">
+        Transferir
+      </app-icon-button>
+    </li>
+  </ul>
+</app-detail-wrapper>
