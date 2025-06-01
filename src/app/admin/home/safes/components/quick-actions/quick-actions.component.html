@@ -6,9 +6,16 @@
       </app-icon-button>
     </li>
     <li>
-      <app-icon-button [icon]="faTransfer" type="button" color="neutral">
+      <app-icon-button
+        [icon]="faTransfer"
+        type="button"
+        color="neutral"
+        (click)="transferModal.open()"
+        [disabled]="disabled()"
+      >
         Transferir
       </app-icon-button>
     </li>
   </ul>
 </app-detail-wrapper>
+<app-transfer-modal />

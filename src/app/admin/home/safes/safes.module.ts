@@ -11,6 +11,7 @@ import { HomeSharedModule } from '../home-shared/home-shared.module';
 import { DetailsComponent } from './details/details.component';
 import { DetailMainStatsComponent } from './components/detail-main-stats/detail-main-stats.component';
 import { QuickActionsComponent } from './components/quick-actions/quick-actions.component';
+import { TransferModalComponent } from './components/transfer-modal/transfer-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { QuickActionsComponent } from './components/quick-actions/quick-actions.
     DetailsComponent,
     DetailMainStatsComponent,
     QuickActionsComponent,
+    TransferModalComponent,
   ],
   imports: [
     CommonModule,

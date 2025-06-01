@@ -1,14 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, computed, ViewChild } from '@angular/core';
 import {
   faArrowRightArrowLeft,
   faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
+import { DetailService } from '../../services/detail.service';
+import { TransferModalComponent } from '../transfer-modal/transfer-modal.component';
 
 @Component({
   selector: 'app-quick-actions',
   templateUrl: './quick-actions.component.html',
 })
 export class QuickActionsComponent {
+  @ViewChild(TransferModalComponent) transferModal!: TransferModalComponent;
   readonly faBase = faHandHoldingDollar;
   readonly faTransfer = faArrowRightArrowLeft;
+  readonly today;
+  readonly date;
+
+  readonly disabled = computed(() => {
+    const date = this.date();
+    const formattedDate = this.detailService.formatDate(date);
+
+    return this.today !== formattedDate;
+  });
+
+  constructor(private readonly detailService: DetailService) {
+    this.date = this.detailService.date;
+    this.today = this.detailService.today;
+  }
 }

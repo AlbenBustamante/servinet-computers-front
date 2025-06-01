@@ -1,8 +1,7 @@
-import { Component, computed, Inject, LOCALE_ID } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SafeService } from '@services/safe.service';
 import { DetailService } from '../services/detail.service';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-details',
@@ -13,7 +12,7 @@ export class DetailsComponent {
   readonly loading;
   readonly details;
   readonly date;
-  readonly today = this.formatDate(new Date());
+  readonly today;
 
   readonly title = computed(() => {
     const details = this.details();
@@ -21,7 +20,6 @@ export class DetailsComponent {
   });
 
   constructor(
-    @Inject(LOCALE_ID) private readonly locale: string,
     private readonly route: ActivatedRoute,
     private readonly safeService: SafeService,
     private readonly detailService: DetailService
@@ -30,10 +28,11 @@ export class DetailsComponent {
     this.loading = this.detailService.loading;
     this.details = this.detailService.details;
     this.date = this.detailService.date;
+    this.today = this.detailService.today;
   }
 
   ngOnInit() {
-    const date = this.formatDate(this.date());
+    const date = this.detailService.formatDate(this.date());
     this.loading.set(true);
 
     this.safeService.getMovements(this.id, date).subscribe({
@@ -56,7 +55,9 @@ export class DetailsComponent {
 
     this.loading.set(true);
 
-    this.safeService.getMovements(this.id, this.formatDate(newDate)).subscribe({
+    const formattedDate = this.detailService.formatDate(newDate);
+
+    this.safeService.getMovements(this.id, formattedDate).subscribe({
       next: (details) => {
         this.details.set(details);
         this.loading.set(false);
@@ -66,9 +67,5 @@ export class DetailsComponent {
         this.loading.set(false);
       },
     });
-  }
-
-  private formatDate(date: Date) {
-    return formatDate(date, 'yyyy-MM-dd', this.locale);
   }
 }
