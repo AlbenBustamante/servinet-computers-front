@@ -9,9 +9,18 @@ import { SafesTableComponent } from './components/safes-table/safes-table.compon
 import { ListComponent } from './list/list.component';
 import { HomeSharedModule } from '../home-shared/home-shared.module';
 import { DetailsComponent } from './details/details.component';
+import { DetailMainStatsComponent } from './components/detail-main-stats/detail-main-stats.component';
+import { QuickActionsComponent } from './components/quick-actions/quick-actions.component';
 
 @NgModule({
-  declarations: [NewSafeFormComponent, SafesTableComponent, ListComponent, DetailsComponent],
+  declarations: [
+    NewSafeFormComponent,
+    SafesTableComponent,
+    ListComponent,
+    DetailsComponent,
+    DetailMainStatsComponent,
+    QuickActionsComponent,
+  ],
   imports: [
     CommonModule,
     SafesRoutingModule,

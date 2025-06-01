@@ -1,0 +1,17 @@
+<app-detail-wrapper headline="Detalles" [loading]="loading()">
+  <app-detail-stat-inline
+    headline="Apertura"
+    [stat]="details()?.createdDate"
+    pipe="time"
+  />
+  <app-detail-stat-inline
+    headline="Base Inicial"
+    [stat]="details()?.initialBase"
+    pipe="currency"
+  />
+  <app-detail-stat-inline
+    headline="Base Final"
+    [stat]="details()?.finalBase"
+    pipe="currency"
+  />
+</app-detail-wrapper>

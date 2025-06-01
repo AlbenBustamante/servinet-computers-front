@@ -1,3 +1,17 @@
-<pre>
-  <code>{{details() | json}}</code>
-</pre>
+<app-header-title
+  [hTitle]="title()"
+  hDescription="Administra tus saldos y transferencias de la caja fuerte"
+  [return]="true"
+/>
+<app-detail-layout>
+  <app-detail-main-stats class="md:row-span-2" />
+  <form>
+    <input
+      type="date"
+      class="input w-full"
+      [max]="today"
+      [value]="today"
+      (change)="onChange($event)"
+    />
+  </form>
+</app-detail-layout>

@@ -1,21 +1,21 @@
 <app-detail-wrapper headline="Horas" [loading]="loading()">
   <ul class="flex flex-col gap-1">
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Entrada"
       [stat]="detail()?.initialWorking"
       pipe="time"
     />
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Almuerzo Entrada"
       [stat]="detail()?.initialBreak"
       pipe="time"
     />
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Almuerzo Salida"
       [stat]="detail()?.finalBreak"
       pipe="time"
     />
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Salida"
       [stat]="detail()?.finalWorking"
       pipe="time"

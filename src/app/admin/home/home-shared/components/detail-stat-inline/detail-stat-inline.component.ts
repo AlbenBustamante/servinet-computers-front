@@ -1,14 +1,14 @@
-import { formatCurrency, formatDate } from '@angular/common';
+import { CurrencyPipe, formatCurrency, formatDate } from '@angular/common';
 import { Component, Inject, Input, LOCALE_ID } from '@angular/core';
 import { CashRegisterDetailStatus, CashRegisterStatus } from '@models/enums';
 import { CashRegisterDetailStatusPipe } from '@shared/pipes/cash-register-detail-status.pipe';
 import { CashRegisterStatusPipe } from '@shared/pipes/cash-register-status.pipe';
 
 @Component({
-  selector: 'app-detail-stat-wrapper',
-  templateUrl: './detail-stat-wrapper.component.html',
+  selector: 'app-detail-stat-inline',
+  templateUrl: './detail-stat-inline.component.html',
 })
-export class DetailStatWrapperComponent {
+export class DetailStatInlineComponent {
   @Input({ required: true }) headline!: string;
   @Input({ required: true }) stat!:
     | undefined
@@ -32,17 +32,16 @@ export class DetailStatWrapperComponent {
     }
 
     if (this.pipe === 'currency') {
-      return formatCurrency(
+      return new CurrencyPipe(this.locale).transform(
         this.stat as number,
-        this.locale,
         '$',
-        undefined,
+        'symbol',
         '0.00'
       );
     }
 
     if (this.pipe === 'time') {
-      return formatDate(this.stat as Date, 'HH:mm a', this.locale);
+      return formatDate(this.stat as Date, 'hh:mm a', this.locale);
     }
 
     if (this.pipe === 'cashRegister') {

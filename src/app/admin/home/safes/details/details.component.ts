@@ -1,4 +1,4 @@
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component, computed, Inject, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SafeService } from '@services/safe.service';
 import { DetailService } from '../services/detail.service';
@@ -13,6 +13,12 @@ export class DetailsComponent {
   readonly loading;
   readonly details;
   readonly date;
+  readonly today = this.formatDate(new Date());
+
+  readonly title = computed(() => {
+    const details = this.details();
+    return `Caja Fuerte N° ${details?.safe.numeral}`;
+  });
 
   constructor(
     @Inject(LOCALE_ID) private readonly locale: string,
@@ -27,11 +33,31 @@ export class DetailsComponent {
   }
 
   ngOnInit() {
+    const date = this.formatDate(this.date());
     this.loading.set(true);
 
-    const date = this.formatDate(this.date());
-
     this.safeService.getMovements(this.id, date).subscribe({
+      next: (details) => {
+        console.log({ details });
+        this.details.set(details);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  onChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const [year, month, date] = target.value.split('-').map(Number);
+    const newDate = new Date(year, month - 1, date);
+    this.date.set(newDate);
+
+    this.loading.set(true);
+
+    this.safeService.getMovements(this.id, this.formatDate(newDate)).subscribe({
       next: (details) => {
         this.details.set(details);
         this.loading.set(false);
