@@ -3,12 +3,14 @@ import { Component, Inject, LOCALE_ID, signal } from '@angular/core';
 import { UserService } from '@services/user.service';
 import { HomeService } from '../services/home.service';
 import { TokenService } from '@services/token.service';
+import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-journeys',
   templateUrl: './journeys.component.html',
 })
 export class JourneysComponent {
+  readonly faExcel = faFileExport;
   readonly date = signal<Date>(new Date());
   readonly today = new Date();
   readonly loading;
@@ -57,6 +59,24 @@ export class JourneysComponent {
       error: (err) => {
         console.log(err);
         this.loading.set(false);
+      },
+    });
+  }
+
+  exportToExcel() {
+    const { id } = this.tokenService.getInfo();
+    const month = this.formatMonth(this.today);
+    this.userService.exportJourneysToExcel(id, month).subscribe({
+      next: (blob) => {
+        const a = document.createElement('a');
+        const objectUrl = URL.createObjectURL(blob);
+        a.href = objectUrl;
+        a.download = 'jornadas.xlsx';
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }

@@ -1,0 +1,13 @@
+<ul
+  class="text-gray-700 text-xs sm:text-sm md:text-base w-full max-w-xl px-2 mx-auto"
+>
+  <app-journey-stat
+    stat="Total por descontar"
+    [value]="journeys?.totalOfDiscounts"
+    [currency]="true"
+  />
+  <app-journey-stat
+    stat="Total de horas trabajadas"
+    [value]="journeys?.totalOfHours"
+  />
+</ul>

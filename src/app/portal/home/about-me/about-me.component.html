@@ -1,13 +1,7 @@
 <app-home-subtitle headline="Mi cuenta" />
-<p
-  class="flex items-center justify-between w-full max-w-md mt-3 text-gray-700 text-xs sm:text-sm md:text-base"
->
-  Correo electrónico:
-  <span>{{ loggedIn()?.email }}</span>
-</p>
-<p
-  class="flex items-center justify-between w-full max-w-md mt-3 text-gray-700 text-xs sm:text-sm md:text-base"
->
-  Registrado desde:
-  <span>{{ loggedIn()?.createdDate | date : "dd/MM/yyyy HH:mm" }}</span>
-</p>
+<app-about-me-stat stat="Correo electrónico" [value]="loggedIn()?.email" />
+<app-about-me-stat
+  stat="Registrado desde"
+  [value]="loggedIn()?.createdDate"
+  [dateTime]="true"
+/>

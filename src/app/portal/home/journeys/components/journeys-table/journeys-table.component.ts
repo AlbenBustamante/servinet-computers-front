@@ -1,5 +1,5 @@
-import { DatePipe } from '@angular/common';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { Component, computed, Inject, LOCALE_ID } from '@angular/core';
 import { HomeService } from '@portal/home/services/home.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
@@ -12,39 +12,48 @@ export class JourneysTableComponent {
 
   readonly table: ITable = {
     header: [
-      { key: 'id', title: 'ID', align: 'center' },
       {
-        key: 'createdDate',
+        key: 'cashRegisterDetail.createdDate',
         title: 'Fecha',
         pipe: new DatePipe(this.locale),
         pipeArgs: 'shortDate',
       },
       {
-        key: 'initialWorking',
+        key: 'cashRegisterDetail.initialWorking',
         title: 'Hora Entrada',
         pipe: new DatePipe(this.locale),
         pipeArgs: 'shortTime',
       },
       {
-        key: 'initialBreak',
+        key: 'cashRegisterDetail.initialBreak',
         title: 'Entrada Almuerzo',
         pipe: new DatePipe(this.locale),
         pipeArgs: 'shortTime',
       },
       {
-        key: 'finalBreak',
+        key: 'cashRegisterDetail.finalBreak',
         title: 'Salida Almuerzo',
         pipe: new DatePipe(this.locale),
         pipeArgs: 'shortTime',
       },
       {
-        key: 'finalWorking',
+        key: 'cashRegisterDetail.finalWorking',
         title: 'Hora Salida',
         pipe: new DatePipe(this.locale),
         pipeArgs: 'shortTime',
       },
+      {
+        key: 'totalOfDiscounts',
+        title: 'Por descontar',
+        pipe: new CurrencyPipe(this.locale),
+        align: 'right',
+      },
+      {
+        key: 'totalOfHours',
+        title: 'Horas trabajadas',
+      },
     ],
-    body: this.service.journeys,
+    body: computed(() => this.service.journeys()?.journeys),
     noDataMessage: 'No se encontraron jornadas',
   };
 
