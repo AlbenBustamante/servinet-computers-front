@@ -75,6 +75,7 @@ export class UpdateBaseModalComponent {
 
   close() {
     this.form.reset();
+    this.baseDetail.set(undefined);
     this.modal.close();
   }
 

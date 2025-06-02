@@ -32,7 +32,7 @@ export class DetailsComponent {
   }
 
   ngOnInit() {
-    const date = this.detailService.formatDate(this.date());
+    const date = this.detailService.today;
     this.loading.set(true);
 
     this.safeService.getMovements(this.id, date).subscribe({
@@ -51,6 +51,7 @@ export class DetailsComponent {
     const target = event.target as HTMLInputElement;
     const [year, month, date] = target.value.split('-').map(Number);
     const newDate = new Date(year, month - 1, date);
+
     this.date.set(newDate);
 
     this.loading.set(true);
