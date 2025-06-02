@@ -1,0 +1,28 @@
+<app-detail-wrapper headline="Administración" [loading]="false">
+  <ul class="flex flex-col gap-3">
+    <li>
+      <app-icon-button
+        [icon]="faBase"
+        type="button"
+        color="neutral"
+        (click)="updateBaseModal.open()"
+        [disabled]="disabled()"
+      >
+        Ajustar base
+      </app-icon-button>
+    </li>
+    <li>
+      <app-icon-button
+        [icon]="faTransfer"
+        type="button"
+        color="neutral"
+        (click)="transferModal.open()"
+        [disabled]="disabled()"
+      >
+        Transferir
+      </app-icon-button>
+    </li>
+  </ul>
+</app-detail-wrapper>
+<app-update-base-modal />
+<app-transfer-modal />

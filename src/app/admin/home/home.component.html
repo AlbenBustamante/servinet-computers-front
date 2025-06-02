@@ -10,7 +10,9 @@
     {{ tempCode() ? tempCode()?.code : "----" }}
   </p>
 </article>
-<ul class="container">
+<ul
+  class="grid grid-cols-[repeat(auto-fit,_minmax(13rem,_1fr))] gap-12 max-w-5xl mt-12 mx-auto"
+>
   <li>
     <app-product-card
       pTitle="Plataformas"

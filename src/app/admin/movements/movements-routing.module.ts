@@ -9,10 +9,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./cash-register-movements/cash-register-movements.module'),
   },
-  {
-    path: 'caja-fuerte/:id',
-    loadChildren: () => import('./safe-movements/safe-movements.module'),
-  },
 ];
 
 @NgModule({

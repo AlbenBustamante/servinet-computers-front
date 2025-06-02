@@ -7,7 +7,6 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
 @Component({
   selector: 'app-safes-table',
   templateUrl: './safes-table.component.html',
-  styleUrls: ['./safes-table.component.css'],
 })
 export class SafesTableComponent {
   readonly removeLoading = signal<boolean>(false);
@@ -35,8 +34,7 @@ export class SafesTableComponent {
 
   goToMovements(index: number) {
     const { id } = this.safeService.safes()[index];
-    const url = `admin/movimientos/caja-fuerte/${id}`;
-    this.router.navigateByUrl(url);
+    this.router.navigate(['admin', 'home', 'cajas-fuertes', id]);
   }
 
   onRemove(index: number) {

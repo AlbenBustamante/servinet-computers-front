@@ -7,7 +7,6 @@ import { FormLoading } from '@utils/form-loading';
 @Component({
   selector: 'app-new-safe-form',
   templateUrl: './new-safe-form.component.html',
-  styleUrls: ['./new-safe-form.component.css'],
 })
 export class NewSafeFormComponent {
   @Output() onClose = new EventEmitter<void>();

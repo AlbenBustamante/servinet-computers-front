@@ -17,6 +17,7 @@ export interface ISafeDetailRes extends IResponse<number> {
   finalBase: number;
   calculatedBase: number;
   safe: ISafeRes;
+  bases: ISafeBaseRes[];
 }
 
 export interface ISafeBaseReq {
@@ -30,7 +31,8 @@ export interface ISafeBaseRes extends IResponse<number> {
   detailBase: IBase;
 }
 
-export interface ISafeMovementDto {
-  safeDetail: ISafeDetailRes;
-  bases: ISafeBaseRes[];
+export interface CreateAdminTransferCommand {
+  amount: number;
+  denomination: number;
+  add: boolean;
 }

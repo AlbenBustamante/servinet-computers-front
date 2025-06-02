@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { ICreateCashTransferDto } from '@models/cash-transfer.model';
@@ -12,7 +12,6 @@ import { MyHomeService } from '@services/my-home.service';
 @Component({
   selector: 'app-new-cash-transfer-form',
   templateUrl: './new-cash-transfer-form.component.html',
-  styleUrls: ['./new-cash-transfer-form.component.css'],
 })
 export class NewCashTransferFormComponent {
   readonly loading = signal<boolean>(false);

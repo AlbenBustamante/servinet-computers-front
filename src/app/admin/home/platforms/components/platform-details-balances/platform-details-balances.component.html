@@ -1,11 +1,11 @@
 <app-detail-wrapper headline="Saldos" [loading]="loading()">
   <ul class="flex flex-col gap-3">
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Inicial"
       [stat]="details()?.balances?.[0]?.initialBalance"
       pipe="currency"
     />
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Final"
       [stat]="details()?.balances?.[0]?.finalBalance"
       pipe="currency"

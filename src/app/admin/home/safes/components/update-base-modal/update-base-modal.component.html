@@ -1,0 +1,29 @@
+<app-modal [headline]="title()" width="2xl" align="center">
+  <div class="flex items-center justify-center">
+    <app-base-calculator
+      [base]="base()"
+      [form]="form"
+      [baseDetail]="baseDetail()"
+      (onSubmit)="onSubmit()"
+    />
+  </div>
+  <hr class="border-neutral-300 my-5" />
+  <div class="flex flex-col gap-3 w-full max-w-sm mx-auto">
+    <app-button
+      type="button"
+      (click)="onSave()"
+      [loading]="loading()"
+      [disabled]="form.invalid"
+    >
+      Guardar
+    </app-button>
+    <app-button
+      type="button"
+      color="neutral"
+      (click)="close()"
+      [disabled]="loading()"
+    >
+      Cerrar
+    </app-button>
+  </div>
+</app-modal>

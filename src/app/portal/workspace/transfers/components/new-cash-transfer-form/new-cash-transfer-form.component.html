@@ -176,9 +176,10 @@
       'text-green-700': availableAmount() > 0,
       'text-red-700': disableButton
     }"
-    >{{ selectedSafePropertyMessage() }}</small
   >
-  <app-button type="submit" [loading]="loading()" [disabled]="disableButton"
-    >{{ receive() ? "Recibir" : "Entregar" }} Transferencia</app-button
-  >
+    {{ selectedSafePropertyMessage() }}
+  </small>
+  <app-button type="submit" [loading]="loading()" [disabled]="disableButton">
+    {{ receive() ? "Recibir" : "Entregar" }} Transferencia
+  </app-button>
 </form>

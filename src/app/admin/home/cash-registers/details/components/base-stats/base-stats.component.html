@@ -1,11 +1,11 @@
 <app-detail-wrapper headline="Base" [loading]="loading()">
   <ul class="flex flex-col gap-1">
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Inicial"
       [stat]="detail()?.initialBase"
       pipe="currency"
     />
-    <app-detail-stat-wrapper
+    <app-detail-stat-inline
       headline="Final"
       [stat]="detail()?.finalBase"
       pipe="currency"

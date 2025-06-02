@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { IBase } from '@models/base.model';
-import { ISafeDetailRes, ISafeMovementDto } from '@models/safe.model';
+import { CreateAdminTransferCommand, ISafeDetailRes } from '@models/safe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,13 +19,6 @@ export class SafeDetailService {
     });
   }
 
-  getMovements(safeDetailId: number) {
-    return this.http.get<ISafeMovementDto>(
-      `${this.url}/${safeDetailId}/movements`,
-      { context: checkToken() }
-    );
-  }
-
   updateBase(safeDetailId: number, base: IBase) {
     return this.http.put<ISafeDetailRes>(
       `${this.url}/${safeDetailId}/base`,
@@ -33,6 +26,14 @@ export class SafeDetailService {
       {
         context: checkToken(),
       }
+    );
+  }
+
+  createTransfer(safeDetailId: number, command: CreateAdminTransferCommand) {
+    return this.http.put<ISafeDetailRes>(
+      `${this.url}/${safeDetailId}/transfer`,
+      command,
+      { context: checkToken() }
     );
   }
 }
