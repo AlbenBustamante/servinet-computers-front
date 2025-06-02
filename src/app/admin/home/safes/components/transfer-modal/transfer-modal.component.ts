@@ -5,6 +5,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { CurrencyPipe } from '@angular/common';
 import { BaseService } from '@services/base.service';
+import { CreateAdminTransferCommand } from '@models/safe.model';
+import { SafeDetailService } from '@services/safe-detail.service';
+import { FormLoading } from '@utils/form-loading';
 
 @Component({
   selector: 'app-transfer-modal',
@@ -12,6 +15,7 @@ import { BaseService } from '@services/base.service';
 })
 export class TransferModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;
+  readonly loading;
   readonly form;
   readonly details;
   readonly availableAmount = signal<number>(0);
@@ -21,8 +25,11 @@ export class TransferModalComponent {
     @Inject(LOCALE_ID) private readonly locale: string,
     private readonly detailService: DetailService,
     private readonly fb: FormBuilder,
-    private readonly baseService: BaseService
+    private readonly baseService: BaseService,
+    private readonly safeDetailService: SafeDetailService,
+    private readonly formLoading: FormLoading
   ) {
+    this.loading = this.detailService.loading;
     this.details = this.detailService.details;
     this.form = this.fb.group({
       type: ['', Validators.required],
@@ -63,7 +70,34 @@ export class TransferModalComponent {
       return this.form.markAllAsTouched();
     }
 
-    console.log({ value: this.form.value });
+    this.setLoading(true);
+
+    const amount = Number(this.form.get('amount')?.value);
+    const formDenomination = this.form.get('denomination')?.value;
+    const denomination = this.baseService.getValue(
+      formDenomination as keyof IBase
+    );
+    const add = !this.receive;
+
+    const { id } = this.details()!;
+
+    const command: CreateAdminTransferCommand = {
+      amount,
+      denomination,
+      add,
+    };
+
+    this.safeDetailService.createTransfer(id, command).subscribe({
+      next: (details) => {
+        this.details.set(details);
+        this.setLoading(false);
+        this.close();
+      },
+      error: (err) => {
+        console.error(err);
+        this.setLoading(false);
+      },
+    });
   }
 
   onChangeType() {
@@ -139,6 +173,12 @@ export class TransferModalComponent {
       amount: '',
       denomination: '',
     });
+    this.availableAmount.set(0);
+    this.amountMessage.set('--');
     this.modal.close();
+  }
+
+  private setLoading(loading: boolean) {
+    this.formLoading.setLoading(this.form, this.loading, loading);
   }
 }

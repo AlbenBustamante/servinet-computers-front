@@ -30,3 +30,9 @@ export interface ISafeBaseRes extends IResponse<number> {
   base: number;
   detailBase: IBase;
 }
+
+export interface CreateAdminTransferCommand {
+  amount: number;
+  denomination: number;
+  add: boolean;
+}
