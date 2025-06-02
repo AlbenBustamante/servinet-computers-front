@@ -28,12 +28,6 @@ export class SafeService {
       .pipe(tap((safes) => this.safes.set(safes)));
   }
 
-  getDetails(safeId: number) {
-    return this.http.get<ISafeDetailRes[]>(`${this.url}/${safeId}/details`, {
-      context: checkToken(),
-    });
-  }
-
   getMovements(safeId: number, date: string) {
     const params = new HttpParams().append('date', date);
 

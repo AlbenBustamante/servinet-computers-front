@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
 import { IBase } from '@models/base.model';
-import { ISafeDetailRes, ISafeMovementDto } from '@models/safe.model';
+import { ISafeDetailRes } from '@models/safe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +17,6 @@ export class SafeDetailService {
     return this.http.get<ISafeDetailRes[]>(`${this.url}/load`, {
       context: checkToken(),
     });
-  }
-
-  getMovements(safeDetailId: number) {
-    return this.http.get<ISafeMovementDto>(
-      `${this.url}/${safeDetailId}/movements`,
-      { context: checkToken() }
-    );
   }
 
   updateBase(safeDetailId: number, base: IBase) {

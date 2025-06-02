@@ -30,8 +30,3 @@ export interface ISafeBaseRes extends IResponse<number> {
   base: number;
   detailBase: IBase;
 }
-
-export interface ISafeMovementDto {
-  safeDetail: ISafeDetailRes;
-  bases: ISafeBaseRes[];
-}

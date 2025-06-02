@@ -11,5 +11,4 @@ import { ISafeRes } from '@models/safe.model';
 export class MovementProductRegistriesListComponent {
   @Input({ required: true }) selectedProduct!: ProductType;
   @Input({ required: true }) cashRegisters!: ICashRegisterRes[];
-  @Input({ required: true }) safes!: ISafeRes[];
 }
