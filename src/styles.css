@@ -24,7 +24,7 @@ body {
 }
 
 .form .control-row label:not(.font-normal) {
-  @apply text-gray-700 font-medium;
+  @apply text-gray-700 text-xs sm:text-sm md:text-base font-medium;
 }
 
 .input::-webkit-outer-spin-button,

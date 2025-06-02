@@ -12,6 +12,7 @@ import { DetailsComponent } from './details/details.component';
 import { DetailMainStatsComponent } from './components/detail-main-stats/detail-main-stats.component';
 import { QuickActionsComponent } from './components/quick-actions/quick-actions.component';
 import { TransferModalComponent } from './components/transfer-modal/transfer-modal.component';
+import { UpdateBaseModalComponent } from './components/update-base-modal/update-base-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TransferModalComponent } from './components/transfer-modal/transfer-mod
     DetailMainStatsComponent,
     QuickActionsComponent,
     TransferModalComponent,
+    UpdateBaseModalComponent,
   ],
   imports: [
     CommonModule,

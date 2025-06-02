@@ -7,6 +7,8 @@ import { DetailLayoutComponent } from './layouts/detail-layout/detail-layout.com
 import { DetailHeadlineComponent } from './components/detail-headline/detail-headline.component';
 import { ListHeadlineComponent } from './components/list-headline/list-headline.component';
 import { ListHeadlineHeaderComponent } from './components/list-headline-header/list-headline-header.component';
+import { BaseCalculatorComponent } from './components/base-calculator/base-calculator.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,9 @@ import { ListHeadlineHeaderComponent } from './components/list-headline-header/l
     DetailHeadlineComponent,
     ListHeadlineComponent,
     ListHeadlineHeaderComponent,
+    BaseCalculatorComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [
     DetailWrapperComponent,
     DetailStatInlineComponent,
@@ -25,6 +28,7 @@ import { ListHeadlineHeaderComponent } from './components/list-headline-header/l
     DetailHeadlineComponent,
     ListHeadlineComponent,
     ListHeadlineHeaderComponent,
+    BaseCalculatorComponent,
   ],
 })
 export class HomeSharedModule {}

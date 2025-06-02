@@ -5,13 +5,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { DetailService } from '../../services/detail.service';
 import { TransferModalComponent } from '../transfer-modal/transfer-modal.component';
+import { UpdateBaseModalComponent } from '../update-base-modal/update-base-modal.component';
 
 @Component({
   selector: 'app-quick-actions',
   templateUrl: './quick-actions.component.html',
 })
 export class QuickActionsComponent {
+  @ViewChild(UpdateBaseModalComponent)
+  updateBaseModal!: UpdateBaseModalComponent;
   @ViewChild(TransferModalComponent) transferModal!: TransferModalComponent;
+
   readonly faBase = faHandHoldingDollar;
   readonly faTransfer = faArrowRightArrowLeft;
   readonly today;
