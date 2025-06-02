@@ -6,7 +6,6 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
 @Component({
   selector: 'app-cash-transfers-table',
   templateUrl: './cash-transfers-table.component.html',
-  styleUrls: ['./cash-transfers-table.component.css'],
 })
 export class CashTransfersTableComponent {
   @Output() onRemove = new EventEmitter<number>();

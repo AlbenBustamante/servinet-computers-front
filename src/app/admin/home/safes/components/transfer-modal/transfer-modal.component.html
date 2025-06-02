@@ -10,7 +10,7 @@
       </span>
     </p>
   </section>
-  <form class="form text-left" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form class="text-left" [formGroup]="form" (ngSubmit)="onSubmit()">
     <app-fieldset legend="Formulario">
       <div class="control">
         <label for="type">Tipo de transferencia</label>
@@ -43,6 +43,7 @@
             id="denomination"
             class="input"
             formControlName="denomination"
+            (change)="setAvailableAmount()"
           >
             <option value="" disabled>Selecciona una denominación</option>
             <option
@@ -125,9 +126,25 @@
           </select>
         </div>
       </div>
+      <small
+        class="text-xs sm:text-sm text-center font-medium -mt-1 -mb-1.5 transition-opacity"
+        [ngClass]="{
+          'opacity-0': amountMessage() === '--',
+          'opacity-100': amountMessage() !== '--',
+          'text-violet-700':
+            !submitDisabled && amountMessage().includes('disponible'),
+          'text-green-700':
+            !submitDisabled && amountMessage().includes('ingresar'),
+          'text-red-700': submitDisabled
+        }"
+      >
+        {{ amountMessage() }}
+      </small>
       <hr class="border-neutral-300 my-2 5" />
       <div class="flex flex-col gap-3">
-        <app-button type="submit">Guardar</app-button>
+        <app-button type="submit" [disabled]="submitDisabled">
+          Guardar
+        </app-button>
         <app-button type="button" color="neutral" (click)="close()">
           Cerrar
         </app-button>

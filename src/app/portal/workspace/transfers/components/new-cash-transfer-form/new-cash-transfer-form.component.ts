@@ -12,7 +12,6 @@ import { MyHomeService } from '@services/my-home.service';
 @Component({
   selector: 'app-new-cash-transfer-form',
   templateUrl: './new-cash-transfer-form.component.html',
-  styleUrls: ['./new-cash-transfer-form.component.css'],
 })
 export class NewCashTransferFormComponent {
   readonly loading = signal<boolean>(false);
