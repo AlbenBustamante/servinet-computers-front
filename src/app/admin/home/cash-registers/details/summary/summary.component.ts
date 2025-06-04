@@ -11,9 +11,11 @@ import { formatDate } from '@angular/common';
 export class SummaryComponent {
   private readonly id: number;
   readonly loading;
-  readonly detail;
+  readonly details;
+  readonly selectedDetail;
   readonly title = computed(
-    () => `Caja Registradora N° ${this.detail()?.cashRegister.numeral ?? 0}`
+    () =>
+      `Caja Registradora N° ${this.selectedDetail()?.cashRegister.numeral ?? 0}`
   );
   readonly today = formatDate(new Date(), 'yyyy-MM-dd', this.locale);
   readonly date;
@@ -26,16 +28,21 @@ export class SummaryComponent {
   ) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.loading = this.service.loading;
-    this.detail = this.service.detail;
+    this.details = this.service.details;
+    this.selectedDetail = this.service.selectedDetail;
     this.date = this.service.date;
   }
 
   ngOnInit() {
     this.loading.set(true);
 
-    this.cashRegisterService.getLastDetail(this.id).subscribe({
-      next: (detail) => {
-        this.detail.set(detail);
+    this.cashRegisterService.getMovements(this.id).subscribe({
+      next: (details) => {
+        if (details.length > 0) {
+          this.selectedDetail.set(details[0]);
+        }
+
+        this.details.set(details);
         this.loading.set(false);
       },
       error: (err) => {
@@ -43,6 +50,17 @@ export class SummaryComponent {
         this.loading.set(false);
       },
     });
+  }
+
+  setSelectedDetail(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const value = Number(target.value);
+
+    const index = this.details().findIndex((detail) => detail.id === value);
+
+    if (index > -1) {
+      this.selectedDetail.set(this.details()[index]);
+    }
   }
 
   onChangeDate(event: Event) {
