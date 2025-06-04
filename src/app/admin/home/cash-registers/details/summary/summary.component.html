@@ -3,10 +3,27 @@
   hDescription="Administración y movimientos de la caja registradora"
   [return]="true"
 />
-<app-detail-layout>
-  <app-basic-info class="md:row-span-2" />
+<ng-template #noDetails>
+  <p>No se encontraron movimientos en la fecha seleccionada</p>
+</ng-template>
+<app-detail-layout *ngIf="details().length > 0; else noDetails">
   <form>
+    <label for="details" class="sr-only">Detalle</label>
+    <select
+      id="details"
+      class="input w-full"
+      (change)="setSelectedDetail($event)"
+    >
+      <option *ngFor="let detail of details()" [value]="detail.id">
+        {{ detail.status | cashRegisterDetailStatus }} -
+        {{ detail.createdBy }} - {{ detail.createdDate | date : "hh:mm:ss a" }}
+      </option>
+    </select>
+  </form>
+  <form>
+    <label for="date" class="sr-only">Fecha</label>
     <input
+      id="date"
       type="date"
       class="input w-full"
       [value]="today"
@@ -14,6 +31,7 @@
       (change)="onChangeDate($event)"
     />
   </form>
+  <app-basic-info />
   <app-quick-actions class="md:row-span-2" />
   <app-hours-stats />
   <app-base-stats />

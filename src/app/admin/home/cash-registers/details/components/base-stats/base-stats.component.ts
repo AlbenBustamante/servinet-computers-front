@@ -11,6 +11,6 @@ export class BaseStatsComponent {
 
   constructor(private readonly service: DetailService) {
     this.loading = this.service.loading;
-    this.detail = this.service.detail;
+    this.detail = this.service.selectedDetail;
   }
 }

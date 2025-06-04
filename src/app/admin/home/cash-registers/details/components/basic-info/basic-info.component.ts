@@ -10,7 +10,7 @@ export class BasicInfoComponent {
   readonly loading;
 
   constructor(private readonly service: DetailService) {
-    this.detail = this.service.detail;
+    this.detail = this.service.selectedDetail;
     this.loading = this.service.loading;
   }
 }

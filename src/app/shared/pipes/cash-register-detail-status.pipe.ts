@@ -15,7 +15,7 @@ export class CashRegisterDetailStatusPipe implements PipeTransform {
     }
 
     if (value === CashRegisterDetailStatus.CLOSED) {
-      return 'Terminada';
+      return 'Finalizado';
     }
 
     return '';
