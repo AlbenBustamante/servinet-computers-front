@@ -4,7 +4,13 @@
   [myCashRegisters]="myCashRegisters()"
   (handleSelectedCashRegister)="handleSelectedCashRegister($event)"
 />
-<div class="mt-32"></div>
+<hr class="border-neutral-300 mt-24 mb-7" />
+<p class="text-center text-gray-700 font-medium text-xl mb-7">
+  Transacciones:
+  <span class="text-violet-700">{{
+    currentCashRegister()?.transactionsAmount
+  }}</span>
+</p>
 <div class="flex items-center justify-center gap-7">
   <app-button
     type="button"
