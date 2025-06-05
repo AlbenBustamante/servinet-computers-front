@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '@services/user.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 import { EnabledPipe } from '@shared/pipes/enabled.pipe';
@@ -34,9 +35,14 @@ export class UsersTableComponent {
     noDataMessage: 'Sin usuarios registrados...',
     onEdit: (index) => this.emitOnEdit(index),
     onRemove: (index) => this.onRemove(index),
+    onClick: (index) => this.goToDetails(index),
   };
 
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {}
 
   emitOnEdit(index: number) {
     const { id, name, lastName, role } = this.userService.users()[index];
@@ -61,5 +67,10 @@ export class UsersTableComponent {
         this.removeLoading.set(true);
       },
     });
+  }
+
+  goToDetails(index: number) {
+    const { id } = this.userService.users()[index];
+    this.router.navigate([id], { relativeTo: this.route });
   }
 }

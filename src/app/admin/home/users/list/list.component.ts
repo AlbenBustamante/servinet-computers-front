@@ -1,15 +1,14 @@
 import { Component, signal, ViewChild } from '@angular/core';
-import { UserService } from '@services/user.service';
-import { UpdateUserFormComponent } from './components/update-user-form/update-user-form.component';
 import { AuthService } from '@services/auth.service';
-import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
+import { UserService } from '@services/user.service';
+import { NewUserFormComponent } from '../components/new-user-form/new-user-form.component';
+import { UpdateUserFormComponent } from '../components/update-user-form/update-user-form.component';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  selector: 'app-list',
+  templateUrl: './list.component.html',
 })
-export class UsersComponent {
+export class ListComponent {
   @ViewChild(UpdateUserFormComponent) updateUserForm!: UpdateUserFormComponent;
   @ViewChild(NewUserFormComponent) newUserForm!: NewUserFormComponent;
   readonly showSideBarRegister = signal<boolean>(false);
