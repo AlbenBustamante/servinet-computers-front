@@ -1,7 +1,21 @@
 <div class="flex items-center justify-center" role="status">
   <div
-    class="w-16 h-16 bg-gradient-to-t from-violet-100 to-violet-300 rounded-full animate-spin flex justify-center items-center"
+    class="bg-gradient-to-t to-violet-700 via-stone-50 rounded-full animate-spin flex justify-center items-center"
+    [ngClass]="{
+      'from-white': background === 'white',
+      'from-body': background === 'body',
+      'size-52': big,
+      'size-14': !big
+    }"
   >
-    <div class="w-12 h-12 bg-white rounded-full"></div>
+    <div
+      class="rounded-full"
+      [ngClass]="{
+        'bg-white': background === 'white',
+        'bg-body': background === 'body',
+        'size-44': big,
+        'size-11': !big
+      }"
+    ></div>
   </div>
 </div>
