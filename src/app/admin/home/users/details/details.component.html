@@ -7,4 +7,14 @@
   <app-detail-wrapper headline="Jornadas" [loading]="loading()">
     <app-journeys-table />
   </app-detail-wrapper>
+  <form>
+    <label for="month" class="sr-only">Mes y Año</label>
+    <input
+      type="month"
+      id="month"
+      class="w-full input"
+      [value]="formatDate(date())"
+      (change)="onChangeMonth($event)"
+    />
+  </form>
 </app-detail-layout>

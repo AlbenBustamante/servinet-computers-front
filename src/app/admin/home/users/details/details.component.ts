@@ -53,7 +53,25 @@ export class DetailsComponent {
     });
   }
 
+  onChangeMonth(event: Event) {
+    this.loading.set(true);
+
+    const target = event.target as HTMLInputElement;
+    const date = target.value;
+
+    this.userService.getJourneys(this.id, date).subscribe({
+      next: (journeys) => {
+        this.journeys.set(journeys);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading.set(false);
+      },
+    });
+  }
+
   formatDate(date: Date) {
-    return formatDate(date, 'yyyy-MM-dd', this.locale);
+    return formatDate(date, 'yyyy-MM', this.locale);
   }
 }
