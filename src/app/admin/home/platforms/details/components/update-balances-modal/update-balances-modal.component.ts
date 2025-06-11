@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { FormLoading } from '@utils/form-loading';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 import { IUpdatePlatformBalanceDto } from '@models/platform.model';
 
 @Component({

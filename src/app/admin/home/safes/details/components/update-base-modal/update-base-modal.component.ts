@@ -1,5 +1,5 @@
 import { Component, computed, signal, ViewChild } from '@angular/core';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { IBase, IBaseDetail } from '@models/base.model';
 import { BaseService } from '@services/base.service';

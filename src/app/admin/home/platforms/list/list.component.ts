@@ -1,6 +1,6 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { PlatformService } from '@services/platform.service';
-import { UpdatePlatformFormComponent } from '@admin/home/platforms/components/update-platform-form/update-platform-form.component';
+import { UpdatePlatformFormComponent } from '@admin/home/platforms/list/components/update-platform-form/update-platform-form.component';
 
 @Component({
   selector: 'app-list',

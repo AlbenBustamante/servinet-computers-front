@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 
 @Component({
   selector: 'app-platform-details-balances',

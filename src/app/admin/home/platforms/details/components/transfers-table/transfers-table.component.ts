@@ -1,6 +1,6 @@
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { PlatformTransferService } from '@services/platform-transfer.service';
 

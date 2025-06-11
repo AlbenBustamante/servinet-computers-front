@@ -1,6 +1,6 @@
 import { Component, Inject, LOCALE_ID, signal, ViewChild } from '@angular/core';
 import { ModalComponent } from '@shared/components/modal/modal.component';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IBase } from '@models/base.model';
 import { CurrencyPipe } from '@angular/common';

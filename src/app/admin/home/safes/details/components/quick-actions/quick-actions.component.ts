@@ -3,9 +3,9 @@ import {
   faArrowRightArrowLeft,
   faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
-import { DetailService } from '../../services/detail.service';
-import { TransferModalComponent } from '../transfer-modal/transfer-modal.component';
-import { UpdateBaseModalComponent } from '../update-base-modal/update-base-modal.component';
+import { DetailService } from '../../../services/detail.service';
+import { TransferModalComponent } from '../../../components/transfer-modal/transfer-modal.component';
+import { UpdateBaseModalComponent } from '../../../components/update-base-modal/update-base-modal.component';
 
 @Component({
   selector: 'app-quick-actions',

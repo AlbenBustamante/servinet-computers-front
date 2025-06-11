@@ -4,7 +4,7 @@ import { IPlatformTransferReq } from '@models/platform.model';
 import { PlatformTransferService } from '@services/platform-transfer.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { FormLoading } from '@utils/form-loading';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 import { formatDate } from '@angular/common';
 
 @Component({
