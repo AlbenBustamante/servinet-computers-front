@@ -12,9 +12,9 @@ import { DetailsComponent } from './details/details.component';
 import { PlatformDetailsQuickActionsComponent } from './details/components/platform-details-quick-actions/platform-details-quick-actions.component';
 import { HomeSharedModule } from '../home-shared/home-shared.module';
 import { PlatformDetailsBalancesComponent } from './details/components/platform-details-balances/platform-details-balances.component';
-import { TransfersTableComponent } from '@portal/reports/components/transfers-table/transfers-table.component';
 import { NewPlatformTransferModalComponent } from './details/components/new-platform-transfer-modal/new-platform-transfer-modal.component';
 import { UpdateBalancesModalComponent } from './details/components/update-balances-modal/update-balances-modal.component';
+import { TransfersTableComponent } from './details/components/transfers-table/transfers-table.component';
 
 @NgModule({
   declarations: [

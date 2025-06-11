@@ -2,9 +2,9 @@ import { Component, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlatformService } from '@services/platform.service';
 import { DetailService } from '@admin/home/platforms/services/detail.service';
-import { UpdateBalancesModalComponent } from '@admin/home/platforms/components/update-balances-modal/update-balances-modal.component';
-import { NewPlatformTransferModalComponent } from '@admin/home/platforms/components/new-platform-transfer-modal/new-platform-transfer-modal.component';
 import { formatDate } from '@angular/common';
+import { NewPlatformTransferModalComponent } from './components/new-platform-transfer-modal/new-platform-transfer-modal.component';
+import { UpdateBalancesModalComponent } from './components/update-balances-modal/update-balances-modal.component';
 
 @Component({
   selector: 'app-details',
