@@ -1,8 +1,8 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
-import { NewUserFormComponent } from '../components/new-user-form/new-user-form.component';
-import { UpdateUserFormComponent } from '../components/update-user-form/update-user-form.component';
+import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
+import { UpdateUserFormComponent } from './components/update-user-form/update-user-form.component';
 
 @Component({
   selector: 'app-list',

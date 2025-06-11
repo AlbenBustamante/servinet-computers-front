@@ -1,6 +1,6 @@
 import { Component, computed, Inject, LOCALE_ID } from '@angular/core';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
-import { DetailService } from '../../services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   templateUrl: './journeys-table.component.html',
 })
 export class JourneysTableComponent {
+  readonly loading;
+
   readonly table: ITable = {
     header: [
       { key: 'cashRegisterDetail.id', title: 'ID', align: 'center' },
@@ -49,6 +51,11 @@ export class JourneysTableComponent {
         pipe: new CurrencyPipe(this.locale),
       },
       { key: 'totalOfHours', title: 'Horas trabajadas' },
+      {
+        key: 'totalOfTransactions',
+        title: 'Transacciones',
+        align: 'center',
+      },
     ],
     body: computed(() => {
       const journeys = this.detailService.journeys();
@@ -62,7 +69,9 @@ export class JourneysTableComponent {
     private readonly detailService: DetailService,
     private readonly router: Router,
     @Inject(LOCALE_ID) private readonly locale: string
-  ) {}
+  ) {
+    this.loading = this.detailService.loading;
+  }
 
   goToDetails(index: number) {
     console.log({ id: this.detailService.journeys()?.journeys[index] });

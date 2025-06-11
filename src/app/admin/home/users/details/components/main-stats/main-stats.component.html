@@ -1,0 +1,24 @@
+<app-detail-wrapper headline="Resumen" [loading]="loading()">
+  <ul class="flex flex-col gap-1">
+    <app-detail-stat-inline
+      headline="Transacciones"
+      [stat]="journeys()?.totalOfTransactions"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Promedio"
+      [stat]="average()"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Por descontar"
+      [stat]="journeys()?.totalOfDiscounts"
+      pipe="currency"
+    />
+    <app-detail-stat-inline
+      headline="Horas"
+      [stat]="journeys()?.totalOfHours"
+      [pipe]="undefined"
+    />
+  </ul>
+</app-detail-wrapper>
