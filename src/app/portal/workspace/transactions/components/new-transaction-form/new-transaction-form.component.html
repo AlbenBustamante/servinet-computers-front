@@ -48,14 +48,13 @@
     </div>
     <div class="control">
       <label for="commission">Adicional</label>
-      <input
-        type="text"
-        id="commission"
-        class="input"
-        formControlName="commission"
-        autocomplete="off"
-        appCurrencyFormat
-      />
+      <select id="comission" class="input" formControlName="commission">
+        <option value="0" selected>0</option>
+        <option value="500">500</option>
+        <option value="1000">1.000</option>
+        <option value="2000">2.000</option>
+        <option value="3000">3.000</option>
+      </select>
     </div>
   </div>
   <div class="control">
