@@ -52,6 +52,11 @@ export class JourneysTableComponent {
         key: 'totalOfHours',
         title: 'Horas trabajadas',
       },
+      {
+        key: 'totalOfTransactions',
+        title: 'Transacciones',
+        align: 'center',
+      },
     ],
     body: computed(() => this.service.journeys()?.journeys),
     noDataMessage: 'No se encontraron jornadas',
