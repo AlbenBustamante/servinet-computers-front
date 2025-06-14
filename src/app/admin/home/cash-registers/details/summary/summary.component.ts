@@ -1,7 +1,7 @@
 import { Component, computed, Inject, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CashRegisterService } from '@services/cash-register.service';
-import { DetailService } from '../services/detail.service';
+import { DetailService } from '@admin/home/cash-registers/details/services/detail.service';
 import { formatDate } from '@angular/common';
 
 @Component({

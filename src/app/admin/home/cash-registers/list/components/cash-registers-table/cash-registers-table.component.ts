@@ -9,7 +9,6 @@ import { CashRegisterStatusPipe } from '@shared/pipes/cash-register-status.pipe'
 @Component({
   selector: 'app-cash-registers-table',
   templateUrl: './cash-registers-table.component.html',
-  styleUrls: ['./cash-registers-table.component.css'],
 })
 export class CashRegistersTableComponent {
   @Output() onEdit = new EventEmitter<void>();

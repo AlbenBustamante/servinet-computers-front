@@ -5,7 +5,6 @@ import { CashRegisterService } from '@services/cash-register.service';
 @Component({
   selector: 'app-update-cash-register-form',
   templateUrl: './update-cash-register-form.component.html',
-  styleUrls: ['./update-cash-register-form.component.css'],
 })
 export class UpdateCashRegisterFormComponent {
   @Output() onComplete = new EventEmitter<void>();

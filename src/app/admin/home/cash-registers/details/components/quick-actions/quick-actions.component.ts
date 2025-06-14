@@ -12,6 +12,6 @@ export class QuickActionsComponent {
   ) {}
 
   goToMovements() {
-    this.router.navigate(['movimientos'], { relativeTo: this.route });
+    //this.router.navigate(['movimientos'], { relativeTo: this.route });
   }
 }

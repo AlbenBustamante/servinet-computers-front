@@ -12,7 +12,14 @@ import { BasicInfoComponent } from './components/basic-info/basic-info.component
 import { MovementsComponent } from './movements/movements.component';
 
 @NgModule({
-  declarations: [SummaryComponent, HoursStatsComponent, BaseStatsComponent, QuickActionsComponent, BasicInfoComponent, MovementsComponent],
+  declarations: [
+    SummaryComponent,
+    HoursStatsComponent,
+    BaseStatsComponent,
+    QuickActionsComponent,
+    BasicInfoComponent,
+    MovementsComponent,
+  ],
   imports: [CommonModule, DetailsRoutingModule, SharedModule, HomeSharedModule],
 })
 export default class DetailsModule {}

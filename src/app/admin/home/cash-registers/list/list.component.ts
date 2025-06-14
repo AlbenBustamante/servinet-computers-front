@@ -1,6 +1,6 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { CashRegisterService } from '@services/cash-register.service';
-import { UpdateCashRegisterFormComponent } from '@admin/home/cash-registers/components/update-cash-register-form/update-cash-register-form.component';
+import { UpdateCashRegisterFormComponent } from '@admin/home/cash-registers/list/components/update-cash-register-form/update-cash-register-form.component';
 
 @Component({
   selector: 'app-list',
