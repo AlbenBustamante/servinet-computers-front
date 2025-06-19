@@ -1,23 +1,23 @@
-<app-detail-wrapper headline="Horas" [loading]="loading()">
+<app-detail-wrapper headline="Jornada" [loading]="loading()">
   <ul class="flex flex-col gap-1">
     <app-detail-stat-inline
       headline="Entrada"
-      [stat]="detail()?.initialWorking"
+      [stat]="reports()?.reports?.cashRegisterDetail?.initialWorking"
       pipe="time"
     />
     <app-detail-stat-inline
       headline="Almuerzo Entrada"
-      [stat]="detail()?.initialBreak"
+      [stat]="reports()?.reports?.cashRegisterDetail?.initialBreak"
       pipe="time"
     />
     <app-detail-stat-inline
       headline="Almuerzo Salida"
-      [stat]="detail()?.finalBreak"
+      [stat]="reports()?.reports?.cashRegisterDetail?.finalBreak"
       pipe="time"
     />
     <app-detail-stat-inline
       headline="Salida"
-      [stat]="detail()?.finalWorking"
+      [stat]="reports()?.reports?.cashRegisterDetail?.finalWorking"
       pipe="time"
     />
   </ul>

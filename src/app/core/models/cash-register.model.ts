@@ -67,7 +67,7 @@ interface IDetailedCashRegisterTransactionsDto {
   transfers: ICashTransferDto[];
 }
 
-export interface IDetailedCashRegisterReportsDto {
+export interface ICashRegisterDetailReportsAndMovementsDto {
   reports: ICashRegisterDetailReportsDto;
   transactions: IDetailedCashRegisterTransactionsDto;
   changeLogs: IChangeLogRes[];

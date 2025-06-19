@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import { DetailService } from '@admin/home/cash-registers/details/services/detail.service';
 
 @Component({
-  selector: 'app-hours-stats',
-  templateUrl: './hours-stats.component.html',
+  selector: 'app-basic-info',
+  templateUrl: './basic-info.component.html',
 })
-export class HoursStatsComponent {
+export class BasicInfoComponent {
+  readonly reports;
   readonly loading;
-  readonly detail;
 
   constructor(private readonly service: DetailService) {
+    this.reports = this.service.reports;
     this.loading = this.service.loading;
-    this.detail = this.service.selectedDetail;
   }
 }

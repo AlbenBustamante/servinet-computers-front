@@ -9,7 +9,7 @@ import {
   ICashRegisterDetailReq,
   ICashRegisterDetailRes,
   ICloseCashRegisterDetailDto,
-  IDetailedCashRegisterReportsDto,
+  ICashRegisterDetailReportsAndMovementsDto,
   IMyCashRegistersReports,
   IUpdateCashRegisterDetailBaseDto,
 } from '@models/cash-register.model';
@@ -59,9 +59,9 @@ export class CashRegisterDetailService {
     );
   }
 
-  getDetailedReports(cashRegisterDetailId: number) {
-    return this.http.get<IDetailedCashRegisterReportsDto>(
-      this.urlIdPath(cashRegisterDetailId, 'detailed-reports'),
+  getReportsAndMovements(cashRegisterDetailId: number) {
+    return this.http.get<ICashRegisterDetailReportsAndMovementsDto>(
+      this.urlIdPath(cashRegisterDetailId, 'reports-and-movements'),
       { context: checkToken() }
     );
   }

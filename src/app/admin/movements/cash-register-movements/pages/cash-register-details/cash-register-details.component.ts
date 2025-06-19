@@ -25,7 +25,7 @@ export class CashRegisterDetailsComponent {
   ngOnInit() {
     this.loading.set(true);
 
-    this.cashRegisterDetailService.getDetailedReports(this.id).subscribe({
+    this.cashRegisterDetailService.getReportsAndMovements(this.id).subscribe({
       next: (reports) => {
         this.movement.set(reports);
         this.loading.set(false);

@@ -3,7 +3,7 @@
     <input
       type="date"
       [value]="formattedDate"
-      [max]="formattedDate"
+      [max]="today"
       class="input w-full"
       (change)="onChangeDate($event)"
       [disabled]="loading()"

@@ -15,6 +15,7 @@ export class DatePickerModalComponent {
   readonly loading;
   readonly formattedDate;
   readonly details;
+  readonly today = formatDate(new Date(), 'yyyy-MM-dd', this.locale);
 
   constructor(
     @Inject(LOCALE_ID) private readonly locale: string,

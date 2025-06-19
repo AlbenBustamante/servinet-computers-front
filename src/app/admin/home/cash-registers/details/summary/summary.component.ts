@@ -1,7 +1,7 @@
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component, computed, Inject, LOCALE_ID, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailService } from '@admin/home/cash-registers/details/services/detail.service';
-import { formatDate } from '@angular/common';
+import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 
 @Component({
   selector: 'app-summary',
@@ -10,16 +10,31 @@ import { formatDate } from '@angular/common';
 export class SummaryComponent {
   private readonly id: number;
   readonly loading;
-  readonly today = formatDate(new Date(), 'yyyy-MM-dd', this.locale);
-  readonly date;
+  readonly reports;
 
   constructor(
     @Inject(LOCALE_ID) private readonly locale: string,
     private readonly route: ActivatedRoute,
-    private readonly service: DetailService
+    private readonly service: DetailService,
+    private readonly cashRegisterDetailService: CashRegisterDetailService
   ) {
     this.id = Number(this.route.snapshot.paramMap.get('detailId'));
     this.loading = this.service.loading;
-    this.date = this.service.date;
+    this.reports = this.service.reports;
+  }
+
+  ngOnInit() {
+    this.loading.set(true);
+
+    this.cashRegisterDetailService.getReportsAndMovements(this.id).subscribe({
+      next: (reports) => {
+        this.reports.set(reports);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading.set(false);
+      },
+    });
   }
 }

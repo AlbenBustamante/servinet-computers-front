@@ -2,21 +2,24 @@
   <ul class="flex flex-col gap-1">
     <app-detail-stat-inline
       headline="Inicial"
-      [stat]="detail()?.initialBase"
+      [stat]="reports()?.reports?.cashRegisterDetail?.initialBase"
       pipe="currency"
     />
     <app-detail-stat-inline
       headline="Final"
-      [stat]="detail()?.finalBase"
+      [stat]="reports()?.reports?.cashRegisterDetail?.finalBase"
       pipe="currency"
     />
     <li class="text-lg text-gray-700 px-2 py-1 rounded-lg hover:bg-violet-50">
       <ng-container
-        *ngIf="detail()?.baseObservation !== ''; else noObservation"
+        *ngIf="
+          reports()?.reports?.cashRegisterDetail?.baseObservation !== '';
+          else noObservation
+        "
       >
         Observación
         <span class="text-pretty text-base">{{
-          detail()?.baseObservation
+          reports()?.reports?.cashRegisterDetail?.baseObservation
         }}</span>
       </ng-container>
       <ng-template #noObservation> Sin observaciones </ng-template>

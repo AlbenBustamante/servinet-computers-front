@@ -7,10 +7,10 @@ import { DetailService } from '@admin/home/cash-registers/details/services/detai
 })
 export class BaseStatsComponent {
   readonly loading;
-  readonly detail;
+  readonly reports;
 
   constructor(private readonly service: DetailService) {
     this.loading = this.service.loading;
-    this.detail = this.service.selectedDetail;
+    this.reports = this.service.reports;
   }
 }

@@ -21,6 +21,7 @@ export class DetailStatInlineComponent {
     | undefined
     | 'currency'
     | 'time'
+    | 'date'
     | 'cashRegister'
     | 'cashRegisterDetail';
 
@@ -42,6 +43,10 @@ export class DetailStatInlineComponent {
 
     if (this.pipe === 'time') {
       return formatDate(this.stat as Date, 'hh:mm a', this.locale);
+    }
+
+    if (this.pipe === 'date') {
+      return formatDate(this.stat as Date, 'dd-MM-yyyy', this.locale);
     }
 
     if (this.pipe === 'cashRegister') {

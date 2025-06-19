@@ -1,0 +1,34 @@
+<app-detail-wrapper headline="Detalles" [loading]="loading()">
+  <ul class="flex flex-col gap-1">
+    <app-detail-stat-inline
+      headline="Número de Caja"
+      [stat]="reports()?.reports?.cashRegisterDetail?.cashRegister?.numeral"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Cajero"
+      [stat]="reports()?.reports?.cashRegisterDetail?.createdBy"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Fecha Apertura"
+      [stat]="reports()?.reports?.cashRegisterDetail?.createdDate"
+      pipe="date"
+    />
+    <app-detail-stat-inline
+      headline="Hora Apertura"
+      [stat]="reports()?.reports?.cashRegisterDetail?.createdDate"
+      pipe="time"
+    />
+    <app-detail-stat-inline
+      headline="Estado Caja"
+      [stat]="reports()?.reports?.cashRegisterDetail?.cashRegister?.status"
+      pipe="cashRegister"
+    />
+    <app-detail-stat-inline
+      headline="Estado Jornada"
+      [stat]="reports()?.reports?.cashRegisterDetail?.status"
+      pipe="cashRegisterDetail"
+    />
+  </ul>
+</app-detail-wrapper>
