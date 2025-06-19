@@ -1,0 +1,20 @@
+<app-modal headline="Seleccionar fecha">
+  <form class="mb-5">
+    <input
+      type="date"
+      [value]="formattedDate"
+      [max]="formattedDate"
+      class="input w-full"
+      (change)="onChangeDate($event)"
+      [disabled]="loading()"
+    />
+  </form>
+  <app-button
+    type="button"
+    color="neutral"
+    (click)="close()"
+    [loading]="loading()"
+  >
+    Cerrar
+  </app-button>
+</app-modal>

@@ -19,7 +19,7 @@ export class CashRegisterMovementsComponent {
     this.title.set(`Movimientos de Caja Registradora N° ${this.id}`);
     this.loading.set(true);
 
-    this.cashRegisterService.getMovements(this.id).subscribe({
+    this.cashRegisterService.getMovements(this.id, '2025-06-19').subscribe({
       next: (cashRegisterDetails) => {
         this.cashRegisterDetails.set(cashRegisterDetails);
         this.loading.set(false);

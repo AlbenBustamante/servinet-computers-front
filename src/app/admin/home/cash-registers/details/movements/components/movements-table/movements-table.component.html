@@ -1,0 +1,8 @@
+<article class="card">
+  <ng-template #spinner><app-spinner /></ng-template>
+  <app-list-headline headline="Movimientos" />
+  <hr class="border-neutral-300 my-3" />
+  <div class="overflow-x-auto" *ngIf="!loading(); else spinner">
+    <app-custom-table [table]="table" />
+  </div>
+</article>

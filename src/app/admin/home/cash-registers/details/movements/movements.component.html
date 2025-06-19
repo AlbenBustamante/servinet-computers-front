@@ -3,3 +3,13 @@
   hDescription="Administración y movimientos de la caja registradora"
   [return]="true"
 />
+<section class="mb-5">
+  <h3
+    class="text-violet-700 text-lg sm:text-xl md:text-2xl font-medium text-center cursor-pointer hover:underline"
+    (click)="datePickerModal.open()"
+  >
+    Fecha de movimientos: {{ date() | date : "dd-MM-yyyy" }}
+  </h3>
+</section>
+<app-movements-table />
+<app-date-picker-modal />
