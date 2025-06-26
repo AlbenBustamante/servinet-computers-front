@@ -1,0 +1,20 @@
+<app-modal [headline]="headline()" width="2xl" align="center">
+  <app-final-working-hour-form />
+  <hr class="border-neutral-300 my-5" />
+  <app-update-cash-register-base-form />
+  <footer
+    class="flex flex-col gap-3 items-center mt-7 border-t border-gray-400 pt-5"
+  >
+    <app-button type="button" (click)="onSubmit()" class="w-full">
+      Guardar
+    </app-button>
+    <app-button
+      type="button"
+      (click)="onClose()"
+      color="neutral"
+      class="w-full"
+    >
+      Cancelar
+    </app-button>
+  </footer>
+</app-modal>

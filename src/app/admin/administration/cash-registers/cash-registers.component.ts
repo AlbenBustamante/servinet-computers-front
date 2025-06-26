@@ -8,17 +8,18 @@ import {
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import {
   IAdmCashRegistersDto,
+  ICashRegisterDetailRes,
   ICloseCashRegisterDetailDto,
   IUpdateCashRegisterDetailBaseDto,
 } from '@models/cash-register.model';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
 import { AdmItemCardOptions } from '../components/adm-item-card/adm-item-card.component';
-import { CloseCashRegisterBaseModalComponent } from './components/close-cash-register-base-modal/close-cash-register-base-modal.component';
+import { CloseCashRegisterBaseModalComponent } from '../../home/cash-registers/details/summary/components/close-cash-register-base-modal/close-cash-register-base-modal.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CashRegisterBaseService } from '@services/cash-register-base.service';
 import { IBase } from '@models/base.model';
 import { Router } from '@angular/router';
-import { UpdateCashRegisterBaseModalComponent } from './components/update-cash-register-base-modal/update-cash-register-base-modal.component';
+import { UpdateCashRegisterBaseModalComponent } from '../../home/cash-registers/details/summary/components/update-cash-register-base-modal/update-cash-register-base-modal.component';
 import { CashRegisterDetailStatus } from '@models/enums';
 
 @Component({
@@ -76,8 +77,9 @@ export class CashRegistersComponent {
     private readonly fb: FormBuilder,
     private readonly router: Router
   ) {
-    this.selectedCashRegisterDetail =
-      this.cashRegisterBaseService.selectedCashRegister;
+    this.selectedCashRegisterDetail = signal<
+      ICashRegisterDetailRes | undefined
+    >(undefined);
 
     this.timeForm = this.fb.group({
       time: ['20:00', Validators.required],
@@ -209,7 +211,7 @@ export class CashRegistersComponent {
           return prevValue;
         });
 
-        this.updateCashRegisterBaseModal.close();
+        this.updateCashRegisterBaseModal.onClose();
       },
       error: (err) => {
         console.error(err);
@@ -243,7 +245,7 @@ export class CashRegistersComponent {
         next: (_) => {
           const route = 'admin/movimientos/caja-registradora';
           const detail = this.selectedCashRegisterDetail()!;
-          this.closeCashRegisterModal.close();
+          this.closeCashRegisterModal.onClose();
           this.router.navigateByUrl(
             `${route}/${detail.cashRegister.id}/reportes/${detail.id}`
           );

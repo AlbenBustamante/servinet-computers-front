@@ -1,7 +1,29 @@
 <app-detail-wrapper headline="Acciones rápidas" [loading]="false">
   <ul class="flex flex-col gap-3">
     <li>
-      <app-button type="button" [disabled]="closed()"> Cerrar caja </app-button>
+      <app-button type="button" (click)="openUpdateInitialBaseModal()">
+        Base Inicial
+      </app-button>
+    </li>
+    <li>
+      <app-button
+        type="button"
+        [disabled]="!closed()"
+        (click)="openUpdateFinalBaseModal()"
+      >
+        Base Final
+      </app-button>
+    </li>
+    <li>
+      <app-button
+        type="button"
+        [disabled]="closed()"
+        (click)="closeModal.open()"
+      >
+        Cerrar caja
+      </app-button>
     </li>
   </ul>
 </app-detail-wrapper>
+<app-update-cash-register-base-modal />
+<app-close-cash-register-base-modal />

@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IBaseDetail } from '@models/base.model';
 import { BaseService } from '@services/base.service';
 import { CashRegisterBaseService } from '@services/cash-register-base.service';
 

@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import {
   ICashRegisterDetailRes,
   ICashRegisterDetailReportsAndMovementsDto,
@@ -15,8 +16,14 @@ export class DetailService {
     ICashRegisterDetailReportsAndMovementsDto | undefined
   >(undefined);
   readonly date = signal<Date>(new Date());
+  readonly initial = signal<boolean>(false);
+  readonly timeForm;
 
-  constructor() {}
+  constructor(private readonly fb: FormBuilder) {
+    this.timeForm = this.fb.group({
+      time: ['20:00', Validators.required],
+    });
+  }
 
   set cashRegisterId(id: number) {
     this._cashRegisterId = id;

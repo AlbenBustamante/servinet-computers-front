@@ -13,6 +13,4 @@ export class DetailService {
   readonly transfers = signal<IPlatformTransferRes[]>([]);
   readonly date = signal<Date>(new Date());
   readonly empty = signal<boolean>(true);
-
-  constructor() {}
 }
