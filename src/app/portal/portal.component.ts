@@ -23,7 +23,7 @@ export class PortalComponent {
 
   readonly routes: IRoute[] = [
     { title: 'Inicio', icon: this.faHome, route: './home' },
-    { title: 'Transacciones', icon: this.faPortal, route: './transacciones' },
+    { title: 'Trabajo', icon: this.faPortal, route: './trabajo' },
     { title: 'Mis cajas', icon: this.faMyCash, route: './cajas' },
     { title: 'Plataformas', icon: this.faList, route: './plataformas' },
     { title: 'Reportes', icon: this.faReports, route: './reportes' },
