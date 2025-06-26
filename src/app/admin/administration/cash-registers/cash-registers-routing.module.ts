@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CashRegistersComponent } from './cash-registers.component';
+import { ListComponent } from './list/list.component';
 
-const routes: Routes = [{ path: '', component: CashRegistersComponent }];
+const routes: Routes = [
+  { path: '', component: ListComponent },
+  {
+    path: ':id',
+    loadChildren: () =>
+      import('./details/details.module'),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

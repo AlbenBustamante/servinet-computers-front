@@ -1,21 +1,40 @@
 <app-header-title
-  hTitle="Administración"
-  hDescription="Puedes añadir, actualizar, y ver historial de todo tipo de registros"
+  hTitle="Bienvenido"
+  hDescription="Visualiza y actualiza todos tus productos"
 />
-<div class="container flex flex-col items-center gap-7">
-  <nav class="w-fit bg-white shadow px-5 rounded-2xl">
-    <ul class="w-full flex items-center justify-center gap-2">
-      <app-adm-nav-item headline="Plataformas" route="plataformas" />
-      <span class="text-violet-900">|</span>
-      <app-adm-nav-item
-        headline="Cajas Registradoras"
-        route="cajas-registradoras"
-      />
-      <span class="text-violet-900">|</span>
-      <app-adm-nav-item headline="Cajas Fuertes" route="cajas-fuertes" />
-    </ul>
-  </nav>
-  <section class="w-full">
-    <router-outlet />
-  </section>
-</div>
+<article
+  class="px-5 py-4 border-2 border-gray-300 rounded-xl text-center w-full max-w-xs m-auto"
+>
+  <h3 class="text-xl font-light text-gray-700">Clave Dinámica</h3>
+  <p class="text-3xl font-medium tracking-widest text-violet-700">
+    {{ tempCode() ? tempCode()?.code : "----" }}
+  </p>
+</article>
+<ul
+  class="grid grid-cols-[repeat(auto-fit,_minmax(13rem,_1fr))] gap-12 max-w-5xl mt-12 mx-auto"
+>
+  <li>
+    <app-product-card
+      pTitle="Plataformas"
+      [pIcon]="faPlatforms"
+      pRoute="./plataformas"
+    />
+  </li>
+  <li>
+    <app-product-card
+      pTitle="Cajas Registradoras"
+      [pIcon]="faCashRegister"
+      pRoute="./cajas-registradoras"
+    />
+  </li>
+  <li>
+    <app-product-card
+      pTitle="Cajas Fuertes"
+      [pIcon]="faCashSafe"
+      pRoute="./cajas-fuertes"
+    />
+  </li>
+  <li>
+    <app-product-card pTitle="Usuarios" [pIcon]="faUser" pRoute="./usuarios" />
+  </li>
+</ul>

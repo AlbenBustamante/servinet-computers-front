@@ -3,24 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdministrationComponent } from './administration.component';
 
 const routes: Routes = [
+  { path: '', component: AdministrationComponent },
   {
-    path: '',
-    component: AdministrationComponent,
-    children: [
-      { path: '', redirectTo: 'plataformas', pathMatch: 'full' },
-      {
-        path: 'cajas-fuertes',
-        loadChildren: () => import('./safes/safes.module'),
-      },
-      {
-        path: 'cajas-registradoras',
-        loadChildren: () => import('./cash-registers/cash-registers.module'),
-      },
-      {
-        path: 'plataformas',
-        loadChildren: () => import('./platforms/platforms.module'),
-      },
-    ],
+    path: 'plataformas',
+    loadChildren: () => import('./platforms/platforms.module'),
+  },
+  {
+    path: 'cajas-registradoras',
+    loadChildren: () => import('./cash-registers/cash-registers.module'),
+  },
+  {
+    path: 'cajas-fuertes',
+    loadChildren: () => import('./safes/safes.module'),
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./users/users.module'),
   },
 ];
 
