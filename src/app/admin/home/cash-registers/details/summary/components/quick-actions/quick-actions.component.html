@@ -1,9 +1,7 @@
 <app-detail-wrapper headline="Acciones rápidas" [loading]="false">
   <ul class="flex flex-col gap-3">
     <li>
-      <app-button type="button" (click)="goToMovements()">
-        Ver movimientos
-      </app-button>
+      <app-button type="button" [disabled]="closed()"> Cerrar caja </app-button>
     </li>
   </ul>
 </app-detail-wrapper>

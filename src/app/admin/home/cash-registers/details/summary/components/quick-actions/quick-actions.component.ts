@@ -1,17 +1,26 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, computed } from '@angular/core';
+import { DetailService } from '../../../services/detail.service';
 
 @Component({
   selector: 'app-quick-actions',
   templateUrl: './quick-actions.component.html',
 })
 export class QuickActionsComponent {
-  constructor(
-    private readonly router: Router,
-    private readonly route: ActivatedRoute
-  ) {}
+  readonly reports;
 
-  goToMovements() {
-    //this.router.navigate(['movimientos'], { relativeTo: this.route });
+  readonly closed = computed(() => {
+    const reports = this.reports();
+
+    if (!reports) {
+      return false;
+    }
+
+    const { finalWorking, finalBase } = reports.reports.cashRegisterDetail;
+
+    return finalWorking !== null && finalBase !== null;
+  });
+
+  constructor(private readonly service: DetailService) {
+    this.reports = this.service.reports;
   }
 }

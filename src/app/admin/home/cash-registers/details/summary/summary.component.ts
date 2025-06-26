@@ -1,4 +1,4 @@
-import { Component, computed, Inject, LOCALE_ID, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailService } from '@admin/home/cash-registers/details/services/detail.service';
 import { CashRegisterDetailService } from '@services/cash-register-detail.service';
@@ -13,7 +13,6 @@ export class SummaryComponent {
   readonly reports;
 
   constructor(
-    @Inject(LOCALE_ID) private readonly locale: string,
     private readonly route: ActivatedRoute,
     private readonly service: DetailService,
     private readonly cashRegisterDetailService: CashRegisterDetailService
