@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SafeService } from '@services/safe.service';
 import { ITable } from '@shared/components/custom-table/custom-table.component';
 
@@ -29,12 +29,13 @@ export class SafesTableComponent {
 
   constructor(
     private readonly safeService: SafeService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {}
 
   goToMovements(index: number) {
     const { id } = this.safeService.safes()[index];
-    this.router.navigate(['admin', 'home', 'cajas-fuertes', id]);
+    this.router.navigate([id], { relativeTo: this.route });
   }
 
   onRemove(index: number) {
