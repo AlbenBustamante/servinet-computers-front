@@ -1,0 +1,29 @@
+<app-detail-wrapper
+  [headline]="headline()"
+  [loading]="loading()"
+  [return]="true"
+  align="right"
+>
+  <ul class="grid grid-cols-[repeat(auto-fit,_minmax(11rem,_1fr))] gap-5 mt-5">
+    <app-main-stat-card
+      headline="Depósitos"
+      [stat]="reports()?.reports?.deposits"
+      color="green"
+    />
+    <app-main-stat-card
+      headline="Retiros"
+      [stat]="reports()?.reports?.withdrawals"
+      color="red"
+    />
+    <app-main-stat-card
+      headline="Saldo en Caja"
+      [stat]="reports()?.reports?.balance"
+      color="violet"
+    />
+    <app-main-stat-card
+      headline="Descuadre"
+      [stat]="discrepancy()"
+      [color]="discrepancy() >= 0 ? 'green' : 'red'"
+    />
+  </ul>
+</app-detail-wrapper>

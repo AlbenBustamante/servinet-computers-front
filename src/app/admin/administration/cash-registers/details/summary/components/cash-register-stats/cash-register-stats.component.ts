@@ -2,10 +2,10 @@ import { Component, computed } from '@angular/core';
 import { DetailService } from '@admin/administration/cash-registers/details/services/detail.service';
 
 @Component({
-  selector: 'app-cashier-stats',
-  templateUrl: './cashier-stats.component.html',
+  selector: 'app-cash-register-stats',
+  templateUrl: './cash-register-stats.component.html',
 })
-export class CashierStatsComponent {
+export class CashRegisterStatsComponent {
   readonly reports;
   readonly loading;
 

@@ -1,6 +1,16 @@
 <app-detail-wrapper headline="Jornada" [loading]="loading()">
   <ul class="flex flex-col gap-1">
     <app-detail-stat-inline
+      headline="Transacciones"
+      [stat]="reports()?.reports?.transactionsAmount"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Ganancias"
+      [stat]="reports()?.reports?.earnings"
+      pipe="currency"
+    />
+    <app-detail-stat-inline
       headline="Entrada"
       [stat]="reports()?.reports?.cashRegisterDetail?.initialWorking"
       pipe="time"

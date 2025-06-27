@@ -28,6 +28,7 @@ import { CurrencyFormatDirective } from './directives/currency-format.directive'
 import { ModalComponent } from './components/modal/modal.component';
 import { FieldsetComponent } from './components/fieldset/fieldset.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { ReturnButtonComponent } from './components/return-button/return-button.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     ModalComponent,
     FieldsetComponent,
     MainLayoutComponent,
+    ReturnButtonComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [
@@ -80,6 +82,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     CurrencyFormatDirective,
     FieldsetComponent,
     MainLayoutComponent,
+    ReturnButtonComponent,
   ],
 })
 export class SharedModule {}

@@ -1,15 +1,11 @@
-<app-header-title
-  hTitle="Administración de Movimientos"
-  hDescription="Administración de movimientos de caja registradora"
-  [return]="true"
-/>
-<ng-template #noDetails>
-  <p>No se encontraron movimientos en la fecha seleccionada</p>
-</ng-template>
+<div class="pt-5"></div>
+<div class="mb-5">
+  <app-main-stats />
+</div>
 <app-detail-layout>
-  <app-cashier-stats />
+  <app-journey-stats />
   <app-quick-actions />
-  <app-hours-stats />
   <app-base-stats />
-  <app-aperture-stats />
+  <app-cash-register-stats />
+  <!--app-aperture-stats /-->
 </app-detail-layout>
