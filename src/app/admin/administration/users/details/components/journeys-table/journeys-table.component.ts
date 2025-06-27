@@ -74,10 +74,11 @@ export class JourneysTableComponent {
   }
 
   goToDetails(index: number) {
-    console.log({ id: this.detailService.journeys()?.journeys[index] });
-    const { id } =
-      this.detailService.journeys()!.journeys[index].cashRegisterDetail
-        .cashRegister;
-    this.router.navigateByUrl(`admin/home/cajas-registradoras/${id}`);
+    const cashRegisterDetail =
+      this.detailService.journeys()!.journeys[index].cashRegisterDetail;
+
+    this.router.navigateByUrl(
+      `admin/administracion/cajas-registradoras/${cashRegisterDetail.cashRegister.id}/${cashRegisterDetail.id}`
+    );
   }
 }
