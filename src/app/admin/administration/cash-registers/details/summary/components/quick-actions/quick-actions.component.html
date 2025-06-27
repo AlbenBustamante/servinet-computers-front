@@ -11,7 +11,7 @@
         [disabled]="!closed()"
         (click)="openUpdateFinalBaseModal()"
       >
-        Base Final
+        {{ closed() ? "Base Final" : "Base Final por definir" }}
       </app-button>
     </li>
     <li>
@@ -21,7 +21,7 @@
         (click)="closeModal.open()"
         color="danger"
       >
-        Cerrar caja
+        {{ closed() ? "Caja cerrada" : "Cerrar caja" }}
       </app-button>
     </li>
   </ul>

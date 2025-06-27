@@ -3,6 +3,7 @@ import { DetailService } from '@admin/administration/cash-registers/details/serv
 import { CashRegisterBaseService } from '@services/cash-register-base.service';
 import { UpdateCashRegisterBaseModalComponent } from '@admin/administration/cash-registers/details/summary/components/update-cash-register-base-modal/update-cash-register-base-modal.component';
 import { CloseCashRegisterBaseModalComponent } from '@admin/administration/cash-registers/details/summary/components/close-cash-register-base-modal/close-cash-register-base-modal.component';
+import { CashRegisterDetailStatus } from '@models/enums';
 
 @Component({
   selector: 'app-quick-actions',
@@ -24,9 +25,9 @@ export class QuickActionsComponent {
       return false;
     }
 
-    const { finalWorking, finalBase } = reports.reports.cashRegisterDetail;
+    const { status } = reports.reports.cashRegisterDetail;
 
-    return finalWorking !== null && finalBase !== null;
+    return status === CashRegisterDetailStatus.CLOSED;
   });
 
   constructor(

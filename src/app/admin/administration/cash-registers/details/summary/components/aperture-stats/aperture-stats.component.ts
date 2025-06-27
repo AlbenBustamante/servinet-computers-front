@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { DetailService } from '@admin/administration/cash-registers/details/services/detail.service';
+import { DetailService } from '../../../services/detail.service';
 
 @Component({
-  selector: 'app-basic-info',
-  templateUrl: './basic-info.component.html',
+  selector: 'app-aperture-stats',
+  templateUrl: './aperture-stats.component.html',
 })
-export class BasicInfoComponent {
+export class ApertureStatsComponent {
   readonly reports;
   readonly loading;
 

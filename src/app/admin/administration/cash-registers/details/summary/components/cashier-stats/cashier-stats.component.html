@@ -1,0 +1,24 @@
+<app-detail-wrapper headline="Caja" [loading]="loading()">
+  <ul class="flex flex-col gap-1">
+    <app-detail-stat-inline
+      headline="Número de Caja"
+      [stat]="reports()?.reports?.cashRegisterDetail?.cashRegister?.numeral"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Estado de Caja"
+      [stat]="reports()?.reports?.cashRegisterDetail?.cashRegister?.status"
+      pipe="cashRegister"
+    />
+    <app-detail-stat-inline
+      headline="Nombre Cajero"
+      [stat]="fullName()"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Código Cajero"
+      [stat]="reports()?.reports?.cashRegisterDetail?.createdBy"
+      [pipe]="undefined"
+    />
+  </ul>
+</app-detail-wrapper>

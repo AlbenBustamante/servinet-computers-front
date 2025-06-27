@@ -8,7 +8,7 @@ import { AdmSharedModule } from '@admin/administration/adm-shared/adm-shared.mod
 import { HoursStatsComponent } from './summary/components/hours-stats/hours-stats.component';
 import { BaseStatsComponent } from './summary/components/base-stats/base-stats.component';
 import { QuickActionsComponent } from './summary/components/quick-actions/quick-actions.component';
-import { BasicInfoComponent } from './summary/components/basic-info/basic-info.component';
+import { CashierStatsComponent } from './summary/components/cashier-stats/cashier-stats.component';
 import { MovementsComponent } from './movements/movements.component';
 import { MovementsTableComponent } from './movements/components/movements-table/movements-table.component';
 import { DatePickerModalComponent } from './movements/components/date-picker-modal/date-picker-modal.component';
@@ -17,6 +17,7 @@ import { FinalWorkingHourFormComponent } from './summary/components/final-workin
 import { UpdateCashRegisterBaseFormComponent } from './summary/components/update-cash-register-base-form/update-cash-register-base-form.component';
 import { UpdateCashRegisterBaseModalComponent } from './summary/components/update-cash-register-base-modal/update-cash-register-base-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApertureStatsComponent } from './summary/components/aperture-stats/aperture-stats.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HoursStatsComponent,
     BaseStatsComponent,
     QuickActionsComponent,
-    BasicInfoComponent,
+    CashierStatsComponent,
     MovementsComponent,
     MovementsTableComponent,
     DatePickerModalComponent,
@@ -32,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FinalWorkingHourFormComponent,
     UpdateCashRegisterBaseFormComponent,
     UpdateCashRegisterBaseModalComponent,
+    ApertureStatsComponent,
   ],
   imports: [
     CommonModule,
