@@ -28,6 +28,12 @@ export class UserService {
     });
   }
 
+  get(userId: number) {
+    return this.http.get<IUserRes>(`${this.url}/${userId}`, {
+      context: checkToken(),
+    });
+  }
+
   getAll() {
     return this.http
       .get<IUserRes[]>(this.url, { context: checkToken() })

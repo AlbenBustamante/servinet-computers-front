@@ -3,8 +3,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --bg-body: 251, 250, 255;
+  }
+}
+
+@theme {
+  @keyframes loading-text {
+    0% 50% {
+      @apply text-neutral-50;
+    }
+    50% 100% {
+      @apply text-neutral-700;
+    }
+  }
+}
+
 body {
-  @apply bg-violet-50 bg-opacity-50;
+  @apply bg-body;
 }
 
 .form {

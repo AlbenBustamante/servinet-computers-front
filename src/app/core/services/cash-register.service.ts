@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@environments/environment';
@@ -61,10 +61,12 @@ export class CashRegisterService {
     });
   }
 
-  getMovements(cashRegisterId: number) {
+  getMovements(cashRegisterId: number, date: string) {
+    const params = new HttpParams().set('date', date);
+
     return this.http.get<ICashRegisterDetailRes[]>(
       `${this.url}/${cashRegisterId}/movements`,
-      { context: checkToken() }
+      { params, context: checkToken() }
     );
   }
 

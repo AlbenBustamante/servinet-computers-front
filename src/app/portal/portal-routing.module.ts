@@ -17,7 +17,7 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module'),
       },
       {
-        path: 'transacciones',
+        path: 'trabajo',
         loadChildren: () => import('./workspace/workspace.module'),
       },
       {

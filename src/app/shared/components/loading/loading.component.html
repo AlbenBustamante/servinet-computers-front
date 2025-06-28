@@ -1,6 +1,8 @@
 <div
-  class="w-[calc(100vw_-_14rem)] h-[calc(100vh_-_4rem)] fixed right-0 top-16 flex justify-center items-center gap-5"
+  class="relative w-full h-[calc(100dvh_-_6rem)] flex justify-center items-center gap-5 mx-auto"
 >
-  <app-spinner />
-  <p class="text-5xl text-gray-700 font-medium pb-2">Cargando...</p>
+  <app-spinner [big]="true" class="absolute" />
+  <p class="absolute text-2xl text-center font-medium animate-loading-text">
+    Cargando
+  </p>
 </div>

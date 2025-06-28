@@ -1,0 +1,14 @@
+<app-detail-wrapper headline="Caja" [loading]="loading()">
+  <ul class="flex flex-col gap-1">
+    <app-detail-stat-inline
+      headline="Número de Caja"
+      [stat]="reports()?.reports?.cashRegisterDetail?.cashRegister?.numeral"
+      [pipe]="undefined"
+    />
+    <app-detail-stat-inline
+      headline="Estado de Caja"
+      [stat]="reports()?.reports?.cashRegisterDetail?.cashRegister?.status"
+      pipe="cashRegister"
+    />
+  </ul>
+</app-detail-wrapper>

@@ -1,0 +1,19 @@
+<app-header-title
+  [hTitle]="fullName()"
+  hDescription="Visualiza y administra al usuario"
+  [return]="true"
+/>
+<app-detail-layout>
+  <app-main-stats />
+  <form>
+    <label for="month" class="sr-only">Mes y Año</label>
+    <input
+      type="month"
+      id="month"
+      class="w-full input"
+      [value]="formatDate(date())"
+      (change)="onChangeMonth($event)"
+    />
+  </form>
+  <app-journeys-table class="md:col-span-2" />
+</app-detail-layout>

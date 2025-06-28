@@ -35,7 +35,7 @@ export class NewTransactionFormComponent {
       description: ['', Validators.required],
       type: [TransactionDetailType.DEPOSIT, Validators.required],
       value: ['', [Validators.required, Validators.min(0)]],
-      commission: ['', Validators.min(0)],
+      commission: [0, Validators.min(0)],
       date: [null],
     });
   }
@@ -58,9 +58,13 @@ export class NewTransactionFormComponent {
       date.setUTCSeconds(0);
     }
 
+    const commission = Number(this.form.get('commission')?.value);
+    const { id } = this.currentCashRegister()!.cashRegisterDetail;
+
     const detail: ITransactionDetailReq = {
       ...this.form.value,
-      cashRegisterDetailId: this.currentCashRegister()!.cashRegisterDetail.id,
+      cashRegisterDetailId: id,
+      commission,
       date,
     };
 
@@ -68,14 +72,21 @@ export class NewTransactionFormComponent {
       next: (transaction) => {
         this.pagination.set(transaction.page);
         this.details.set(transaction.content);
-        this.form.reset();
-        this.form.get('type')?.setValue(TransactionDetailType.DEPOSIT);
+        this.resetForm();
         this.setLoading(false);
       },
       error: (err) => {
         console.log(err);
         this.setLoading(false);
       },
+    });
+  }
+
+  private resetForm() {
+    this.form.reset();
+    this.form.patchValue({
+      type: TransactionDetailType.DEPOSIT,
+      commission: 0,
     });
   }
 

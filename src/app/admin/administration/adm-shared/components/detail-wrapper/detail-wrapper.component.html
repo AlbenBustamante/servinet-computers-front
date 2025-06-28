@@ -1,0 +1,12 @@
+<section class="border border-gray-300 rounded-2xl px-7 py-5 size-full">
+  <div [ngClass]="{ 'flex items-center gap-5 h-full': return }">
+    <app-return-button *ngIf="return" />
+    <app-detail-headline [headline]="headline" [align]="align" />
+  </div>
+  <ng-template #spinner>
+    <app-spinner />
+  </ng-template>
+  <ng-container *ngIf="!loading; else spinner">
+    <ng-content></ng-content>
+  </ng-container>
+</section>
