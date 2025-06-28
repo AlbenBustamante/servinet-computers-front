@@ -1,5 +1,5 @@
 <button
-  class="w-full flex items-center justify-center gap-1.5 text-sm sm:text-base md:text-lg px-4 sm:px-5 md:px-6 py-1 sm:py-1.5 rounded-md sm:rounded-lg md:rounded-xl font-semibold ring-4 ring-transparent focus:outline-none drop-shadow-lg duration-200"
+  class="w-full flex items-center justify-center gap-1.5 text-sm sm:text-base md:text-lg px-4 sm:px-5 md:px-6 py-1 sm:py-1.5 rounded-md sm:rounded-lg md:rounded-xl font-semibold ring-4 ring-transparent focus:outline-none drop-shadow-lg duration-100"
   [ngClass]="getColor"
   [type]="type"
   [disabled]="disabled || loading"
@@ -15,8 +15,9 @@
       <div
         class="size-3 sm:size-3.5 rounded-full"
         [ngClass]="{
-          'bg-violet-600': color === 'primary',
-          'bg-neutral-600': color === 'neutral'
+          'bg-violet-400': color === 'primary',
+          'bg-red-400': color === 'danger',
+          'bg-neutral-400': color === 'neutral'
         }"
       ></div>
     </div>
