@@ -73,7 +73,7 @@ export class CashRegistersStatsTableComponent {
   private goToMovements(index: number) {
     const { id, cashRegister } = this.table.body()![index];
     const cashRegisterId = cashRegister.id;
-    const route = `admin/movimientos/caja-registradora/${cashRegisterId}/reportes/${id}`;
+    const route = `admin/administracion/cajas-registradoras/${cashRegisterId}/${id}`;
     this.router.navigateByUrl(route);
   }
 }
