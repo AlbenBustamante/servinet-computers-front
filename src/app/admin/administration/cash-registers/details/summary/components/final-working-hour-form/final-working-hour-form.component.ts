@@ -4,7 +4,6 @@ import { DetailService } from '@admin/administration/cash-registers/details/serv
 @Component({
   selector: 'app-final-working-hour-form',
   templateUrl: './final-working-hour-form.component.html',
-  styleUrls: ['./final-working-hour-form.component.css'],
 })
 export class FinalWorkingHourFormComponent {
   readonly form;

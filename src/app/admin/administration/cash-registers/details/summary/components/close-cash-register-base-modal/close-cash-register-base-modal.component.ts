@@ -9,7 +9,6 @@ import { ICloseCashRegisterDetailDto } from '@models/cash-register.model';
 @Component({
   selector: 'app-close-cash-register-base-modal',
   templateUrl: './close-cash-register-base-modal.component.html',
-  styleUrls: ['./close-cash-register-base-modal.component.css'],
 })
 export class CloseCashRegisterBaseModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;

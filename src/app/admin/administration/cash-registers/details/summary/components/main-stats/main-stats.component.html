@@ -2,17 +2,18 @@
   [headline]="headline()"
   [loading]="loading()"
   [return]="true"
-  align="right"
 >
-  <ul class="grid grid-cols-[repeat(auto-fit,_minmax(11rem,_1fr))] gap-5 mt-5">
+  <ul
+    class="grid grid-cols-[repeat(auto-fit,_minmax(14rem,_1fr))] gap-x-7 gap-y-5 mt-5"
+  >
     <app-main-stat-card
-      headline="Depósitos"
-      [stat]="reports()?.reports?.deposits"
+      headline="Ganancias"
+      [stat]="reports()?.reports?.earnings"
       color="green"
     />
     <app-main-stat-card
-      headline="Retiros"
-      [stat]="reports()?.reports?.withdrawals"
+      headline="Gastos"
+      [stat]="reports()?.reports?.expenses"
       color="red"
     />
     <app-main-stat-card
