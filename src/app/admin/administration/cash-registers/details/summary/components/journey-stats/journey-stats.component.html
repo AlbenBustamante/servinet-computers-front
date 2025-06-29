@@ -16,10 +16,41 @@
       [pipe]="undefined"
     />
     <app-detail-stat-inline
-      headline="Ganancias"
-      [stat]="reports()?.reports?.earnings"
+      headline="Depósitos"
+      [stat]="reports()?.reports?.deposits"
       pipe="currency"
     />
+    <app-detail-stat-inline
+      headline="Retiros"
+      [stat]="reports()?.reports?.deposits"
+      pipe="currency"
+    />
+    <app-detail-stat-inline
+      headline="Base Inicial"
+      [stat]="reports()?.reports?.cashRegisterDetail?.initialBase"
+      pipe="currency"
+    />
+    <app-detail-stat-inline
+      headline="Base Final"
+      [stat]="reports()?.reports?.cashRegisterDetail?.finalBase"
+      pipe="currency"
+    />
+    <li
+      class="text-sm sm:text-base md:text-lg text-gray-700 px-2 py-1 rounded-lg hover:bg-violet-50"
+    >
+      Observación:
+      <span class="text-pretty text-gray-600">
+        <ng-container
+          *ngIf="
+            reports()?.reports?.cashRegisterDetail?.baseObservation !== '';
+            else noObservation
+          "
+        >
+          {{ reports()?.reports?.cashRegisterDetail?.baseObservation }}
+        </ng-container>
+        <ng-template #noObservation> Sin observaciones </ng-template>
+      </span>
+    </li>
     <app-detail-stat-inline
       headline="Entrada"
       [stat]="reports()?.reports?.cashRegisterDetail?.initialWorking"
@@ -40,31 +71,5 @@
       [stat]="reports()?.reports?.cashRegisterDetail?.finalWorking"
       pipe="time"
     />
-    <app-detail-stat-inline
-      headline="Base Inicial"
-      [stat]="reports()?.reports?.cashRegisterDetail?.initialBase"
-      pipe="currency"
-    />
-    <app-detail-stat-inline
-      headline="Base Final"
-      [stat]="reports()?.reports?.cashRegisterDetail?.finalBase"
-      pipe="currency"
-    />
-    <li
-      class="text-sm sm:text-base md:text-lg text-gray-700 px-2 py-1 rounded-lg hover:bg-violet-50"
-    >
-      <ng-container
-        *ngIf="
-          reports()?.reports?.cashRegisterDetail?.baseObservation !== '';
-          else noObservation
-        "
-      >
-        Observación
-        <span class="text-pretty text-base">{{
-          reports()?.reports?.cashRegisterDetail?.baseObservation
-        }}</span>
-      </ng-container>
-      <ng-template #noObservation> Sin observaciones </ng-template>
-    </li>
   </ul>
 </app-detail-wrapper>
