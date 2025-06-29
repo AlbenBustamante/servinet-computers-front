@@ -1,13 +1,28 @@
-<app-detail-wrapper headline="Saldos" [loading]="loading()">
-  <ul class="flex flex-col gap-3">
+<app-detail-wrapper headline="Detalles" [loading]="loading()">
+  <ul class="flex flex-col gap-1">
     <app-detail-stat-inline
-      headline="Inicial"
-      [stat]="details()?.balances?.[0]?.initialBalance"
+      headline="Saldo Inicial"
+      [stat]="details()?.platform?.initialBalance"
       pipe="currency"
     />
     <app-detail-stat-inline
-      headline="Final"
-      [stat]="details()?.balances?.[0]?.finalBalance"
+      headline="Saldo Final"
+      [stat]="details()?.platform?.finalBalance"
+      pipe="currency"
+    />
+    <app-detail-stat-inline
+      headline="Transferido"
+      [stat]="details()?.platform?.transfersTotal"
+      pipe="currency"
+    />
+    <app-detail-stat-inline
+      headline="Consignado"
+      [stat]="details()?.platform?.bankDepositsTotal"
+      pipe="currency"
+    />
+    <app-detail-stat-inline
+      headline="Cuadre Total"
+      [stat]="details()?.platform?.total"
       pipe="currency"
     />
   </ul>

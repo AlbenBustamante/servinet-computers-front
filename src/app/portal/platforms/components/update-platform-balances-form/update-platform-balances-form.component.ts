@@ -53,10 +53,7 @@ export class UpdatePlatformBalancesFormComponent {
     this.setLoading(true);
 
     this.platformBalanceService
-      .update(
-        this.selectedPortalPlatform()!.platformBalanceId,
-        this.balancesForm.value
-      )
+      .update(this.selectedPortalPlatform()!.balanceId, this.balancesForm.value)
       .subscribe({
         next: (platformBalance) => {
           const portalPlatforms = this.portalPlatforms();

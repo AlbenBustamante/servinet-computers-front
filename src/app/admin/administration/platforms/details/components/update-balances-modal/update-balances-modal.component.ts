@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PlatformBalanceService } from '@services/platform-balance.service';
 import { ModalComponent } from '@shared/components/modal/modal.component';
@@ -52,12 +52,13 @@ export class UpdateBalancesModalComponent {
       finalBalance: this.form.get('finalBalance')?.value!,
     };
 
-    const { id } = this.details()?.balances[0]!;
+    const { balanceId } = this.details()?.platform!;
 
-    this.platformBalanceService.update(id, dto).subscribe({
+    this.platformBalanceService.update(balanceId, dto).subscribe({
       next: (balance) => {
         this.details.update((prevValue) => {
-          prevValue!.balances[0] = balance;
+          prevValue!.platform.initialBalance = balance.initialBalance;
+          prevValue!.platform.finalBalance = balance.finalBalance;
 
           return prevValue;
         });

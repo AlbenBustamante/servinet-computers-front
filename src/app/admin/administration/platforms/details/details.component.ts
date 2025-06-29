@@ -65,17 +65,18 @@ export class DetailsComponent {
         this.details.set(details);
         this.transfers.set(details.transfers);
 
-        const balances = details.balances[0];
-        this.empty.set(balances === undefined);
+        const { initialBalance, finalBalance } = details.platform;
 
         this.balancesModal.form.patchValue({
-          initialBalance: balances?.initialBalance,
-          finalBalance: balances?.finalBalance,
+          initialBalance,
+          finalBalance,
         });
 
+        this.empty.set(false);
         this.loading.set(false);
       },
       error: (err) => {
+        this.empty.set(true);
         console.log(err);
         this.loading.set(false);
       },

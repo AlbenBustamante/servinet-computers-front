@@ -48,7 +48,7 @@ export class NewPlatformTransferModalComponent {
 
     this.setLoading(true);
 
-    const platformId = this.details()?.platform.id!;
+    const platformId = this.details()?.platform.platformId!;
 
     const dto: IPlatformTransferReq = {
       platformId,

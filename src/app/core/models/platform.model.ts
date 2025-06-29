@@ -44,7 +44,7 @@ export interface IPlatformTransferRes extends IResponse<number> {
 export interface IPortalPlatform {
   platformId: number;
   platformName: string;
-  platformBalanceId: number;
+  balanceId: number;
   initialBalance: number;
   finalBalance: number;
   transfersAmount: number;
@@ -58,7 +58,6 @@ export interface IPlatformStatsDto extends IPortalPlatform {
 }
 
 export interface IAdminPlatformDto {
-  platform: IPlatformRes;
-  balances: IPlatformBalanceRes[];
+  platform: IPlatformStatsDto;
   transfers: IPlatformTransferRes[];
 }
