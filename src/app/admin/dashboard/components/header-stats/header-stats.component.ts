@@ -4,7 +4,6 @@ import { DashboardService } from '@services/dashboard.service';
 @Component({
   selector: 'app-header-stats',
   templateUrl: './header-stats.component.html',
-  styleUrls: ['./header-stats.component.css'],
 })
 export class HeaderStatsComponent {
   date = '';

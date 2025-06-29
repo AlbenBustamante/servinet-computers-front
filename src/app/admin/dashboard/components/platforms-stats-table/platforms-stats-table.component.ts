@@ -6,7 +6,6 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
 @Component({
   selector: 'app-platforms-stats-table',
   templateUrl: './platforms-stats-table.component.html',
-  styleUrls: ['./platforms-stats-table.component.css'],
 })
 export class PlatformsStatsTableComponent {
   readonly table: ITable = {

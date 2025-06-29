@@ -1,8 +1,14 @@
-<section class="px-5 pt-11 pb-12 border-2 border-violet-200 rounded-3xl">
-  <h2 class="text-4xl text-gray-700 font-medium text-center mb-8">
-    Totalidad de Saldos
-  </h2>
-  <div class="stats text-gray-700">
+<section class="px-12 pt-11 pb-12 border-2 border-violet-200 rounded-3xl">
+  <header class="mb-5">
+    <h2
+      class="text-xl sm:text-2xl md:text-3xl text-center font-medium text-violet-700"
+    >
+      Totalidad de Saldos
+    </h2>
+  </header>
+  <div
+    class="grid grid-cols-[repeat(auto-fit,_minmax(17rem,_1fr))] gap-x-7 gap-y-5 text-gray-700"
+  >
     <app-cash-box-stat-card
       (open)="openPlatforms()"
       stat="Plataformas"

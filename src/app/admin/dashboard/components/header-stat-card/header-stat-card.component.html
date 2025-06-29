@@ -1,18 +1,29 @@
 <article
-  class="border-2 border-violet-200 bg-violet-50 rounded-2xl py-4 w-48 hover:border-violet-300 cursor-default"
+  class="border-2 bg-violet-50 rounded-2xl py-4 px-2 hover:border-violet-300 cursor-default flex flex-col gap-1"
+  [ngClass]="{
+    'border-red-300': color === 'red',
+    'border-violet-300': color === 'violet',
+    'border-green-300': color === 'green'
+  }"
 >
-  <h2 class="text-gray-700 text-center uppercase font-medium">
+  <h2
+    class="text-sm sm:text-base text-gray-700 text-center uppercase font-semibold"
+    [ngClass]="textColor"
+  >
     {{ stat }}
   </h2>
   <p
-    class="text-2xl text-center font-bold"
-    [ngClass]="mapColor"
+    class="text-lg sm:text-xl md:text-2xl text-center font-bold"
+    [ngClass]="textColor"
     *ngIf="format; else noFormat"
   >
     {{ value ?? 0 | currency : "symbol" : "$" : "0.00" }}
   </p>
   <ng-template #noFormat>
-    <p class="text-2xl text-center font-bold" [ngClass]="mapColor">
+    <p
+      class="text-lg sm:text-xl md:text-2xl text-center font-bold"
+      [ngClass]="textColor"
+    >
       {{ value ?? 0 }}
     </p>
   </ng-template>

@@ -7,7 +7,6 @@ import { SafesStatsModalComponent } from '@admin/dashboard/components/safes-stat
 @Component({
   selector: 'app-cash-box-stats',
   templateUrl: './cash-box-stats.component.html',
-  styleUrls: ['./cash-box-stats.component.css'],
 })
 export class CashBoxStatsComponent {
   @ViewChild(PlatformsModalComponent) platformsModal!: PlatformsModalComponent;
