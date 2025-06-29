@@ -17,6 +17,12 @@ import { UpdateCashRegisterBaseModalComponent } from './summary/components/updat
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainStatsComponent } from './summary/components/main-stats/main-stats.component';
 import { MainStatCardComponent } from './summary/components/main-stat-card/main-stat-card.component';
+import { MovementsTablesComponent } from './summary/components/movements-tables/movements-tables.component';
+import { TransactionsTableComponent } from './summary/components/transactions-table/transactions-table.component';
+import { TransfersTableComponent } from './summary/components/transfers-table/transfers-table.component';
+import { ExpensesTableComponent } from './summary/components/expenses-table/expenses-table.component';
+import { DiscountsTableComponent } from './summary/components/discounts-table/discounts-table.component';
+import { BanksTableComponent } from './summary/components/banks-table/banks-table.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +38,12 @@ import { MainStatCardComponent } from './summary/components/main-stat-card/main-
     UpdateCashRegisterBaseModalComponent,
     MainStatsComponent,
     MainStatCardComponent,
+    MovementsTablesComponent,
+    TransactionsTableComponent,
+    TransfersTableComponent,
+    ExpensesTableComponent,
+    DiscountsTableComponent,
+    BanksTableComponent,
   ],
   imports: [
     CommonModule,

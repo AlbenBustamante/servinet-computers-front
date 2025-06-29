@@ -1,0 +1,26 @@
+<app-detail-wrapper headline="Movimientos" [loading]="loading()">
+  <form class="mb-5">
+    <app-fieldset legend="Selecciona el tipo de movimiento">
+      <div class="control">
+        <label for="type" class="sr-only">Tipo de movimiento</label>
+        <select
+          id="type"
+          [value]="selectedMovement()"
+          class="input"
+          (change)="setSelectedMovement($event)"
+        >
+          <option value="transactions">Transacciones</option>
+          <option value="expenses">Gastos</option>
+          <option value="discounts">Por descontar</option>
+          <option value="transfers">Transferencias</option>
+          <option value="banks">Aportes bancarios</option>
+        </select>
+      </div>
+    </app-fieldset>
+  </form>
+  <app-transactions-table *ngIf="selectedMovement() === 'transactions'" />
+  <app-expenses-table *ngIf="selectedMovement() === 'expenses'" />
+  <app-discounts-table *ngIf="selectedMovement() === 'discounts'" />
+  <app-transfers-table *ngIf="selectedMovement() === 'transfers'" />
+  <app-banks-table *ngIf="selectedMovement() === 'banks'" />
+</app-detail-wrapper>
