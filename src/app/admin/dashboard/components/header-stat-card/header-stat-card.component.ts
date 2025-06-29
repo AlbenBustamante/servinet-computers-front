@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-header-stat-card',
   templateUrl: './header-stat-card.component.html',
-  styleUrls: ['./header-stat-card.component.css'],
 })
 export class HeaderStatCardComponent {
   @Input({ required: true }) stat!: string;
@@ -11,7 +10,7 @@ export class HeaderStatCardComponent {
   @Input({ required: true }) color!: string;
   @Input() format: boolean = true;
 
-  get mapColor() {
+  get textColor() {
     return `text-${this.color}-700`;
   }
 }

@@ -4,7 +4,6 @@ import { ModalComponent } from '@shared/components/modal/modal.component';
 @Component({
   selector: 'app-platforms-modal',
   templateUrl: './platforms-modal.component.html',
-  styleUrls: ['./platforms-modal.component.css'],
 })
 export class PlatformsModalComponent {
   @ViewChild(ModalComponent) modal!: ModalComponent;

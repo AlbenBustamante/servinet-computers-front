@@ -6,14 +6,13 @@ import { ITable } from '@shared/components/custom-table/custom-table.component';
 @Component({
   selector: 'app-safes-stats-table',
   templateUrl: './safes-stats-table.component.html',
-  styleUrls: ['./safes-stats-table.component.css'],
 })
 export class SafesStatsTableComponent {
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
       { key: 'safe.numeral', title: 'Numeral', align: 'center' },
-      { key: 'safeId', title: 'Traslados', align: 'right' }, // TODO: Actualizar lógica en el back-end.
+      //{ key: 'safeId', title: 'Traslados', align: 'right' }, // TODO: Actualizar lógica en el back-end.
       {
         key: 'initialBase',
         title: 'Base Inicial',

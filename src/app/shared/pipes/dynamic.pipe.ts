@@ -23,13 +23,13 @@ export class DynamicPipe implements PipeTransform {
     if (pipe instanceof DatePipe) {
       switch (pipeArgs) {
         case 'shortDate':
-          return pipe.transform(value, 'dd/MM/yyyy');
+          return pipe.transform(value, 'dd-MM-yyyy');
         case 'shortTime':
           return pipe.transform(value, 'hh:mm a');
         case 'shortDateTime':
-          return pipe.transform(value, 'dd/MM/yyyy, hh:mm a');
+          return pipe.transform(value, 'dd-MM-yyyy hh:mm a');
         default:
-          return pipe.transform(value, 'EEE dd/MM/yyyy, hh:mm:ss a');
+          return pipe.transform(value, 'EEE dd-MM-yyyy, hh:mm:ss a');
       }
     }
 

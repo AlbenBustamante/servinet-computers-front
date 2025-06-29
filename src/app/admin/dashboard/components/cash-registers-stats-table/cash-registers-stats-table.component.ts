@@ -9,13 +9,24 @@ import { CashRegisterStatusPipe } from '@shared/pipes/cash-register-status.pipe'
 @Component({
   selector: 'app-cash-registers-stats-table',
   templateUrl: './cash-registers-stats-table.component.html',
-  styleUrls: ['./cash-registers-stats-table.component.css'],
 })
 export class CashRegistersStatsTableComponent {
   readonly table: ITable = {
     header: [
       { key: 'id', title: 'ID', align: 'center' },
       { key: 'cashRegister.numeral', title: 'Caja', align: 'center' },
+      {
+        key: 'createdDate',
+        title: 'Fecha',
+        pipe: new DatePipe('es-CO'),
+        pipeArgs: 'shortDate',
+      },
+      {
+        key: 'createdDate',
+        title: 'Hora',
+        pipe: new DatePipe('es-CO'),
+        pipeArgs: 'shortTime',
+      },
       {
         key: 'initialBase',
         title: 'Base Inicial',
@@ -50,12 +61,6 @@ export class CashRegistersStatsTableComponent {
         key: 'cashRegister.status',
         title: 'Estado Caja',
         pipe: new CashRegisterStatusPipe(),
-      },
-      {
-        key: 'createdDate',
-        title: 'Apertura',
-        pipe: new DatePipe('es-CO'),
-        pipeArgs: 'shortDateTime',
       },
     ],
     body: computed(
