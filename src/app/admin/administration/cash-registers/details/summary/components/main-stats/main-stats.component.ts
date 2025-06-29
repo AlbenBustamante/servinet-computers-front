@@ -26,7 +26,7 @@ export class MainStatsComponent {
       this.locale
     );
 
-    return `${code} - ${name} ${lastName} - ${apertureDate}`;
+    return `[${apertureDate}] ${code}: ${name} ${lastName} `;
   });
 
   readonly discrepancy = computed(() => {
