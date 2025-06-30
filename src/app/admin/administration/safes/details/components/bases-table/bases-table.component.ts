@@ -20,14 +20,15 @@ export class BasesTableComponent {
         pipe: new CurrencyPipe(this.locale),
       },
       {
+        key: 'createdBy',
+        title: 'Creado por',
+        align: 'center',
+      },
+      {
         key: 'createdDate',
         title: 'Fecha y Hora',
         pipe: new DatePipe(this.locale),
         pipeArgs: 'shortDateTime',
-      },
-      {
-        key: 'createdBy',
-        title: 'Creado por',
       },
     ],
     body: computed(() => {
