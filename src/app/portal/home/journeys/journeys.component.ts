@@ -11,7 +11,7 @@ import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 })
 export class JourneysComponent {
   readonly faExcel = faFileExport;
-  readonly date = signal<Date>(new Date());
+  readonly formattedDate = signal<string>(this.formatMonth(new Date()));
   readonly today = new Date();
   readonly loading;
   readonly journeys;
@@ -51,6 +51,7 @@ export class JourneysComponent {
 
     const target = event.target as HTMLInputElement;
     const value = target.value;
+    this.formattedDate.set(value);
     const { id } = this.tokenService.getInfo();
 
     this.userService.getJourneys(id, value).subscribe({
@@ -68,8 +69,7 @@ export class JourneysComponent {
   exportToExcel() {
     this.exportLoading.set(true);
     const { id } = this.tokenService.getInfo();
-    const month = this.formatMonth(this.today);
-    this.userService.exportJourneysToExcel(id, month).subscribe({
+    this.userService.exportJourneysToExcel(id, this.formattedDate()).subscribe({
       next: (blob) => {
         const a = document.createElement('a');
         const objectUrl = URL.createObjectURL(blob);
