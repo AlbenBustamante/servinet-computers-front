@@ -1,10 +1,11 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Role } from '@models/enums';
 import { AuthService } from '@services/auth.service';
 import { LoadingService } from '@services/loading.service';
 import { TokenService } from '@services/token.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -12,17 +13,14 @@ import { TokenService } from '@services/token.service';
 })
 export class LoginFormComponent {
   readonly form: FormGroup;
-  readonly loading;
+  readonly loading = signal<boolean>(false);
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly tokenService: TokenService,
-    private readonly router: Router,
-    private readonly loadingService: LoadingService
+    private readonly router: Router
   ) {
-    this.loading = this.loadingService.loading;
-
     this.form = this.fb.group({
       code: ['', Validators.required],
       password: ['', Validators.required],
@@ -42,11 +40,16 @@ export class LoginFormComponent {
       return this.form.markAllAsTouched();
     }
 
-    this.authService.login(this.form.value).subscribe({
-      next: () => {
-        const { role } = this.tokenService.getInfo();
-        this.router.navigateByUrl(role === Role.ADMIN ? '/admin' : '/portal');
-      },
-    });
+    this.loading.set(true);
+
+    this.authService
+      .login(this.form.value)
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe({
+        next: () => {
+          const { role } = this.tokenService.getInfo();
+          this.router.navigateByUrl(role === Role.ADMIN ? '/admin' : '/portal');
+        },
+      });
   }
 }
